@@ -63,13 +63,17 @@ class _IndustriesReportDetailPageState
                       fontSize: 18,
                     ),
                     const SizedBox(height: 20),
-                    HtmlWidget(data['description'] ?? '',
-                        onTapUrl: (url) async {
-                      print(data['description']);
-                      print("Taped:$url");
-                      return true;
-                    }),
+                    HtmlWidget(
+                      data['description'] ?? '',
+                      onTapUrl: (url) async {
+                        controller.launchUrl(url);
+                        return false;
+                      },
+                    ),
+                    //      (url) async {
 
+                    //   return true;
+                    // }),
                     // Text(
                     //   industrishReportScreen,
                     //   style: const TextStyle(

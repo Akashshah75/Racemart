@@ -132,4 +132,12 @@ class IndustriesReportProvider with ChangeNotifier {
     email.clear();
     mobileNo.clear();
   }
+
+  //luanch url
+  Future launchUrl(var uri) async {
+    // var url = Uri.parse(uri);
+    if (await launchUrl(uri)) {
+      throw Exception('Could not launch $uri');
+    }
+  }
 }
