@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:racemart_app/Utils/constant.dart';
 
-import '../../../Provider/compare event/compare_event_provider.dart';
 import '../../../Utils/app_color.dart';
 import '../../../Utils/app_size.dart';
 import '../../Home/DetailPage/Components/how_to_reac_container.dart';
@@ -23,7 +21,7 @@ class ComapreEventContainer1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CompareEventProvider>(context, listen: true);
+    // final provider = Provider.of<CompareEventProvider>(context, listen: true);
     List listOfDistances = data['distances'];
     List listOfDeliverables = data['deliverables'];
     List listOfparteners = data['partners'];
