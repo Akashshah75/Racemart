@@ -52,7 +52,7 @@ class ResultOfSerchList extends StatelessWidget {
           var serchOfData = provider.searchListData[index];
           return GestureDetector(
             onTap: () {
-              print(serchOfData['id']);
+              // print(serchOfData['id']);
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => DetailPageOfHome(
                         index: index,

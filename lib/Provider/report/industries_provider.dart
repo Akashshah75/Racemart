@@ -39,12 +39,12 @@ class IndustriesReportProvider with ChangeNotifier {
     if (result['status'] == 'success') {
       industriesReportList = result['data'];
     }
-    print(industriesReportList);
+    // print(industriesReportList);
   }
 
   //show industries report data.
   Future<void> fetchShowReportData(BuildContext context, int id) async {
-    print("$reportShowbyIdUrl$id");
+    // print("$reportShowbyIdUrl$id");
     isLoadingForDetail = true;
     notifyListeners();
     final provider =
@@ -59,7 +59,7 @@ class IndustriesReportProvider with ChangeNotifier {
     if (result['status'] == 'success') {
       showReportData = result['data'];
     }
-    print(showReportData);
+    // print(showReportData);
   }
 
   //
@@ -91,7 +91,7 @@ class IndustriesReportProvider with ChangeNotifier {
           Provider.of<AuthenticationProvider>(context, listen: false);
       var response = await BaseClient().postMethodWithToken(
           reportUrlForPostMethod, provider.appLoginToken.toString(), body);
-      print(response);
+      // print(response);
       //
       var result = jsonDecode(response);
       // print(result);

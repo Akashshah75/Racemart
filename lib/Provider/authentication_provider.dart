@@ -84,7 +84,7 @@ class AuthenticationProvider with ChangeNotifier {
   Future<bool> logOut(BuildContext context) async {
     isLogOut = true;
     notifyListeners();
-    print(appLoginToken);
+    // print(appLoginToken);
     var response = await BaseClient().postOfLogout(logOutUrl, appLoginToken);
     // print(response);
     isLogOut = false;

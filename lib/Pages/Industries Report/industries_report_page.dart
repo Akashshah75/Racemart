@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +63,13 @@ class _IndustriesReportDetailPageState
                       fontSize: 18,
                     ),
                     const SizedBox(height: 20),
-                    HtmlWidget(data['description'] ?? ''),
+                    HtmlWidget(data['description'] ?? '',
+                        onTapUrl: (url) async {
+                      print(data['description']);
+                      print("Taped:$url");
+                      return true;
+                    }),
+
                     // Text(
                     //   industrishReportScreen,
                     //   style: const TextStyle(
@@ -113,3 +121,16 @@ class _IndustriesReportDetailPageState
     );
   }
 }
+
+
+//  (url) async {
+//                         // ignore: deprecated_member_use
+//                         if (await canLaunch(url)) {
+//                           await launch(
+//                             url,
+//                           );
+//                         } else {
+//                           throw 'Could not launch $url';
+//                         }
+//                         return true;
+//                       },

@@ -48,7 +48,7 @@ class SimilarListingtContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String titleLength = data['title'];
-    print(titleLength.length);
+    // print(titleLength.length);
     return Container(
       width: width,
       // height: 300,

@@ -91,7 +91,7 @@ class _ReviewAEventListingState extends State<ReviewAEventListing> {
         .getMethodWithToken(url, provider.appLoginToken.toString());
 
     var result = jsonDecode(res);
-    print(res);
+    // print(res);
     final List newEvent = result['data']['list'];
 
     //
