@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Utils/constant.dart';
 
 import '../../../Provider/compare event/compare_event_provider.dart';
 import '../../../Utils/app_color.dart';
@@ -28,26 +29,26 @@ class ComapreEventContainer1 extends StatelessWidget {
     List listOfparteners = data['partners'];
     List listOfTerrains = data['terrains'];
     //
-    double columnLength(String keyName, {double h = 50}) {
-      double length = 0;
-      if (provider.detailFirstEventData.containsKey(keyName) &&
-          provider.detailFirstEventData[keyName].length > length) {
-        length = provider.detailFirstEventData[keyName].length;
-      }
-      if (provider.detailSecondEventData.containsKey(keyName) &&
-          provider.detailSecondEventData[keyName].length > length) {
-        length = provider.detailSecondEventData[keyName].length;
-      }
-      if (provider.detailThirdEventData.containsKey(keyName) &&
-          provider.detailThirdEventData[keyName].length > length) {
-        length = provider.detailThirdEventData[keyName].length;
-      }
+    // double columnLength(String keyName, {double h = 50}) {
+    //   double length = 0;
+    //   if (provider.detailFirstEventData.containsKey(keyName) &&
+    //       provider.detailFirstEventData[keyName].length > length) {
+    //     length = provider.detailFirstEventData[keyName].length;
+    //   }
+    //   if (provider.detailSecondEventData.containsKey(keyName) &&
+    //       provider.detailSecondEventData[keyName].length > length) {
+    //     length = provider.detailSecondEventData[keyName].length;
+    //   }
+    //   if (provider.detailThirdEventData.containsKey(keyName) &&
+    //       provider.detailThirdEventData[keyName].length > length) {
+    //     length = provider.detailThirdEventData[keyName].length;
+    //   }
 
-      return length;
-    }
+    //   return length;
+    // }
 
-    final eventTitleLength = columnLength('title');
-    print(eventTitleLength);
+    // final eventTitleLength = columnLength('title');
+    // print(eventTitleLength);
 
     return Container(
       padding: const EdgeInsets.all(5),
@@ -80,7 +81,7 @@ class ComapreEventContainer1 extends StatelessWidget {
               const SizedBox(height: 10),
               //title
               SizedBox(
-                height: columnLength('title'),
+                // height: columnLength('title'),
                 //     ? 80
                 //     : eventLenth > 50
                 //         ? 100
@@ -223,12 +224,14 @@ class ComapreEventContainer1 extends StatelessWidget {
               //Event Start
               const SizedBox(height: 10),
               const Divider(),
-              Text(data['event_start_date'], style: customeTextStyle),
+              Text(convertDate(data['event_start_date']),
+                  style: customeTextStyle),
               //end event
               const SizedBox(height: 10),
               const Divider(),
               data['early_end_date'] != null
-                  ? Text(data['early_end_date'], style: customeTextStyle)
+                  ? Text(convertDate(data['early_end_date']),
+                      style: customeTextStyle)
                   : const SizedBox(),
               //avg..rating
               const Divider(),
