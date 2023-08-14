@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:racemart_app/Utils/constant.dart';
 
 import '../../../../Helper/Widget/heading_text.dart';
 import '../../../../Helper/Widget/text_widget.dart';
@@ -72,37 +73,41 @@ class ImporantDatesList extends StatelessWidget {
                   data['event_start_date'] != null
                       ? ImportantDateContainer(
                           title: 'Event start date :',
-                          text: data['event_start_date'],
-                        )
+                          text: convertDate(data[
+                              'event_start_date']) // data['event_start_date'],
+                          )
                       : const SizedBox(),
                   data['event_end_date'] != null
                       ? ImportantDateContainer(
                           title: 'Event end date :',
-                          text: data['event_end_date'],
-                        )
+                          text: convertDate(
+                              data['event_end_date']) //data['event_end_date'],
+                          )
                       : const SizedBox(),
                   data['registration_start'] != null
                       ? ImportantDateContainer(
                           title: 'Registration start :',
-                          text: data['registration_start'],
+                          text: convertDate(data[
+                              'registration_start']), //data['registration_start'],
                         )
                       : const SizedBox(),
                   data['registration_end'] != null
                       ? ImportantDateContainer(
                           title: 'Registration end :',
-                          text: data['registration_end'],
-                        )
+                          text: convertDate(data[
+                              'registration_end']) //data['registration_end'],
+                          )
                       : const SizedBox(),
                   data['early_start'] != null
                       ? ImportantDateContainer(
                           title: 'Early start :',
-                          text: data['early_start'],
+                          text: convertDate(data['early_start']),
                         )
                       : const SizedBox(),
                   data['early_end'] != null
                       ? ImportantDateContainer(
                           title: 'Early end :',
-                          text: data['early_end'],
+                          text: convertDate(data['early_end']),
                         )
                       : const SizedBox(),
                 ],

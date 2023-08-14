@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:racemart_app/Utils/constant.dart';
 
 import '../../../../Helper/Widget/heading_text.dart';
 import '../../../../Helper/Widget/text_widget.dart';
@@ -32,13 +33,16 @@ class RegistrationContainer extends StatelessWidget {
             const Divider(),
             DateTimeContainer(
               title: 'Start Date',
-              date: data['event_start_date'] ?? '...',
+              date: data['event_start_date'] == null
+                  ? ''
+                  : convertDate(data['event_start_date']),
             ),
             const SizedBox(height: 15),
             DateTimeContainer(
-              title: 'End Date',
-              date: data['event_end_date'] ?? '...',
-            ),
+                title: 'End Date',
+                date: data['event_end_date'] == null
+                    ? ''
+                    : convertDate(data['event_end_date'])),
             const SizedBox(height: 5),
           ],
         ),

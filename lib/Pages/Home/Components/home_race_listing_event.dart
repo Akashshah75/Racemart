@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
+import 'package:racemart_app/Utils/constant.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../Network/base_clent.dart';
@@ -133,8 +134,14 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
-
     //
+    // final registrationEndDate =
+    //     DateTime.parse(widget.data['registration_end_date']);
+    // final earlyStartDate =
+    //     DateTime.parse(widget.data['early_start_date'] ?? '');
+    // final earlyEndDate = DateTime.parse(widget.data['early_end_date'] ?? '');
+    // final eventStartDate =
+    //     DateTime.parse(widget.data['event_start_date'] ?? '');
     // final dt1 = DateTime.parse(widget.data['registration_end_date'] ?? "");
     // final dt2 = DateTime.parse(widget.data['registration_end_date'] ?? '');
     // // print(date1  date2);
@@ -450,7 +457,9 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                 //
                 const SizedBox(width: 10),
                 Text(
-                  widget.data['registration_end_date'] ?? "15th Aug 2023",
+                  widget.data['registration_end_date'] != null
+                      ? convertDate(widget.data['registration_end_date'])
+                      : '', //widget.data['registration_end_date'] ?? "",
                   style: TextStyle(
                     color: blueColor,
                     fontSize: 12,
