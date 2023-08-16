@@ -135,31 +135,39 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
 
-    //
-    final DateTime now = DateTime.now();
-    print(widget.data['early_start_date']);
-    print(widget.data['early_end_date']);
-    print(widget.data['id']);
-    if (widget.data['early_start_date'] != null &&
-        widget.data['early_end_date'] != null) {
-      bool result = checkDate(
-          widget.data['early_start_date'], widget.data['early_end_date']);
-      print(result);
-    }
+    // //
 
+    // final date1 = DateTime.parse('2023-01-17 14:21:00');
+    // final date2 = DateTime.parse('2023-01-18 14:21:00');
+    // final DateTime now = DateTime.now();
+    // //
+    // print((now.compareTo(date1) == 0 || date1.compareTo(now) == 1) &&
+    //     (date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
+    // print((now.compareTo(date1) == 0 || now.compareTo(date1) == 1) &&
+    //     (date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
+    // print((date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
+    // if (widget.data['early_start_date'] != null ||
+    //     widget.data['early_end_date'] != null) {
+    //   bool res = checkDate(
+    //       widget.data['early_start_date'], widget.data['early_end_date']);
+    //   print(res);
+    // }
     return Container(
-      foregroundDecoration: widget.data['early_start_date'] == null &&
+      foregroundDecoration: widget.data['early_start_date'] == null ||
               widget.data['early_end_date'] == null
           ? const BoxDecoration()
-          : const RotatedCornerDecoration.withColor(
-              color: redColor, // Colors.blue,
-              badgeSize: Size(64, 64),
-              badgePosition: BadgePosition.topStart,
-              textSpan: TextSpan(
-                text: 'Early\n bird',
-                style: TextStyle(fontSize: 10),
-              ),
-            ),
+          : checkDate(widget.data['early_start_date'],
+                  widget.data['early_end_date'])
+              ? const RotatedCornerDecoration.withColor(
+                  color: redColor, // Colors.blue,
+                  badgeSize: Size(64, 64),
+                  badgePosition: BadgePosition.topStart,
+                  textSpan: TextSpan(
+                    text: 'Early\n bird',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                )
+              : const BoxDecoration(),
       height: widget.data['city'] != null &&
               showDeliverables.isNotEmpty &&
               showDistance.isNotEmpty &&
