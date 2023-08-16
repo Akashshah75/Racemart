@@ -134,41 +134,22 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
+
     //
-    // final registrationEndDate =
-    //     DateTime.parse(widget.data['registration_end_date']);
-    // final earlyStartDate =
-    //     DateTime.parse(widget.data['early_start_date'] ?? '');
-    // final earlyEndDate = DateTime.parse(widget.data['early_end_date'] ?? '');
-    // final eventStartDate =
-    //     DateTime.parse(widget.data['event_start_date'] ?? '');
-    // final dt1 = DateTime.parse(widget.data['registration_end_date'] ?? "");
-    // final dt2 = DateTime.parse(widget.data['registration_end_date'] ?? '');
-    // // print(date1  date2);
-    // print(dt1.isAtSameMomentAs(dt2));
-    // print(showDeliverables[0]['title']);
-    // var currentData = DateTime.now();
-    // print(DateFormat.yMd().format(currentData));
-    // print(currentData);
-    // final DateFormat formatter = DateFormat.yMd();
-    // // // final String curFormated = formatter.format(currentData);
-    // // // print(curFormated);
-    // if (widget.data['early_start_date'] != null) {
-    //   String earlyStart = widget.data['early_start_date'];
+    final DateTime now = DateTime.now();
+    print(widget.data['early_start_date']);
+    print(widget.data['early_end_date']);
+    print(widget.data['id']);
+    if (widget.data['early_start_date'] != null &&
+        widget.data['early_end_date'] != null) {
+      bool result = checkDate(
+          widget.data['early_start_date'], widget.data['early_end_date']);
+      print(result);
+    }
 
-    //   // print(formatter.format(DateTime.parse(earlyStart)));
-    //   // var earlySatartFormated =
-    //   //     formatter.format(DateFormat('jms').parse(earlyStart.toString()));
-    //   // print(earlySatartFormated);
-    // }
-
-    // var earlyEnd = widget.data['early_end_date'];
-    // var earlyEndFormated = formatter.format(earlyEnd);
-    // print(earlyEndFormated);
-
-//print
     return Container(
-      foregroundDecoration: widget.data['early_start_date'] == null
+      foregroundDecoration: widget.data['early_start_date'] == null &&
+              widget.data['early_end_date'] == null
           ? const BoxDecoration()
           : const RotatedCornerDecoration.withColor(
               color: redColor, // Colors.blue,
