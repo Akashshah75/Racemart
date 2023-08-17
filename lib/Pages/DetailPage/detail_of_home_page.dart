@@ -6,6 +6,7 @@ import '../../Provider/detail_page_provider.dart';
 import '../../Utils/app_asset.dart';
 import '../../Utils/app_size.dart';
 import 'Components/ImpDateAndTerrains/impdate_and_terrains.dart';
+import 'Components/dateAndDescription/components/registration_container.dart';
 import 'Components/dateAndDescription/date_and_description.dart';
 import 'Components/distancesAndPartners.dart/distances_and_partners.dart';
 import 'Components/heading_of_detail_page.dart';
@@ -57,17 +58,14 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       image: widget.data['poster'] ?? demo,
                       title: widget.data['title']),
                   spacingHeightMin1,
-                  HedingOfDetailPage(
-                    title: widget.data['title'],
-                  ),
+                  HedingOfDetailPage(title: widget.data['title']),
                   spacingHeightMin,
                   widget.data['city'] == null
                       ? const SizedBox()
                       : LoctionContair(location: widget.data['city']),
+                  const SizedBox(height: 8),
+                  RegistrationContainer(data: widget.data),
                   const Divider(),
-                  // spacingHeightMedium,
-                  // const BodyRouteOfDetailPage(),
-                  //
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TabBar(
@@ -79,7 +77,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                         labelPadding:
                             const EdgeInsets.symmetric(horizontal: 40),
                         tabs: const [
-                          Tab(text: 'Date&Description'),
+                          Tab(text: 'Description'),
                           Tab(text: 'Distances&Partners'),
                           Tab(text: 'Price&loaction'),
                           Tab(text: 'Imporatnt&Terrains'),
@@ -87,7 +85,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                         ]),
                   ),
                   const SizedBox(height: 10),
-                  Flexible(
+                  Expanded(
                     child:
                         VerticalTabBarView(controller: controller, children: [
                       DataAndDescription(data: provider.detailEventData),

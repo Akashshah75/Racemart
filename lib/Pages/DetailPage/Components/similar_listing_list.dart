@@ -71,7 +71,7 @@ class SimilarListingtContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 220,
+            height: 150,
             decoration: BoxDecoration(
               // color: redColor,
               color: whiteColor.withOpacity(0.2),

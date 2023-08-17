@@ -49,7 +49,7 @@ class DetailProvider with ChangeNotifier {
   //
   void changeLength(String htmlText) {
     if (htmlText.length > 150) {
-      intialHtmlText = htmlText.substring(0, 145);
+      intialHtmlText = htmlText.substring(0, 150);
       expendedHtmlText = htmlText.substring(0, htmlText.length);
       notifyListeners();
     } else {

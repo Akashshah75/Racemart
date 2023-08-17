@@ -30,8 +30,10 @@ class _DescriptionContainerState extends State<DescriptionContainer> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DetailProvider>(context, listen: true);
+    final size = MediaQuery.of(context).size.height;
+    // print(size * 0.4);
     return Container(
-      height: 280,
+      height: size * 0.4,
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
@@ -53,14 +55,24 @@ class _DescriptionContainerState extends State<DescriptionContainer> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      print(provider.intialHtmlText.length);
                       provider.changeText();
                       provider.changeLength(widget.data['description']);
                     },
                     child: provider.flag
-                        ? const Icon(
-                            Icons.arrow_drop_down,
-                            size: 25,
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              'More...',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: blueColor),
+                            ),
                           )
+                        //  const Icon(
+                        //     Icons.arrow_drop_down,
+                        //     size: 25,
+                        //   )
                         : const Icon(
                             Icons.arrow_drop_up_outlined,
                             size: 25,
