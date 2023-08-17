@@ -12,7 +12,7 @@ class PriceAndLocation extends StatelessWidget {
       children: [
         const SizedBox(height: 10),
         PriceListingContainer(data: data),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         HowToREachContainer(data: data),
       ],
     );

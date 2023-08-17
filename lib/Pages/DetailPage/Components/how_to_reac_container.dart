@@ -37,7 +37,7 @@ class HowToREachContainer extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5), color: whiteColor),
@@ -75,7 +75,7 @@ class HowToREachContainer extends StatelessWidget {
                       letterSpacing: 1.2,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  // const SizedBox(height: 10),
                   // const Divider(),
                   // const Row(
                   //   children: [
@@ -88,7 +88,7 @@ class HowToREachContainer extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
           ],
         ),
       ),

@@ -87,7 +87,7 @@
     },
     {
       "name": "csslib",
-      "rootUri": "file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/csslib-1.0.0",
+      "rootUri": "file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/csslib-0.17.3",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -836,7 +836,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-08-14T13:34:12.077412Z",
+  "generated": "2023-08-17T07:19:03.129557Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }

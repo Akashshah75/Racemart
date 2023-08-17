@@ -30,18 +30,22 @@ class RegistrationContainer extends StatelessWidget {
             //   color: blackColor.withAlpha(200),
             // ),
             // const Divider(),
-            DateTimeContainer(
-              title: 'Start Date',
-              date: data['event_start_date'] == null
-                  ? ''
-                  : convertDate(data['event_start_date']),
-            ),
+            data['event_start_date'] != null
+                ? DateTimeContainer(
+                    title: 'Start Date',
+                    date: data['event_start_date'] == null
+                        ? ''
+                        : convertDate(data['event_start_date']),
+                  )
+                : const SizedBox(),
             const SizedBox(height: 15),
-            DateTimeContainer(
-                title: 'End Date',
-                date: data['event_end_date'] == null
-                    ? ''
-                    : convertDate(data['event_end_date'])),
+            data['event_end_date'] != null
+                ? DateTimeContainer(
+                    title: 'End Date',
+                    date: data['event_end_date'] == null
+                        ? ''
+                        : convertDate(data['event_end_date']))
+                : const SizedBox(),
             const SizedBox(height: 5),
           ],
         ),
