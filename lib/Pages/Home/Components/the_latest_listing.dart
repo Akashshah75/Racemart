@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/Home/DetailPage/detail_of_home_page.dart';
+import 'package:racemart_app/Pages/DetailPage/detail_of_home_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 
 import '../../../Helper/Widget/heading_text.dart';

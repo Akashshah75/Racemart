@@ -6,7 +6,7 @@ import 'package:racemart_app/Utils/app_asset.dart';
 import '../../../Network/base_clent.dart';
 import '../../../Provider/Home providers/home_page_provider.dart';
 import '../../../Provider/authentication_provider.dart';
-import '../DetailPage/detail_of_home_page.dart';
+import '../../DetailPage/detail_of_home_page.dart';
 
 class EventInCity extends StatefulWidget {
   const EventInCity({super.key, required this.provider});

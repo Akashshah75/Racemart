@@ -8,7 +8,7 @@ import '../../Network/base_clent.dart';
 import '../../Provider/authentication_provider.dart';
 import '../../Provider/wishlist/wishlist_provider.dart';
 import '../Home/Components/home_race_listing_event.dart';
-import '../Home/DetailPage/detail_of_home_page.dart';
+import '../DetailPage/detail_of_home_page.dart';
 
 class WishListPage extends StatefulWidget {
   const WishListPage({super.key});

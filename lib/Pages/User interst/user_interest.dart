@@ -10,7 +10,7 @@ import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Provider/authentication_provider.dart';
 import '../../Utils/app_asset.dart';
 import '../Home/Components/home_race_listing_event.dart';
-import '../Home/DetailPage/detail_of_home_page.dart';
+import '../DetailPage/detail_of_home_page.dart';
 
 class UserInterestPage extends StatefulWidget {
   const UserInterestPage({super.key, required this.provider});

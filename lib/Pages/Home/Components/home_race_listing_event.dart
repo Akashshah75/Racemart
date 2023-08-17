@@ -13,7 +13,7 @@ import '../../../Provider/authentication_provider.dart';
 import '../../../Provider/wishlist/fav_event_add_wishlist_provider.dart';
 import '../../../Provider/wishlist/wishlist_provider.dart';
 import '../../../Utils/app_asset.dart';
-import '../DetailPage/detail_of_home_page.dart';
+import '../../DetailPage/detail_of_home_page.dart';
 
 class HomeRaceListingEvent extends StatefulWidget {
   const HomeRaceListingEvent({super.key, required this.provider});
