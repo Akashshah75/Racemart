@@ -8,12 +8,9 @@ class PriceAndLocation extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(height: 10),
-        PriceListingContainer(data: data),
-        const SizedBox(height: 10),
-        HowToREachContainer(data: data),
+        SizedBox(height: 10),
       ],
     );
   }

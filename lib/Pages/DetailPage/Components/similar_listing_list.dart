@@ -21,7 +21,7 @@ class SimilarListingList extends StatelessWidget {
           )
         : SizedBox(
             // color: redColor,
-            //height: 400,
+            height: 400,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: similarListingDataList.length,
@@ -51,7 +51,7 @@ class SimilarListingtContainer extends StatelessWidget {
     // print(titleLength.length);
     return Container(
       width: width,
-      // height: 300,
+      height: 300,
       margin: EdgeInsets.only(
         left: 10,
         right: 10,

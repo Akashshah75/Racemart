@@ -19,7 +19,7 @@ class PriceListingContainer extends StatelessWidget {
             child: Text("Don't have any prices!"),
           )
         : Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             width: double.infinity,
             decoration: BoxDecoration(
               color: whiteColor,

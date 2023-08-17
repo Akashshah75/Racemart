@@ -21,7 +21,7 @@ class ImporantDatesList extends StatelessWidget {
     //    data['early_start']
     //       data['early_end']
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: double.infinity,
       //

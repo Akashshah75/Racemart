@@ -17,7 +17,7 @@ class PartenerContainerList extends StatelessWidget {
         ? const Center(child: Text("Don't have any patners!"))
         : Container(
             height: 200,
-            margin: defaultSymetricPeding,
+            margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             width: double.infinity,
             decoration: BoxDecoration(
               color: whiteColor,

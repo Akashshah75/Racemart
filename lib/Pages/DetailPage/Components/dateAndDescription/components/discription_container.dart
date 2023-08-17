@@ -31,11 +31,10 @@ class _DescriptionContainerState extends State<DescriptionContainer> {
   Widget build(BuildContext context) {
     final provider = Provider.of<DetailProvider>(context, listen: true);
     final size = MediaQuery.of(context).size.height;
-    // print(size * 0.4);
     return Container(
       height: size * 0.4,
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       width: double.infinity,
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(12), color: white),

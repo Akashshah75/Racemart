@@ -13,13 +13,15 @@ class DistanceContainerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List dataOfDistance = data['distances'] ?? [];
+
     // print(dataOfDistance);
     return dataOfDistance.isEmpty
         ? const Center(
             child: Text("Don't have distances!"),
           )
         : Container(
-            margin: defaultSymetricPeding,
+            height: 120,
+            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             width: double.infinity,
             decoration: BoxDecoration(
               color: white,
@@ -40,10 +42,11 @@ class DistanceContainerList extends StatelessWidget {
                     ),
                   ),
                   const Divider(),
+                  const SizedBox(height: 8),
                   dataOfDistance.isEmpty
                       ? const Text("No distance have!")
                       : SizedBox(
-                          height: 50, //dataOfDistance.length > 2 ? 100 : 80,
+                          // height: 50, //dataOfDistance.length > 2 ? 100 : 80,
                           child: Row(
                             children: [
                               dataOfDistance.isNotEmpty

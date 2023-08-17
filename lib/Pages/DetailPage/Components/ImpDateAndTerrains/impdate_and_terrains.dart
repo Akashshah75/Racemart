@@ -8,12 +8,8 @@ class ImpDateAndTerrains extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ImporantDatesList(data: data),
-        const SizedBox(height: 10),
-        TerrainsContainerList(data: data),
-      ],
+    return const Column(
+      children: [],
       // )
     );
   }
