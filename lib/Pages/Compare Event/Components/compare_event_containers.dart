@@ -11,43 +11,21 @@ class ComapreEventContainer1 extends StatelessWidget {
     required this.width,
     required this.image,
     this.data,
-    required this.eventLenth,
+    required this.eventTitleLength,
   });
 
   final double width;
   final String image;
   final dynamic data;
-  final int eventLenth;
+  final int eventTitleLength;
 
   @override
   Widget build(BuildContext context) {
-    // final provider = Provider.of<CompareEventProvider>(context, listen: true);
+    print(eventTitleLength);
     List listOfDistances = data['distances'];
     List listOfDeliverables = data['deliverables'];
     List listOfparteners = data['partners'];
     List listOfTerrains = data['terrains'];
-    //
-    // double columnLength(String keyName, {double h = 50}) {
-    //   double length = 0;
-    //   if (provider.detailFirstEventData.containsKey(keyName) &&
-    //       provider.detailFirstEventData[keyName].length > length) {
-    //     length = provider.detailFirstEventData[keyName].length;
-    //   }
-    //   if (provider.detailSecondEventData.containsKey(keyName) &&
-    //       provider.detailSecondEventData[keyName].length > length) {
-    //     length = provider.detailSecondEventData[keyName].length;
-    //   }
-    //   if (provider.detailThirdEventData.containsKey(keyName) &&
-    //       provider.detailThirdEventData[keyName].length > length) {
-    //     length = provider.detailThirdEventData[keyName].length;
-    //   }
-
-    //   return length;
-    // }
-
-    // final eventTitleLength = columnLength('title');
-    // print(eventTitleLength);
-
     return Container(
       padding: const EdgeInsets.all(5),
       width: width * 0.332,
@@ -79,11 +57,11 @@ class ComapreEventContainer1 extends StatelessWidget {
               const SizedBox(height: 10),
               //title
               SizedBox(
-                // height: columnLength('title'),
-                //     ? 80
-                //     : eventLenth > 50
-                //         ? 100
-                //         : 50,
+                height: eventTitleLength > 50
+                    ? 120
+                    : eventTitleLength > 30
+                        ? 70
+                        : 60,
                 child: Text(
                   data['title'].toString(),
                   style: const TextStyle(
@@ -92,13 +70,14 @@ class ComapreEventContainer1 extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // const SizedBox(height: 10),
               const Divider(),
               //Address
-              Text(data['city'] ?? 'Vadodara', style: customeTextStyle),
+              SizedBox(
+                height: 20,
+                child:
+                    Text(data['city'] ?? 'Vadodara', style: customeTextStyle),
+              ),
               //Editions
-              const SizedBox(height: 10),
               const Divider(),
               Text(data['edition'].toString(), style: customeTextStyle),
               //city

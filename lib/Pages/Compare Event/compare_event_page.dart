@@ -73,29 +73,42 @@ class ListOfCompareEvents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int columnLength(String keyName) {
-      var length = 0;
-      if (provider.detailFirstEventData.containsKey(keyName) &&
-          provider.detailFirstEventData[keyName].length > length) {
-        length = provider.detailFirstEventData[keyName].length;
-      }
-      if (provider.detailSecondEventData.containsKey(keyName) &&
-          provider.detailSecondEventData[keyName].length > length) {
-        length = provider.detailSecondEventData[keyName].length;
-      }
-      if (provider.detailThirdEventData.containsKey(keyName) &&
-          provider.detailThirdEventData[keyName].length > length) {
-        length = provider.detailThirdEventData[keyName].length;
-      }
+    // int columnLength(String keyName) {
+    //   var length = 0;
+    //   if (provider.detailFirstEventData.containsKey(keyName) &&
+    //       provider.detailFirstEventData[keyName].length > length) {
+    //     length = provider.detailFirstEventData[keyName].length;
+    //   }
+    //   if (provider.detailSecondEventData.containsKey(keyName) &&
+    //       provider.detailSecondEventData[keyName].length > length) {
+    //     length = provider.detailSecondEventData[keyName].length;
+    //   }
+    //   if (provider.detailThirdEventData.containsKey(keyName) &&
+    //       provider.detailThirdEventData[keyName].length > length) {
+    //     length = provider.detailThirdEventData[keyName].length;
+    //   }
 
-      return length;
-    }
+    //   return length;
+    // }
 
-    final eventTitleLength = columnLength('title');
-    print(eventTitleLength);
-    // final eventTitle2 = provider.detailSecondEventData['title'].length;
-    // final eventTitle3 = provider.detailThirdEventData['title'].length;
+    // final eventTitleLength = columnLength('title');
+    // print(eventTitleLength);
+    int eventTitleLengths = 0;
+
+    final eventTitle1 = provider.detailFirstEventData['title'].length ?? 0;
+    final eventTitle2 = provider.detailSecondEventData['title'].length ?? 0;
+    final eventTitle3 = provider.detailThirdEventData['title'].length ?? 0;
     //
+    if (eventTitle1 > eventTitle2) {
+      eventTitleLengths = eventTitle1;
+      print("e1$eventTitleLengths");
+    } else if (eventTitle2 > eventTitle3) {
+      eventTitleLengths = eventTitle2;
+      print("e2:$eventTitleLengths");
+    } else if (eventTitle3 > eventTitle1) {
+      eventTitleLengths = eventTitle3;
+      print("e3:$eventTitleLengths");
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -120,19 +133,19 @@ class ListOfCompareEvents extends StatelessWidget {
                   width: width,
                   image: demo,
                   data: firstEventData,
-                  eventLenth: eventTitleLength,
+                  eventTitleLength: eventTitleLengths,
                 ),
                 ComapreEventContainer1(
                   width: width,
                   image: demo1,
                   data: provider.detailSecondEventData,
-                  eventLenth: eventTitleLength,
+                  eventTitleLength: eventTitleLengths,
                 ),
                 ComapreEventContainer1(
                   width: width,
                   image: demo2,
                   data: provider.detailThirdEventData,
-                  eventLenth: eventTitleLength,
+                  eventTitleLength: eventTitleLengths,
                 ),
               ],
             )

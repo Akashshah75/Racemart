@@ -21,15 +21,14 @@ class SimilarListingtContainer extends StatelessWidget {
       width: width,
       // height: 300,
       margin: EdgeInsets.only(
-        left: 10,
-        right: 10,
-        top: 40,
-        bottom: titleLength.length > 23
-            ? 70
-            : titleLength.length > 46
-                ? 90
-                : 70,
-      ),
+          left: 10,
+          right: 10,
+          top: 40,
+          bottom: titleLength.length > 23
+              ? 70
+              : titleLength.length > 46
+                  ? 90
+                  : 70),
       decoration: BoxDecoration(
         color: white,
         borderRadius: BorderRadius.circular(12),
