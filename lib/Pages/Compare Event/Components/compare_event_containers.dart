@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:racemart_app/Utils/constant.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../Utils/app_color.dart';
 import '../../../Utils/app_size.dart';
+import '../../../Utils/constant.dart';
 import '../../DetailPage/Components/howToRach/how_to_reac_container.dart';
 
 class ComapreEventContainer1 extends StatelessWidget {
@@ -12,20 +13,24 @@ class ComapreEventContainer1 extends StatelessWidget {
     required this.image,
     this.data,
     required this.eventTitleLength,
+    required this.eventAddressLength,
   });
 
   final double width;
   final String image;
   final dynamic data;
   final int eventTitleLength;
+  final int eventAddressLength;
 
   @override
   Widget build(BuildContext context) {
-    print(eventTitleLength);
+    print(data['socials']);
+    print(eventAddressLength);
     List listOfDistances = data['distances'];
     List listOfDeliverables = data['deliverables'];
     List listOfparteners = data['partners'];
     List listOfTerrains = data['terrains'];
+    List listOfSocialMedia = data['socials'];
     return Container(
       padding: const EdgeInsets.all(5),
       width: width * 0.332,
@@ -51,6 +56,7 @@ class ComapreEventContainer1 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
                     data['poster'],
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -60,7 +66,7 @@ class ComapreEventContainer1 extends StatelessWidget {
                 height: eventTitleLength > 50
                     ? 120
                     : eventTitleLength > 30
-                        ? 70
+                        ? 80
                         : 60,
                 child: Text(
                   data['title'].toString(),
@@ -74,195 +80,307 @@ class ComapreEventContainer1 extends StatelessWidget {
               //Address
               SizedBox(
                 height: 20,
-                child:
-                    Text(data['city'] ?? 'Vadodara', style: customeTextStyle),
+                child: Text(
+                  data['city'] ?? 'Vadodara',
+                  style: customeTextStyle,
+                ),
               ),
               //Editions
               const Divider(),
-              Text(data['edition'].toString(), style: customeTextStyle),
+              SizedBox(
+                height: 20,
+                child: Text(
+                  data['edition'].toString(),
+                  style: customeTextStyle,
+                ),
+              ),
               //city
-              const SizedBox(height: 10),
               const Divider(),
-              Text(data['address'] ?? 'address', style: customeTextStyle),
+              SizedBox(
+                  height: eventAddressLength > 30
+                      ? 70
+                      : eventAddressLength > 50
+                          ? 80
+                          : 60,
+                  child: Text(
+                    data['address'] ?? 'address',
+                    style: customeTextStyle,
+                  )),
               //location type
               const SizedBox(height: 10),
               const Divider(),
               Text(data['type'] ?? 'On-ground', style: customeTextStyle),
               //distancess
-              SizedBox(height: listOfDistances.isEmpty ? 0 : 10),
-              listOfDistances.isEmpty ? const SizedBox() : const Divider(),
-              //
-              listOfDistances.isEmpty
-                  ? const SizedBox()
-                  : SizedBox(
-                      height: 30,
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 5,
-                        ),
-                        itemCount: listOfDistances.length,
-                        itemBuilder: (context, index) {
-                          var distances = listOfDistances[index];
-                          if (index < 2) {
-                            return Text(
-                              distances['name'] ?? '',
-                              style: customeTextStyle,
-                            );
-                          }
-                          return const Text('more...');
-                        },
-                      ),
-                    ),
-              //badges
-              SizedBox(height: listOfDeliverables.isEmpty ? 0 : 10),
-              listOfDeliverables.isEmpty ? const SizedBox() : const Divider(),
-              //
-              listOfDeliverables.isEmpty
-                  ? const SizedBox()
-                  : SizedBox(
-                      height: 40,
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 5,
-                        ),
-                        itemCount: listOfDeliverables.length,
-                        itemBuilder: (context, index) {
-                          var distances = listOfDeliverables[index];
-                          if (index < 2) {
-                            return Text(
-                              distances['name'] ?? '',
-                              style: customeTextStyle,
-                            );
-                          }
-                          return const Text('more...');
-                        },
-                      ),
-                    ),
-
-              //
-              // Text('T-Shirt, Medal, Food, Participation Certificate',
-              //     style: customeTextStyle),
-              //partners
-              SizedBox(height: listOfparteners.isEmpty ? 0 : 10),
-              listOfparteners.isEmpty ? const SizedBox() : const Divider(),
-              //
-              listOfparteners.isEmpty
-                  ? const SizedBox()
-                  : SizedBox(
-                      height: 40,
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 5,
-                        ),
-                        itemCount: listOfparteners.length,
-                        itemBuilder: (context, index) {
-                          var parteners = listOfparteners[index];
-                          if (index < 2) {
-                            return Text(
-                              parteners['title'] ?? '',
-                              style: customeTextStyle,
-                            );
-                          }
-                          return const Text('more...');
-                        },
-                      ),
-                    ),
-              //Terrains :
-              SizedBox(height: listOfTerrains.isEmpty ? 0 : 10),
-              listOfTerrains.isEmpty
-                  ? const SizedBox()
-                  : SizedBox(
-                      height: 40,
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 5,
-                        ),
-                        itemCount: listOfTerrains.length,
-                        itemBuilder: (context, index) {
-                          var terrains = listOfTerrains[index];
-                          if (index < 2) {
-                            return Text(
-                              terrains['name'] ?? '',
-                              style: customeTextStyle,
-                            );
-                          }
-                          return const Text('more...');
-                        },
-                      ),
-                    ),
-              //Event Start
-              const SizedBox(height: 10),
               const Divider(),
-              Text(convertDate(data['event_start_date']),
-                  style: customeTextStyle),
-              //end event
-              const SizedBox(height: 10),
+              SizedBox(
+                height: 40,
+                child: listOfDistances.isEmpty
+                    ? const SizedBox(
+                        child: Text("Don't have distancess!!!"),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 2),
+                          Row(
+                            children: [
+                              Text(
+                                listOfDistances[0]['name'] ?? '',
+                                style: customeTextStyle,
+                              ),
+                              const SizedBox(width: 8),
+                              listOfDistances.length > 1
+                                  ? Text(
+                                      listOfDistances[1]['name'] ?? '',
+                                      style: customeTextStyle,
+                                    )
+                                  : const SizedBox(),
+                              const SizedBox(width: 8),
+                              listOfDistances.length > 2
+                                  ? Text(
+                                      listOfDistances[2]['name'] ?? '',
+                                      style: customeTextStyle,
+                                    )
+                                  : const SizedBox(),
+                            ],
+                          ),
+                          const SizedBox(height: 2),
+                          listOfDistances.length > 3
+                              ? Text(
+                                  'more..',
+                                  style: customeTextStyle,
+                                )
+                              : const SizedBox(),
+                        ],
+                      ),
+              ),
+              const Divider(),
+              // deliverables
+              SizedBox(
+                height: 45,
+                child: listOfDeliverables.isEmpty
+                    ? const SizedBox(
+                        child: Text("Don't have distancess!!!"),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.network(
+                                listOfDeliverables[0]['image'],
+                                width: 20,
+                              ),
+                              listOfDeliverables.length > 1
+                                  ? Image.network(
+                                      listOfDeliverables[1]['image'],
+                                      width: 20,
+                                    )
+                                  : const SizedBox(),
+                              listOfDeliverables.length > 2
+                                  ? Image.network(
+                                      listOfDeliverables[2]['image'],
+                                      width: 20,
+                                    )
+                                  : const SizedBox(),
+                            ],
+                          ),
+                          const SizedBox(height: 3),
+                          listOfDeliverables.length > 3
+                              ? Text(
+                                  'more..',
+                                  style: customeTextStyle,
+                                )
+                              : const SizedBox(),
+                        ],
+                      ),
+              ),
+              // //partners
+              const Divider(),
+
+              SizedBox(
+                  height: 80,
+                  child: listOfparteners.isEmpty
+                      ? const SizedBox(
+                          child: Text("Don't have Parteners"),
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 4),
+                            Text(
+                              listOfparteners[0]['title'] ?? '',
+                              style: customeTextStyle,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 4),
+                            listOfparteners.length > 1
+                                ? Text(
+                                    listOfparteners[1]['title'] ?? '',
+                                    style: customeTextStyle,
+                                    overflow: TextOverflow.ellipsis,
+                                  )
+                                : const SizedBox(),
+                            const SizedBox(height: 4),
+                            listOfparteners.length > 2
+                                ? Text(
+                                    'more..',
+                                    style: customeTextStyle,
+                                  )
+                                : const SizedBox(),
+                          ],
+                        )),
+              // //Terrains :
+              const Divider(),
+              SizedBox(
+                  height: 40,
+                  child: listOfTerrains.isEmpty
+                      ? const SizedBox(
+                          child: Text("Don't have Terrains Data!!!"),
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 4),
+                            Text(
+                              listOfTerrains[0]['name'] ?? '',
+                              style: customeTextStyle,
+                            ),
+                            const SizedBox(height: 4),
+                            listOfTerrains.length > 1
+                                ? Text(
+                                    listOfTerrains[1]['name'] ?? '',
+                                    style: customeTextStyle,
+                                  )
+                                : const SizedBox(),
+                            const SizedBox(height: 4),
+                            listOfTerrains.length > 2
+                                ? Text(
+                                    'more..',
+                                    style: customeTextStyle,
+                                  )
+                                : const SizedBox(),
+                          ],
+                        )),
+              //Event Start
+              const Divider(),
+              data['event_start_date'] != null
+                  ? Text(
+                      convertDate(data['event_start_date']),
+                      style: customeTextStyle,
+                    )
+                  : const SizedBox(),
+              // //end event
               const Divider(),
               data['early_end_date'] != null
                   ? Text(convertDate(data['early_end_date']),
                       style: customeTextStyle)
-                  : const SizedBox(),
+                  : const SizedBox(
+                      child: Text('No end date specify'),
+                    ),
               //avg..rating
               const Divider(),
               Row(
                 children: [
-                  Text(data['rate']['stars'].toString(),
-                      style: customeTextStyle),
+                  Text(
+                    data['rate']['stars'].toString(),
+                    style: customeTextStyle,
+                  ),
                   const SizedBox(width: 2),
                   const Icon(Icons.star, size: 14, color: yellowColor)
                 ],
               ),
               //oragnasied
-              const SizedBox(height: 10),
               const Divider(),
-              Text(
-                data['organized_by'] ?? '',
-                style: customeTextStyle,
+              SizedBox(
+                height: 40,
+                child:
+                    data['organized_by'] == '' || data['organized_by'] == null
+                        ? const SizedBox(
+                            child: Text('No Data!!'),
+                          )
+                        : Text(
+                            data['organized_by'] ?? '',
+                            style: customeTextStyle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
               ),
-              //socila
-              const SizedBox(height: 10),
+              // //socila
               const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SocialMediaIconContainer(
-                    icon: Icons.facebook,
-                    width: 30,
-                    height: 30,
-                    iconsize: 18,
-                  ),
-                  const SocialMediaIconContainer(
-                    icon: Icons.mail,
-                    width: 30,
-                    height: 30,
-                    iconsize: 18,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // data['socials'][0]['url'];
-                    },
-                    child: const SocialMediaIconContainer(
-                      icon: Icons.g_mobiledata,
-                      width: 30,
-                      height: 30,
-                      iconsize: 18,
-                    ),
-                  ),
-                ],
+              SizedBox(
+                height: 40,
+                child: listOfSocialMedia.isEmpty
+                    ? const SizedBox(
+                        child: Text("No sharing available!!"),
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          listOfSocialMedia[0]['type'] == 'facebook'
+                              ? InkWell(
+                                  onTap: () {
+                                    final facebookUrl =
+                                        Uri.parse(listOfSocialMedia[0]['url']);
+                                    // final insta = Uri.parse(
+                                    //     "https://www.instagram.com/p/CsoNnBCpfdq/");
+                                    launchInBrowser(facebookUrl);
+                                    // launchInBrowser(insta);
+                                    print(listOfSocialMedia.length);
+                                    print(listOfSocialMedia[0]['url']);
+                                  },
+                                  child: const SocialMediaIconContainer(
+                                    icon: Icons.facebook,
+                                    width: 30,
+                                    height: 30,
+                                    iconsize: 18,
+                                  ),
+                                )
+                              : const SizedBox(),
+                          listOfSocialMedia.length > 1
+                              ? listOfSocialMedia[1]['type'] == 'instagram'
+                                  ? const SocialMediaIconContainer(
+                                      icon: Icons.mail,
+                                      width: 30,
+                                      height: 30,
+                                      iconsize: 18,
+                                    )
+                                  : const SizedBox()
+                              : const SizedBox(),
+                          listOfSocialMedia.length > 2
+                              ? listOfSocialMedia[0]['type'] == 'google'
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        // data['socials'][0]['url'];
+                                      },
+                                      child: const SocialMediaIconContainer(
+                                        icon: Icons.g_mobiledata,
+                                        width: 30,
+                                        height: 30,
+                                        iconsize: 18,
+                                      ),
+                                    )
+                                  : const SizedBox()
+                              : const SizedBox(),
+                        ],
+                      ),
               ),
-              const SizedBox(height: 10),
+              const Divider(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

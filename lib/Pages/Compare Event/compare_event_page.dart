@@ -73,31 +73,14 @@ class ListOfCompareEvents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // int columnLength(String keyName) {
-    //   var length = 0;
-    //   if (provider.detailFirstEventData.containsKey(keyName) &&
-    //       provider.detailFirstEventData[keyName].length > length) {
-    //     length = provider.detailFirstEventData[keyName].length;
-    //   }
-    //   if (provider.detailSecondEventData.containsKey(keyName) &&
-    //       provider.detailSecondEventData[keyName].length > length) {
-    //     length = provider.detailSecondEventData[keyName].length;
-    //   }
-    //   if (provider.detailThirdEventData.containsKey(keyName) &&
-    //       provider.detailThirdEventData[keyName].length > length) {
-    //     length = provider.detailThirdEventData[keyName].length;
-    //   }
-
-    //   return length;
-    // }
-
-    // final eventTitleLength = columnLength('title');
-    // print(eventTitleLength);
     int eventTitleLengths = 0;
-
+    int eventAddressLength = 0;
     final eventTitle1 = provider.detailFirstEventData['title'].length ?? 0;
     final eventTitle2 = provider.detailSecondEventData['title'].length ?? 0;
     final eventTitle3 = provider.detailThirdEventData['title'].length ?? 0;
+    final eventAddress1 = provider.detailFirstEventData['address'].length ?? 0;
+    final eventAddress2 = provider.detailSecondEventData['address'].length ?? 0;
+    final eventAddress3 = provider.detailThirdEventData['address'].length ?? 0;
     //
     if (eventTitle1 > eventTitle2) {
       eventTitleLengths = eventTitle1;
@@ -109,6 +92,18 @@ class ListOfCompareEvents extends StatelessWidget {
       eventTitleLengths = eventTitle3;
       print("e3:$eventTitleLengths");
     }
+    //
+    if (eventAddress1 > eventAddress2) {
+      eventAddressLength = eventAddress1;
+      print("e1$eventAddressLength");
+    } else if (eventAddress2 > eventAddress3) {
+      eventAddressLength = eventAddress2;
+      print("e2:$eventAddressLength");
+    } else if (eventAddress3 > eventAddress1) {
+      eventAddressLength = eventAddress3;
+      print("e3:$eventAddressLength");
+    }
+    //
 
     return Scaffold(
       appBar: AppBar(
@@ -134,18 +129,21 @@ class ListOfCompareEvents extends StatelessWidget {
                   image: demo,
                   data: firstEventData,
                   eventTitleLength: eventTitleLengths,
+                  eventAddressLength: eventAddressLength,
                 ),
                 ComapreEventContainer1(
                   width: width,
                   image: demo1,
                   data: provider.detailSecondEventData,
                   eventTitleLength: eventTitleLengths,
+                  eventAddressLength: eventAddressLength,
                 ),
                 ComapreEventContainer1(
                   width: width,
                   image: demo2,
                   data: provider.detailThirdEventData,
                   eventTitleLength: eventTitleLengths,
+                  eventAddressLength: eventAddressLength,
                 ),
               ],
             )
