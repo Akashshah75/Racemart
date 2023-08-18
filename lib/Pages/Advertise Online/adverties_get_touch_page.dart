@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/app_size.dart';
 import '../Contact Us/components/contact_data_contaner.dart';
-import '../DetailPage/Components/how_to_reac_container.dart';
+import '../DetailPage/Components/howToRach/how_to_reac_container.dart';
 
 class AdvertiesGetInTouchPage extends StatelessWidget {
   const AdvertiesGetInTouchPage({

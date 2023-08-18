@@ -48,3 +48,69 @@ bool checkDate(var earlyStartDate, var earlyEndDate) {
 //     // print("myDae:${date2.compareTo(now) == -1 || date2.compareTo(now) == 0}");
 
 //     //
+// TopContainer(data: widget.data),
+// const SizedBox(height: 10),
+// Expanded(
+//   child:
+//       VerticalTabBarView(controller: controller, children: [
+//     DataAndDescription(data: provider.detailEventData),
+//     DistancesAndPartenr(data: provider.detailEventData),
+//     PriceAndLocation(data: provider.detailEventData),
+//     ImpDateAndTerrains(data: provider.detailEventData),
+//     SimilarListingList(data: provider.detailEventData),
+//   ]),
+// ),
+
+   //
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                  //   child: TabBar(
+                  //       controller: controller,
+                  //       labelColor: blackColor,
+                  //       indicatorColor: blueColor,
+                  //       indicatorWeight: 2,
+                  //       isScrollable: true,
+                  //       labelPadding:
+                  //           const EdgeInsets.symmetric(horizontal: 40),
+                  //       tabs: const [
+                  //         Tab(text: 'Description'),
+                  //         Tab(text: 'Distances&Partners'),
+                  //         Tab(text: 'Price&loaction'),
+                  //         Tab(text: 'Imporatnt&Terrains'),
+                  //         Tab(text: 'Simlilar listing'),
+                  //       ]),
+                  // ),
+                  // Expanded(
+                  //   child: ListView(
+                  //     // controller: controller,
+                  //     children: const [],
+                  //   ),
+                  // ),
+                  //
+                  // Expanded(
+                  //   child: VerticalTabBarView(
+                  //     controller: controller,
+                  //     children: const [
+                  //       Column(
+                  //         children: [
+                  //           Text('new'),
+                  //           Text('new'),
+                  //           Text('new'),
+                  //           Text('new'),
+                  //           Text('new'),
+                  //         ],
+                  //       ),
+                  //       Text('new'),
+                  //       Text('new'),
+                  //       Text('new'),
+                  //       Text('new'),
+
+                  // DescriptionContainer(data: provider.detailEventData),
+                  // DataAndDescription(data: provider.detailEventData),
+                  // DistancesAndPartenr(data: provider.detailEventData),
+                  // PriceAndLocation(data: provider.detailEventData),
+                  // ImpDateAndTerrains(data: provider.detailEventData),
+                  // SimilarListingList(data: provider.detailEventData),
+                  // ],
+                  // ),
+                  // ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../Utils/app_color.dart';
 import '../../../Utils/app_size.dart';
-import '../../DetailPage/Components/how_to_reac_container.dart';
+import '../../DetailPage/Components/howToRach/how_to_reac_container.dart';
 import 'contact_data_contaner.dart';
 
 class GetInTouchPage extends StatelessWidget {

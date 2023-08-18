@@ -14,9 +14,7 @@ class DetailProvider with ChangeNotifier {
   bool flag = false;
   String intialHtmlText = '';
   String expendedHtmlText = '';
-
   //
-
   void changeIndex(int index) {
     selectedIndex = index;
     notifyListeners();
@@ -25,7 +23,6 @@ class DetailProvider with ChangeNotifier {
   //
   bool isLoading = false;
   Map detailEventData = {};
-
   //
   Future<void> fetchEventDetail(BuildContext context, var eventId) async {
     isLoading = true;

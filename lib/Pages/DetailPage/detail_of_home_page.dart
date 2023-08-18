@@ -4,18 +4,19 @@ import 'package:racemart_app/Utils/app_color.dart';
 import '../../Provider/detail_page_provider.dart';
 import '../../Utils/app_asset.dart';
 import '../../Utils/app_size.dart';
-import 'Components/dateAndDescription/components/discription_container.dart';
-import 'Components/dateAndDescription/components/registration_container.dart';
-import 'Components/distancesAndPartners.dart/components/distance_container_list.dart';
-import 'Components/distancesAndPartners.dart/components/partener_container_list.dart';
+import 'Components/Description/discription_container.dart';
+import 'Components/horizontal_tab_container.dart';
+import 'Components/registerDateContainer/registration_date_container.dart';
+import 'Components/distance/distance_container_list.dart';
+import 'Components/partener/partener_container_list.dart';
 import 'Components/heading_of_detail_page.dart';
-import 'Components/how_to_reac_container.dart';
+import 'Components/howToRach/how_to_reac_container.dart';
 import 'Components/image_heading_container.dart';
-import 'Components/important_dates_list.dart';
-import 'Components/priceAndLocation/components/location_contaner.dart';
-import 'Components/priceAndLocation/components/price_listing_container.dart';
-import 'Components/similar_listing_list.dart';
-import 'Components/terains_container_list.dart';
+import 'Components/impDate/important_dates_list.dart';
+import 'Components/location/location_contaner.dart';
+import 'Components/prices/price_listing_container.dart';
+import 'Components/similarListing/similar_listing_list.dart';
+import 'Components/terrrains/terains_container_list.dart';
 
 class DetailPageOfHome extends StatefulWidget {
   const DetailPageOfHome({super.key, required this.index, this.data});
@@ -40,11 +41,11 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
 
   @override
   Widget build(BuildContext context) {
-    // int isSelectedIndex = 0;
+    //for page size
     final size = MediaQuery.of(context).size.height;
-    // TabController controller = TabController(length: 5, vsync: this);
+    //for scrolling detail page data
     ScrollController scrollController = ScrollController();
-    //
+    //provider
     final provider = Provider.of<DetailProvider>(context, listen: true);
     List tabContent = [
       DescriptionContainer(data: provider.detailEventData),
@@ -54,7 +55,8 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       HowToREachContainer(data: provider.detailEventData),
       ImporantDatesList(data: provider.detailEventData),
       TerrainsContainerList(data: provider.detailEventData),
-      SimilarListingList(data: provider.detailEventData),
+      SimilarListing(data: provider.detailEventData),
+      // SimilarListingList(data: provider.detailEventData),
     ];
     List<Map> containerNames = [
       // {'h': size * 0.4, 'key': 'All'},
@@ -65,7 +67,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.28, 'key': 'How to reach'},
       {'h': size * 0.265, 'key': 'Important Dates'},
       {'h': size * 0.26, 'key': 'Terrains'},
-      {'h': size * 0.25, 'key': 'similar listing'}
+      {'h': size * 0.30, 'key': 'similar listing'}
     ];
     void scrollToTap(int index) {
       double sizeOfContainer = containerNames[index]['h'];
@@ -93,7 +95,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       ? const SizedBox()
                       : LoctionContair(location: widget.data['city']),
                   const SizedBox(height: 8),
-                  RegistrationContainer(data: widget.data),
+                  RegisterationDateContainer(data: widget.data),
                   const Divider(),
                   //horizontal view
                   Container(
@@ -101,7 +103,6 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                     margin: const EdgeInsets.symmetric(horizontal: 10),
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        // controller: scrollController,
                         itemCount: tabContent.length,
                         itemBuilder: (context, index) {
                           return Center(
@@ -132,115 +133,3 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     );
   }
 }
-
-class HorizontalTabContainer extends StatelessWidget {
-  const HorizontalTabContainer({
-    super.key,
-    required this.press,
-    required this.name,
-    required this.curentIndex,
-    required this.selectd,
-  });
-  final VoidCallback press;
-  final String name;
-  final int curentIndex;
-  final int selectd;
-
-  @override
-  Widget build(BuildContext context) {
-    final provider = Provider.of<DetailProvider>(context, listen: true);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      decoration: BoxDecoration(
-        color: provider.selectedIndex == curentIndex
-            ? blueColor
-            : appBg, // index == 0 ? blueColor : appBg,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: blackColor.withOpacity(0.2)),
-      ),
-      child: InkWell(
-        onTap: press,
-        splashColor: blueColor,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Text(
-            name,
-            style: TextStyle(
-                color: provider.selectedIndex == curentIndex
-                    ? white
-                    : Colors.black),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// TopContainer(data: widget.data),
-// const SizedBox(height: 10),
-// Expanded(
-//   child:
-//       VerticalTabBarView(controller: controller, children: [
-//     DataAndDescription(data: provider.detailEventData),
-//     DistancesAndPartenr(data: provider.detailEventData),
-//     PriceAndLocation(data: provider.detailEventData),
-//     ImpDateAndTerrains(data: provider.detailEventData),
-//     SimilarListingList(data: provider.detailEventData),
-//   ]),
-// ),
-
-   //
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  //   child: TabBar(
-                  //       controller: controller,
-                  //       labelColor: blackColor,
-                  //       indicatorColor: blueColor,
-                  //       indicatorWeight: 2,
-                  //       isScrollable: true,
-                  //       labelPadding:
-                  //           const EdgeInsets.symmetric(horizontal: 40),
-                  //       tabs: const [
-                  //         Tab(text: 'Description'),
-                  //         Tab(text: 'Distances&Partners'),
-                  //         Tab(text: 'Price&loaction'),
-                  //         Tab(text: 'Imporatnt&Terrains'),
-                  //         Tab(text: 'Simlilar listing'),
-                  //       ]),
-                  // ),
-                  // Expanded(
-                  //   child: ListView(
-                  //     // controller: controller,
-                  //     children: const [],
-                  //   ),
-                  // ),
-                  //
-                  // Expanded(
-                  //   child: VerticalTabBarView(
-                  //     controller: controller,
-                  //     children: const [
-                  //       Column(
-                  //         children: [
-                  //           Text('new'),
-                  //           Text('new'),
-                  //           Text('new'),
-                  //           Text('new'),
-                  //           Text('new'),
-                  //         ],
-                  //       ),
-                  //       Text('new'),
-                  //       Text('new'),
-                  //       Text('new'),
-                  //       Text('new'),
-
-                  // DescriptionContainer(data: provider.detailEventData),
-                  // DataAndDescription(data: provider.detailEventData),
-                  // DistancesAndPartenr(data: provider.detailEventData),
-                  // PriceAndLocation(data: provider.detailEventData),
-                  // ImpDateAndTerrains(data: provider.detailEventData),
-                  // SimilarListingList(data: provider.detailEventData),
-                  // ],
-                  // ),
-                  // ),
