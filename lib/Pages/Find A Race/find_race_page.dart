@@ -6,7 +6,7 @@ import '../../Helper/Widget/custome_textfield.dart';
 import '../../Helper/Widget/text_button_widget.dart';
 import '../../Provider/find_race_provider.dart';
 import '../../Utils/app_color.dart';
-import '../Home/Components/home_race_listing_event.dart';
+import '../Home/Components/customeEventContainer/custome_event_container.dart';
 import '../DetailPage/detail_of_home_page.dart';
 import 'components/app_bar_of_find_race_page.dart';
 import '../../Helper/Widget/drop_down_btn.dart';

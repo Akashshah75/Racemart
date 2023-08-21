@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Network/url.dart';
-
+import 'package:http/http.dart' as http;
 import '../../Network/base_clent.dart';
 import '../../Utils/constant.dart';
 import '../authentication_provider.dart';
@@ -18,11 +21,20 @@ class ProfileProvider with ChangeNotifier {
   TextEditingController password = TextEditingController();
   TextEditingController newPassword = TextEditingController();
   TextEditingController confirmNewPassword = TextEditingController();
-
+//
+  bool isEdite = false;
+  File? selectedImage;
   //
   bool isLoading = false;
   bool updateProfile = false;
   Map<String, dynamic> mapOfProfileData = {};
+  //
+  //start profile edited;
+  void activeProfileEditeMode() {
+    isEdite = !isEdite;
+    notifyListeners();
+  }
+
   //
   Future<void> fetchProfileData(BuildContext context) async {
     isLoading = true;
@@ -47,6 +59,7 @@ class ProfileProvider with ChangeNotifier {
   void fetchUserProfile(BuildContext context) {
     final controller = Provider.of<ProfileProvider>(context, listen: false);
     controller.fetchProfileData(context);
+
     Navigator.of(context).pop();
   }
 
@@ -54,6 +67,7 @@ class ProfileProvider with ChangeNotifier {
   Future<void> editProfile(BuildContext context) async {
     updateProfile = true;
     notifyListeners();
+
     var body = {
       "name": name.text.trim(),
       "email": email.text.trim(),
@@ -139,5 +153,73 @@ class ProfileProvider with ChangeNotifier {
     password.clear();
     newPassword.clear();
     confirmNewPassword.clear();
+    selectedImage = null;
+    isEdite = false;
+  }
+
+  //image picker
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      selectedImage = imageTemporary;
+      notifyListeners();
+      print(selectedImage);
+    } on PlatformException catch (e) {
+      print('Failed to pick image:$e');
+    }
+  }
+
+  //update profile by formdata
+  Future updateProfileByMultiportData(
+    BuildContext context, {
+    required String selectedName,
+    required String selecetdMobile,
+    required String selectedEmail,
+    var image,
+  }) async {
+    // get token
+    final provider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    print(provider.appLoginToken);
+    //convert selected image to string
+
+    // var stream = http.ByteStream(selectedImage!.openRead());
+
+    // var length = await selectedImage!.length();
+    //put data on server
+    var url = Uri.parse(userUrl);
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      "Authorization": "Bearer ${provider.appLoginToken}"
+    };
+    http.MultipartRequest request = http.MultipartRequest('POST', url);
+    print(url);
+    request.headers.addAll(headers);
+
+    request.fields['name'] = name.text.isEmpty ? selectedName : name.text;
+    request.fields['mobile'] =
+        mobileNo.text.isEmpty ? selecetdMobile : name.text;
+    request.fields['email'] = email.text.isEmpty ? selectedEmail : email.text;
+    //
+    if (selectedImage != null) {
+      var stream = http.ByteStream(selectedImage!.openRead());
+      stream.cast();
+      var length = await selectedImage!.length();
+      var multiport = http.MultipartFile('profile', stream, length,
+          filename: selectedImage!.path.split('/').last);
+      request.files.add(multiport);
+    }
+    var response = await request.send();
+    var result = await http.Response.fromStream(response);
+    print(result.body);
+    if (response.statusCode == 200) {
+      // ignore: use_build_context_synchronously
+      fetchUserProfile(context);
+      clearText();
+    } else {
+      print('upload faild');
+    }
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/profile/profile_provider.dart';
 
 import '../../../Utils/app_asset.dart';
 import '../../../Utils/app_color.dart';
@@ -66,57 +68,66 @@ class ProfileDataShowContainer extends StatelessWidget {
         //
         Positioned(
           top: 40,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            child: SizedBox(
-              height: 200,
-              width: width * 0.95,
-              child: Card(
-                elevation: 1,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: greyColor.withOpacity(0.8),
-                          ),
-                          image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(noImageProfile),
+          child: Consumer<ProfileProvider>(
+            builder: (context, value, child) {
+              return Container(
+                margin: const EdgeInsets.all(10),
+                child: SizedBox(
+                  height: 200,
+                  width: width * 0.95,
+                  child: Card(
+                    elevation: 1,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: greyColor.withOpacity(0.8),
+                              ),
+                              image: data['profile'] != null
+                                  ? DecorationImage(
+                                      image: NetworkImage(data['profile']),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(noImageProfile),
+                                    ),
+                            ),
                           ),
                         ),
-                      ),
+                        const SizedBox(height: 14),
+                        Text(
+                          data['name'] ?? " ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            letterSpacing: 1.2,
+                            color: blackColor.withOpacity(0.6),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          data['email'] ?? "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            letterSpacing: 1,
+                            color: textColor,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 14),
-                    Text(
-                      data['name'] ?? "Akash Shah",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        letterSpacing: 1.2,
-                        color: blackColor.withOpacity(0.6),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      data['email'] ?? "shahakash@gmail.com",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        letterSpacing: 1,
-                        color: textColor,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         )
       ],

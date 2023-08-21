@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-19:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-28:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\781e5567158e59d38ee2b89930f9808b\\transformed\\jetified-play-services-base-18.1.0\\res\\values-pt-rPT\\values.xml",
@@ -13,11 +13,28 @@
                         "endOffsets": "297,456,580,684,848,972,1090,1195,1379,1483,1649,1776,1931,2105,2169,2234,2317"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startLines": "9,10,11,12,13,14,15,16,18,19,20,21,22,23,24,25,26",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,323,451,559,727,855,977,1231,1419,1527,1697,1828,1987,2165,2233,2302",
+                        "startOffsets": "787,892,1055,1183,1291,1459,1587,1709,1963,2151,2259,2429,2560,2719,2897,2965,3034",
                         "endColumns": "104,162,127,107,167,127,121,108,187,107,169,130,158,177,67,68,86",
-                        "endOffsets": "155,318,446,554,722,850,972,1081,1414,1522,1692,1823,1982,2160,2228,2297,2384"
+                        "endOffsets": "887,1050,1178,1286,1454,1582,1704,1813,2146,2254,2424,2555,2714,2892,2960,3029,3116"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\c4988ff80110f75080a936fc6f044848\\transformed\\core-1.10.1\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,152,254,353,453,560,666,787",
+                        "endColumns": "96,101,98,99,106,105,120,100",
+                        "endOffsets": "147,249,348,448,555,661,782,883"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,41",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,152,254,353,453,560,666,4396",
+                        "endColumns": "96,101,98,99,106,105,120,100",
+                        "endOffsets": "147,249,348,448,555,661,782,4492"
                     }
                 },
                 {
@@ -30,28 +47,11 @@
                         "endOffsets": "125,189,256,327,409,491,586,675,754"
                     },
                     "to": {
-                        "startLines": "21,22,23,24,25,26,27,28,29",
+                        "startLines": "28,29,30,31,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2494,2569,2633,2700,2771,2853,2935,3030,3119",
+                        "startOffsets": "3226,3301,3365,3432,3503,3585,3667,3762,3851",
                         "endColumns": "74,63,66,70,81,81,94,88,78",
-                        "endOffsets": "2564,2628,2695,2766,2848,2930,3025,3114,3193"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\c2aff38445ebad8ddeaa989ecf50f56e\\transformed\\core-1.9.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "34",
-                        "startColumns": "4",
-                        "startOffsets": "3664",
-                        "endColumns": "100",
-                        "endOffsets": "3760"
+                        "endOffsets": "3296,3360,3427,3498,3580,3662,3757,3846,3925"
                     }
                 },
                 {
@@ -64,11 +64,11 @@
                         "endOffsets": "339"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "17",
                         "startColumns": "4",
-                        "startOffsets": "1086",
+                        "startOffsets": "1818",
                         "endColumns": "144",
-                        "endOffsets": "1226"
+                        "endOffsets": "1958"
                     }
                 },
                 {
@@ -81,11 +81,11 @@
                         "endOffsets": "155,263,363,490,621"
                     },
                     "to": {
-                        "startLines": "20,30,31,32,33",
+                        "startLines": "27,37,38,39,40",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "2389,3198,3306,3406,3533",
+                        "startOffsets": "3121,3930,4038,4138,4265",
                         "endColumns": "104,107,99,126,130",
-                        "endOffsets": "2489,3301,3401,3528,3659"
+                        "endOffsets": "3221,4033,4133,4260,4391"
                     }
                 }
             ]

@@ -36,10 +36,17 @@ class MenuScreen extends StatelessWidget {
                     height: 50,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(noImageProfile),
-                      ),
+                      image: profileProvider.mapOfProfileData['profile'] != null
+                          ? DecorationImage(
+                              image: NetworkImage(
+                                profileProvider.mapOfProfileData['profile'],
+                              ),
+                              fit: BoxFit.cover,
+                            )
+                          : const DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(noImageProfile),
+                            ),
                       border: Border.all(color: whiteColor),
                     ),
                   ),
@@ -49,7 +56,7 @@ class MenuScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topCenter,
                 child: Text(
-                  profileProvider.mapOfProfileData['name'] ?? 'Akash Shah',
+                  profileProvider.mapOfProfileData['name'] ?? '',
                   style: const TextStyle(
                     fontSize: 18,
                     letterSpacing: 1.2,
