@@ -16,19 +16,20 @@ AppBar appBarOfFindRace(BuildContext context, FindARacesProvider provider,
       ),
       leading: const MenuWidget(),
       actions: [
-        provider.searchListData.isNotEmpty
-            ? IconButton(
-                onPressed: () {
-                  provider.changePage();
-                },
-                icon: const Icon(Icons.filter_list_outlined),
-              )
-            : MaterialButton(
-                onPressed: () {
-                  provider.cleanTextBoxes();
-                  homeProvider.cleanDropDownBoxes();
-                },
-                child: const Text('Clean'),
-              )
+        // provider.searchListData.isNotEmpty
+        //     ? IconButton(
+        //         onPressed: () {
+        //           provider.changePage();
+        //         },
+        //         icon: const Icon(Icons.filter_list_outlined),
+        //       )
+        //     :
+        MaterialButton(
+          onPressed: () {
+            provider.cleanTextBoxes();
+            homeProvider.cleanDropDownBoxes();
+          },
+          child: const Text('Clean'),
+        )
       ],
     );

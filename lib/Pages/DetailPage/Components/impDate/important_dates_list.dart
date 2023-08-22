@@ -40,16 +40,10 @@ class ImporantDatesList extends StatelessWidget {
               ? 290
               : data['event_start_date'] != null &&
                       data['event_end_date'] != null &&
+                      data['registration_start'] != null &&
                       data['registration_end'] != null
-                  ? 175
-                  : 250,
-      //         : data['event_start_date'] != null &&
-      //                 data['event_end_date'] != null &&
-      //                 data['registration_end'] != null &&
-      //                 data['early_start'] != null &&
-      //                 data['early_end'] != null
-      //             ? 290
-      //             : 280,
+                  ? 220
+                  : 200,
 
       //
       decoration: BoxDecoration(

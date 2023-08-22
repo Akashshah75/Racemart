@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:racemart_app/Network/url.dart';
 
 import '../Network/base_clent.dart';
+import '../Pages/Find A Race/result of search list/result_of_search_list_page.dart';
 import '../Utils/constant.dart';
 import 'authentication_provider.dart';
 
@@ -59,7 +60,8 @@ class FindARacesProvider with ChangeNotifier {
       var city,
       List? distance,
       List? badge,
-      List? partner}) async {
+      List? partner,
+      required FindARacesProvider findProvider}) async {
     isLoading = true;
     notifyListeners();
     var body = {
@@ -88,10 +90,12 @@ class FindARacesProvider with ChangeNotifier {
       searchListData = result['data']['list'];
       notifyListeners();
 //
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ResultOfSerchList(provider: findProvider)));
+//
       if (searchListData.isEmpty) {
         toastMessage("No event Found");
-        //
-
         lookingFor.clear();
         startDate.clear();
         endDate.clear();

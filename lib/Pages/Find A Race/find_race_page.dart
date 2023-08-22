@@ -7,8 +7,6 @@ import '../../Helper/Widget/custome_textfield.dart';
 import '../../Helper/Widget/text_button_widget.dart';
 import '../../Provider/find_race_provider.dart';
 import '../../Utils/app_color.dart';
-import '../Home/Components/customeEventContainer/custome_event_container.dart';
-import '../DetailPage/detail_of_home_page.dart';
 import 'components/app_bar_of_find_race_page.dart';
 import '../../Helper/Widget/drop_down_btn.dart';
 
@@ -38,42 +36,16 @@ class FindARacePage extends StatelessWidget {
             padding: findProvider.searchListData.isNotEmpty
                 ? const EdgeInsets.symmetric(vertical: 15)
                 : EdgeInsets.symmetric(horizontal: w * 0.023),
-            child: findProvider.searchListData.isNotEmpty
-                ? ResultOfSerchList(provider: findProvider)
-                : FiledForSearchEventPage(
-                    h: h,
-                    findProvider: findProvider,
-                    homeProvider: homeProvider),
+            child: FiledForSearchEventPage(
+                h: h, findProvider: findProvider, homeProvider: homeProvider),
+            // findProvider.searchListData.isNotEmpty
+            //     ? ResultOfSerchList(provider: findProvider)
+            //     : FiledForSearchEventPage(
+            //         h: h,
+            //         findProvider: findProvider,
+            //         homeProvider: homeProvider),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ResultOfSerchList extends StatelessWidget {
-  const ResultOfSerchList({super.key, required this.provider});
-  final FindARacesProvider provider;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 700,
-      child: ListView.builder(
-        itemCount: provider.searchListData.length,
-        itemBuilder: (BuildContext context, int index) {
-          var serchOfData = provider.searchListData[index];
-          return GestureDetector(
-            onTap: () {
-              // print(serchOfData['id']);
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetailPageOfHome(
-                        index: index,
-                        data: serchOfData,
-                      )));
-            },
-            child: CustomEventContainer(index: index, data: serchOfData),
-          );
-        },
       ),
     );
   }
@@ -213,14 +185,13 @@ class FiledForSearchEventPage extends StatelessWidget {
             isLoading: findProvider.isLoading,
             text: 'Search',
             pres: () {
-              findProvider.searchEvent(
-                context,
-                category: homeProvider.choseAllType,
-                city: homeProvider.choseCity,
-                distance: homeProvider.listOfDistanceData,
-                badge: homeProvider.listOfBadgeData,
-                partner: homeProvider.listOfPartnersData,
-              );
+              findProvider.searchEvent(context,
+                  category: homeProvider.choseAllType,
+                  city: homeProvider.choseCity,
+                  distance: homeProvider.listOfDistanceData,
+                  badge: homeProvider.listOfBadgeData,
+                  partner: homeProvider.listOfPartnersData,
+                  findProvider: findProvider);
             }),
         const SizedBox(
           height: 20,

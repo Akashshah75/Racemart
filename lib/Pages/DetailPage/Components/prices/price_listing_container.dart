@@ -14,86 +14,85 @@ class PriceListingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List priceOfData = data['prices'] ?? [];
-    return priceOfData.isEmpty
-        ? const Center(
-            child: Text("Don't have any prices!"),
-          )
-        : Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: whiteColor,
-              borderRadius: BorderRadius.circular(12),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      width: double.infinity,
+      height: 218,
+      decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const HeadingText(
+              text: 'Prices',
+              fontSize: 16,
+              color: blackColor,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const HeadingText(
-                    text: 'Prices',
-                    fontSize: 16,
-                    color: blackColor,
-                  ),
-                  const Divider(),
-                  priceOfData.isEmpty
-                      ? const SizedBox()
-                      : Column(
-                          children: [
-                            PriceRowListing(
-                              title: priceOfData[0]['title'],
+            const Divider(),
+            priceOfData.isEmpty
+                ? const Center(
+                    child: Text("Don't have any prices!"),
+                  )
+                : Column(
+                    children: [
+                      PriceRowListing(
+                        title: priceOfData[0]['title'],
+                        date: priceOfData[0]['price'].toString(),
+                      ),
+                      priceOfData.length > 1
+                          ? PriceRowListing(
+                              title: priceOfData[1]['title'],
                               date: priceOfData[0]['price'].toString(),
-                            ),
-                            priceOfData.length > 1
-                                ? PriceRowListing(
-                                    title: priceOfData[1]['title'],
-                                    date: priceOfData[0]['price'].toString(),
-                                  )
-                                : const SizedBox(),
-                            priceOfData.length > 2
-                                ? PriceRowListing(
-                                    title: priceOfData[2]['title'],
-                                    date: priceOfData[0]['price'].toString(),
-                                  )
-                                : const SizedBox(),
-                            const SizedBox(height: 10),
-                            priceOfData.length > 3
-                                ? const Divider()
-                                : const SizedBox(),
-                            priceOfData.length > 3
-                                ? Center(
-                                    child: TextButton(
-                                        onPressed: () {
-                                          showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            enableDrag: false,
-                                            context: context,
-                                            // isDismissible: false,
-                                            shape: const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(25),
-                                                topRight: Radius.circular(25),
-                                              ),
-                                            ),
-                                            builder: (context) {
-                                              return PricesBottomSheetContainer(
-                                                priceOfData: priceOfData,
-                                              );
-                                            },
-                                          );
-                                        },
-                                        child: const Text("Show more")),
-                                  )
-                                : const SizedBox(),
-                            priceOfData.length < 3
-                                ? const SizedBox(height: 5)
-                                : const SizedBox(),
-                          ],
-                        )
-                ],
-              ),
-            ),
-          );
+                            )
+                          : const SizedBox(),
+                      priceOfData.length > 2
+                          ? PriceRowListing(
+                              title: priceOfData[2]['title'],
+                              date: priceOfData[0]['price'].toString(),
+                            )
+                          : const SizedBox(),
+                      const SizedBox(height: 10),
+                      priceOfData.length > 3
+                          ? const Divider()
+                          : const SizedBox(),
+                      priceOfData.length > 3
+                          ? Center(
+                              child: TextButton(
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      enableDrag: false,
+                                      context: context,
+                                      // isDismissible: false,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(25),
+                                          topRight: Radius.circular(25),
+                                        ),
+                                      ),
+                                      builder: (context) {
+                                        return PricesBottomSheetContainer(
+                                          priceOfData: priceOfData,
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: const Text("Show more")),
+                            )
+                          : const SizedBox(),
+                      priceOfData.length < 3
+                          ? const SizedBox(height: 5)
+                          : const SizedBox(),
+                    ],
+                  )
+          ],
+        ),
+      ),
+    );
   }
 }
 

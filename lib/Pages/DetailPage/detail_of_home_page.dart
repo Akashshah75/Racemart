@@ -49,12 +49,19 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     final provider = Provider.of<DetailProvider>(context, listen: true);
     List tabContent = [
       DescriptionContainer(data: provider.detailEventData),
+      //
       DistanceContainerList(data: provider.detailEventData),
+      //
       PartenerContainerList(data: provider.detailEventData),
+      //
       PriceListingContainer(data: provider.detailEventData),
+      //
       HowToREachContainer(data: provider.detailEventData),
+      //
       ImporantDatesList(data: provider.detailEventData),
+      //
       TerrainsContainerList(data: provider.detailEventData),
+      //
       SimilarListing(data: provider.detailEventData),
       // SimilarListingList(data: provider.detailEventData),
     ];
@@ -64,9 +71,9 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.42, 'key': 'Distances'},
       {'h': size * 0.31, 'key': 'Partners'},
       {'h': size * 0.3, 'key': 'Prices'},
-      {'h': size * 0.28, 'key': 'How to reach'},
-      {'h': size * 0.265, 'key': 'Important Dates'},
-      {'h': size * 0.26, 'key': 'Terrains'},
+      {'h': size * 0.3, 'key': 'How to reach'},
+      {'h': size * 0.275, 'key': 'Important Dates'},
+      {'h': size * 0.275, 'key': 'Terrains'},
       {'h': size * 0.30, 'key': 'similar listing'}
     ];
     void scrollToTap(int index) {
