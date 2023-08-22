@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
+import 'package:racemart_app/Utils/constant.dart';
 import '../../Helper/Widget/custome_textfield.dart';
 import '../../Helper/Widget/text_button_widget.dart';
 import '../../Provider/find_race_provider.dart';
@@ -16,23 +17,34 @@ class FindARacePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime timeBackPressed = DateTime.now();
     var w = MediaQuery.of(context).size.width;
     var h = MediaQuery.of(context).size.height;
     final findProvider = Provider.of<FindARacesProvider>(context, listen: true);
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     //
-    return Scaffold(
-      backgroundColor: appBg,
-      appBar: appBarOfFindRace(context, findProvider, h, homeProvider),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: findProvider.searchListData.isNotEmpty
-              ? const EdgeInsets.symmetric(vertical: 15)
-              : EdgeInsets.symmetric(horizontal: w * 0.023),
-          child: findProvider.searchListData.isNotEmpty
-              ? ResultOfSerchList(provider: findProvider)
-              : FiledForSearchEventPage(
-                  h: h, findProvider: findProvider, homeProvider: homeProvider),
+    return WillPopScope(
+      onWillPop: () async {
+        final diffrence = DateTime.now().difference(timeBackPressed);
+        final isExitWarning = diffrence >= const Duration(seconds: 2);
+        timeBackPressed = DateTime.now();
+        return exitTheAppMethod(isExitWarning);
+      },
+      child: Scaffold(
+        backgroundColor: appBg,
+        appBar: appBarOfFindRace(context, findProvider, h, homeProvider),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: findProvider.searchListData.isNotEmpty
+                ? const EdgeInsets.symmetric(vertical: 15)
+                : EdgeInsets.symmetric(horizontal: w * 0.023),
+            child: findProvider.searchListData.isNotEmpty
+                ? ResultOfSerchList(provider: findProvider)
+                : FiledForSearchEventPage(
+                    h: h,
+                    findProvider: findProvider,
+                    homeProvider: homeProvider),
+          ),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Utils/constant.dart';
 
 import '../../Provider/compare event/compare_event_provider.dart';
 import '../../Utils/app_asset.dart';
@@ -31,30 +32,39 @@ class _CompareEventPageState extends State<CompareEventPage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime timeBackPressed = DateTime.now();
     final provider = Provider.of<CompareEventProvider>(context, listen: true);
     var width = MediaQuery.of(context).size.width;
     // print('build');
     // print(width * 0.332);
-    return Scaffold(
-      backgroundColor: whiteColor,
-      appBar: AppBar(
-        leading: const MenuWidget(),
-        elevation: 0,
-        backgroundColor: appBarBagroundColor,
-        iconTheme: const IconThemeData(color: whiteColor),
-        title: const Text(
-          'Compare Event',
-          style: TextStyle(
-            color: blackColor,
+    return WillPopScope(
+      onWillPop: () async {
+        final diffrence = DateTime.now().difference(timeBackPressed);
+        final isExitWarning = diffrence >= const Duration(seconds: 2);
+        timeBackPressed = DateTime.now();
+        return exitTheAppMethod(isExitWarning);
+      },
+      child: Scaffold(
+        backgroundColor: whiteColor,
+        appBar: AppBar(
+          leading: const MenuWidget(),
+          elevation: 0,
+          backgroundColor: appBarBagroundColor,
+          iconTheme: const IconThemeData(color: whiteColor),
+          title: const Text(
+            'Compare Event',
+            style: TextStyle(
+              color: blackColor,
+            ),
           ),
         ),
+        body: provider.isLoading
+            ? const Center(
+                child: Text('Loading...'),
+              )
+            : CompareEventSearchScreen(width: width),
+        // ListOfCompareEvents(width: width),
       ),
-      body: provider.isLoading
-          ? const Center(
-              child: Text('Loading...'),
-            )
-          : CompareEventSearchScreen(width: width),
-      // ListOfCompareEvents(width: width),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/report/industries_provider.dart';
+import 'package:racemart_app/Utils/constant.dart';
 
 import '../../Utils/app_color.dart';
 import '../Home/Drawer/zoom_drawer.dart';
@@ -29,29 +30,39 @@ class _IndustriesReportListingPageState
 
   @override
   Widget build(BuildContext context) {
+    DateTime timeBackPressed = DateTime.now();
     final provider =
         Provider.of<IndustriesReportProvider>(context, listen: true);
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: whiteColor,
-        leading: const MenuWidget(),
-        title: const Text(
-          'Industry Report',
-          style: TextStyle(color: blackColor),
+    return WillPopScope(
+      onWillPop: () async {
+        final diffrence = DateTime.now().difference(timeBackPressed);
+        final isExitWarning = diffrence >= const Duration(seconds: 2);
+        timeBackPressed = DateTime.now();
+        return exitTheAppMethod(isExitWarning);
+        // return exitTheAppMethod(timeBackPressed, diffrence);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: whiteColor,
+          leading: const MenuWidget(),
+          title: const Text(
+            'Industry Report',
+            style: TextStyle(color: blackColor),
+          ),
         ),
+        body: provider.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemCount: provider.industriesReportList.length,
+                itemBuilder: (context, index) {
+                  final dataOfIndustriesReport =
+                      provider.industriesReportList[index];
+                  return IndustryReportContainer(data: dataOfIndustriesReport);
+                }),
       ),
-      body: provider.isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              itemCount: provider.industriesReportList.length,
-              itemBuilder: (context, index) {
-                final dataOfIndustriesReport =
-                    provider.industriesReportList[index];
-                return IndustryReportContainer(data: dataOfIndustriesReport);
-              }),
     );
   }
 }

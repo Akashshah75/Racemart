@@ -7,6 +7,7 @@ import '../../Helper/appbar/app_bar_widget.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
 import '../../Provider/wishlist/wishlist_provider.dart';
 import '../../Utils/app_color.dart';
+import '../../Utils/constant.dart';
 import '../User interst/user_interest.dart';
 import 'Components/event_in_mumbai.dart';
 import 'Components/explore_best_cities.dart';
@@ -77,13 +78,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime timeBackPressed = DateTime.now();
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     // print(AuthenticationProvider.appToken);
     return DefaultTabController(
       length: 5,
       child: WillPopScope(
         onWillPop: () async {
-          return false;
+          final diffrence = DateTime.now().difference(timeBackPressed);
+          final isExitWarning = diffrence >= const Duration(seconds: 2);
+          timeBackPressed = DateTime.now();
+          return exitTheAppMethod(isExitWarning);
+
+          // return exitTheAppMethod(timeBackPressed, diffrence);
         },
         child: Scaffold(
           backgroundColor: white, //appbg,
@@ -124,5 +131,18 @@ class _HomePageState extends State<HomePage> {
       default:
         return Container();
     }
+  }
+
+  //show warning pop up
+  Future<bool?> showWarning(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Do you want to exit app?'),
+          actions: [ElevatedButton(onPressed: () {}, child: const Text('No'))],
+        );
+      },
+    );
   }
 }

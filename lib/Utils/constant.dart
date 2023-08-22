@@ -1,5 +1,8 @@
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+
+import 'app_color.dart';
 
 void toastMessage(String message) {
   Fluttertoast.showToast(
@@ -27,6 +30,34 @@ bool checkDate(var earlyStartDate, var earlyEndDate) {
     return false;
   }
 }
+
+//back button method
+bool exitTheAppMethod(bool isExitWarning) {
+  // final diffrence = DateTime.now().difference(timeBackPressed);
+  // final isExitWarning = diffrence >= const Duration(seconds: 2);
+  // timeBackPressed = DateTime.now();
+  // final syytem = SystemNavigator.pop();
+  if (isExitWarning) {
+    const message = 'Press back again to exit';
+    Fluttertoast.showToast(
+        msg: message,
+        fontSize: 16,
+        backgroundColor: white,
+        textColor: blackColor);
+    return false;
+  } else {
+    Fluttertoast.cancel();
+    SystemNavigator.pop();
+    return false;
+  }
+}
+
+
+
+
+
+
+//
 //(now.compareTo(date1) == 0 || now.compareTo(date1) == -1) &&
       // (date2.compareTo(now) == 1 || date2.compareTo(now) >= 0)
   // print("myDate:${now.compareTo(date1) == 0 || now.compareTo(date1) == 1}");

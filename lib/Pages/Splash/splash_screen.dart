@@ -65,10 +65,13 @@ class _SplashScreenState extends State<SplashScreen> {
     if (token == 'null' || token == '' || token.isEmpty) {
       Future.delayed(const Duration(seconds: 1), () {
         Navigator.of(context).pushNamed(RouteNames.loginPage);
+        // Navigator.of(context).pushReplacementNamed(RouteNames.loginPage);
       });
     } else {
       Future.delayed(const Duration(seconds: 1), () {
         Navigator.of(context).pushNamed(RouteNames.homePage);
+        // Navigator.of(context).pushReplacementNamed(RouteNames.homePage);
+        // Navigator.of(context).pushNamed(RouteNames.homePage);
       });
     }
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Home/Drawer/zoom_drawer.dart';
 import 'package:racemart_app/Utils/app_color.dart';
+import 'package:racemart_app/Utils/constant.dart';
 import '../../Network/base_clent.dart';
 import '../../Provider/authentication_provider.dart';
 import '../../Provider/review a race provider/review_a_race_provider.dart';
@@ -28,25 +29,34 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime timeBackPressed = DateTime.now();
     final provider = Provider.of<ReviewARaceProvider>(context, listen: true);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: whiteColor,
-        elevation: 0,
-        leading: const MenuWidget(),
-        title: const Text(
-          'Past Events',
-          style: TextStyle(
-            color: blackColor,
+    return WillPopScope(
+      onWillPop: () async {
+        final diffrence = DateTime.now().difference(timeBackPressed);
+        final isExitWarning = diffrence >= const Duration(seconds: 2);
+        timeBackPressed = DateTime.now();
+        return exitTheAppMethod(isExitWarning);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: whiteColor,
+          elevation: 0,
+          leading: const MenuWidget(),
+          title: const Text(
+            'Past Events',
+            style: TextStyle(
+              color: blackColor,
+            ),
           ),
         ),
-      ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          ReviewAEventListing(provider: provider),
-          const SizedBox(height: 20),
-        ],
+        body: Column(
+          children: [
+            const SizedBox(height: 20),
+            ReviewAEventListing(provider: provider),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

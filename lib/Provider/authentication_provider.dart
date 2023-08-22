@@ -69,6 +69,7 @@ class AuthenticationProvider with ChangeNotifier {
           notifyListeners();
           if (context.mounted) {
             Navigator.pushNamed(context, RouteNames.homePage);
+            // Navigator.pushReplacementNamed(context, RouteNames.homePage);
           }
           clearTextFiled();
         } else {
