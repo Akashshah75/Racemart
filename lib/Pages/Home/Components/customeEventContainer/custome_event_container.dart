@@ -67,21 +67,21 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
               showDeliverables.isNotEmpty &&
               showDistance.isNotEmpty &&
               widget.data['registration_end_date'] != null
-          ? 395
+          ? 395 //408
           : widget.data['city'] != null &&
                   showDeliverables.isNotEmpty &&
                   widget.data['registration_end_date'] != null
-              ? 365
+              ? 365 //376
               : widget.data['city'] != null &&
                       showDistance.isNotEmpty &&
                       widget.data['registration_end_date'] != null
-                  ? 375
+                  ? 375 //386
                   : showDistance.isNotEmpty &&
                           widget.data['registration_end_date'] != null
-                      ? 350
+                      ? 355 //
                       : widget.data['city'] != null &&
                               widget.data['registration_end_date'] != null
-                          ? 345
+                          ? 345 //358
                           : 375,
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -393,23 +393,52 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
           //
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GestureDetector(
+              // TextButton(
+              //   onPressed: () {
+              //     _launchUrl(url);
+              //   },
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(left: 10),
+              //     child: Text(
+              //       'Register now',
+              //       style: TextStyle(
+              //           color: blueColor,
+              //           fontSize: 14,
+              //           letterSpacing: 1.2,
+              //           fontWeight: FontWeight.w600),
+              //     ),
+              //   ),
+              // ),
+
+              InkWell(
                 onTap: () {
                   _launchUrl(url);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    'Register now',
-                    style: TextStyle(
+                  child: Row(
+                    children: [
+                      Text(
+                        'Register now',
+                        style: TextStyle(
+                            color: blueColor,
+                            fontSize: 14,
+                            letterSpacing: 1.2,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(width: 3),
+                      Icon(
+                        Icons.how_to_reg_rounded,
                         color: blueColor,
-                        fontSize: 14,
-                        letterSpacing: 1.2,
-                        fontWeight: FontWeight.w600),
+                        size: 16,
+                      ),
+                    ],
                   ),
                 ),
               ),
+              const SizedBox(width: 10),
               widget.data['lowest_price'] == null
                   ? const SizedBox()
                   : Container(
