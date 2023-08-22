@@ -11,6 +11,8 @@ class ReviewARaceProvider with ChangeNotifier {
   List<dynamic> reviewRaceList = [];
   bool isLoading = false;
   //
+  String choseAllType = '';
+  //
   Future<void> reviewRaceEvent(BuildContext context) async {
     isLoading = true;
     notifyListeners();
@@ -30,5 +32,39 @@ class ReviewARaceProvider with ChangeNotifier {
       //   print(reviewRaceList);
       notifyListeners();
     }
+  }
+
+  //type of
+  void changeAllType(var val) {
+    choseAllType = val;
+    notifyListeners();
+  }
+
+  //city
+  String choseCity = '';
+  void changeDropDownVal(var val) {
+    choseCity = val;
+    notifyListeners();
+  }
+
+  //distances
+  List listOfDistanceData = [];
+  void changeDistance(var val) {
+    listOfDistanceData = val;
+    notifyListeners();
+  }
+
+  //badge
+  List listOfBadgeData = [];
+  void changeBadge(var val) {
+    listOfBadgeData = val;
+    notifyListeners();
+  }
+
+  //partners
+  List listOfPartnersData = [];
+  void changePartners(var val) {
+    listOfPartnersData = val;
+    notifyListeners();
   }
 }

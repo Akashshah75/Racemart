@@ -1,14 +1,16 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Home/Drawer/zoom_drawer.dart';
+import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
 import 'package:racemart_app/Utils/constant.dart';
-import '../../Network/base_clent.dart';
-import '../../Provider/authentication_provider.dart';
+import '../../Helper/Widget/custome_textfield.dart';
+import '../../Helper/Widget/drop_down_btn.dart';
+import '../../Helper/Widget/text_button_widget.dart';
 import '../../Provider/review a race provider/review_a_race_provider.dart';
-import '../Home/Components/customeEventContainer/custome_event_container.dart';
-import '../DetailPage/detail_of_home_page.dart';
+import '../Find A Race/find_race_page.dart';
+import 'Components/review_event_listing.dart';
 
 class ReviewARacePage extends StatefulWidget {
   const ReviewARacePage({super.key});
@@ -29,6 +31,7 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
     DateTime timeBackPressed = DateTime.now();
     final provider = Provider.of<ReviewARaceProvider>(context, listen: true);
     return WillPopScope(
@@ -50,108 +53,183 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            const SizedBox(height: 20),
-            ReviewAEventListing(provider: provider),
-            const SizedBox(height: 20),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    enableDrag: false,
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
+                      ),
+                    ),
+                    builder: (context) => SearchPastEventPage(h: h),
+                  );
+                },
+                child: Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: appBg,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Search your data'),
+                        Icon(Icons.search),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Center(child: ReviewAEventListing(provider: provider)),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class ReviewAEventListing extends StatefulWidget {
-  const ReviewAEventListing({super.key, required this.provider});
-  final ReviewARaceProvider provider;
-
-  @override
-  State<ReviewAEventListing> createState() => _ReviewAEventListingState();
-}
-
-class _ReviewAEventListingState extends State<ReviewAEventListing> {
-  final controllers = ScrollController();
-  bool hasMore = true;
-  int page = 1;
-  bool isLoading = false;
-  @override
-  void initState() {
-    controllers.addListener(() {
-      if (controllers.position.maxScrollExtent == controllers.offset) {
-        fetch();
-      }
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controllers.dispose();
-    super.dispose();
-  }
-
-  Future fetch() async {
-    if (isLoading) return;
-    isLoading = true;
-    const limit = 10;
-    var provider = Provider.of<AuthenticationProvider>(context, listen: false);
-    final url = "https://racemart.youtoocanrun.com/api/past-events?page=$page";
-    var res = await BaseClient()
-        .getMethodWithToken(url, provider.appLoginToken.toString());
-
-    var result = jsonDecode(res);
-    // print(res);
-    final List newEvent = result['data']['list'];
-
-    //
-    setState(() {
-      page++;
-      isLoading = false;
-      if (newEvent.length < limit) {
-        hasMore = false;
-      }
-      widget.provider.reviewRaceList.addAll(newEvent);
-    });
-  }
+class SearchPastEventPage extends StatelessWidget {
+  const SearchPastEventPage({super.key, required this.h});
+  final double h;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 680,
-      child: widget.provider.reviewRaceList.isEmpty
-          ? const Text("Don't have any event")
-          : ListView.builder(
-              controller: controllers,
-              itemCount: widget.provider.reviewRaceList.length + 1,
-              itemBuilder: (context, index) {
-                // var dataOfEvent = widget.provider.reviewRaceList[index];
-                // return RaceContainer(index: index, data: dataOfEvent);
-                if (index < widget.provider.reviewRaceList.length) {
-                  var dataOfEvent = widget.provider.reviewRaceList[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DetailPageOfHome(
-                                index: index,
-                                data: dataOfEvent,
-                              )));
-                    },
-                    child:
-                        CustomEventContainer(index: index, data: dataOfEvent),
-                  );
-                } else {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Center(
-                      child: hasMore
-                          ? const CircularProgressIndicator()
-                          : const Text('No more data to load?'),
-                    ),
-                  );
-                }
-              },
+    final homeProvider = Provider.of<HomeProvider>(context, listen: true);
+    return Consumer<ReviewARaceProvider>(
+      builder: (context, value, child) {
+        final reviewProvider = value;
+        return Container(
+          height: h * 0.85,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: h * 0.02),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: const Icon(Icons.arrow_back),
+                      ),
+                      const SizedBox(width: 10),
+                      const Text(
+                        "Search past event",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: h * 0.02),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: CustomeTextField(
+                    hintText: 'What are you looking for?',
+                    icon: Icons.bookmark_outline,
+                    textInputType: TextInputType.name,
+                    controller: TextEditingController(),
+                  ),
+                ),
+                SizedBox(height: h * 0.025),
+                EventDropDownButton(
+                  hintText: 'All Type',
+                  choseValue: reviewProvider.choseAllType,
+                  onChanged: (val) {
+                    reviewProvider.changeAllType(val);
+                  },
+                  items: homeProvider.listOfAllTypeData.map((val) {
+                    return DropdownMenuItem(
+                      value: val['id'].toString(),
+                      child: Text(val['category']),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(height: h * 0.025),
+                EventDropDownButton(
+                  hintText: 'All cities',
+                  choseValue: reviewProvider.choseCity,
+                  onChanged: (val) {
+                    reviewProvider.changeDropDownVal(val);
+                  },
+                  items: homeProvider.listOfCitiesNames.map((val) {
+                    return DropdownMenuItem(
+                      value: val['id'].toString(),
+                      child: Text(val['name']),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(height: h * 0.025),
+                //distances
+                CustomeMultiSelectDropDown(
+                  btnText: 'Select distance',
+                  dialogHintText: "Select distances",
+                  items: homeProvider.listOfDetancesNames.map((val) {
+                    return MultiSelectItem(val['id'], val['name']);
+                  }).toList(),
+                  intialValue: reviewProvider.listOfDistanceData,
+                  onConfirm: (val) {
+                    reviewProvider.listOfDistanceData.clear();
+                    reviewProvider.changeDistance(val);
+                  },
+                ),
+                //badge
+                SizedBox(height: h * 0.025),
+                CustomeMultiSelectDropDown(
+                  btnText: 'Select Badges',
+                  dialogHintText: "Select Badges",
+                  items: homeProvider.listOfBadgeNames.map((val) {
+                    return MultiSelectItem(val['id'], val['title']);
+                  }).toList(),
+                  intialValue: reviewProvider.listOfBadgeData,
+                  onConfirm: (val) {
+                    reviewProvider.listOfBadgeData.clear();
+                    reviewProvider.changeBadge(val);
+                  },
+                ),
+                //partners
+                SizedBox(height: h * 0.025),
+                CustomeMultiSelectDropDown(
+                  btnText: 'Select Partners',
+                  dialogHintText: "Select Partners",
+                  items: homeProvider.listOfPartnersNames.map((val) {
+                    return MultiSelectItem(val['id'], val['title']);
+                  }).toList(),
+                  intialValue: reviewProvider.listOfPartnersData,
+                  onConfirm: (val) {
+                    reviewProvider.listOfPartnersData.clear();
+                    reviewProvider.changePartners(val);
+                  },
+                ),
+                SizedBox(height: h * 0.025),
+                TextButtonWidget(text: 'Search', pres: () {}),
+                const SizedBox(height: 20)
+              ],
             ),
+          ),
+        );
+      },
     );
   }
 }
