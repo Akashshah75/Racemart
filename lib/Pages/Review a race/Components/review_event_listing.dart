@@ -43,9 +43,20 @@ class _ReviewAEventListingState extends State<ReviewAEventListing> {
     isLoading = true;
     const limit = 10;
     var provider = Provider.of<AuthenticationProvider>(context, listen: false);
+    var reviewProvider =
+        Provider.of<ReviewARaceProvider>(context, listen: false);
     final url = "https://racemart.youtoocanrun.com/api/past-events?page=$page";
+    var body = {
+      "search": reviewProvider.search.text,
+      "distance": reviewProvider.listOfDistanceData,
+      "badge": reviewProvider.listOfBadgeData,
+      "partner": reviewProvider.listOfPartnersData,
+      "category": reviewProvider.choseAllType,
+      "city": reviewProvider.choseCity,
+    };
+    print(body);
     var res = await BaseClient()
-        .getMethodWithToken(url, provider.appLoginToken.toString());
+        .postMethodWithToken(url, provider.appLoginToken.toString(), body);
 
     var result = jsonDecode(res);
     // print(res);
@@ -58,26 +69,26 @@ class _ReviewAEventListingState extends State<ReviewAEventListing> {
       if (newEvent.length < limit) {
         hasMore = false;
       }
-      widget.provider.reviewRaceList.addAll(newEvent);
+      widget.provider.searchListData.addAll(newEvent);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 680,
-      child: widget.provider.reviewRaceList.isEmpty
+      height: 650,
+      child: widget.provider.searchListData.isEmpty
           ? const Center(
               child: Text("Don't have any event"),
             )
           : ListView.builder(
               controller: controllers,
-              itemCount: widget.provider.reviewRaceList.length + 1,
+              itemCount: widget.provider.searchListData.length + 1,
               itemBuilder: (context, index) {
-                // var dataOfEvent = widget.provider.reviewRaceList[index];
+                // var dataOfEvent = widget.provider.searchListData[index];
                 // return RaceContainer(index: index, data: dataOfEvent);
-                if (index < widget.provider.reviewRaceList.length) {
-                  var dataOfEvent = widget.provider.reviewRaceList[index];
+                if (index < widget.provider.searchListData.length) {
+                  var dataOfEvent = widget.provider.searchListData[index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(

@@ -115,7 +115,7 @@ class SearchPastEventPage extends StatelessWidget {
       builder: (context, value, child) {
         final reviewProvider = value;
         return Container(
-          height: h * 0.85,
+          height: h * 0.75,
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: SingleChildScrollView(
             child: Column(
@@ -125,20 +125,30 @@ class SearchPastEventPage extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: const Icon(Icons.arrow_back),
+                          ),
+                          const SizedBox(width: 10),
+                          const Text(
+                            "Search past event",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      //
+                      MaterialButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          reviewProvider.cleanDropDownBoxes();
                         },
-                        icon: const Icon(Icons.arrow_back),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        "Search past event",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
+                        child: const Text('Clean'),
+                      )
                     ],
                   ),
                 ),
@@ -149,7 +159,7 @@ class SearchPastEventPage extends StatelessWidget {
                     hintText: 'What are you looking for?',
                     icon: Icons.bookmark_outline,
                     textInputType: TextInputType.name,
-                    controller: TextEditingController(),
+                    controller: reviewProvider.search,
                   ),
                 ),
                 SizedBox(height: h * 0.025),
@@ -223,7 +233,18 @@ class SearchPastEventPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: h * 0.025),
-                TextButtonWidget(text: 'Search', pres: () {}),
+                TextButtonWidget(
+                    text: 'Search',
+                    pres: () {
+                      reviewProvider.searchEvent(
+                        context,
+                        category: reviewProvider.choseAllType,
+                        city: reviewProvider.choseCity,
+                        distance: reviewProvider.listOfDistanceData,
+                        badge: reviewProvider.listOfBadgeData,
+                        partner: reviewProvider.listOfPartnersData,
+                      );
+                    }),
                 const SizedBox(height: 20)
               ],
             ),

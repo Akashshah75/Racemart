@@ -5,11 +5,16 @@ import 'package:provider/provider.dart';
 
 import '../../Network/base_clent.dart';
 import '../../Network/url.dart';
+import '../../Utils/constant.dart';
 import '../authentication_provider.dart';
 
 class ReviewARaceProvider with ChangeNotifier {
+  TextEditingController search = TextEditingController();
+
+  //
   List<dynamic> reviewRaceList = [];
   bool isLoading = false;
+  bool isLoadingInSearch = false;
   //
   String choseAllType = '';
   //
@@ -65,6 +70,56 @@ class ReviewARaceProvider with ChangeNotifier {
   List listOfPartnersData = [];
   void changePartners(var val) {
     listOfPartnersData = val;
+    notifyListeners();
+  }
+
+  List searchListData = [];
+  //search past event
+  Future<void> searchEvent(BuildContext context,
+      {var category,
+      var city,
+      List? distance,
+      List? badge,
+      List? partner}) async {
+    isLoadingInSearch = true;
+    notifyListeners();
+    var body = {
+      "search": search.text,
+      "distance": distance ?? [],
+      "badge": badge ?? [],
+      "partner": partner ?? [],
+      "category": category,
+      "city": city,
+    };
+    final provider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    var response = await BaseClient().postMethodWithToken(
+        searchEventUrl, provider.appLoginToken.toString(), body);
+    //
+    isLoadingInSearch = false;
+    notifyListeners();
+    searchListData = [];
+    var result = jsonDecode(response);
+    if (result['status'] == "success") {
+      searchListData = result['data']['list'];
+      print(searchListData);
+      notifyListeners();
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
+      //
+    } else {
+      toastMessage(result['message']);
+    }
+  }
+
+  //clear field
+  void cleanDropDownBoxes() {
+    search.clear();
+    choseAllType = '';
+    choseCity = '';
+    listOfDistanceData = [];
+    listOfBadgeData = [];
+    listOfPartnersData = [];
     notifyListeners();
   }
 }
