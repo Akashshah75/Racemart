@@ -197,8 +197,8 @@ class ProfileProvider with ChangeNotifier {
     http.MultipartRequest request = http.MultipartRequest('POST', url);
     print(url);
     request.headers.addAll(headers);
-
     request.fields['name'] = name.text.isEmpty ? selectedName : name.text;
+
     request.fields['mobile'] =
         mobileNo.text.isEmpty ? selecetdMobile : name.text;
     request.fields['email'] = email.text.isEmpty ? selectedEmail : email.text;
@@ -213,12 +213,41 @@ class ProfileProvider with ChangeNotifier {
     }
     var response = await request.send();
     var result = await http.Response.fromStream(response);
-    print(result.body);
+    dynamic resultOfProfileData = jsonDecode(result.body);
+    print(resultOfProfileData);
     if (response.statusCode == 200) {
       // ignore: use_build_context_synchronously
       fetchUserProfile(context);
       clearText();
     } else {
+      if (resultOfProfileData['status'] == 'error') {
+        Map error = resultOfProfileData['errors'];
+        error.forEach(
+          (key, value) {
+            if (key == 'profile') {
+              List val = value;
+              for (int i = 0; i < val.length; i++) {
+                toastMessage(value[i]);
+              }
+            } else if (key == 'name') {
+              List val = value;
+              for (int i = 0; i < val.length; i++) {
+                toastMessage(value[i]);
+              }
+            } else if (key == 'mobile') {
+              List val = value;
+              for (int i = 0; i < val.length; i++) {
+                toastMessage(value[i]);
+              }
+            } else if (key == 'email') {
+              List val = value;
+              for (int i = 0; i < val.length; i++) {
+                toastMessage(value[i]);
+              }
+            }
+          },
+        );
+      }
       print('upload faild');
     }
   }

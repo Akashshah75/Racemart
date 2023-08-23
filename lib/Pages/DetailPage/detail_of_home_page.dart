@@ -92,9 +92,11 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                 children: [
                   const SizedBox(height: 8),
                   ImageHedingContainer(
-                      shareUrl: widget.data['share-url'] ?? 'url',
-                      image: widget.data['poster'] ?? demo,
-                      title: widget.data['title']),
+                    shareUrl: widget.data['share-url'] ?? 'url',
+                    image: widget.data['poster'] ?? demo,
+                    title: widget.data['title'],
+                    registrationUrl: widget.data['registration_url'],
+                  ),
                   spacingHeightMin1,
                   HedingOfDetailPage(title: widget.data['title']),
                   spacingHeightMin,
@@ -103,6 +105,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       : LoctionContair(location: widget.data['city']),
                   const SizedBox(height: 8),
                   RegisterationDateContainer(data: widget.data),
+                  // const Text('REgister now'),
                   const Divider(),
                   //horizontal view
                   Container(

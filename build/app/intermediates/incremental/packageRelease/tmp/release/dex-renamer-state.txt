@@ -1,4 +1,4 @@
-#Tue Aug 22 16:18:17 IST 2023
+#Tue Aug 22 19:09:30 IST 2023
 base.0=D\:\\aWorkingProject\\racemart\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

@@ -15,21 +15,12 @@ class RegisterationDateContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 5),
-      // margin: const EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
-      // decoration:
-      //     BoxDecoration(borderRadius: BorderRadius.circular(12), color: white),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // HeadingText(
-            //   fontSize: 16,
-            //   text: 'Registration Date',
-            //   color: blackColor.withAlpha(200),
-            // ),
-            // const Divider(),
             data['event_start_date'] != null
                 ? DateTimeContainer(
                     title: 'Start Date',
@@ -39,6 +30,15 @@ class RegisterationDateContainer extends StatelessWidget {
                   )
                 : const SizedBox(),
             const SizedBox(height: 15),
+            // data['event_start_date'] != null
+            //     ? DateTimeContainer(
+            //         title: 'Start Date',
+            //         date: data['event_start_date'] == null
+            //             ? ''
+            //             : convertDate(data['event_start_date']),
+            //       )
+            //     : const SizedBox(),
+            // const SizedBox(height: 10),
             data['event_end_date'] != null
                 ? DateTimeContainer(
                     title: 'End Date',
@@ -46,7 +46,39 @@ class RegisterationDateContainer extends StatelessWidget {
                         ? ''
                         : convertDate(data['event_end_date']))
                 : const SizedBox(),
-            const SizedBox(height: 5),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     width: 150,
+            //     height: 35,
+            //     decoration: BoxDecoration(
+            //       color: blueColor,
+            //       borderRadius: const BorderRadius.only(
+            //         topLeft: Radius.circular(35),
+            //         bottomRight: Radius.circular(4),
+            //       ),
+            //       // borderRadius: BorderRadius.circular(12),
+            //     ),
+            //     child: ClipRRect(
+            //       borderRadius:
+            //           const BorderRadius.only(topLeft: Radius.circular(35)),
+            //       child: SizedBox(
+            //         height: 35,
+            //         width: 150,
+            //         child: TextButton(
+            //           onPressed: () {},
+            //           child: const Text(
+            //             'Register Now',
+            //             style: TextStyle(
+            //               color: whiteColor,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),

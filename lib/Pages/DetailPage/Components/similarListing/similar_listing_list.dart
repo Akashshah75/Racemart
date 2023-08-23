@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../Utils/app_asset.dart';
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/app_size.dart';
+import '../../detail_of_home_page.dart';
 import 'components/similar_listingt_container.dart';
 
 class SimilarListing extends StatelessWidget {
@@ -45,53 +46,26 @@ class SimilarListing extends StatelessWidget {
                       itemCount: similarListingDataList.length,
                       itemBuilder: (context, index) {
                         var similarListingData = similarListingDataList[index];
-                        return SimilarListingtContainer(
-                          data: similarListingData,
-                          // width: 3,
-                          width: similarListingDataList.length > 1 ? 320 : 350,
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DetailPageOfHome(
+                                    index: index, data: similarListingData),
+                              ),
+                            );
+                          },
+                          child: SimilarListingtContainer(
+                            data: similarListingData,
+                            // width: 3,
+                            width:
+                                similarListingDataList.length > 1 ? 320 : 350,
+                          ),
                         );
                       }),
                 ),
               ],
             ),
-          );
-  }
-}
-
-class SimilarListingList extends StatelessWidget {
-  const SimilarListingList({
-    super.key,
-    this.data,
-  });
-  final dynamic data;
-
-  @override
-  Widget build(BuildContext context) {
-    List similarListingDataList = data['similar_events'] ?? [];
-    return similarListingDataList.isEmpty
-        ? Center(
-            child: Image.asset(noDataFound),
-          )
-        : Column(
-            children: [
-              const Text('Name'),
-              //
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                height: 380,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: similarListingDataList.length,
-                    itemBuilder: (context, index) {
-                      var similarListingData = similarListingDataList[index];
-                      return SimilarListingtContainer(
-                        data: similarListingData,
-                        width: 350,
-                        // width: similarListingDataList.length > 1 ? 350 : 370,
-                      );
-                    }),
-              ),
-            ],
           );
   }
 }

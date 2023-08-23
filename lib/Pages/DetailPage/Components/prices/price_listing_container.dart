@@ -49,17 +49,17 @@ class PriceListingContainer extends StatelessWidget {
                               date: priceOfData[0]['price'].toString(),
                             )
                           : const SizedBox(),
-                      priceOfData.length > 2
-                          ? PriceRowListing(
-                              title: priceOfData[2]['title'],
-                              date: priceOfData[0]['price'].toString(),
-                            )
-                          : const SizedBox(),
+                      // priceOfData.length > 2
+                      //     ? PriceRowListing(
+                      //         title: priceOfData[2]['title'],
+                      //         date: priceOfData[0]['price'].toString(),
+                      //       )
+                      //     : const SizedBox(),
                       const SizedBox(height: 10),
-                      priceOfData.length > 3
+                      priceOfData.length > 2
                           ? const Divider()
                           : const SizedBox(),
-                      priceOfData.length > 3
+                      priceOfData.length > 2
                           ? Center(
                               child: TextButton(
                                   onPressed: () {
