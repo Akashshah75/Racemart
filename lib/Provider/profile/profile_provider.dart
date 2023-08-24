@@ -179,16 +179,12 @@ class ProfileProvider with ChangeNotifier {
     required String selectedEmail,
     var image,
   }) async {
+    updateProfile = true;
+    notifyListeners();
     // get token
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     print(provider.appLoginToken);
-    //convert selected image to string
-
-    // var stream = http.ByteStream(selectedImage!.openRead());
-
-    // var length = await selectedImage!.length();
-    //put data on server
     var url = Uri.parse(userUrl);
     Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -212,7 +208,11 @@ class ProfileProvider with ChangeNotifier {
       request.files.add(multiport);
     }
     var response = await request.send();
+    //
+    updateProfile = false;
+    notifyListeners();
     var result = await http.Response.fromStream(response);
+
     dynamic resultOfProfileData = jsonDecode(result.body);
     print(resultOfProfileData);
     if (response.statusCode == 200) {

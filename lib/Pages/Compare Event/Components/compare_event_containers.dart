@@ -37,6 +37,10 @@ class ComapreEventContainer1 extends StatelessWidget {
     int? facebookIndex;
     var instagram = false;
     int? instagramIndex;
+    var youtube = false;
+    int? youtubeIndex;
+    var twitter = false;
+    int? twitterIndex;
     // var google = false;
     for (int i = 0; i < listOfSocialMedia.length; i++) {
       // print(listOfSocialMedia[i]['type']);
@@ -47,6 +51,14 @@ class ComapreEventContainer1 extends StatelessWidget {
       if (listOfSocialMedia[i]['type'] == 'instagram') {
         instagram = true;
         instagramIndex = i;
+      }
+      if (listOfSocialMedia[i]['type'] == 'youtube') {
+        youtube = true;
+        youtubeIndex = i;
+      }
+      if (listOfSocialMedia[i]['type'] == 'twitter') {
+        twitter = true;
+        twitterIndex = i;
       }
     }
     return Container(
@@ -70,13 +82,17 @@ class ComapreEventContainer1 extends StatelessWidget {
                   color: whiteColor,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Image.network(
-                    data['poster'],
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                child: data['poster'] == null
+                    ? const SizedBox(
+                        child: Text('No Poster!!'),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: Image.network(
+                          data['poster'],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
               ),
               const SizedBox(height: 10),
               //title
@@ -86,31 +102,41 @@ class ComapreEventContainer1 extends StatelessWidget {
                     : eventTitleLength > 30
                         ? 80
                         : 60,
-                child: Text(
-                  data['title'].toString(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
-                ),
+                child: data['title'] == null
+                    ? const SizedBox(
+                        child: Text('No title!!'),
+                      )
+                    : Text(
+                        data['title'].toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
+                      ),
               ),
               const Divider(),
               //Address
               SizedBox(
                 height: 20,
-                child: Text(
-                  data['city'] ?? 'Vadodara',
-                  style: customeTextStyle,
-                ),
+                child: data['city'] == null
+                    ? const SizedBox(
+                        child: Text('No City!!'),
+                      )
+                    : Text(
+                        data['city'] ?? 'Vadodara',
+                        style: customeTextStyle,
+                      ),
               ),
               //Editions
               const Divider(),
               SizedBox(
                 height: 20,
-                child: Text(
-                  data['edition'].toString(),
-                  style: customeTextStyle,
-                ),
+                child: data['edition'] == null
+                    ? const Text('No Edition!!')
+                    : Text(
+                        data['edition'].toString(),
+                        style: customeTextStyle,
+                      ),
               ),
               //city
               const Divider(),
@@ -120,14 +146,16 @@ class ComapreEventContainer1 extends StatelessWidget {
                       : eventAddressLength > 50
                           ? 80
                           : 60,
-                  child: Text(
-                    data['address'] ?? 'address',
-                    style: customeTextStyle,
-                  )),
+                  child: data['address'] == null
+                      ? const Text('No Address!!')
+                      : Text(
+                          data['address'] ?? 'address',
+                          style: customeTextStyle,
+                        )),
               //location type
               const SizedBox(height: 10),
               const Divider(),
-              Text(data['type'] ?? 'On-ground', style: customeTextStyle),
+              Text(data['type'] ?? 'No data!!', style: customeTextStyle),
               //distancess
               const Divider(),
               SizedBox(
@@ -146,24 +174,24 @@ class ComapreEventContainer1 extends StatelessWidget {
                                 listOfDistances[0]['name'] ?? '',
                                 style: customeTextStyle,
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 15),
                               listOfDistances.length > 1
                                   ? Text(
                                       listOfDistances[1]['name'] ?? '',
                                       style: customeTextStyle,
                                     )
                                   : const SizedBox(),
-                              const SizedBox(width: 8),
-                              listOfDistances.length > 2
-                                  ? Text(
-                                      listOfDistances[2]['name'] ?? '',
-                                      style: customeTextStyle,
-                                    )
-                                  : const SizedBox(),
+                              // const SizedBox(width: 8),
+                              // listOfDistances.length > 2
+                              //     ? Text(
+                              //         listOfDistances[2]['name'] ?? '',
+                              //         style: customeTextStyle,
+                              //       )
+                              //     : const SizedBox(),
                             ],
                           ),
                           const SizedBox(height: 2),
-                          listOfDistances.length > 3
+                          listOfDistances.length > 2
                               ? Text(
                                   'more..',
                                   style: customeTextStyle,
@@ -178,7 +206,7 @@ class ComapreEventContainer1 extends StatelessWidget {
                 height: 45,
                 child: listOfDeliverables.isEmpty
                     ? const SizedBox(
-                        child: Text("Don't have distancess!!!"),
+                        child: Text("Don't have deliverables!!!"),
                       )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,7 +249,7 @@ class ComapreEventContainer1 extends StatelessWidget {
                   height: 80,
                   child: listOfparteners.isEmpty
                       ? const SizedBox(
-                          child: Text("Don't have Parteners"),
+                          child: Text("Don't have Parteners !!"),
                         )
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -252,10 +280,10 @@ class ComapreEventContainer1 extends StatelessWidget {
               // //Terrains :
               const Divider(),
               SizedBox(
-                  height: 40,
+                  height: 50,
                   child: listOfTerrains.isEmpty
                       ? const SizedBox(
-                          child: Text("Don't have Terrains Data!!!"),
+                          child: Text("Don't have Terrains Data!!"),
                         )
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -265,15 +293,15 @@ class ComapreEventContainer1 extends StatelessWidget {
                               listOfTerrains[0]['name'] ?? '',
                               style: customeTextStyle,
                             ),
+                            // const SizedBox(height: 4),
+                            // listOfTerrains.length > 1
+                            //     ? Text(
+                            //         listOfTerrains[1]['name'] ?? '',
+                            //         style: customeTextStyle,
+                            //       )
+                            //     : const SizedBox(),
                             const SizedBox(height: 4),
                             listOfTerrains.length > 1
-                                ? Text(
-                                    listOfTerrains[1]['name'] ?? '',
-                                    style: customeTextStyle,
-                                  )
-                                : const SizedBox(),
-                            const SizedBox(height: 4),
-                            listOfTerrains.length > 2
                                 ? Text(
                                     'more..',
                                     style: customeTextStyle,
@@ -291,7 +319,7 @@ class ComapreEventContainer1 extends StatelessWidget {
                         style: customeTextStyle,
                       )
                     : const SizedBox(
-                        child: Text('No Start date specify'),
+                        child: Text('No Start date specify!!'),
                       ),
               ),
               // //end event
@@ -302,7 +330,7 @@ class ComapreEventContainer1 extends StatelessWidget {
                     ? Text(convertDate(data['early_end_date']),
                         style: customeTextStyle)
                     : const SizedBox(
-                        child: Text('No end date specify'),
+                        child: Text('No end date specify!!'),
                       ),
               ),
               //avg..rating
@@ -379,22 +407,40 @@ class ComapreEventContainer1 extends StatelessWidget {
                                   ),
                                 )
                               : const SizedBox(),
-                          //   mail
-                          listOfSocialMedia.length > 2
-                              ? listOfSocialMedia[0]['type'] == 'googl'
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        // data['socials'][0]['url'];
-                                      },
-                                      child: const SocialMediaIconContainer(
-                                        icon: Icons.g_mobiledata,
-                                        width: 30,
-                                        height: 30,
-                                        iconsize: 18,
-                                      ),
-                                    )
-                                  : const SizedBox()
+                          //   youtube
+                          youtube
+                              ? GestureDetector(
+                                  onTap: () {
+                                    final youtubeUrl = Uri.parse(
+                                        listOfSocialMedia[youtubeIndex!]
+                                            ['url']);
+                                    launchInBrowser(youtubeUrl);
+                                  },
+                                  child: const SocialMediaIconContainer(
+                                    icon: FontAwesomeIcons.youtube,
+                                    width: 30,
+                                    height: 30,
+                                    iconsize: 18,
+                                  ),
+                                )
                               : const SizedBox(),
+                          //twitter
+                          twitter
+                              ? GestureDetector(
+                                  onTap: () {
+                                    final twitterUrl = Uri.parse(
+                                        listOfSocialMedia[twitterIndex!]
+                                            ['url']);
+                                    launchInBrowser(twitterUrl);
+                                  },
+                                  child: const SocialMediaIconContainer(
+                                    icon: FontAwesomeIcons.twitter,
+                                    width: 30,
+                                    height: 30,
+                                    iconsize: 18,
+                                  ),
+                                )
+                              : const SizedBox()
                         ],
                       ),
               ),

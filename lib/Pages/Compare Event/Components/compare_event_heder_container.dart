@@ -108,7 +108,7 @@ class ComapreEventContainer extends StatelessWidget {
               const Divider(),
               Container(
                 alignment: Alignment.center,
-                height: 40,
+                height: 50,
                 child: const CompareEventHeadingText(text: 'Terrains'),
               ),
               // //end event

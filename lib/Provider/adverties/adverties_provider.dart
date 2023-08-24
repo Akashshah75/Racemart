@@ -60,11 +60,7 @@ class AdveriesProvider with ChangeNotifier {
       downloadUrl = '';
       var result = jsonDecode(response);
       if (result['status'] == "success") {
-        // print(result['data']);
-        // downloadUrl = result['data'];
-        // notifyListeners();
-        //
-        // Future.delayed(const Duration(milliseconds: ), () {
+        clearTextFieldOfSignUp();
         FileDownloader.downloadFile(
           url: result['data'],
           onProgress: (fileName, progress) {
@@ -83,16 +79,10 @@ class AdveriesProvider with ChangeNotifier {
             toastMessage(errorMessage);
           },
         );
-
-        // }
-        // );
-        clearTextFieldOfSignUp();
       } else {
         toastMessage(result['message']);
       }
-      //
     }
-    //
   }
 
   void clearTextFieldOfSignUp() {

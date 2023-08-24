@@ -168,6 +168,7 @@ class ProfileBottomSheet extends StatelessWidget {
               const SizedBox(height: 15),
               TextButtonWidget(
                 text: 'Submit',
+                isLoading: controller.updateProfile,
                 pres: () {
                   controller.updateProfileByMultiportData(
                     context,
