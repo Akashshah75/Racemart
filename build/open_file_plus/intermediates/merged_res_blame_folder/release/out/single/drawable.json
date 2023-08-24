@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.joutvhu.openfile.open_file_plus-merged_res-12:/drawable/notification_icon_background.xml",
+        "source": "com.joutvhu.openfile.open_file_plus-core-1.6.0-2:/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "com.joutvhu.openfile.open_file_plus-merged_res-12:/drawable/notification_tile_bg.xml",
+        "source": "com.joutvhu.openfile.open_file_plus-core-1.6.0-2:/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "com.joutvhu.openfile.open_file_plus-merged_res-12:/drawable/notification_bg.xml",
+        "source": "com.joutvhu.openfile.open_file_plus-core-1.6.0-2:/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "com.joutvhu.openfile.open_file_plus-merged_res-12:/drawable/notification_bg_low.xml",
+        "source": "com.joutvhu.openfile.open_file_plus-core-1.6.0-2:/drawable/notification_bg_low.xml"
+    }
+]
