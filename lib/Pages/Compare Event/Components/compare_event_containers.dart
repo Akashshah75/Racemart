@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../Utils/app_color.dart';
@@ -24,13 +25,30 @@ class ComapreEventContainer1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(data['socials']);
-    print(eventAddressLength);
+    // print(data['socials']);
+    // print(eventAddressLength);
     List listOfDistances = data['distances'];
     List listOfDeliverables = data['deliverables'];
     List listOfparteners = data['partners'];
     List listOfTerrains = data['terrains'];
     List listOfSocialMedia = data['socials'];
+    //socila media
+    var facebook = false;
+    int? facebookIndex;
+    var instagram = false;
+    int? instagramIndex;
+    // var google = false;
+    for (int i = 0; i < listOfSocialMedia.length; i++) {
+      // print(listOfSocialMedia[i]['type']);
+      if (listOfSocialMedia[i]['type'] == 'facebook') {
+        facebook = true;
+        facebookIndex = i;
+      }
+      if (listOfSocialMedia[i]['type'] == 'instagram') {
+        instagram = true;
+        instagramIndex = i;
+      }
+    }
     return Container(
       padding: const EdgeInsets.all(5),
       width: width * 0.332,
@@ -199,7 +217,6 @@ class ComapreEventContainer1 extends StatelessWidget {
               ),
               // //partners
               const Divider(),
-
               SizedBox(
                   height: 80,
                   child: listOfparteners.isEmpty
@@ -266,31 +283,42 @@ class ComapreEventContainer1 extends StatelessWidget {
                         )),
               //Event Start
               const Divider(),
-              data['event_start_date'] != null
-                  ? Text(
-                      convertDate(data['event_start_date']),
-                      style: customeTextStyle,
-                    )
-                  : const SizedBox(),
+              SizedBox(
+                height: 40,
+                child: data['event_start_date'] != null
+                    ? Text(
+                        convertDate(data['event_start_date']),
+                        style: customeTextStyle,
+                      )
+                    : const SizedBox(
+                        child: Text('No Start date specify'),
+                      ),
+              ),
               // //end event
               const Divider(),
-              data['early_end_date'] != null
-                  ? Text(convertDate(data['early_end_date']),
-                      style: customeTextStyle)
-                  : const SizedBox(
-                      child: Text('No end date specify'),
-                    ),
+              SizedBox(
+                height: 40,
+                child: data['early_end_date'] != null
+                    ? Text(convertDate(data['early_end_date']),
+                        style: customeTextStyle)
+                    : const SizedBox(
+                        child: Text('No end date specify'),
+                      ),
+              ),
               //avg..rating
               const Divider(),
-              Row(
-                children: [
-                  Text(
-                    data['rate']['stars'].toString(),
-                    style: customeTextStyle,
-                  ),
-                  const SizedBox(width: 2),
-                  const Icon(Icons.star, size: 14, color: yellowColor)
-                ],
+              SizedBox(
+                height: 30,
+                child: Row(
+                  children: [
+                    Text(
+                      data['rate']['stars'].toString(),
+                      style: customeTextStyle,
+                    ),
+                    const SizedBox(width: 2),
+                    const Icon(Icons.star, size: 14, color: yellowColor)
+                  ],
+                ),
               ),
               //oragnasied
               const Divider(),
@@ -319,38 +347,41 @@ class ComapreEventContainer1 extends StatelessWidget {
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          listOfSocialMedia[0]['type'] == 'facebook'
+                          facebook
                               ? InkWell(
                                   onTap: () {
-                                    final facebookUrl =
-                                        Uri.parse(listOfSocialMedia[0]['url']);
-                                    // final insta = Uri.parse(
-                                    //     "https://www.instagram.com/p/CsoNnBCpfdq/");
+                                    final facebookUrl = Uri.parse(
+                                        listOfSocialMedia[facebookIndex!]
+                                            ['url']);
                                     launchInBrowser(facebookUrl);
-                                    // launchInBrowser(insta);
-                                    print(listOfSocialMedia.length);
-                                    print(listOfSocialMedia[0]['url']);
                                   },
                                   child: const SocialMediaIconContainer(
-                                    icon: Icons.facebook,
+                                    icon: FontAwesomeIcons.facebook,
                                     width: 30,
                                     height: 30,
                                     iconsize: 18,
                                   ),
                                 )
                               : const SizedBox(),
-                          listOfSocialMedia.length > 1
-                              ? listOfSocialMedia[1]['type'] == 'instagram'
-                                  ? const SocialMediaIconContainer(
-                                      icon: Icons.mail,
-                                      width: 30,
-                                      height: 30,
-                                      iconsize: 18,
-                                    )
-                                  : const SizedBox()
+                          instagram
+                              ? InkWell(
+                                  onTap: () {
+                                    final instagramUrl = Uri.parse(
+                                        listOfSocialMedia[instagramIndex!]
+                                            ['url']);
+                                    launchInBrowser(instagramUrl);
+                                  },
+                                  child: const SocialMediaIconContainer(
+                                    icon: FontAwesomeIcons.instagram,
+                                    width: 30,
+                                    height: 30,
+                                    iconsize: 18,
+                                  ),
+                                )
                               : const SizedBox(),
+                          //   mail
                           listOfSocialMedia.length > 2
-                              ? listOfSocialMedia[0]['type'] == 'google'
+                              ? listOfSocialMedia[0]['type'] == 'googl'
                                   ? GestureDetector(
                                       onTap: () {
                                         // data['socials'][0]['url'];

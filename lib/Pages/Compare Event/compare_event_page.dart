@@ -7,6 +7,7 @@ import '../../Utils/app_asset.dart';
 import '../../Utils/app_color.dart';
 import '../Home/Drawer/zoom_drawer.dart';
 import 'Components/compare_event_containers.dart';
+import 'Components/compare_event_heder_container.dart';
 import 'compare_event_search_screen.dart';
 
 class CompareEventPage extends StatefulWidget {
@@ -130,32 +131,42 @@ class ListOfCompareEvents extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ComapreEventContainer1(
-                  width: width,
-                  image: demo,
-                  data: firstEventData,
-                  eventTitleLength: eventTitleLengths,
-                  eventAddressLength: eventAddressLength,
-                ),
-                ComapreEventContainer1(
-                  width: width,
-                  image: demo1,
-                  data: provider.detailSecondEventData,
-                  eventTitleLength: eventTitleLengths,
-                  eventAddressLength: eventAddressLength,
-                ),
-                ComapreEventContainer1(
-                  width: width,
-                  image: demo2,
-                  data: provider.detailThirdEventData,
-                  eventTitleLength: eventTitleLengths,
-                  eventAddressLength: eventAddressLength,
-                ),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ComapreEventContainer(
+                    width: width,
+                    image: demo,
+                    data: firstEventData,
+                    eventTitleLength: eventTitleLengths,
+                    eventAddressLength: eventAddressLength,
+                  ),
+                  ComapreEventContainer1(
+                    width: width,
+                    image: demo,
+                    data: firstEventData,
+                    eventTitleLength: eventTitleLengths,
+                    eventAddressLength: eventAddressLength,
+                  ),
+                  ComapreEventContainer1(
+                    width: width,
+                    image: demo1,
+                    data: provider.detailSecondEventData,
+                    eventTitleLength: eventTitleLengths,
+                    eventAddressLength: eventAddressLength,
+                  ),
+                  ComapreEventContainer1(
+                    width: width,
+                    image: demo2,
+                    data: provider.detailThirdEventData,
+                    eventTitleLength: eventTitleLengths,
+                    eventAddressLength: eventAddressLength,
+                  ),
+                ],
+              ),
             )
           ],
         ),

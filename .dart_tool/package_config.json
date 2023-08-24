@@ -230,6 +230,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "fwfh_cached_network_image",
       "rootUri": "file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/fwfh_cached_network_image-0.7.0+5",
       "packageUri": "lib/",
@@ -914,7 +920,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-08-21T09:49:24.218249Z",
+  "generated": "2023-08-23T13:49:53.626963Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }
