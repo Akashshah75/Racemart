@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,12 +22,17 @@ import 'Provider/wishlist/wishlist_provider.dart';
 import 'Routes/route.dart';
 import 'Routes/route_names.dart';
 
-final navigatorKey = GlobalKey<NavigatorState>();
+//top leven method for notification
+Future<void> handleBackgroundMessage(RemoteMessage message) async {
+  print('Title:${message.notification?.title}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // await FirebaseApi().initNotifications();
+  FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
+
+  // NotificationApi().initNotifications();
   runApp(const MyApp());
 }
 
@@ -92,6 +98,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             textTheme:
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+        // navigatorKey: navigatorKey,
         initialRoute: RouteNames.splashPage,
         onGenerateRoute: Routes.generateRoute,
       ),

@@ -5,7 +5,9 @@ import 'package:racemart_app/Provider/profile/profile_provider.dart';
 
 import '../../Helper/appbar/app_bar_widget.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
+import '../../Provider/authentication_provider.dart';
 import '../../Provider/wishlist/wishlist_provider.dart';
+import '../../Push Notification/notification_api.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/constant.dart';
 import '../User interst/user_interest.dart';
@@ -23,8 +25,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  NotificationFeat notification = NotificationFeat();
   @override
   void initState() {
+    final provider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    //
+    LocalNotificationService.initialize(provider.appLoginToken, context);
+    //when app is terminate state
+    notification.terminateStateAppNotificationMethod(
+        context, provider.appLoginToken);
+    //when app is forground state
+    notification.forgroundStateAppNotificationMethod(
+        context, provider.appToken);
+    //
+    notification.appIsBgNotCloseNotificationMethod(
+        provider.appLoginToken, context);
+
+    //
+
     Future.delayed(Duration.zero, () async {
       final wishProvider =
           Provider.of<WishListProvider>(context, listen: false);
