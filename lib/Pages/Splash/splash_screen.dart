@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/authentication_provider.dart';
+import 'package:racemart_app/Push%20Notification/firebase_api.dart';
 import 'package:racemart_app/Routes/route_names.dart';
 import 'package:racemart_app/Utils/app_asset.dart';
 
@@ -16,8 +17,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  FirebaseApi notification = FirebaseApi();
+
+  //
   @override
   void initState() {
+    //notification
+    notification.requestNotificationPermission();
+    notification.getDeviceToken().then((value) {
+      print('Device Token:$value');
+    });
+    notification.firebaseInit();
+    notification.initNotifications();
+    //
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     provider.getUserToken();

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1077785227608",
+    "project_id": "racemart-9431a",
+    "storage_bucket": "racemart-9431a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077785227608:android:5c119c5cfb6a15fc5ab52d",
+        "android_client_info": {
+          "package_name": "com.example.racemart_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077785227608-d1l2mk2599cu26uqo26mhurg3k70ji0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAseDYNQvNDdNNLCICmVkGh7LTmSsANRuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077785227608-d1l2mk2599cu26uqo26mhurg3k70ji0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
