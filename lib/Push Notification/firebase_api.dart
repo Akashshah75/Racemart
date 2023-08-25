@@ -11,9 +11,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 //this is top level function of background notification
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
-  print('Title:${message.notification?.title}');
-  print('body:${message.notification?.body}');
-  print('payload:${message.data}');
+  // print('Title:${message.notification?.title}');
+  // print('body:${message.notification?.body}');
+  // print('payload:${message.data}');
 }
 
 class FirebaseApi {
