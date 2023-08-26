@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Provider/find_race_provider.dart';
-import 'package:racemart_app/Provider/profile/profile_provider.dart';
-
+import 'package:racemart_app/Provider/Home%20providers/home_page_init_methods.dart';
 import '../../Helper/appbar/app_bar_widget.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
-import '../../Provider/authentication_provider.dart';
-import '../../Provider/wishlist/wishlist_provider.dart';
-import '../../Push Notification/notification_api.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/constant.dart';
 import '../User interst/user_interest.dart';
@@ -25,81 +20,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  NotificationFeat notification = NotificationFeat();
   @override
   void initState() {
-    final provider =
-        Provider.of<AuthenticationProvider>(context, listen: false);
-    //
-    LocalNotificationService.initialize(provider.appLoginToken, context);
-    //when app is terminate state
-    notification.terminateStateAppNotificationMethod(
-        context, provider.appLoginToken);
-    //when app is forground state
-    notification.forgroundStateAppNotificationMethod(
-        context, provider.appToken);
-    //
-    notification.appIsBgNotCloseNotificationMethod(
-        provider.appLoginToken, context);
-
-    //
-
-    Future.delayed(Duration.zero, () async {
-      final wishProvider =
-          Provider.of<WishListProvider>(context, listen: false);
-      wishProvider.wishListEvent(context);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        wishProvider.checkId(context);
-      });
-      final homeProvider = Provider.of<HomeProvider>(context, listen: false);
-      final profileProvider =
-          Provider.of<ProfileProvider>(context, listen: false);
-      final findProvider =
-          Provider.of<FindARacesProvider>(context, listen: false);
-      homeProvider.upcomingEvent(context);
-      homeProvider.getCurrentPosition(context);
-      homeProvider.listOfCities();
-      homeProvider.listOfDistances();
-      homeProvider.listOfBades();
-      homeProvider.listOfPartners();
-      homeProvider.listOfAllType();
-      homeProvider.fetchTerrainsData();
-      homeProvider.userInterest(context);
-      //
-      homeProvider.latestListing(context);
-      homeProvider.exploreCity(context);
-
-      // Future.delayed(const Duration(milliseconds: 1000), () {
-      //   homeProvider.findACity(homeProvider.lat!.toDouble(),
-      //       homeProvider.long!.toDouble(), context);
-      // });
-
-      //profiel
-      profileProvider.fetchProfileData(context);
-      // homeProvider.eventOfMumbai(context);
-      //clear
-      findProvider.searchListData.clear();
-      findProvider.lookingFor.clear();
-      homeProvider.choseAllType = '';
-      findProvider.startDate.clear();
-      findProvider.endDate.clear();
-      homeProvider.choseCity = '';
-      homeProvider.listOfDistanceData.clear();
-      homeProvider.listOfBadgeData.clear();
-      homeProvider.listOfPartnersData.clear();
-      homeProvider.listOfTerrains.clear();
-      homeProvider.listOfCitiesData.clear();
-      homeProvider.listOfType.clear();
-      //
-    });
+    HomePageInit().notificationMethods(context);
+    HomePageInit().addProductOnWishlistPageMethod(context);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
     DateTime timeBackPressed = DateTime.now();
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
-    // print(AuthenticationProvider.appToken);
     return DefaultTabController(
       length: 5,
       child: WillPopScope(
@@ -108,12 +40,10 @@ class _HomePageState extends State<HomePage> {
           final isExitWarning = diffrence >= const Duration(seconds: 2);
           timeBackPressed = DateTime.now();
           return exitTheAppMethod(isExitWarning);
-
-          // return exitTheAppMethod(timeBackPressed, diffrence);
         },
         child: Scaffold(
           backgroundColor: white, //appbg,
-          appBar: customeAppBar(context),
+          appBar: customeAppBar(context, provider: homeProvider, h: h),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,18 +80,5 @@ class _HomePageState extends State<HomePage> {
       default:
         return Container();
     }
-  }
-
-  //show warning pop up
-  Future<bool?> showWarning(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Do you want to exit app?'),
-          actions: [ElevatedButton(onPressed: () {}, child: const Text('No'))],
-        );
-      },
-    );
   }
 }

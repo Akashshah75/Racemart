@@ -16,8 +16,6 @@ class HomeProvider with ChangeNotifier {
   int selectedIndex = 0;
   int currentPage = 0;
   //
-
-  //
   void changeIndex(int index) {
     selectedIndex = index;
     notifyListeners();

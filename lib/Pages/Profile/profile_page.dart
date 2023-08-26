@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/User%20interst/update_user_interest_page.dart';
 import '../../Provider/icon_change_provider.dart';
 import '../../Provider/profile/profile_provider.dart';
 import 'components/change_password_bottom_sheet.dart';
@@ -88,20 +86,20 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                     //
-                    ProfileEditDataRowContainer(
-                      title: 'User Interests',
-                      icon: Icons.arrow_forward_ios_sharp,
-                      press: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            duration: const Duration(milliseconds: 500),
-                            child: const UpdateUserInterestPage(),
-                          ),
-                        );
-                      },
-                    ),
+                    // ProfileEditDataRowContainer(
+                    //   title: 'User Interests',
+                    //   icon: Icons.arrow_forward_ios_sharp,
+                    //   press: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       PageTransition(
+                    //         type: PageTransitionType.rightToLeft,
+                    //         duration: const Duration(milliseconds: 500),
+                    //         child: const UpdateUserInterestPage(),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
               ),

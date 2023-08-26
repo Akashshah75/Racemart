@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/User%20interst/update_user_interest_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 
 import '../../Network/base_clent.dart';
@@ -88,11 +87,11 @@ class _UserInterestPageState extends State<UserInterestPage> {
                       Image.asset(noDataFound),
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const UpdateUserInterestPage()));
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         const UpdateUserInterestPage()));
                           },
-                          child: const Text("Add your interest"))
+                          child: const Text("No data interest found!!"))
                     ],
                   ),
                 )
