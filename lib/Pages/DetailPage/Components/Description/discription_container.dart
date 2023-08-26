@@ -54,7 +54,7 @@ class _DescriptionContainerState extends State<DescriptionContainer> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print(provider.intialHtmlText.length);
+                      // print(provider.intialHtmlText.length);
                       provider.changeText();
                       provider.changeLength(widget.data['description']);
                     },

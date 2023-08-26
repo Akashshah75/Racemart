@@ -124,7 +124,7 @@ class ImageHedingContainer extends StatelessWidget {
     );
   }
 
-  Future<void> _launchUrl(var url) async {
+  Future<void> launchUrls(var url) async {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }

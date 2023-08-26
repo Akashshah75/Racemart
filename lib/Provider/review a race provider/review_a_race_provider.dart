@@ -102,7 +102,7 @@ class ReviewARaceProvider with ChangeNotifier {
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       searchListData = result['data']['list'];
-      print(searchListData);
+      // print(searchListData);
       notifyListeners();
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Authentication/Login/login_page.dart';
@@ -36,12 +37,12 @@ class NotificationApi {
         sound: true);
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
+      // print('User granted permission');
     } else if (settings.authorizationStatus ==
         AuthorizationStatus.provisional) {
-      print('User granted provision permission');
+      // print('User granted provision permission');
     } else {
-      print('User  denied permission');
+      // print('User  denied permission');
     }
   }
 
@@ -64,7 +65,7 @@ class NotificationApi {
 //init method of firebase notification
   void firebaseInit() {
     FirebaseMessaging.onMessage.listen((message) {
-      print(message.notification!.title.toString());
+      // print(message.notification!.title.toString());
       showNotification(message);
     });
     //
@@ -124,7 +125,7 @@ class NotificationApi {
 
   //handle message
   void handleMessage(RemoteMessage? message, BuildContext context) {
-    print('work');
+    // print('work');
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     if (provider.appLoginToken == null) {
@@ -173,7 +174,7 @@ class NotificationApi {
     const settings = InitializationSettings(android: android);
     await localNotificationsPlugin.initialize(settings,
         onDidReceiveNotificationResponse: (message) {
-      print(message);
+      // print(message);
     });
 
     final platform =
@@ -194,15 +195,15 @@ class PushNotification {
   //handle message method
   void handleMessage(
       RemoteMessage? message, var appToken, BuildContext context) {
-    print('*******Token*******');
-    print(appToken);
+    // print('*******Token*******');
+    // print(appToken);
     Future.delayed(const Duration(seconds: 1), () {
       if (appToken != null && message != null) {
-        print('Work apptoken');
+        // print('Work apptoken');
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const NotificationPage()));
       } else {
-        print('not Work apptoken');
+        // print('not Work apptoken');
         Navigator.of(context).pushNamed(RouteNames.loginPage);
       }
     });
@@ -215,7 +216,7 @@ class PushNotification {
             alert: true, badge: true, sound: true);
     //
     FirebaseMessaging.instance.getInitialMessage().then((message) {
-      print('work start!');
+      // print('work start!');
       if (message == null) return;
       handleMessage(message, appToken, context);
     });
@@ -234,7 +235,9 @@ class PushNotification {
   Future<void> initNotifications() async {
     await firebaseMessaging.requestPermission();
     final fcmToken = await firebaseMessaging.getToken();
-    print('Token:$fcmToken');
+    if (kDebugMode) {
+      print('Token:$fcmToken');
+    }
     //
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
   }
@@ -251,10 +254,10 @@ class NotificationFeat {
       BuildContext context, var apptoken) async {
     FirebaseMessaging.instance.getInitialMessage().then(
       (message) {
-        print("FirebaseMessaging.instance.getInitialMessage");
+        // print("FirebaseMessaging.instance.getInitialMessage");
         if (message == null) return;
         if (apptoken != null) {
-          print("New Notification");
+          // print("New Notification");
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => const NotificationPage(),
@@ -277,11 +280,11 @@ class NotificationFeat {
       BuildContext context, var apptoken) async {
     FirebaseMessaging.onMessage.listen(
       (message) {
-        print("FirebaseMessaging.onMessage.listen");
+        // print("FirebaseMessaging.onMessage.listen");
         if (message.notification != null) {
-          print(message.notification!.title);
-          print(message.notification!.body);
-          print("message.data11 ${message.data}");
+          // print(message.notification!.title);
+          // print(message.notification!.body);
+          // print("message.data11 ${message.data}");
           LocalNotificationService.createanddisplaynotification(message);
         }
         //
@@ -310,14 +313,14 @@ class NotificationFeat {
       var apptoken, BuildContext context) async {
     FirebaseMessaging.onMessageOpenedApp.listen(
       (message) {
-        print("FirebaseMessaging.onMessageOpenedApp.listen");
+        // print("FirebaseMessaging.onMessageOpenedApp.listen");
         if (message.notification != null) {
-          print(message.notification!.title);
-          print(message.notification!.body);
+          // print(message.notification!.title);
+          // print(message.notification!.body);
         }
         //baground done
         if (apptoken != null) {
-          print("New Notification");
+          // print("New Notification");
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => const NotificationPage(),
@@ -350,9 +353,9 @@ class LocalNotificationService {
     localNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
-        print(details.payload);
+        // print(details.payload);
         if (apptoken != null) {
-          print("New Notification");
+          // print("New Notification");
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => const NotificationPage(),
@@ -390,7 +393,9 @@ class LocalNotificationService {
         payload: message.data['_id'],
       );
     } on Exception catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

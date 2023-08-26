@@ -45,7 +45,7 @@ class DetailProvider with ChangeNotifier {
 
   //
   void changeLength(String htmlText) {
-    print(htmlText.length);
+    // print(htmlText.length);
     if (htmlText.length > 450) {
       intialHtmlText = htmlText.substring(0, 450);
       expendedHtmlText = htmlText.substring(0, htmlText.length);

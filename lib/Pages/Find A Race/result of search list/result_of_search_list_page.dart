@@ -56,7 +56,7 @@ class _ResultOfSerchListState extends State<ResultOfSerchList> {
         Provider.of<FindARacesProvider>(context, listen: false);
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
     final url = "https://racemart.youtoocanrun.com/api/search?page=$page";
-    print(url);
+    // print(url);
     var body = {
       "search": findARaceProvider.lookingFor.text,
       "distance": homeProvider.listOfDistanceData,
@@ -68,10 +68,10 @@ class _ResultOfSerchListState extends State<ResultOfSerchList> {
       "end_date": findARaceProvider.endDate.text,
       "sortby": ""
     };
-    print(body);
+    // print(body);
     var res = await BaseClient()
         .postMethodWithToken(url, provider.appLoginToken.toString(), body);
-    print(res);
+    // print(res);
     var result = jsonDecode(res);
     // print(res);
     final List newEvent = result['data']['list'];

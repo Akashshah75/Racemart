@@ -54,7 +54,7 @@ class _ReviewAEventListingState extends State<ReviewAEventListing> {
       "category": reviewProvider.choseAllType,
       "city": reviewProvider.choseCity,
     };
-    print(body);
+    // print(body);
     var res = await BaseClient()
         .postMethodWithToken(url, provider.appLoginToken.toString(), body);
 

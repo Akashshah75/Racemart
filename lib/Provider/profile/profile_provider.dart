@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -165,9 +166,11 @@ class ProfileProvider with ChangeNotifier {
       final imageTemporary = File(image.path);
       selectedImage = imageTemporary;
       notifyListeners();
-      print(selectedImage);
+      // print(selectedImage);
     } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
+      if (kDebugMode) {
+        print('Failed to pick image:$e');
+      }
     }
   }
 
@@ -184,14 +187,14 @@ class ProfileProvider with ChangeNotifier {
     // get token
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
-    print(provider.appLoginToken);
+    // print(provider.appLoginToken);
     var url = Uri.parse(userUrl);
     Map<String, String> headers = {
       'Content-Type': 'application/json',
       "Authorization": "Bearer ${provider.appLoginToken}"
     };
     http.MultipartRequest request = http.MultipartRequest('POST', url);
-    print(url);
+    // print(url);
     request.headers.addAll(headers);
     request.fields['name'] = name.text.isEmpty ? selectedName : name.text;
 
@@ -214,7 +217,7 @@ class ProfileProvider with ChangeNotifier {
     var result = await http.Response.fromStream(response);
 
     dynamic resultOfProfileData = jsonDecode(result.body);
-    print(resultOfProfileData);
+    // print(resultOfProfileData);
     if (response.statusCode == 200) {
       // ignore: use_build_context_synchronously
       fetchUserProfile(context);
@@ -248,7 +251,7 @@ class ProfileProvider with ChangeNotifier {
           },
         );
       }
-      print('upload faild');
+      // print('upload faild');
     }
   }
 }
