@@ -11,6 +11,8 @@ import '../../Utils/app_asset.dart';
 import '../Home/Components/customeEventContainer/custome_event_container.dart';
 import '../DetailPage/detail_of_home_page.dart';
 
+final UserInterestProvider userProvider = UserInterestProvider();
+
 class UserInterestPage extends StatefulWidget {
   const UserInterestPage({super.key, required this.provider});
   final HomeProvider provider;
@@ -22,7 +24,7 @@ class UserInterestPage extends StatefulWidget {
 class _UserInterestPageState extends State<UserInterestPage> {
   final controllers = ScrollController();
   bool hasMore = true;
-  int page = 1;
+  int page = 2;
   bool isLoading = false;
   @override
   void initState() {
@@ -30,7 +32,6 @@ class _UserInterestPageState extends State<UserInterestPage> {
     Future.delayed(Duration.zero, () {
       provider.initUserInterestList(context);
     });
-
     controllers.addListener(() {
       if (controllers.position.maxScrollExtent == controllers.offset) {
         fetch();
@@ -46,7 +47,6 @@ class _UserInterestPageState extends State<UserInterestPage> {
   }
 
   Future fetch() async {
-    // "https://racemart.youtoocanrun.com/api/interest?page=1
     if (isLoading) return;
     isLoading = true;
     const limit = 10;
@@ -86,11 +86,7 @@ class _UserInterestPageState extends State<UserInterestPage> {
                     children: [
                       Image.asset(noDataFound),
                       TextButton(
-                          onPressed: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         const UpdateUserInterestPage()));
-                          },
+                          onPressed: () {},
                           child: const Text("No data interest found!!"))
                     ],
                   ),
@@ -99,19 +95,17 @@ class _UserInterestPageState extends State<UserInterestPage> {
                   controller: controllers,
                   itemCount: widget.provider.listOfUserInterest.length + 1,
                   itemBuilder: (context, index) {
-                    // var dataOfEvent = widget.provider.listOfUserInterest[index];
-                    // return EventContainer(
-                    //   index: index,
-                    //   data: dataOfEvent,
-                    // );
                     if (index < widget.provider.listOfUserInterest.length) {
                       var dataOfEvent =
                           widget.provider.listOfUserInterest[index];
                       return GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
                                 builder: (context) => DetailPageOfHome(
-                                    index: index, data: dataOfEvent)));
+                                    index: index, data: dataOfEvent),
+                              ),
+                            );
                           },
                           child: CustomEventContainer(
                               key: ValueKey(dataOfEvent['id']),
@@ -123,9 +117,11 @@ class _UserInterestPageState extends State<UserInterestPage> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Center(
-                          child: hasMore
-                              ? const CircularProgressIndicator()
-                              : const Text('No more data to load?'),
+                          child:
+                              widget.provider.listOfUserInterest.length > 10 &&
+                                      hasMore
+                                  ? const CircularProgressIndicator()
+                                  : const Text('No more data to load?'),
                         ),
                       );
                     }

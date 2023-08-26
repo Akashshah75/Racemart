@@ -61,7 +61,7 @@ class WishListListing extends StatefulWidget {
 
 class _WishListListingState extends State<WishListListing> {
   final controllers = ScrollController();
-  bool hasMore = true;
+  bool hasMore = false;
   int page = 2;
   bool isLoading = false;
   @override
@@ -119,9 +119,10 @@ class _WishListListingState extends State<WishListListing> {
               controller: controllers,
               itemCount: widget.provider.wishListData.length + 1,
               itemBuilder: (context, index) {
-                // var dataOfEvent = widget.provider.wishListData[index];
-//return
-                //RaceContainer(index: index, data: dataOfEvent);
+                // widget.provider.wishListData.isNotEmpty
+                //   ? widget.provider.wishListData.length
+                //   :
+
                 if (index < widget.provider.wishListData.length) {
                   var dataOfEvent = widget.provider.wishListData[index];
                   return GestureDetector(

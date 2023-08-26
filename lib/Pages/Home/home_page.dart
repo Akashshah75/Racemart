@@ -59,6 +59,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   homeWidget(HomeProvider provider) {
+    // final DateTime now = DateTime.now();
+    // print(now);
+    // var date = checkDate('2023-08-23 11:47:00', '2023-08-26 18:22:10');
+    // print('CheckDate:$date');
     switch (provider.selectedIndex) {
       case 0:
         return HomeRaceListingEvent(provider: provider);

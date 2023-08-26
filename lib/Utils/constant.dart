@@ -20,15 +20,23 @@ String convertDate(var date) {
 }
 
 bool checkDate(var earlyStartDate, var earlyEndDate) {
-  final date1 = DateTime.parse(earlyStartDate);
-  final date2 = DateTime.parse(earlyEndDate);
+  final earlyStart = DateTime.parse(earlyStartDate);
+  final earlyEnd = DateTime.parse(earlyEndDate);
   final DateTime now = DateTime.now();
-  if ((now.compareTo(date1) == 0 || now.compareTo(date1) == -1) &&
-      (date2.compareTo(now) == 1 || date2.compareTo(now) >= 0)) {
+  if (now.isAfter(earlyStart) && now.isBefore(earlyEnd)) {
     return true;
-  } else {
-    return false;
   }
+  if (now.isAtSameMomentAs(earlyStart) || now.isAtSameMomentAs(earlyEnd)) {
+    return true;
+  }
+  return false;
+
+  // if ((now.compareTo(earlyStart) == 0 || now.compareTo(earlyStart) == -1) &&
+  //     (earlyEnd.compareTo(now) == 1 || earlyEnd.compareTo(now) >= 0)) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
 }
 
 //back button method

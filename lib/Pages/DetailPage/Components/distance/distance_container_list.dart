@@ -15,19 +15,19 @@ class DistanceContainerList extends StatelessWidget {
     List dataOfDistance = data['distances'] ?? [];
 
     // print(dataOfDistance);
-    return dataOfDistance.isEmpty
-        ? const Center(
-            child: Text("Don't have distances!"),
-          )
-        : Container(
-            height: 120,
-            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: white,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Padding(
+    return Container(
+      height: 120,
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: dataOfDistance.isEmpty
+          ? const Center(
+              child: Text("Don't have distances!"),
+            )
+          : Padding(
               padding: defaultSymetricPeding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +98,7 @@ class DistanceContainerList extends StatelessWidget {
                 ],
               ),
             ),
-          );
+    );
   }
 }
 

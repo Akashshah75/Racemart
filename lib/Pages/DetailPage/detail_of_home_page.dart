@@ -5,6 +5,7 @@ import '../../Provider/detail_page_provider.dart';
 import '../../Utils/app_asset.dart';
 import '../../Utils/app_size.dart';
 import 'Components/Description/discription_container.dart';
+import 'Components/deliverables/deliverables_container.dart';
 import 'Components/horizontal_tab_container.dart';
 import 'Components/registerDateContainer/registration_date_container.dart';
 import 'Components/distance/distance_container_list.dart';
@@ -62,6 +63,8 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       //
       TerrainsContainerList(data: provider.detailEventData),
       //
+      DeleverableContainer(data: provider.detailEventData),
+      //
       SimilarListing(data: provider.detailEventData),
       // SimilarListingList(data: provider.detailEventData),
     ];
@@ -72,8 +75,9 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.31, 'key': 'Partners'},
       {'h': size * 0.3, 'key': 'Prices'},
       {'h': size * 0.3, 'key': 'How to reach'},
-      {'h': size * 0.275, 'key': 'Important Dates'},
-      {'h': size * 0.275, 'key': 'Terrains'},
+      {'h': size * 0.29, 'key': 'Important Dates'},
+      {'h': size * 0.29, 'key': 'Terrains'},
+      {'h': size * 0.274, 'key': 'Deliverables'},
       {'h': size * 0.30, 'key': 'similar listing'}
     ];
     void scrollToTap(int index) {

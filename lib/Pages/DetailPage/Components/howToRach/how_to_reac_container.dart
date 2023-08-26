@@ -14,84 +14,90 @@ class HowToREachContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       width: double.infinity,
+      height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: white,
       ),
-      child: Padding(
-        padding: defaultSymetricPeding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 4),
-              child: const Text(
-                'How To Reach ?',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: blackColor,
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: whiteColor),
+      child: data['address'] == null
+          ? const Center(
+              child: Text("No date specify!!!"),
+            )
+          : Padding(
+              padding: defaultSymetricPeding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.location_on,
-                        color: redColor,
-                        size: 18,
+                  Container(
+                    margin: const EdgeInsets.only(left: 4),
+                    child: const Text(
+                      'How To Reach ?',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: blackColor,
+                        letterSpacing: 1.2,
                       ),
-                      SizedBox(width: 5),
-                      Text(
-                        'Address',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: blackColor,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  //
-                  const Divider(),
-                  Text(
-                    data['address'] ?? '...',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: greyColor,
-                      letterSpacing: 1.2,
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: whiteColor),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: redColor,
+                              size: 18,
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              'Address',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: blackColor,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                        //
+                        const Divider(),
+                        Text(
+                          data['address'] ?? '...',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: greyColor,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                        // const SizedBox(height: 10),
+                        // const Divider(),
+                        // const Row(
+                        //   children: [
+                        //     SocialMediaIconContainer(icon: Icons.g_mobiledata),
+                        //     SizedBox(width: 8),
+                        //     SocialMediaIconContainer(icon: Icons.facebook),
+                        //     SizedBox(width: 8),
+                        //   ],
+                        // ),
+                      ],
                     ),
                   ),
                   // const SizedBox(height: 10),
-                  // const Divider(),
-                  // const Row(
-                  //   children: [
-                  //     SocialMediaIconContainer(icon: Icons.g_mobiledata),
-                  //     SizedBox(width: 8),
-                  //     SocialMediaIconContainer(icon: Icons.facebook),
-                  //     SizedBox(width: 8),
-                  //   ],
-                  // ),
                 ],
               ),
             ),
-            // const SizedBox(height: 10),
-          ],
-        ),
-      ),
     );
   }
 }
