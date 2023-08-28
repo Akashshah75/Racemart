@@ -13,7 +13,6 @@ class PartenerContainerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List dataOfPartners = data['partners'] ?? [];
-    print(dataOfPartners);
     return dataOfPartners.isEmpty
         ? const Center(child: Text("Don't have any patners!"))
         : Container(

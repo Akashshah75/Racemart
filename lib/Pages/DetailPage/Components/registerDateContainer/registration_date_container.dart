@@ -19,8 +19,8 @@ class RegisterationDateContainer extends StatelessWidget {
     final Event event = Event(
       title: data['title'] ?? 'title',
       location: data['city'] ?? 'location',
-      startDate: DateTime.parse(data['event_start_date'] ?? '0000-00-00'),
-      endDate: DateTime.parse(data['event_end_date'] ?? '0000-00-00'),
+      startDate: DateTime.parse(data['event_start_date']),
+      endDate: DateTime.parse(data['event_end_date']),
       // description: 'Event description',
       //  DateTime.parse(
       //   convertDate(
@@ -98,42 +98,44 @@ class RegisterationDateContainer extends StatelessWidget {
             ),
           ),
           //button
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: Container(
-              alignment: Alignment.center,
-              width: 230,
-              height: 35,
-              decoration: BoxDecoration(
-                color: blueColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(4),
-                ),
-                // borderRadius: BorderRadius.circular(12),
-              ),
-              child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.only(topLeft: Radius.circular(35)),
-                child: SizedBox(
-                  height: 35,
-                  width: 230,
-                  child: TextButton(
-                    onPressed: () {
-                      Add2Calendar.addEvent2Cal(event);
-                    },
-                    child: const Text(
-                      'Save your Registration date',
-                      style: TextStyle(
-                        color: whiteColor,
+          data['event_start_date'] != null && data['event_end_date'] != null
+              ? Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 230,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      color: blueColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(35),
+                        bottomRight: Radius.circular(4),
+                      ),
+                      // borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.only(topLeft: Radius.circular(35)),
+                      child: SizedBox(
+                        height: 35,
+                        width: 230,
+                        child: TextButton(
+                          onPressed: () {
+                            Add2Calendar.addEvent2Cal(event);
+                          },
+                          child: const Text(
+                            'Save your Registration date',
+                            style: TextStyle(
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            ),
-          )
+                )
+              : const SizedBox()
         ],
       ),
     );

@@ -14,7 +14,7 @@ class DeleverableContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List listOfDeliverables = data['deliverables'] ?? [];
-    print(listOfDeliverables);
+    // print(listOfDeliverables);
     return Container(
       margin: defaultSymetricPeding,
       width: double.infinity,

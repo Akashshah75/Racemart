@@ -22,7 +22,7 @@ class PushNotification {
     // print(appToken);
     Future.delayed(const Duration(seconds: 1), () {
       if (appToken != null && message != null) {
-        print(message.notification!.title);
+        // print(message.notification!.title);
         // print('Work apptoken');
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const NotificationPage()));
@@ -40,7 +40,7 @@ class PushNotification {
             alert: true, badge: true, sound: true);
     //
     FirebaseMessaging.instance.getInitialMessage().then((message) {
-      print(message!.notification!.title);
+      // print(message!.notification!.title);
       // print('work start!');
       if (message == null) return;
       handleMessage(message, appToken, context);
@@ -48,12 +48,12 @@ class PushNotification {
 
     //on app open
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print(message.notification!.title);
+      // print(message.notification!.title);
       handleMessage(message, appToken, context);
     });
     //
     FirebaseMessaging.onBackgroundMessage((message) {
-      print(message.notification!.title);
+      // print(message.notification!.title);
       return handleBackgroundMessage(message);
     });
   }
@@ -81,7 +81,7 @@ class NotificationFeat {
       BuildContext context, var apptoken) async {
     FirebaseMessaging.instance.getInitialMessage().then(
       (message) {
-        print(message!.notification!.title);
+        // print(message!.notification!.title);
         // print("FirebaseMessaging.instance.getInitialMessage");
         if (message == null) return;
         if (apptoken != null) {
@@ -108,12 +108,12 @@ class NotificationFeat {
       BuildContext context, var apptoken) async {
     FirebaseMessaging.onMessage.listen(
       (message) {
-        print(message.notification!.title);
+        // print(message.notification!.title);
         // print("FirebaseMessaging.onMessage.listen");
         if (message.notification != null) {
-          print(message.notification!.title);
-          print(message.notification!.body);
-          print("message.data11 ${message.data}");
+          // print(message.notification!.title);
+          // print(message.notification!.body);
+          // print("message.data11 ${message.data}");
           LocalNotificationService.createanddisplaynotification(message);
         }
         //
@@ -144,8 +144,8 @@ class NotificationFeat {
       (message) {
         // print("FirebaseMessaging.onMessageOpenedApp.listen");
         if (message.notification != null) {
-          print(message.notification!.title);
-          print(message.notification!.body);
+          // print(message.notification!.title);
+          // print(message.notification!.body);
         }
         //baground done
         if (apptoken != null) {
@@ -182,7 +182,7 @@ class LocalNotificationService {
     localNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
-        print(details);
+        // print(details);
         if (apptoken != null) {
           // print("New Notification");
           Navigator.of(context).push(
