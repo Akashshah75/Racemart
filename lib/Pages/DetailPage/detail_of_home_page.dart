@@ -49,6 +49,9 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     //provider
     final provider = Provider.of<DetailProvider>(context, listen: true);
     List tabContent = [
+      //
+      RegisterationDateContainer(data: widget.data),
+      //
       DescriptionContainer(data: provider.detailEventData),
       //
       DistanceContainerList(data: provider.detailEventData),
@@ -66,19 +69,18 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       DeleverableContainer(data: provider.detailEventData),
       //
       SimilarListing(data: provider.detailEventData),
-      // SimilarListingList(data: provider.detailEventData),
     ];
     List<Map> containerNames = [
-      // {'h': size * 0.4, 'key': 'All'},
-      {'h': size * 0.4, 'key': 'Description'},
-      {'h': size * 0.42, 'key': 'Distances'},
-      {'h': size * 0.31, 'key': 'Partners'},
-      {'h': size * 0.3, 'key': 'Prices'},
-      {'h': size * 0.3, 'key': 'How to reach'},
-      {'h': size * 0.29, 'key': 'Important Dates'},
-      {'h': size * 0.29, 'key': 'Terrains'},
-      {'h': size * 0.274, 'key': 'Deliverables'},
-      {'h': size * 0.30, 'key': 'similar listing'}
+      {'h': size * 0.3, 'key': 'Registration date'},
+      {'h': size * 0.25, 'key': 'Description'},
+      {'h': size * 0.33, 'key': 'Distances'},
+      {'h': size * 0.29, 'key': 'Partners'},
+      {'h': size * 0.285, 'key': 'Prices'},
+      {'h': size * 0.29, 'key': 'How to reach'},
+      {'h': size * 0.285, 'key': 'Important Dates'},
+      {'h': size * 0.285, 'key': 'Terrains'},
+      {'h': size * 0.269, 'key': 'Deliverables'},
+      {'h': size * 0.35, 'key': 'similar listing'}
     ];
     void scrollToTap(int index) {
       double sizeOfContainer = containerNames[index]['h'];
@@ -109,7 +111,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       ? const SizedBox()
                       : LoctionContair(location: widget.data['city']),
                   const SizedBox(height: 8),
-                  RegisterationDateContainer(data: widget.data),
+                  // RegisterationDateContainer(data: widget.data),
                   // const Text('REgister now'),
                   const Divider(),
                   //horizontal view

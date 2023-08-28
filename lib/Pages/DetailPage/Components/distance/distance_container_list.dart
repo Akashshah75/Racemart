@@ -13,8 +13,6 @@ class DistanceContainerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List dataOfDistance = data['distances'] ?? [];
-
-    // print(dataOfDistance);
     return Container(
       height: 120,
       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
