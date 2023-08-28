@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'app_color.dart';
 
@@ -13,14 +14,6 @@ void toastMessage(String message) {
 
 String convertDate(var date) {
   final DateTime now = DateTime.parse(date);
-  final DateFormat formatter = DateFormat('d MMM y');
-  final String formatted = formatter.format(now);
-  // print(formatted);
-  return formatted;
-}
-
-String convertDateWithOutParsing(var date) {
-  final DateTime now = date;
   final DateFormat formatter = DateFormat('d MMM y');
   final String formatted = formatter.format(now);
   // print(formatted);
@@ -68,6 +61,12 @@ bool exitTheAppMethod(bool isExitWarning) {
   }
 }
 
+//lunch url
+Future<void> launchUrls(var url) async {
+  if (!await launchUrl(url)) {
+    throw Exception('Could not launch $url');
+  }
+}
 
 
 
