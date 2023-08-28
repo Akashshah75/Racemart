@@ -9,7 +9,8 @@ import 'Utils/Models/provider_list.dart';
 
 //top leven method for notification
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
-  // print('Title:${message.notification?.title}');
+  print('Title:${message.notification?.title}');
+  print('Title:${message.data['id']}');
 }
 
 void main() async {

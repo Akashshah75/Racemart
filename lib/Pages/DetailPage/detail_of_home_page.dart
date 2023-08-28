@@ -88,7 +88,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
           duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
     }
 
-    // print('Event_Id: ${widget.data['id']}');
+    print('Event_Id: ${widget.data['id']}');
     return Scaffold(
       backgroundColor: appBg,
       body: SafeArea(
@@ -150,3 +150,5 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     );
   }
 }
+
+//

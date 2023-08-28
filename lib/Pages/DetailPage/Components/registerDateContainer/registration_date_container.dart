@@ -19,8 +19,8 @@ class RegisterationDateContainer extends StatelessWidget {
     final Event event = Event(
       title: data['title'] ?? 'title',
       location: data['city'] ?? 'location',
-      startDate: DateTime.parse(data['event_start_date']),
-      endDate: DateTime.parse(data['event_end_date']),
+      startDate: DateTime.parse(data['event_start_date'] ?? ''),
+      endDate: DateTime.parse(data['event_end_date'] ?? ''),
       // description: 'Event description',
       //  DateTime.parse(
       //   convertDate(

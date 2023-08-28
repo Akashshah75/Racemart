@@ -1,79 +1,17 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Pages/Authentication/Login/login_page.dart';
-import 'package:racemart_app/Push%20Notification/push_notification_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../Routes/route_names.dart';
-import '../main.dart';
+import 'notification_detail_page.dart';
 
 //this is top level function of background notification
-
-class PushNotification {
-  //intialize
-  final firebaseMessaging = FirebaseMessaging.instance;
-  //handle message method
-  void handleMessage(
-      RemoteMessage? message, var appToken, BuildContext context) {
-    // print('*******Token*******');
-    // print(appToken);
-    Future.delayed(const Duration(seconds: 1), () {
-      if (appToken != null && message != null) {
-        // print(message.notification!.title);
-        // print('Work apptoken');
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const NotificationPage()));
-      } else {
-        // print('not Work apptoken');
-        Navigator.of(context).pushNamed(RouteNames.loginPage);
-      }
-    });
-  }
-
-  //
-  Future initPushnotification(var appToken, BuildContext context) async {
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-            alert: true, badge: true, sound: true);
-    //
-    FirebaseMessaging.instance.getInitialMessage().then((message) {
-      // print(message!.notification!.title);
-      // print('work start!');
-      if (message == null) return;
-      handleMessage(message, appToken, context);
-    });
-
-    //on app open
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      // print(message.notification!.title);
-      handleMessage(message, appToken, context);
-    });
-    //
-    FirebaseMessaging.onBackgroundMessage((message) {
-      // print(message.notification!.title);
-      return handleBackgroundMessage(message);
-    });
-  }
-
-  //init notification method
-  Future<void> initNotifications() async {
-    await firebaseMessaging.requestPermission();
-    final fcmToken = await firebaseMessaging.getToken();
-    if (kDebugMode) {
-      print('Token:$fcmToken');
-    }
-    //
-    FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
-  }
-}
-//
-
 class NotificationFeat {
   final firebaseMessaging = FirebaseMessaging.instance;
-
   // 1. This method call when app in terminated state and you get a notification
   //when you click on notification app open from terminated state and you can get notification data in this method
 //
@@ -81,14 +19,14 @@ class NotificationFeat {
       BuildContext context, var apptoken) async {
     FirebaseMessaging.instance.getInitialMessage().then(
       (message) {
-        // print(message!.notification!.title);
         // print("FirebaseMessaging.instance.getInitialMessage");
         if (message == null) return;
         if (apptoken != null) {
           // print("New Notification");
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const NotificationPage(),
+              builder: (context) =>
+                  NotificationDetailPage(eventId: message.data['id']),
             ),
           );
         } else {
@@ -108,12 +46,9 @@ class NotificationFeat {
       BuildContext context, var apptoken) async {
     FirebaseMessaging.onMessage.listen(
       (message) {
-        // print(message.notification!.title);
-        // print("FirebaseMessaging.onMessage.listen");
         if (message.notification != null) {
-          // print(message.notification!.title);
-          // print(message.notification!.body);
-          // print("message.data11 ${message.data}");
+          print(message);
+
           LocalNotificationService.createanddisplaynotification(message);
         }
         //
@@ -135,24 +70,17 @@ class NotificationFeat {
     );
     //
   }
-  //
 
   // 3. This method only call when App in background and not terminated(not closed)
   Future<void> appIsBgNotCloseNotificationMethod(
       var apptoken, BuildContext context) async {
     FirebaseMessaging.onMessageOpenedApp.listen(
       (message) {
-        // print("FirebaseMessaging.onMessageOpenedApp.listen");
-        if (message.notification != null) {
-          // print(message.notification!.title);
-          // print(message.notification!.body);
-        }
-        //baground done
         if (apptoken != null) {
-          // print("New Notification");
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const NotificationPage(),
+              builder: (context) =>
+                  NotificationDetailPage(eventId: message.data['id']),
             ),
           );
         } else {
@@ -181,14 +109,16 @@ class LocalNotificationService {
 //
     localNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveNotificationResponse: (details) {
-        // print(details);
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) async {
+        // print(jsonDecode(notificationResponse.payload!));
+        // print('details :${jsonDecode(notificationResponse.payload!)}');
+        final eventId = jsonDecode(notificationResponse.payload!);
         if (apptoken != null) {
           // print("New Notification");
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const NotificationPage(),
-            ),
+                builder: (context) => NotificationDetailPage(eventId: eventId)),
           );
         } else {
           Navigator.of(context).push(
@@ -219,7 +149,7 @@ class LocalNotificationService {
         message.notification!.title,
         message.notification!.body,
         notificationDetails,
-        payload: message.data['_id'],
+        payload: message.data['id'],
       );
     } on Exception catch (e) {
       if (kDebugMode) {

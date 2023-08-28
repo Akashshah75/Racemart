@@ -83,42 +83,44 @@ class ImageHedingContainer extends StatelessWidget {
             ),
           ),
           //
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: Container(
-              alignment: Alignment.center,
-              width: 150,
-              height: 35,
-              decoration: BoxDecoration(
-                color: blueColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(4),
-                ),
-                // borderRadius: BorderRadius.circular(12),
-              ),
-              child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.only(topLeft: Radius.circular(35)),
-                child: SizedBox(
-                  height: 35,
-                  width: 150,
-                  child: TextButton(
-                    onPressed: () {
-                      launchUrl(url);
-                    },
-                    child: const Text(
-                      'Register Now',
-                      style: TextStyle(
-                        color: whiteColor,
+          registrationUrl.isNotEmpty
+              ? Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 150,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      color: blueColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(35),
+                        bottomRight: Radius.circular(4),
+                      ),
+                      // borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.only(topLeft: Radius.circular(35)),
+                      child: SizedBox(
+                        height: 35,
+                        width: 150,
+                        child: TextButton(
+                          onPressed: () {
+                            launchUrl(url);
+                          },
+                          child: const Text(
+                            'Register Now',
+                            style: TextStyle(
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            ),
-          ),
+                )
+              : const SizedBox(),
         ],
       ),
     );

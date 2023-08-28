@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+  const NotificationPage({super.key, required this.title});
   static const route = '/notification_page';
+  final String title;
 
   @override
   Widget build(BuildContext context) {
+    print('Notification title :$title');
     return const Scaffold(
       body: Center(
         child: Text('Notification page'),
@@ -184,3 +186,62 @@ class NotificationPage extends StatelessWidget {
 
 //   //
 // }
+
+// class PushNotification {
+//   //intialize
+//   final firebaseMessaging = FirebaseMessaging.instance;
+//   //handle message method
+//   void handleMessage(
+//       RemoteMessage? message, var appToken, BuildContext context) {
+//     // print('*******Token*******');
+//     // print(appToken);
+//     Future.delayed(const Duration(seconds: 1), () {
+//       if (appToken != null && message != null) {
+//         // print(message.notification!.title);
+//         // print('Work apptoken');
+//         Navigator.of(context).push(
+//             MaterialPageRoute(builder: (context) => const NotificationPage()));
+//       } else {
+//         // print('not Work apptoken');
+//         Navigator.of(context).pushNamed(RouteNames.loginPage);
+//       }
+//     });
+//   }
+
+//   //
+//   Future initPushnotification(var appToken, BuildContext context) async {
+//     await FirebaseMessaging.instance
+//         .setForegroundNotificationPresentationOptions(
+//             alert: true, badge: true, sound: true);
+//     //
+//     FirebaseMessaging.instance.getInitialMessage().then((message) {
+//       // print(message!.notification!.title);
+//       // print('work start!');
+//       if (message == null) return;
+//       handleMessage(message, appToken, context);
+//     });
+
+//     //on app open
+//     FirebaseMessaging.onMessageOpenedApp.listen((message) {
+//       // print(message.notification!.title);
+//       handleMessage(message, appToken, context);
+//     });
+//     //
+//     FirebaseMessaging.onBackgroundMessage((message) {
+//       // print(message.notification!.title);
+//       return handleBackgroundMessage(message);
+//     });
+//   }
+
+//   //init notification method
+//   Future<void> initNotifications() async {
+//     await firebaseMessaging.requestPermission();
+//     final fcmToken = await firebaseMessaging.getToken();
+//     if (kDebugMode) {
+//       print('Token:$fcmToken');
+//     }
+//     //
+//     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
+//   }
+// }
+//
