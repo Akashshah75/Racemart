@@ -1,9 +1,10 @@
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../Helper/Widget/text_widget.dart';
 import '../../../../Utils/app_size.dart';
 import '../../../../Utils/constant.dart';
 import '../../../../utils/app_color.dart';
+import 'components/date_time_conatianer.dart';
 
 class RegisterationDateContainer extends StatelessWidget {
   const RegisterationDateContainer({
@@ -14,6 +15,35 @@ class RegisterationDateContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //save event date
+    final Event event = Event(
+      title: data['title'] ?? 'title',
+      location: data['city'] ?? 'location',
+      startDate: DateTime.parse(data['event_start_date'] ?? '0000-00-00'),
+      endDate: DateTime.parse(data['event_end_date'] ?? '0000-00-00'),
+      // description: 'Event description',
+      //  DateTime.parse(
+      //   convertDate(
+      //     data['event_start_date'] ?? '',
+      //   ),
+      // ),
+      // DateTime.parse(
+      //   convertDate(
+      //     data['event_end_date'] ?? '',
+      //   ),
+      // ),
+      // iosParams: const IOSParams(
+      //   reminder: Duration(
+      //       /* Ex. hours:1 */), // on iOS, you can set alarm notification after your event.
+      //   url:
+      //       'https://www.example.com', // on iOS, you can set url to your event.
+      // ),
+      // androidParams: const AndroidParams(
+      //   emailInvites: [], // on Android, you can add invite emails to your event.
+      // ),
+    );
+
+    //
     return Container(
       height: 150,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -90,7 +120,9 @@ class RegisterationDateContainer extends StatelessWidget {
                   height: 35,
                   width: 230,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Add2Calendar.addEvent2Cal(event);
+                    },
                     child: const Text(
                       'Save your Registration date',
                       style: TextStyle(
@@ -104,43 +136,6 @@ class RegisterationDateContainer extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class DateTimeContainer extends StatelessWidget {
-  const DateTimeContainer({
-    super.key,
-    required this.title,
-    required this.date,
-  });
-
-  final String title;
-  final String date;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.calendar_month,
-          size: 16,
-          color: blackColor.withAlpha(150),
-        ),
-        const SizedBox(width: 5),
-        TextWidget(
-          fontSize: 14,
-          text: '$title:',
-          color: blackColor.withAlpha(150),
-        ),
-        const SizedBox(width: 10),
-        TextWidget(
-          fontSize: 14,
-          text: date,
-          color: blueColor.withAlpha(150),
-        ),
-      ],
     );
   }
 }

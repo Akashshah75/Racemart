@@ -19,6 +19,14 @@ String convertDate(var date) {
   return formatted;
 }
 
+String convertDateWithOutParsing(var date) {
+  final DateTime now = date;
+  final DateFormat formatter = DateFormat('d MMM y');
+  final String formatted = formatter.format(now);
+  // print(formatted);
+  return formatted;
+}
+
 bool checkDate(var earlyStartDate, var earlyEndDate) {
   final earlyStart = DateTime.parse(earlyStartDate);
   final earlyEnd = DateTime.parse(earlyEndDate);

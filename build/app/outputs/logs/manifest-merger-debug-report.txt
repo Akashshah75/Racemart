@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:22:5-57:19
+INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:24:5-59:19
 MERGED from [:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:15:5-48:19
 MERGED from [:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:15:5-48:19
 MERGED from [:firebase_core] D:\aWorkingProject\racemart\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
@@ -60,11 +60,11 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ak
 	android:name
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
-INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
-INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
-INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
-MERGED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
+INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
+INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
+INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
+MERGED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
 MERGED from [:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-50:12
 MERGED from [:firebase_core] D:\aWorkingProject\racemart\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:geolocator_android] D:\aWorkingProject\racemart\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
@@ -86,6 +86,7 @@ MERGED from [:package_info_plus] D:\aWorkingProject\racemart\build\package_info_
 MERGED from [:fluttertoast] D:\aWorkingProject\racemart\build\fluttertoast\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:audio_session] D:\aWorkingProject\racemart\build\audio_session\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:video_player_android] D:\aWorkingProject\racemart\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:add_2_calendar] D:\aWorkingProject\racemart\build\add_2_calendar\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Akash\.gradle\caches\transforms-3\eec09eecbe0fa6cd83e44a6863e8f9ef\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\Akash\.gradle\caches\transforms-3\7a3c4ebf2397b283885d676a98badbb2\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.firebase:firebase-messaging:23.2.1] C:\Users\Akash\.gradle\caches\transforms-3\842d49315d7f9e4a6106246239144de6\transformed\jetified-firebase-messaging-23.2.1\AndroidManifest.xml:17:1-59:12
@@ -158,15 +159,15 @@ INJECTED from D:\aWorkingProject\racemart\android\app\src\debug\AndroidManifest.
 INJECTED from D:\aWorkingProject\racemart\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-58:12
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:1-60:12
 		INJECTED from D:\aWorkingProject\racemart\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:1:11-69
@@ -204,38 +205,46 @@ uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
 ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:6:1-81
 	android:name
 		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:6:18-78
-uses-permission#android.permission.QUERY_ALL_PACKAGES
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:7:1-73
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:7:1-69
 	android:name
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:7:18-70
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:7:18-66
+uses-permission#android.permission.READ_CALENDAR
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:8:1-68
+	android:name
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:8:18-65
+uses-permission#android.permission.QUERY_ALL_PACKAGES
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:9:1-73
+	android:name
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:9:18-70
 queries
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:8:1-21:11
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:10:1-23:11
 MERGED from [androidx.media2:media2-session:1.2.1] C:\Users\Akash\.gradle\caches\transforms-3\3401145488c9b20eed09457e0fafba4f\transformed\jetified-media2-session-1.2.1\AndroidManifest.xml:24:5-34:15
 MERGED from [androidx.media2:media2-session:1.2.1] C:\Users\Akash\.gradle\caches\transforms-3\3401145488c9b20eed09457e0fafba4f\transformed\jetified-media2-session-1.2.1\AndroidManifest.xml:24:5-34:15
 MERGED from [androidx.media:media:1.4.1] C:\Users\Akash\.gradle\caches\transforms-3\3fb2d0be62cedd4a979b331a4e727e34\transformed\media-1.4.1\AndroidManifest.xml:24:5-28:15
 MERGED from [androidx.media:media:1.4.1] C:\Users\Akash\.gradle\caches\transforms-3\3fb2d0be62cedd4a979b331a4e727e34\transformed\media-1.4.1\AndroidManifest.xml:24:5-28:15
 intent#action:name:android.intent.action.VIEW+data:scheme:https
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:9:5-12:14
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:11:5-14:14
 action#android.intent.action.VIEW
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:10:9-61
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:12:9-61
 	android:name
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:10:17-58
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:12:17-58
 data
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:11:9-40
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:13:9-40
 	android:scheme
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:11:15-37
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:13:15-37
 intent#action:name:android.intent.action.DIAL+data:scheme:tel
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:13:5-16:14
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:15:5-18:14
 action#android.intent.action.DIAL
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:14:9-61
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:16:9-61
 	android:name
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:14:17-58
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:16:17-58
 intent#action:name:android.intent.action.SEND+data:mimeType:*/*
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:17:5-20:14
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:19:5-22:14
 action#android.intent.action.SEND
-ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:18:9-61
+ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:20:9-61
 	android:name
-		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:18:17-58
+		ADDED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml:20:17-58
 uses-sdk
 INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\aWorkingProject\racemart\android\app\src\main\AndroidManifest.xml
@@ -282,6 +291,8 @@ MERGED from [:audio_session] D:\aWorkingProject\racemart\build\audio_session\int
 MERGED from [:audio_session] D:\aWorkingProject\racemart\build\audio_session\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:video_player_android] D:\aWorkingProject\racemart\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:video_player_android] D:\aWorkingProject\racemart\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:add_2_calendar] D:\aWorkingProject\racemart\build\add_2_calendar\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:add_2_calendar] D:\aWorkingProject\racemart\build\add_2_calendar\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Akash\.gradle\caches\transforms-3\eec09eecbe0fa6cd83e44a6863e8f9ef\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Akash\.gradle\caches\transforms-3\eec09eecbe0fa6cd83e44a6863e8f9ef\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\Akash\.gradle\caches\transforms-3\7a3c4ebf2397b283885d676a98badbb2\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:20:5-44
