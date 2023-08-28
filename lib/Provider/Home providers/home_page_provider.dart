@@ -381,4 +381,11 @@ class HomeProvider with ChangeNotifier {
     listOfPartnersData = [];
     notifyListeners();
   }
+
+//change list view to grid view and grid view to list view
+  bool isList = true;
+  void chageListToGrid() {
+    isList = !isList;
+    notifyListeners();
+  }
 }

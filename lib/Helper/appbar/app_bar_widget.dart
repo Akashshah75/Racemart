@@ -71,6 +71,17 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                       ),
                     )
                   : const SizedBox(),
+              provider.selectedIndex == 0
+                  ? IconButton(
+                      onPressed: () {
+                        provider.chageListToGrid();
+                      },
+                      icon: Icon(
+                        provider.isList ? Icons.grid_view : Icons.list,
+                        color: blackColor,
+                      ),
+                    )
+                  : const SizedBox(),
             ],
           ),
           const Padding(
