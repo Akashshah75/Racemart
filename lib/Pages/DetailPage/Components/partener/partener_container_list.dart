@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Utils/constant.dart';
-
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/app_size.dart';
 
