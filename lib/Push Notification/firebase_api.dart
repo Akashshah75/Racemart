@@ -13,6 +13,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
   print('Title:${message.notification?.title}');
   print('body:${message.notification?.body}');
+  print('body:${message.notification}');
   print('payload:${message.data}');
 }
 
@@ -66,7 +67,9 @@ class FirebaseApi {
 //init method of firebase notification
   void firebaseInit() {
     FirebaseMessaging.onMessage.listen((message) {
-      print(message.notification!.title.toString());
+      print("${message.notification!.title}");
+      print(message.notification!.body.toString());
+      print(message.data.toString());
       showNotification(message);
     });
     //
@@ -175,7 +178,7 @@ class FirebaseApi {
     const settings = InitializationSettings(android: android);
     await localNotificationsPlugin.initialize(settings,
         onDidReceiveNotificationResponse: (message) {
-      print(message);
+      print('message$message');
     });
 
     final platform =

@@ -13,6 +13,8 @@ class RegisterationDateContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(data['event_start_date']);
+    print(data['event_end_date']);
     return Container(
       padding: const EdgeInsets.only(left: 5),
       width: double.infinity,
