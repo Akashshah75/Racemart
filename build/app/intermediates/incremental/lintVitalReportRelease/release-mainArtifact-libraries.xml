@@ -277,6 +277,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="D:\aWorkingProject\racemart\android@@:add_2_calendar::release"
+      jars="D:\aWorkingProject\racemart\build\add_2_calendar\.transforms\817e690b70d395e38e6bb0c45c32a6fc\transformed\out\jars\classes.jar;D:\aWorkingProject\racemart\build\add_2_calendar\.transforms\817e690b70d395e38e6bb0c45c32a6fc\transformed\out\jars\libs\R.jar"
+      resolved="com.javih.add_2_calendar:add_2_calendar:unspecified"
+      folder="D:\aWorkingProject\racemart\build\add_2_calendar\.transforms\817e690b70d395e38e6bb0c45c32a6fc\transformed\out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="io.flutter:flutter_embedding_release:1.0.0-2a3401c9bbb5a9a9aec74d4f735d18a9dd3ebf2d@jar"
       jars="C:\Users\Akash\.gradle\caches\modules-2\files-2.1\io.flutter\flutter_embedding_release\1.0.0-2a3401c9bbb5a9a9aec74d4f735d18a9dd3ebf2d\211826699fdbec9a3b3a9f5a4f0f49a07e53e033\flutter_embedding_release-1.0.0-2a3401c9bbb5a9a9aec74d4f735d18a9dd3ebf2d.jar"
       resolved="io.flutter:flutter_embedding_release:1.0.0-2a3401c9bbb5a9a9aec74d4f735d18a9dd3ebf2d"/>

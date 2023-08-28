@@ -17107,6 +17107,18 @@ com.google.gson.stream.MalformedJsonException:
 com.google.thirdparty.publicsuffix.PublicSuffixPatterns
 com.google.thirdparty.publicsuffix.PublicSuffixType
 com.google.thirdparty.publicsuffix.TrieParser
+com.javih.add_2_calendar.BuildConfig
+com.javih.add_2_calendar.R$attr
+com.javih.add_2_calendar.R$color
+com.javih.add_2_calendar.R$dimen
+com.javih.add_2_calendar.R$drawable
+com.javih.add_2_calendar.R$id
+com.javih.add_2_calendar.R$integer
+com.javih.add_2_calendar.R$layout
+com.javih.add_2_calendar.R$string
+com.javih.add_2_calendar.R$style
+com.javih.add_2_calendar.R$styleable
+com.javih.add_2_calendar.R
 com.joutvhu.openfile.BuildConfig
 com.joutvhu.openfile.OpenFilePlusPlugin:
     private static final int REQUEST_CODE

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeReleaseResources-32:/values-mk/values-mk.xml",
+            "outputFile": "com.example.racemart_app-mergeReleaseResources-33:/values-mk/values-mk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\4264a93e1a576323a9135476e9da38c1\\transformed\\jetified-exoplayer-core-2.18.7\\res\\values-mk\\values-mk.xml",

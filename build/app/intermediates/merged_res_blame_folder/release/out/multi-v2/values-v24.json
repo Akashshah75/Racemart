@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeReleaseResources-32:/values-v24/values-v24.xml",
+            "outputFile": "com.example.racemart_app-mergeReleaseResources-33:/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\3fb2d0be62cedd4a979b331a4e727e34\\transformed\\media-1.4.1\\res\\values-v24\\values-v24.xml",
