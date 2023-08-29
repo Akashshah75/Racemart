@@ -30,7 +30,7 @@ class UserInterestProvider with ChangeNotifier {
       "distances": distances ?? [],
       "terrains": terrains ?? [],
     };
-    // print(body);
+    print(body);
     //
 
     final provider =
@@ -46,9 +46,9 @@ class UserInterestProvider with ChangeNotifier {
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       toastMessage("user interest updated");
-      Future.delayed(const Duration(seconds: 1), () {
-        Navigator.of(context).pop();
+      Future.delayed(Duration.zero, () {
         initUserInterestList(context);
+        Navigator.pop(context, true);
       });
     }
     //

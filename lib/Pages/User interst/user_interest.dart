@@ -29,7 +29,7 @@ class _UserInterestPageState extends State<UserInterestPage> {
   @override
   void initState() {
     final provider = Provider.of<UserInterestProvider>(context, listen: false);
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(Duration.zero, () {
       provider.initUserInterestList(context);
     });
     controllers.addListener(() {
@@ -56,8 +56,11 @@ class _UserInterestPageState extends State<UserInterestPage> {
         .getMethodWithToken(url, provider.appLoginToken.toString());
 
     var result = jsonDecode(res);
-    // print(result);
+    print(result);
     if (result['data'] == null) {
+      setState(() {
+        hasMore = false;
+      });
       return;
     }
     final List newEvent = result['data']['list'];
@@ -68,6 +71,8 @@ class _UserInterestPageState extends State<UserInterestPage> {
       if (newEvent.length < limit) {
         hasMore = false;
       }
+      print(newEvent.length);
+      print(widget.provider.listOfUserInterest.length);
       widget.provider.listOfUserInterest.addAll(newEvent);
     });
   }
@@ -117,11 +122,9 @@ class _UserInterestPageState extends State<UserInterestPage> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Center(
-                          child:
-                              widget.provider.listOfUserInterest.length > 10 &&
-                                      hasMore
-                                  ? const CircularProgressIndicator()
-                                  : const Text('No more data to load?'),
+                          child: hasMore
+                              ? const CircularProgressIndicator()
+                              : const Text('No more data to load?'),
                         ),
                       );
                     }

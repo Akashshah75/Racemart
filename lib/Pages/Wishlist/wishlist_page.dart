@@ -114,7 +114,7 @@ class _WishListListingState extends State<WishListListing> {
     return SizedBox(
       height: 692,
       child: widget.provider.wishListData.isEmpty
-          ? const Text("Don't have any event")
+          ? const Center(child: Text("Don't have any event"))
           : ListView.builder(
               controller: controllers,
               itemCount: widget.provider.wishListData.length + 1,
@@ -142,7 +142,7 @@ class _WishListListingState extends State<WishListListing> {
                     child: Center(
                       child: hasMore
                           ? const CircularProgressIndicator()
-                          : const Text('No more data to load?'),
+                          : const Text('No more data to load!'),
                     ),
                   );
                 }
