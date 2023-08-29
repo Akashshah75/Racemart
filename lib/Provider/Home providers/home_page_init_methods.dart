@@ -17,7 +17,7 @@ class HomePageInit {
         Provider.of<ProfileProvider>(context, listen: false);
     final findProvider =
         Provider.of<FindARacesProvider>(context, listen: false);
-    homeProvider.upcomingEvent(context);
+    // homeProvider.upcomingEvent(context);
     homeProvider.getCurrentPosition(context);
     homeProvider.listOfCities();
     homeProvider.listOfDistances();

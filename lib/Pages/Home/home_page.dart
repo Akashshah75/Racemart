@@ -8,7 +8,7 @@ import '../../Utils/constant.dart';
 import '../User interst/user_interest.dart';
 import 'Components/event_in_mumbai.dart';
 import 'Components/explore_best_cities.dart';
-import 'Components/home_race_listing_event.dart';
+import 'Components/upcoming race/upcoming_race_listing_page.dart';
 import 'Components/testimonial_list.dart';
 import 'Components/the_latest_listing.dart';
 
@@ -59,13 +59,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   homeWidget(HomeProvider provider) {
-    // final DateTime now = DateTime.now();
-    // print(now);
-    // var date = checkDate('2023-08-23 11:47:00', '2023-08-26 18:22:10');
-    // print('CheckDate:$date');
     switch (provider.selectedIndex) {
       case 0:
-        return HomeRaceListingEvent(provider: provider);
+        return UpcomingRaceListingPage(provider: provider);
       //HomeListingEvent()
       case 1:
         return UserInterestPage(provider: provider);

@@ -127,16 +127,13 @@ class HomeProvider with ChangeNotifier {
         .getMethodWithToken(upcominEventUrl, provider.appLoginToken.toString());
     // print(response);
     //
-    upcomingEventList = [];
+
     isLoading = false;
     isFav = false;
     notifyListeners();
     var result = jsonDecode(response);
-    //
-
-    // url = '';
+    upcomingEventList = [];
     if (result['status'] == 'success') {
-      //
       upcomingEventList = result['data']['list'];
       notifyListeners();
       url = result['data']['first_page_url'];
