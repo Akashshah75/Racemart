@@ -361,11 +361,11 @@ class HomeProvider with ChangeNotifier {
     // print(result);
     //
     listOfUserInterest = [];
-
     if (result['status'] == 'success') {
       if (result['data'] != null) {
         listOfUserInterest = result['data']['list'];
         notifyListeners();
+        print(listOfUserInterest.length);
       } else {
         // toastMessage(result['message']);
       }

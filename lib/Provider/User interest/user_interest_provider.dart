@@ -46,10 +46,10 @@ class UserInterestProvider with ChangeNotifier {
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       toastMessage("user interest updated");
-      // ignore: use_build_context_synchronously
-      initUserInterestList(context);
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pop();
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.of(context).pop();
+        initUserInterestList(context);
+      });
     }
     //
     else {
@@ -70,7 +70,6 @@ class UserInterestProvider with ChangeNotifier {
     isSelected = false;
     notifyListeners();
     var result = jsonDecode(response);
-
     // print(result['data']);
     selectedCities = [];
     selectedType = [];

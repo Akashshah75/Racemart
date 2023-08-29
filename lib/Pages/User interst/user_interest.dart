@@ -29,7 +29,7 @@ class _UserInterestPageState extends State<UserInterestPage> {
   @override
   void initState() {
     final provider = Provider.of<UserInterestProvider>(context, listen: false);
-    Future.delayed(Duration.zero, () {
+    Future.delayed(const Duration(seconds: 1), () {
       provider.initUserInterestList(context);
     });
     controllers.addListener(() {

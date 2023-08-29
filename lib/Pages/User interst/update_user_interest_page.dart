@@ -18,7 +18,7 @@ class UpdateUserInterestPage extends StatefulWidget {
 class _UpdateUserInterestPageState extends State<UpdateUserInterestPage> {
   @override
   void initState() {
-    Future.delayed(Duration.zero, () {
+    Future.delayed(const Duration(seconds: 1), () {
       final userProvider =
           Provider.of<UserInterestProvider>(context, listen: false);
       userProvider.fetchSelectedUserInterest(context);
