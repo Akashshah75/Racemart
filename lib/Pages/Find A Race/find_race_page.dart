@@ -38,12 +38,6 @@ class FindARacePage extends StatelessWidget {
                 : EdgeInsets.symmetric(horizontal: w * 0.023),
             child: FiledForSearchEventPage(
                 h: h, findProvider: findProvider, homeProvider: homeProvider),
-            // findProvider.searchListData.isNotEmpty
-            //     ? ResultOfSerchList(provider: findProvider)
-            //     : FiledForSearchEventPage(
-            //         h: h,
-            //         findProvider: findProvider,
-            //         homeProvider: homeProvider),
           ),
         ),
       ),

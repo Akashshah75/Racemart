@@ -11,6 +11,7 @@ import '../../../Provider/authentication_provider.dart';
 import '../../../Provider/find_race_provider.dart';
 import '../../DetailPage/detail_of_home_page.dart';
 import '../../Home/Components/customeEventContainer/custome_event_container.dart';
+import '../../Home/Components/customeEventContainer/grid_view_container.dart';
 
 class ResultOfSerchList extends StatefulWidget {
   const ResultOfSerchList({
@@ -26,7 +27,7 @@ class ResultOfSerchList extends StatefulWidget {
 class _ResultOfSerchListState extends State<ResultOfSerchList> {
   final controllers = ScrollController();
   bool hasMore = true;
-  int page = 1;
+  int page = 2;
   bool isLoading = false;
   @override
   void initState() {
@@ -73,6 +74,12 @@ class _ResultOfSerchListState extends State<ResultOfSerchList> {
         .postMethodWithToken(url, provider.appLoginToken.toString(), body);
     // print(res);
     var result = jsonDecode(res);
+    if (result['data'] == null) {
+      setState(() {
+        hasMore = false;
+      });
+      return;
+    }
     // print(res);
     final List newEvent = result['data']['list'];
     //
@@ -88,49 +95,136 @@ class _ResultOfSerchListState extends State<ResultOfSerchList> {
 
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     final searchData = widget.provider.searchListData;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appBg,
+        backgroundColor: white,
         elevation: 0,
         title: const Text(
           'Search result',
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: const IconThemeData(color: blackColor),
+        actions: [
+          IconButton(
+            onPressed: () {
+              homeProvider.chageListToGrid();
+            },
+            icon: Icon(
+              homeProvider.isList ? Icons.grid_view : Icons.list,
+              color: blackColor,
+            ),
+          )
+        ],
       ),
       body: SizedBox(
-        height: 650,
-        child: ListView.builder(
-          controller: controllers,
-          itemCount: searchData.length + 1,
-          itemBuilder: (BuildContext context, int index) {
-            if (index < searchData.length) {
-              var serchOfData = searchData[index];
-
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => DetailPageOfHome(
-                            index: index,
-                            data: serchOfData,
-                          )));
-                },
-                child: CustomEventContainer(index: index, data: serchOfData),
-              );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Center(
-                  child: hasMore
-                      ? const CircularProgressIndicator()
-                      : const Text('No more data to load?'),
-                ),
-              );
-            }
-          },
-        ),
+        // height: 710,
+        child: homeProvider.isList
+            ? ListViewOfFindARace(
+                controllers: controllers,
+                searchData: searchData,
+                hasMore: hasMore)
+            : GridViewOfFindARace(controllers: controllers, hasMore: hasMore),
       ),
+    );
+  }
+}
+
+//
+class GridViewOfFindARace extends StatelessWidget {
+  const GridViewOfFindARace({
+    super.key,
+    required this.controllers,
+    required this.hasMore,
+  });
+  final ScrollController controllers;
+  final bool hasMore;
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FindARacesProvider>(
+      builder: (context, value, child) {
+        final searchData = value.searchListData;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: GridView.builder(
+            shrinkWrap: true,
+            controller: controllers,
+            itemCount: searchData.length + 1,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1.1,
+              mainAxisSpacing: 15,
+            ),
+            itemBuilder: (context, index) {
+              if (index < searchData.length) {
+                dynamic data = searchData[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPageOfHome(index: index, data: data)));
+                  },
+                  child: GridViewEventContainer(data: data),
+                );
+              } else {
+                return hasMore
+                    ? const Center(child: CircularProgressIndicator())
+                    : const SizedBox();
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+//
+class ListViewOfFindARace extends StatelessWidget {
+  const ListViewOfFindARace({
+    super.key,
+    required this.controllers,
+    required this.searchData,
+    required this.hasMore,
+  });
+
+  final ScrollController controllers;
+  final List searchData;
+  final bool hasMore;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      controller: controllers,
+      itemCount: searchData.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index < searchData.length) {
+          var serchOfData = searchData[index];
+
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailPageOfHome(
+                        index: index,
+                        data: serchOfData,
+                      )));
+            },
+            child: CustomEventContainer(index: index, data: serchOfData),
+          );
+        } else {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Center(
+              child: hasMore
+                  ? const CircularProgressIndicator()
+                  : const Text('No more data to load?'),
+            ),
+          );
+        }
+      },
     );
   }
 }

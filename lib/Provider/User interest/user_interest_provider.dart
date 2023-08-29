@@ -48,7 +48,9 @@ class UserInterestProvider with ChangeNotifier {
       toastMessage("user interest updated");
       Future.delayed(Duration.zero, () {
         initUserInterestList(context);
-        Navigator.pop(context, true);
+        final provider = Provider.of<HomeProvider>(context, listen: false);
+        provider.selectedIndex = 0;
+        Navigator.pop(context);
       });
     }
     //

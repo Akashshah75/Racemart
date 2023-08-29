@@ -77,28 +77,28 @@ class _UserInterestPageState extends State<UserInterestPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.provider.listOfUserInterest.length);
     return SizedBox(
-        height: 650,
-        child: widget.provider.isLoadingForUserInterest
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : widget.provider.listOfUserInterest.isEmpty
-                ? Center(
-                    child: Column(
-                      children: [
-                        Image.asset(noDataFound),
-                        TextButton(
-                            onPressed: () {},
-                            child: const Text("No data interest found!!"))
-                      ],
-                    ),
-                  )
-                : widget.provider.isList
-                    ? UserInterestListView(
-                        controllers: controllers, hasMore: hasMore)
-                    : UserInterestGridView(
-                        controllers: controllers, hasMore: hasMore));
+      height: 650,
+      child: widget.provider.isLoadingForUserInterest
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : widget.provider.listOfUserInterest.isEmpty
+              ? Center(
+                  child: Column(
+                    children: [
+                      Image.asset(noDataFound),
+                      TextButton(
+                          onPressed: () {},
+                          child: const Text("No data interest found!!"))
+                    ],
+                  ),
+                )
+              : widget.provider.isList
+                  ? UserInterestListView(
+                      controllers: controllers, hasMore: hasMore)
+                  : UserInterestGridView(
+                      controllers: controllers, hasMore: hasMore),
+    );
   }
 }

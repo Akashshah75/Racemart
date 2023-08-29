@@ -13,48 +13,47 @@ class UserInterestListView extends StatelessWidget {
   });
 
   final ScrollController controllers;
-
   final bool hasMore;
 
   @override
   Widget build(BuildContext context) {
+    // print(controllers.position.maxScrollExtent == controllers.offset);
+    // print('build');
     return Consumer<HomeProvider>(builder: (context, value, child) {
       final userInterestData = value.listOfUserInterest;
-      return Builder(builder: (context) {
-        return ListView.builder(
-          controller: controllers,
-          itemCount: userInterestData.length + 1,
-          itemBuilder: (context, index) {
-            if (index < userInterestData.length) {
-              var dataOfEvent = userInterestData[index];
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            DetailPageOfHome(index: index, data: dataOfEvent),
-                      ),
-                    );
-                  },
-                  child: CustomEventContainer(
-                      key: ValueKey(dataOfEvent['id']),
-                      data: dataOfEvent,
-                      index: index)
-                  // RaceContainer(index: index, data: dataOfEvent),
+      return ListView.builder(
+        controller: controllers,
+        itemCount: userInterestData.length + 1,
+        itemBuilder: (context, index) {
+          if (index < userInterestData.length) {
+            var dataOfEvent = userInterestData[index];
+            return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          DetailPageOfHome(index: index, data: dataOfEvent),
+                    ),
                   );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Center(
-                  child: userInterestData.length > 10 && hasMore
-                      ? const CircularProgressIndicator()
-                      : const Text('No more data to load?'),
-                ),
-              );
-            }
-          },
-        );
-      });
+                },
+                child: CustomEventContainer(
+                    key: ValueKey(dataOfEvent['id']),
+                    data: dataOfEvent,
+                    index: index)
+                // RaceContainer(index: index, data: dataOfEvent),
+                );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Center(
+                child: userInterestData.length > 10 && hasMore
+                    ? const CircularProgressIndicator()
+                    : const Text('No more data to load?'),
+              ),
+            );
+          }
+        },
+      );
     });
   }
 }
