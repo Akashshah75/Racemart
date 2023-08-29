@@ -26,9 +26,6 @@ class _EventNamesForRouteState extends State<EventNamesForRoute> {
   @override
   Widget build(BuildContext context) {
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
-    // if (kDebugMode) {
-    //   // print(homeProvider.selectedIndex);
-    // }
     return SizedBox(
       height: 40,
       child: ListView.builder(

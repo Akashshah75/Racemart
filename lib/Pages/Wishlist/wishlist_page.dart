@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
 
 import '../../Network/base_clent.dart';
@@ -9,6 +10,7 @@ import '../../Provider/authentication_provider.dart';
 import '../../Provider/wishlist/wishlist_provider.dart';
 import '../Home/Components/customeEventContainer/custome_event_container.dart';
 import '../DetailPage/detail_of_home_page.dart';
+import '../Home/Components/customeEventContainer/grid_view_container.dart';
 
 class WishListPage extends StatefulWidget {
   const WishListPage({super.key});
@@ -30,6 +32,7 @@ class _WishListPageState extends State<WishListPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<WishListProvider>(context, listen: true);
+    final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: whiteColor,
@@ -41,9 +44,21 @@ class _WishListPageState extends State<WishListPage> {
             color: blackColor,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              homeProvider.chageListToGrid();
+            },
+            icon: Icon(
+              homeProvider.isList ? Icons.grid_view : Icons.list,
+              color: blackColor,
+            ),
+          )
+        ],
       ),
       body: Column(
         children: [
+          const SizedBox(height: 15),
           WishListListing(provider: provider),
         ],
       ),
@@ -93,6 +108,13 @@ class _WishListListingState extends State<WishListListing> {
     // print(res);
 
     var result = jsonDecode(res);
+    //
+    if (result['data'] == null) {
+      setState(() {
+        hasMore = false;
+      });
+      return;
+    }
     final List newEvent = result['data']['list'];
     // print(newEvent);
 
@@ -110,44 +132,109 @@ class _WishListListingState extends State<WishListListing> {
 
   @override
   Widget build(BuildContext context) {
-    // print(page);
+    final provider = Provider.of<HomeProvider>(context, listen: false);
     return SizedBox(
       height: 692,
       child: widget.provider.wishListData.isEmpty
           ? const Center(child: Text("Don't have any event"))
-          : ListView.builder(
-              controller: controllers,
-              itemCount: widget.provider.wishListData.length + 1,
-              itemBuilder: (context, index) {
-                // widget.provider.wishListData.isNotEmpty
-                //   ? widget.provider.wishListData.length
-                //   :
-
-                if (index < widget.provider.wishListData.length) {
-                  var dataOfEvent = widget.provider.wishListData[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DetailPageOfHome(
-                                index: index,
-                                data: dataOfEvent,
-                              )));
-                    },
-                    child:
-                        CustomEventContainer(data: dataOfEvent, index: index),
-                  );
-                } else {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Center(
-                      child: hasMore
-                          ? const CircularProgressIndicator()
-                          : const Text('No more data to load!'),
-                    ),
-                  );
-                }
-              },
-            ),
+          : provider.isList
+              ? ListViewOfWishList(controllers: controllers, hasMore: hasMore)
+              : GridViewOfWishlist(controllers: controllers, hasMore: hasMore),
     );
+  }
+}
+//grid view
+
+class GridViewOfWishlist extends StatelessWidget {
+  const GridViewOfWishlist(
+      {super.key, required this.controllers, required this.hasMore});
+  final ScrollController controllers;
+
+  final bool hasMore;
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<WishListProvider>(
+      builder: (context, value, child) {
+        final wishlistData = value.wishListData;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: GridView.builder(
+            controller: controllers,
+            itemCount: wishlistData.length + 1,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1.1,
+              mainAxisSpacing: 15,
+            ),
+            itemBuilder: (context, index) {
+              if (index < wishlistData.length) {
+                dynamic data = wishlistData[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPageOfHome(index: index, data: data)));
+                  },
+                  child: GridViewEventContainer(data: data),
+                );
+              } else {
+                return hasMore
+                    ? const Center(child: CircularProgressIndicator())
+                    : const SizedBox();
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+//lsit view
+class ListViewOfWishList extends StatelessWidget {
+  const ListViewOfWishList({
+    super.key,
+    required this.controllers,
+    required this.hasMore,
+  });
+
+  final ScrollController controllers;
+
+  final bool hasMore;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<WishListProvider>(builder: (context, value, child) {
+      final wishlistData = value.wishListData;
+      return ListView.builder(
+        controller: controllers,
+        itemCount: wishlistData.length + 1,
+        itemBuilder: (context, index) {
+          if (index < wishlistData.length) {
+            var dataOfEvent = wishlistData[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DetailPageOfHome(
+                          index: index,
+                          data: dataOfEvent,
+                        )));
+              },
+              child: CustomEventContainer(data: dataOfEvent, index: index),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Center(
+                child: hasMore
+                    ? const CircularProgressIndicator()
+                    : const Text('No more data to load!'),
+              ),
+            );
+          }
+        },
+      );
+    });
   }
 }

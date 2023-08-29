@@ -255,17 +255,20 @@ class HomeProvider with ChangeNotifier {
   }
 
   //event in mumbai
-  Future<void> eventOfMumbai(BuildContext context) async {
+  Future<void> eventInCity(BuildContext context) async {
     // print('$eventInMumbaiUrl$city');
     isLoadingForeventInMumbai = true;
     notifyListeners();
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
+    // var response = await BaseClient().getMethodWithToken(
+    //     "$eventInCityUrl mumbai", provider.appLoginToken.toString());
     var response = await BaseClient().getMethodWithToken(
-        "$eventInMumbaiUrl$city", provider.appLoginToken.toString());
+        "$eventInCityUrl$city", provider.appLoginToken.toString());
     isLoading = false;
     notifyListeners();
     var result = jsonDecode(response);
+    // print(result);
     eventInMumbai = [];
     if (result['status'] == 'success') {
       eventInMumbai = result['data']['list'];
@@ -319,9 +322,9 @@ class HomeProvider with ChangeNotifier {
     }
     getMyCity = false;
     notifyListeners();
-    //
-    // ignore: use_build_context_synchronously
-    eventOfMumbai(context);
+    // Future.delayed(Duration.zero, () {
+    //   eventInCity(context);
+    // });
   }
 
   //open map

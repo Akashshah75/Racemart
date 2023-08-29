@@ -73,7 +73,8 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                   : const SizedBox(),
               provider.selectedIndex == 0 ||
                       provider.selectedIndex == 1 ||
-                      provider.selectedIndex == 2
+                      provider.selectedIndex == 2 ||
+                      provider.selectedIndex == 4
                   ? IconButton(
                       onPressed: () {
                         provider.chageListToGrid();

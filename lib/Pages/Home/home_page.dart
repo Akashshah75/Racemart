@@ -6,7 +6,7 @@ import '../../Provider/Home providers/home_page_provider.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/constant.dart';
 import '../User interst/user_interest.dart';
-import 'Components/event_in_mumbai.dart';
+import 'Components/eventInCities/event_in_mumbai.dart';
 import 'Components/explore_best_cities.dart';
 import 'Components/upcoming race/upcoming_race_listing_page.dart';
 import 'Components/testimonial_list.dart';

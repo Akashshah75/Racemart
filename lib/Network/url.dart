@@ -27,7 +27,7 @@ const String addEventUrl = "$baseUrl/wishlist";
 //
 
 //Event list api
-const String eventInMumbaiUrl = "$baseUrl/city/:";
+const String eventInCityUrl = "$baseUrl/city/:";
 const String upcominEventUrl = "$baseUrl/upcoming";
 const String pastEventUrl = "$baseUrl/past-events";
 const String latestListingEventUrl = "$baseUrl/latest-listing";

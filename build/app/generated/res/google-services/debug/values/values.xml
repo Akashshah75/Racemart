@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1077785227608-d1l2mk2599cu26uqo26mhurg3k70ji0u.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1077785227608</string>
+    <string name="google_api_key" translatable="false">AIzaSyAseDYNQvNDdNNLCICmVkGh7LTmSsANRuQ</string>
+    <string name="google_app_id" translatable="false">1:1077785227608:android:5c119c5cfb6a15fc5ab52d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAseDYNQvNDdNNLCICmVkGh7LTmSsANRuQ</string>
+    <string name="google_storage_bucket" translatable="false">racemart-9431a.appspot.com</string>
+    <string name="project_id" translatable="false">racemart-9431a</string>
+</resources>

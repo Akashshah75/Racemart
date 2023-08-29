@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Network/base_clent.dart';
+import '../../../Provider/Home providers/home_page_provider.dart';
 import '../../../Provider/authentication_provider.dart';
 import '../../../Provider/review a race provider/review_a_race_provider.dart';
 import '../../DetailPage/detail_of_home_page.dart';
 import '../../Home/Components/customeEventContainer/custome_event_container.dart';
+import '../../Home/Components/customeEventContainer/grid_view_container.dart';
 
 class ReviewAEventListing extends StatefulWidget {
   const ReviewAEventListing({super.key, required this.provider});
@@ -60,6 +62,13 @@ class _ReviewAEventListingState extends State<ReviewAEventListing> {
 
     var result = jsonDecode(res);
     // print(res);
+    if (result['data'] == null) {
+      setState(() {
+        hasMore = false;
+      });
+      return;
+    }
+    //
     final List newEvent = result['data']['list'];
 
     //
@@ -75,43 +84,116 @@ class _ReviewAEventListingState extends State<ReviewAEventListing> {
 
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<HomeProvider>(context, listen: false);
+
     return SizedBox(
       height: 650,
       child: widget.provider.searchListData.isEmpty
           ? const Center(
               child: Text("Don't have any event"),
             )
-          : ListView.builder(
-              controller: controllers,
-              itemCount: widget.provider.searchListData.length + 1,
-              itemBuilder: (context, index) {
-                // var dataOfEvent = widget.provider.searchListData[index];
-                // return RaceContainer(index: index, data: dataOfEvent);
-                if (index < widget.provider.searchListData.length) {
-                  var dataOfEvent = widget.provider.searchListData[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DetailPageOfHome(
-                                index: index,
-                                data: dataOfEvent,
-                              )));
-                    },
-                    child:
-                        CustomEventContainer(index: index, data: dataOfEvent),
-                  );
-                } else {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Center(
-                      child: hasMore
-                          ? const CircularProgressIndicator()
-                          : const Text('No more data to load?'),
-                    ),
-                  );
-                }
-              },
-            ),
+          : homeProvider.isList
+              ? ListViewOfReviewARace(
+                  controllers: controllers, hasMore: hasMore)
+              : GridViewOfREvieAList(
+                  controllers: controllers, hasMore: hasMore),
     );
+  }
+}
+
+//grid
+class GridViewOfREvieAList extends StatelessWidget {
+  const GridViewOfREvieAList(
+      {super.key, required this.controllers, required this.hasMore});
+  final ScrollController controllers;
+
+  final bool hasMore;
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ReviewARaceProvider>(
+      builder: (context, value, child) {
+        final reviewARaceData = value.searchListData;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: GridView.builder(
+            controller: controllers,
+            itemCount: reviewARaceData.length + 1,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1.1,
+              mainAxisSpacing: 15,
+            ),
+            itemBuilder: (context, index) {
+              if (index < reviewARaceData.length) {
+                dynamic data = reviewARaceData[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPageOfHome(index: index, data: data)));
+                  },
+                  child: GridViewEventContainer(data: data),
+                );
+              } else {
+                return hasMore
+                    ? const Center(child: CircularProgressIndicator())
+                    : const SizedBox();
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+//list
+class ListViewOfReviewARace extends StatelessWidget {
+  const ListViewOfReviewARace({
+    super.key,
+    required this.controllers,
+    required this.hasMore,
+  });
+
+  final ScrollController controllers;
+
+  final bool hasMore;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ReviewARaceProvider>(builder: (context, value, child) {
+      final reviewARaceData = value.searchListData;
+      return ListView.builder(
+        controller: controllers,
+        itemCount: reviewARaceData.length + 1,
+        itemBuilder: (context, index) {
+          // var dataOfEvent = widget.provider.searchListData[index];
+          // return RaceContainer(index: index, data: dataOfEvent);
+          if (index < reviewARaceData.length) {
+            var dataOfEvent = reviewARaceData[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DetailPageOfHome(
+                          index: index,
+                          data: dataOfEvent,
+                        )));
+              },
+              child: CustomEventContainer(index: index, data: dataOfEvent),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Center(
+                child: hasMore
+                    ? const CircularProgressIndicator()
+                    : const Text('No more data to load?'),
+              ),
+            );
+          }
+        },
+      );
+    });
   }
 }

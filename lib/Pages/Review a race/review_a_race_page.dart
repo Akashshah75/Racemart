@@ -34,6 +34,8 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
     var h = MediaQuery.of(context).size.height;
     DateTime timeBackPressed = DateTime.now();
     final provider = Provider.of<ReviewARaceProvider>(context, listen: true);
+    final homeProvider = Provider.of<HomeProvider>(context, listen: true);
+
     return WillPopScope(
       onWillPop: () async {
         final diffrence = DateTime.now().difference(timeBackPressed);
@@ -52,6 +54,17 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
               color: blackColor,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                homeProvider.chageListToGrid();
+              },
+              icon: Icon(
+                homeProvider.isList ? Icons.grid_view : Icons.list,
+                color: blackColor,
+              ),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
