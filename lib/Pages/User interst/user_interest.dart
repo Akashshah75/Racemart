@@ -8,8 +8,8 @@ import '../../Network/base_clent.dart';
 import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Provider/authentication_provider.dart';
 import '../../Utils/app_asset.dart';
-import '../Home/Components/customeEventContainer/custome_event_container.dart';
-import '../DetailPage/detail_of_home_page.dart';
+import 'grid view/userinterest_grid_view.dart';
+import 'list view/userinterest_list_view.dart';
 
 final UserInterestProvider userProvider = UserInterestProvider();
 
@@ -71,67 +71,34 @@ class _UserInterestPageState extends State<UserInterestPage> {
       if (newEvent.length < limit) {
         hasMore = false;
       }
-      print(newEvent.length);
-      print(widget.provider.listOfUserInterest.length);
       widget.provider.listOfUserInterest.addAll(newEvent);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.provider.listOfUserInterest.length);
     return SizedBox(
-      height: 650,
-      child: widget.provider.isLoadingForUserInterest
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : widget.provider.listOfUserInterest.isEmpty
-              ? Center(
-                  child: Column(
-                    children: [
-                      Image.asset(noDataFound),
-                      TextButton(
-                          onPressed: () {},
-                          child: const Text("No data interest found!!"))
-                    ],
-                  ),
-                )
-              : ListView.builder(
-                  controller: controllers,
-                  itemCount: widget.provider.listOfUserInterest.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index < widget.provider.listOfUserInterest.length) {
-                      var dataOfEvent =
-                          widget.provider.listOfUserInterest[index];
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => DetailPageOfHome(
-                                    index: index, data: dataOfEvent),
-                              ),
-                            );
-                          },
-                          child: CustomEventContainer(
-                              key: ValueKey(dataOfEvent['id']),
-                              data: dataOfEvent,
-                              index: index)
-                          // RaceContainer(index: index, data: dataOfEvent),
-                          );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Center(
-                          child: hasMore
-                              ? const CircularProgressIndicator()
-                              : const Text('No more data to load?'),
-                        ),
-                      );
-                    }
-                  },
-                ),
-    );
+        height: 650,
+        child: widget.provider.isLoadingForUserInterest
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : widget.provider.listOfUserInterest.isEmpty
+                ? Center(
+                    child: Column(
+                      children: [
+                        Image.asset(noDataFound),
+                        TextButton(
+                            onPressed: () {},
+                            child: const Text("No data interest found!!"))
+                      ],
+                    ),
+                  )
+                : widget.provider.isList
+                    ? UserInterestListView(
+                        controllers: controllers, hasMore: hasMore)
+                    : UserInterestGridView(
+                        controllers: controllers, hasMore: hasMore));
   }
-
-  //
 }

@@ -10,7 +10,7 @@ import 'Components/event_in_mumbai.dart';
 import 'Components/explore_best_cities.dart';
 import 'Components/upcoming race/upcoming_race_listing_page.dart';
 import 'Components/testimonial_list.dart';
-import 'Components/the_latest_listing.dart';
+import 'Components/the latest listing/the_latest_listing.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
     switch (provider.selectedIndex) {
       case 0:
         return UpcomingRaceListingPage(provider: provider);
-      //HomeListingEvent()
+
       case 1:
         return UserInterestPage(provider: provider);
       case 2:

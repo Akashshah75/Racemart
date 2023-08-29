@@ -52,7 +52,7 @@ class _UpcomingRaceListingPageState extends State<UpcomingRaceListingPage> {
     var res = await BaseClient()
         .getMethodWithToken(url, provider.appLoginToken.toString());
     var result = jsonDecode(res);
-    print(result);
+
     if (result['data'] == null) {
       setState(() {
         hasMore = false;
