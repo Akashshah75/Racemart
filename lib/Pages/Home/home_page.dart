@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_init_methods.dart';
 import '../../Helper/appbar/app_bar_widget.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/constant.dart';
-import '../User interst/user_interest.dart';
-import 'Components/eventInCities/event_in_mumbai.dart';
-import 'Components/explore_best_cities.dart';
-import 'Components/upcoming race/upcoming_race_listing_page.dart';
-import 'Components/testimonial_list.dart';
-import 'Components/the latest listing/the_latest_listing.dart';
+import 'home widget/home_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -53,33 +50,30 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          bottomNavigationBar: GNav(tabs: [
+            GButton(
+              icon: Icons.home,
+              gap: 5,
+              text: 'Home',
+            ),
+            GButton(
+              icon: FontAwesomeIcons.personRunning,
+              gap: 5,
+              text: 'Running',
+            ),
+            GButton(
+              icon: FontAwesomeIcons.personWalking,
+              gap: 5,
+              text: 'Walking',
+            ),
+            GButton(
+              icon: FontAwesomeIcons.personBiking,
+              gap: 5,
+              text: ' Cycling',
+            ),
+          ]),
         ),
       ),
     );
-  }
-
-  homeWidget(HomeProvider provider) {
-    switch (provider.selectedIndex) {
-      case 0:
-        return UpcomingRaceListingPage(provider: provider);
-
-      case 1:
-        // return UpdatedUserInterrest(provider: provider);
-        return UserInterestPage(provider: provider);
-      case 2:
-        return TheLatestListing(provider: provider);
-      case 3:
-        return ExploreBestCities(
-          provider: provider,
-        );
-      case 4:
-        return EventInCity(
-          provider: provider,
-        );
-      case 5:
-        return const TestimonialListOfHome();
-      default:
-        return Container();
-    }
   }
 }

@@ -452,6 +452,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "google_nav_bar",
+      "rootUri": "file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/google_nav_bar-5.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "html",
       "rootUri": "file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/html-0.15.4",
       "packageUri": "lib/",
@@ -1058,7 +1064,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-08-30T10:00:24.187032Z",
+  "generated": "2023-08-30T13:38:44.140055Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }
