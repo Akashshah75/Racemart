@@ -18,7 +18,6 @@ const String demo = 'asset/image/demo4.jpg';
 const String noImage = 'asset/image/no-image.png';
 const String demo1 = 'asset/image/demo2.jpg';
 const String demo2 = 'asset/image/demo3.jpg';
-//
 const String runIcon = 'asset/image/run.png';
 const String cyclingcon = 'asset/image/bicycle.png';
 const String walkIcon = 'asset/image/walk.png';
@@ -27,29 +26,8 @@ const String distance = 'asset/image/distance.png';
 const String category = 'asset/image/category.png';
 const String rupay = 'asset/image/rupay.png';
 const String calender = 'asset/image/calender.png';
-//
 const String noDataFound = 'asset/image/no data.png';
 const String noImageEvent = 'asset/image/no_image_event (1).png';
 const String noImageProfile = 'asset/image/no_image_profile.png';
-//
-
-List<String> arrayOfAsset = [
-  demo,
-  demo1,
-  demo2,
-  demo,
-  demo1,
-  demo2,
-  demo,
-  demo1,
-  demo2,
-  demo
-];
-
-Map<String, String> color = {
-  'hero': 'asset/image/demo2.jpg',
-  'bg': 'asset/image/demo3.jpg',
-  'footer': 'asset/image/demo4.jpg',
-};
-/////
- 
+//app logo
+const String appLogo = 'asset/image/app_logo.png';
