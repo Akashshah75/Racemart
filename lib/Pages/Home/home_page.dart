@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
         return UpcomingRaceListingPage(provider: provider);
 
       case 1:
+        // return UpdatedUserInterrest(provider: provider);
         return UserInterestPage(provider: provider);
       case 2:
         return TheLatestListing(provider: provider);

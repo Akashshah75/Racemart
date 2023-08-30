@@ -12,7 +12,6 @@ import '../authentication_provider.dart';
 class UserInterestProvider with ChangeNotifier {
   //infinite scrolling
   bool hasMore = true;
-
   //
   List selectedCities = [];
   List selectedType = [];
@@ -47,9 +46,9 @@ class UserInterestProvider with ChangeNotifier {
     if (result['status'] == "success") {
       toastMessage("user interest updated");
       Future.delayed(Duration.zero, () {
-        initUserInterestList(context);
         final provider = Provider.of<HomeProvider>(context, listen: false);
-        provider.selectedIndex = 0;
+        provider.userInterest(context);
+        // provider.selectedIndex = 0;
         Navigator.pop(context);
       });
     }
@@ -94,10 +93,9 @@ class UserInterestProvider with ChangeNotifier {
   }
 
   ///
-  void initUserInterestList(BuildContext context) {
-    final provider = Provider.of<HomeProvider>(context, listen: false);
-    provider.userInterest(context);
-  }
+  // void initUserInterestList(BuildContext context) {
+
+  // }
 
   ///
 }

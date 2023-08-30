@@ -5,13 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 
 import '../../Network/base_clent.dart';
-import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Provider/authentication_provider.dart';
 import '../../Utils/app_asset.dart';
 import 'grid view/userinterest_grid_view.dart';
 import 'list view/userinterest_list_view.dart';
-
-final UserInterestProvider userProvider = UserInterestProvider();
 
 class UserInterestPage extends StatefulWidget {
   const UserInterestPage({super.key, required this.provider});
@@ -28,9 +25,9 @@ class _UserInterestPageState extends State<UserInterestPage> {
   bool isLoading = false;
   @override
   void initState() {
-    final provider = Provider.of<UserInterestProvider>(context, listen: false);
     Future.delayed(Duration.zero, () {
-      provider.initUserInterestList(context);
+      final provider = Provider.of<HomeProvider>(context, listen: false);
+      provider.userInterest(context);
     });
     controllers.addListener(() {
       if (controllers.position.maxScrollExtent == controllers.offset) {

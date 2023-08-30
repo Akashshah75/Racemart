@@ -107,7 +107,9 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Center(child: ReviewAEventListing(provider: provider)),
+              Center(
+                child: ReviewAEventListing(provider: provider),
+              ),
               const SizedBox(height: 10),
             ],
           ),

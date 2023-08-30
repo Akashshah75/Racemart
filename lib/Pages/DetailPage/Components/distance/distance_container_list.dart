@@ -214,7 +214,7 @@ class CustomeDistanceContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: 90,
+      width: 90,
       height: 35,
       decoration: BoxDecoration(
         color: appBg,

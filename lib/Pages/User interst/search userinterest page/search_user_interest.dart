@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
-import 'package:racemart_app/Utils/app_color.dart';
 
+import '../../../Helper/Widget/custome_app_bar_widget.dart';
 import '../../../Helper/Widget/text_button_widget.dart';
 import '../../../Provider/User interest/user_interest_provider.dart';
 import '../../Find A Race/find_race_page.dart';
@@ -28,32 +28,25 @@ class _SearchUserInterestPageState extends State<SearchUserInterestPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final size = MediaQuery.of(context).size.height;
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     final provider = Provider.of<UserInterestProvider>(context, listen: true);
     return Scaffold(
-        backgroundColor: white,
-        appBar: AppBar(
-          backgroundColor: white,
-          elevation: 0,
-          iconTheme: const IconThemeData(color: blackColor),
-          title: const Text(
-            'User Interest',
-            style: TextStyle(color: blackColor),
-          ),
-        ),
+        // height: size * 0.85,
         body: provider.isSelected
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : Builder(builder: (context) {
-                return SafeArea(
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: SingleChildScrollView(
+            : SafeArea(
+                child: Builder(builder: (context) {
+                  return SingleChildScrollView(
+                    child: SafeArea(
                       child: Column(
                         children: [
+                          const CustomeTextWidget(
+                            title: 'User Interest',
+                          ),
+                          const Divider(),
                           const SizedBox(height: 20),
                           CustomeMultiSelectDropDown(
                             btnText: 'Select Type',
@@ -142,8 +135,8 @@ class _SearchUserInterestPageState extends State<SearchUserInterestPage> {
                         ],
                       ),
                     ),
-                  ),
-                );
-              }));
+                  );
+                }),
+              ));
   }
 }

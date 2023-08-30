@@ -22,7 +22,7 @@ class ReviewAEventListing extends StatefulWidget {
 class _ReviewAEventListingState extends State<ReviewAEventListing> {
   final controllers = ScrollController();
   bool hasMore = true;
-  int page = 1;
+  int page = 2;
   bool isLoading = false;
   @override
   void initState() {
