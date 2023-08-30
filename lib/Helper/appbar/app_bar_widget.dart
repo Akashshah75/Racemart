@@ -3,6 +3,7 @@ import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Wishlist/wishlist_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
+import 'package:racemart_app/Provider/wishlist/wishlist_provider.dart';
 import '../../Pages/Find A Race/find_race_page.dart';
 import '../../Pages/Home/Components/event_names_for_route.dart';
 import '../../Pages/Home/Drawer/zoom_drawer.dart';
@@ -10,6 +11,7 @@ import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Utils/app_color.dart';
 import '../Widget/custome_app_bar_widget.dart';
 import '../Widget/text_button_widget.dart';
+import 'package:badges/badges.dart' as badges;
 
 PreferredSizeWidget customeAppBar(BuildContext context,
     {required HomeProvider provider, required double h}) {
@@ -29,23 +31,44 @@ PreferredSizeWidget customeAppBar(BuildContext context,
             automaticallyImplyLeading: false,
             elevation: 0,
             backgroundColor: white,
-
             // backgroundColor: halfWhite.withAlpha(1),
             leading: const MenuWidget(),
             actions: [
               //Like button
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => const WishListPage()),
-                  );
-                },
-                icon: const Icon(
-                  Icons.favorite_border_sharp,
-                  color: blackColor,
-                ),
-              ),
+              Consumer<WishListProvider>(builder: (context, value, child) {
+                return badges.Badge(
+                  showBadge: value.lengthOFwishlist <= 0 ? false : true,
+                  position: value.lengthOFwishlist > 9
+                      ? badges.BadgePosition.topEnd(top: 2, end: -8)
+                      : badges.BadgePosition.topEnd(top: 2, end: 1),
+                  badgeContent: Text(
+                    value.lengthOFwishlist > 9
+                        ? '9+'
+                        : value.lengthOFwishlist.toString(),
+                    style: const TextStyle(color: whiteColor),
+                  ),
+                  badgeAnimation: const badges.BadgeAnimation.rotation(
+                    animationDuration: Duration(seconds: 1),
+                    colorChangeAnimationDuration: Duration(seconds: 1),
+                    loopAnimation: false,
+                    curve: Curves.fastOutSlowIn,
+                    colorChangeAnimationCurve: Curves.easeInCubic,
+                  ),
+                  child: IconButton(
+                    padding: const EdgeInsets.only(top: 8),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const WishListPage()),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.favorite_border_sharp,
+                      color: blackColor,
+                    ),
+                  ),
+                );
+              }),
               //filtre button for userinterest page
               provider.selectedIndex == 1
                   ? IconButton(

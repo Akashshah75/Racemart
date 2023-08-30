@@ -12,6 +12,8 @@ class WishListProvider with ChangeNotifier {
   List<dynamic> wishListData = [];
   bool isLoading = false;
   //
+  late int lengthOFwishlist;
+  //
   Future<void> wishListEvent(BuildContext context) async {
     isLoading = true;
     notifyListeners();
@@ -27,8 +29,11 @@ class WishListProvider with ChangeNotifier {
     wishListData = [];
     if (result['status'] == 'success') {
       wishListData = result['data']['list'];
-      // print(wishListData);
+      lengthOFwishlist = wishListData.length;
       notifyListeners();
+      print("wishListData.length : $lengthOFwishlist");
+      notifyListeners();
+      // wishListData.length;
     }
   }
 
