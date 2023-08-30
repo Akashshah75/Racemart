@@ -25,6 +25,10 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     Future.delayed(Duration.zero, () {
       final provider = Provider.of<HomeProvider>(context, listen: false);
+      final authProvider =
+          Provider.of<AuthenticationProvider>(context, listen: false);
+      authProvider.getDeviceType();
+      authProvider.requestNotificationPermission();
       provider.getCurrentPosition(context);
     });
     super.initState();

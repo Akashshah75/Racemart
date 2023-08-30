@@ -12,6 +12,16 @@ import 'notification_detail_page.dart';
 //this is top level function of background notification
 class NotificationFeat {
   final firebaseMessaging = FirebaseMessaging.instance;
+
+  //request for permission
+  Future<dynamic> requestNotificationPermission() async {
+    await firebaseMessaging.requestPermission();
+    final fcmToken = await firebaseMessaging.getToken();
+    print('fcmToken:$fcmToken');
+    return fcmToken;
+  }
+
+  //
   // 1. This method call when app in terminated state and you get a notification
   //when you click on notification app open from terminated state and you can get notification data in this method
 //

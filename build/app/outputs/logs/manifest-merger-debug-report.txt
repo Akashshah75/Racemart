@@ -84,6 +84,7 @@ MERGED from [:share_plus] D:\aWorkingProject\racemart\build\share_plus\intermedi
 MERGED from [:geocoding_android] D:\aWorkingProject\racemart\build\geocoding_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:package_info_plus] D:\aWorkingProject\racemart\build\package_info_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:fluttertoast] D:\aWorkingProject\racemart\build\fluttertoast\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:device_info_plus] D:\aWorkingProject\racemart\build\device_info_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:audio_session] D:\aWorkingProject\racemart\build\audio_session\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:video_player_android] D:\aWorkingProject\racemart\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:add_2_calendar] D:\aWorkingProject\racemart\build\add_2_calendar\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
@@ -287,6 +288,8 @@ MERGED from [:package_info_plus] D:\aWorkingProject\racemart\build\package_info_
 MERGED from [:package_info_plus] D:\aWorkingProject\racemart\build\package_info_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:fluttertoast] D:\aWorkingProject\racemart\build\fluttertoast\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:fluttertoast] D:\aWorkingProject\racemart\build\fluttertoast\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:device_info_plus] D:\aWorkingProject\racemart\build\device_info_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:device_info_plus] D:\aWorkingProject\racemart\build\device_info_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:audio_session] D:\aWorkingProject\racemart\build\audio_session\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:audio_session] D:\aWorkingProject\racemart\build\audio_session\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:video_player_android] D:\aWorkingProject\racemart\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41

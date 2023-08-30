@@ -94,6 +94,14 @@ dbus
 2.15
 file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/dbus-0.7.8/
 file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/dbus-0.7.8/lib/
+device_info_plus
+2.18
+file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/device_info_plus-9.0.3/
+file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/device_info_plus-9.0.3/lib/
+device_info_plus_platform_interface
+2.12
+file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/
+file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/lib/
 email_validator
 2.12
 file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/email_validator-2.1.17/
@@ -658,6 +666,10 @@ win32
 3.0
 file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.0.3/
 file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.0.3/lib/
+win32_registry
+3.0
+file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/win32_registry-1.1.1/
+file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/win32_registry-1.1.1/lib/
 xdg_directories
 2.17
 file:///C:/Users/Akash/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.0.0/

@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Network/base_clent.dart';
 import 'package:racemart_app/Network/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Push Notification/notification_api.dart';
 import '../Routes/route_names.dart';
 import '../Utils/constant.dart';
 
@@ -27,6 +30,35 @@ class AuthenticationProvider with ChangeNotifier {
   String? appLoginToken;
   bool isLoading = false;
   bool isLogOut = false;
+  String? fcmToken;
+  late String device;
+  //get fcm token
+  NotificationFeat notification = NotificationFeat();
+  final firebaseMessaging = FirebaseMessaging.instance;
+  //request for permission
+  Future<dynamic> requestNotificationPermission() async {
+    await firebaseMessaging.requestPermission();
+    final token = await firebaseMessaging.getToken();
+    fcmToken = token!;
+    notifyListeners();
+    print('fcm:$fcmToken');
+  }
+
+//get device type
+  void getDeviceType() {
+    if (Platform.isAndroid) {
+      device = 'android';
+      print(device);
+      notifyListeners();
+    } else if (Platform.isIOS) {
+      device = 'ios';
+      notifyListeners();
+    } else {
+      device = 'not found';
+      notifyListeners();
+    }
+  }
+
   //////////////////////////////////////////////////////////////////////
   //
   Future<void> login(BuildContext context) async {
@@ -44,7 +76,9 @@ class AuthenticationProvider with ChangeNotifier {
       // try {
       var body = {
         'email': emailOfLogin.text.trim(),
-        'password': passwordOfLogin.text.trim()
+        'password': passwordOfLogin.text.trim(),
+        'device': device,
+        'token': fcmToken
       };
       var response = await BaseClient().post(loginUrl, body);
 
