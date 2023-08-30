@@ -16,14 +16,34 @@ AppBar appBarOfFindRace(BuildContext context, FindARacesProvider provider,
       ),
       leading: const MenuWidget(),
       actions: [
-        // provider.searchListData.isNotEmpty
-        //     ? IconButton(
-        //         onPressed: () {
-        //           provider.changePage();
-        //         },
-        //         icon: const Icon(Icons.filter_list_outlined),
-        //       )
-        //     :
+        MaterialButton(
+          onPressed: () {
+            provider.cleanTextBoxes();
+            homeProvider.cleanDropDownBoxes();
+          },
+          child: const Text('Clean'),
+        )
+      ],
+    );
+//
+AppBar appBarOfFindRaceWithLeading(BuildContext context,
+        FindARacesProvider provider, var h, HomeProvider homeProvider) =>
+    AppBar(
+      backgroundColor: appBarBagroundColor,
+      elevation: 0,
+      iconTheme: const IconThemeData(color: blackColor),
+      title: const Text(
+        'Find a Race',
+        style: TextStyle(color: blackColor),
+      ),
+      // automaticallyImplyLeading: true,
+      leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back)),
+      // leading: const MenuWidget(),
+      actions: [
         MaterialButton(
           onPressed: () {
             provider.cleanTextBoxes();

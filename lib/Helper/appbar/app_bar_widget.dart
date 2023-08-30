@@ -31,9 +31,30 @@ PreferredSizeWidget customeAppBar(BuildContext context,
             automaticallyImplyLeading: false,
             elevation: 0,
             backgroundColor: white,
-            // backgroundColor: halfWhite.withAlpha(1),
             leading: const MenuWidget(),
             actions: [
+              // Container(
+              //   decoration: BoxDecoration(
+              //     color: appBg,
+              //     borderRadius: BorderRadius.circular(8),
+              //   ),
+              //   margin: EdgeInsets.symmetric(vertical: 10),
+              //   padding: EdgeInsets.symmetric(horizontal: 10),
+              //   width: 250,
+              //   child: Row(
+              //     children: [
+              //       Icon(
+              //         Icons.search,
+              //         color: blackColor,
+              //       ),
+              //       SizedBox(width: 20),
+              //       Text(
+              //         'Find a race',
+              //         style: TextStyle(color: blackColor),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               //Like button
               Consumer<WishListProvider>(builder: (context, value, child) {
                 return badges.Badge(
@@ -69,6 +90,7 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                   ),
                 );
               }),
+
               //filtre button for userinterest page
               provider.selectedIndex == 1
                   ? IconButton(
@@ -108,8 +130,24 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                       ),
                     )
                   : const SizedBox(),
+              //
+              provider.selectedIndex == 0
+                  ? IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FindRacePage(),
+                        ));
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        color: blackColor,
+                      ),
+                    )
+                  : SizedBox()
             ],
           ),
+          //
+          // Row(),
           const Padding(
             padding: EdgeInsets.only(left: 8, top: 10),
             child: EventNamesForRoute(),
