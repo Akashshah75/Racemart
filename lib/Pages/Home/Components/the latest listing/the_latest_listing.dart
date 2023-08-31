@@ -78,8 +78,9 @@ class _TheLatestListingState extends State<TheLatestListing> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: 645,
+      height: size * 0.75,
       child: widget.provider.isLoading
           ? const Center(
               child: CircularProgressIndicator(),

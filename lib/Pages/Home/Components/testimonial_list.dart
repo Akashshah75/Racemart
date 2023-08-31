@@ -28,11 +28,13 @@ class _TestimonialListOfHomeState extends State<TestimonialListOfHome> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
+    print(size * 0.75);
     final provider = Provider.of<TestimonialProvider>(context, listen: true);
     return provider.testimonialList.isEmpty
         ? Center(child: Image.asset(noDataFound))
         : SizedBox(
-            height: 600,
+            height: size * 0.75,
             child: ListView.builder(
               itemCount: provider.testimonialList.length,
               itemBuilder: (context, index) {

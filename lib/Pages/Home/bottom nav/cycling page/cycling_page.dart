@@ -134,7 +134,7 @@ class GridViewOfCycling extends StatelessWidget {
       builder: (context, value, child) {
         final runningTypeData = value.typeOfData;
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: GridView.builder(
             controller: controllers,
             itemCount: runningTypeData.length + 1,

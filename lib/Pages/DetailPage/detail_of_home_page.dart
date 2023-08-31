@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../Provider/detail_page_provider.dart';
 import '../../Utils/app_asset.dart';
 import '../../Utils/app_size.dart';
@@ -16,8 +20,10 @@ import 'Components/image_heading_container.dart';
 import 'Components/impDate/important_dates_list.dart';
 import 'Components/location/location_contaner.dart';
 import 'Components/prices/price_listing_container.dart';
+import 'Components/registration_now_container.dart';
 import 'Components/similarListing/similar_listing_list.dart';
 import 'Components/terrrains/terains_container_list.dart';
+import 'package:http/http.dart' as http;
 
 class DetailPageOfHome extends StatefulWidget {
   const DetailPageOfHome({super.key, required this.index, this.data});
@@ -91,6 +97,37 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     print('Event_Id: ${widget.data['id']}');
     return Scaffold(
       backgroundColor: appBg,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: appBg,
+        iconTheme: IconThemeData(color: blackColor),
+        title: Text(
+          'Details',
+          style: TextStyle(color: blackColor),
+        ),
+        actions: [
+          widget.data['share-url'] == null
+              ? SizedBox()
+              : IconButton(
+                  onPressed: () async {
+                    var urlImage = widget.data['poster'] ??
+                        demo; //widget.data['poster']; //urlImage1;
+                    final Uri url = Uri.parse(urlImage);
+                    final res = await http.get(url);
+                    final bytes = res.bodyBytes;
+                    final temp = await getTemporaryDirectory();
+                    final path = '${temp.path}/image.jpg';
+                    File(path).writeAsBytesSync(bytes);
+                    // ignore: deprecated_member_use
+                    await Share.shareFiles(
+                      [path],
+                      text: widget.data['share-url'] ?? 'url',
+                    );
+                  },
+                  icon: Icon(Icons.share),
+                )
+        ],
+      ),
       body: SafeArea(
         child: provider.isLoading
             ? const Center(child: CircularProgressIndicator())
@@ -111,9 +148,9 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       ? const SizedBox()
                       : LoctionContair(location: widget.data['city']),
                   const SizedBox(height: 8),
-                  // RegisterationDateContainer(data: widget.data),
-                  // const Text('REgister now'),
-                  const Divider(),
+
+                  RegisterNowContainer(
+                      registrationUrl: widget.data['registration_url'] ?? ''),
                   //horizontal view
                   Container(
                     height: 40,
@@ -150,5 +187,3 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     );
   }
 }
-
-//

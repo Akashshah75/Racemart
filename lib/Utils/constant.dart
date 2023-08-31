@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -67,6 +68,13 @@ Future<void> launchUrls(var url) async {
     throw Exception('Could not launch $url');
   }
 }
+
+//
+void size(BuildContext context) {
+  final size = MediaQuery.of(context).size.height;
+  print(size * 0.75);
+}
+
 
 
 

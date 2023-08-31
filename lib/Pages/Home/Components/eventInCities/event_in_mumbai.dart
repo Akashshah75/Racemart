@@ -80,8 +80,9 @@ class _EventInCityState extends State<EventInCity> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: 620,
+      height: size * 0.75,
       child: widget.provider.isLoading
           ? const Center(
               child: CircularProgressIndicator(),

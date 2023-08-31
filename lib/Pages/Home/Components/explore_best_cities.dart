@@ -14,9 +14,12 @@ class ExploreBestCities extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
+
     return SizedBox(
-      height: 640,
+      height: size * 0.7,
       child: ListView.builder(
+        // shrinkWrap: true,
         scrollDirection: Axis.vertical,
         itemCount: provider.exploreBestCities.length,
         itemBuilder: (context, index) {
@@ -40,12 +43,13 @@ class CitiesEventContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
+      margin: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
       width: double.infinity,
       height: 200,
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: blackColor.withOpacity(0.2)),
         image: data['image'] != null
             ? DecorationImage(
                 fit: BoxFit.cover, image: NetworkImage(data['image']))

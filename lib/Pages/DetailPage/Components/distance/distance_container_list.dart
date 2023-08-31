@@ -68,7 +68,7 @@ class DistanceContainerList extends StatelessWidget {
                                     )
                                   : const SizedBox(),
                               const SizedBox(width: 10),
-                              dataOfDistance.length > 3
+                              dataOfDistance.length > 2
                                   ? IconButtonContainer(
                                       press: () {
                                         showModalBottomSheet(
@@ -131,24 +131,15 @@ class DistanceBottomSheetContainer extends StatelessWidget {
                   itemCount: dataOfDistance.length,
                   itemBuilder: (context, index) {
                     var distanceData = dataOfDistance[index];
-                    // if (index > 4) {
-                    //   return const Text('More...');
-                    // } else {
                     return Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
+                          horizontal: 0, vertical: 8),
                       decoration: BoxDecoration(
                         color: appBg,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(distance, width: 20, color: blackColor),
-                          //const Icon(Icons.track_changes, size: 18),
-                          const SizedBox(width: 8),
-                          Text(distanceData['name'].toString())
-                        ],
+                      child: CustomeDistanceContainer(
+                        name: distanceData['name'].toString(),
                       ),
                     );
                     // }
@@ -187,21 +178,6 @@ class IconButtonContainer extends StatelessWidget {
     );
   }
 }
-//
-//  showModalBottomSheet(
-//                           isScrollControlled: true,
-//                           enableDrag: false,
-//                           context: context,
-//                           isDismissible: false,
-//                           shape: const RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.only(
-//                               topLeft: Radius.circular(25),
-//                               topRight: Radius.circular(25),
-//                             ),
-//                           ),
-//                           builder: (context) => ChangePasswordBottomSheet(
-//                               h: h, controller: controller),
-//                         );
 
 //
 class CustomeDistanceContainer extends StatelessWidget {
@@ -213,8 +189,9 @@ class CustomeDistanceContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('name:${name.length}');
     return Container(
-      width: 90,
+      width: name.length > 10 ? 130 : 90,
       height: 35,
       decoration: BoxDecoration(
         color: appBg,

@@ -74,8 +74,9 @@ class _UserInterestPageState extends State<UserInterestPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: 650,
+      height: size * 0.75,
       child: widget.provider.isLoadingForUserInterest
           ? const Center(
               child: CircularProgressIndicator(),

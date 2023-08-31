@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../Pages/DetailPage/Components/Description/discription_container.dart';
 import '../Pages/DetailPage/Components/deliverables/deliverables_container.dart';
@@ -13,12 +17,14 @@ import '../Pages/DetailPage/Components/location/location_contaner.dart';
 import '../Pages/DetailPage/Components/partener/partener_container_list.dart';
 import '../Pages/DetailPage/Components/prices/price_listing_container.dart';
 import '../Pages/DetailPage/Components/registerDateContainer/registration_date_container.dart';
+import '../Pages/DetailPage/Components/registration_now_container.dart';
 import '../Pages/DetailPage/Components/similarListing/similar_listing_list.dart';
 import '../Pages/DetailPage/Components/terrrains/terains_container_list.dart';
 import '../Provider/detail_page_provider.dart';
 import '../Utils/app_asset.dart';
 import '../Utils/app_color.dart';
 import '../Utils/app_size.dart';
+import 'package:http/http.dart' as http;
 
 class NotificationDetailPage extends StatefulWidget {
   const NotificationDetailPage({super.key, required this.eventId});
@@ -93,6 +99,37 @@ class _NotificationDetailPageState extends State<NotificationDetailPage>
     // print('Event_Id: ${widget.data['id']}');
     return Scaffold(
       backgroundColor: appBg,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: appBg,
+        iconTheme: IconThemeData(color: blackColor),
+        title: Text(
+          'Details',
+          style: TextStyle(color: blackColor),
+        ),
+        actions: [
+          provider.detailEventData['share-url'] == null
+              ? SizedBox()
+              : IconButton(
+                  onPressed: () async {
+                    var urlImage = provider.detailEventData['poster'] ??
+                        demo; //provider.detailEventData['poster']; //urlImage1;
+                    final Uri url = Uri.parse(urlImage);
+                    final res = await http.get(url);
+                    final bytes = res.bodyBytes;
+                    final temp = await getTemporaryDirectory();
+                    final path = '${temp.path}/image.jpg';
+                    File(path).writeAsBytesSync(bytes);
+                    // ignore: deprecated_member_use
+                    await Share.shareFiles(
+                      [path],
+                      text: provider.detailEventData['share-url'] ?? 'url',
+                    );
+                  },
+                  icon: Icon(Icons.share),
+                )
+        ],
+      ),
       body: SafeArea(
         child: provider.isLoading
             ? const Center(child: CircularProgressIndicator())
@@ -115,9 +152,9 @@ class _NotificationDetailPageState extends State<NotificationDetailPage>
                       : LoctionContair(
                           location: provider.detailEventData['city']),
                   const SizedBox(height: 8),
-                  // RegisterationDateContainer(data: widget.data),
-                  // const Text('REgister now'),
-                  const Divider(),
+                  RegisterNowContainer(
+                      registrationUrl:
+                          provider.detailEventData['registration_url'] ?? ''),
                   //horizontal view
                   Container(
                     height: 40,

@@ -23,30 +23,11 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    // final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     final provider = Provider.of<FavEventAddWishlist>(context, listen: true);
     final wishProvider = Provider.of<WishListProvider>(context, listen: true);
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
-
-    // //
-
-    // final date1 = DateTime.parse('2023-01-17 14:21:00');
-    // final date2 = DateTime.parse('2023-01-18 14:21:00');
-    // final DateTime now = DateTime.now();
-    // //
-    // print((now.compareTo(date1) == 0 || date1.compareTo(now) == 1) &&
-    //     (date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
-    // print((now.compareTo(date1) == 0 || now.compareTo(date1) == 1) &&
-    //     (date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
-    // print((date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
-    // if (widget.data['early_start_date'] != null ||
-    //     widget.data['early_end_date'] != null) {
-    //   bool res = checkDate(
-    //       widget.data['early_start_date'], widget.data['early_end_date']);
-    //   print(res);
-    // }
     return Container(
       foregroundDecoration: widget.data['early_start_date'] == null ||
               widget.data['early_end_date'] == null
@@ -94,14 +75,6 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
               offset: const Offset(0, 5),
               color: greyColor.withOpacity(0.25) //Color(0xFFe8e8e8),
               ),
-          // BoxShadow(
-          //   color: white,
-          //   offset: const Offset(-5, 0),
-          // ),
-          // BoxShadow(
-          //   color: white,
-          //   offset: const Offset(5, 0),
-          // ),
         ],
         borderRadius: BorderRadius.circular(12),
       ),
@@ -120,7 +93,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                   child: widget.data['poster'] != null
                       ? Image.network(
                           widget.data['poster'],
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                           height: 200,
                           width: double.infinity,
                         )
@@ -311,8 +284,9 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                               itemBuilder: (context, index) {
                                 if (index < 2) {
                                   return SizedBox(
-                                    width: 40,
+                                    width: 50,
                                     child: Text(
+                                      // '10 miles ',
                                       showDistance[index]['name'],
                                       style: TextStyle(
                                         color: blueColor,

@@ -60,40 +60,43 @@ PreferredSizeWidget customeAppBar(BuildContext context,
               //   ),
               // ),
               //Like button
-              Consumer<WishListProvider>(builder: (context, value, child) {
-                return badges.Badge(
-                  showBadge: value.lengthOFwishlist <= 0 ? false : true,
-                  position: value.lengthOFwishlist > 9
-                      ? badges.BadgePosition.topEnd(top: 2, end: -8)
-                      : badges.BadgePosition.topEnd(top: 2, end: 1),
-                  badgeContent: Text(
-                    value.lengthOFwishlist > 9
-                        ? '9+'
-                        : value.lengthOFwishlist.toString(),
-                    style: const TextStyle(color: whiteColor),
-                  ),
-                  badgeAnimation: const badges.BadgeAnimation.rotation(
-                    animationDuration: Duration(seconds: 1),
-                    colorChangeAnimationDuration: Duration(seconds: 1),
-                    loopAnimation: false,
-                    curve: Curves.fastOutSlowIn,
-                    colorChangeAnimationCurve: Curves.easeInCubic,
-                  ),
-                  child: IconButton(
-                    padding: const EdgeInsets.only(top: 8),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => const WishListPage()),
+              provider.selectedIndex == 3 || provider.selectedIndex == 5
+                  ? SizedBox()
+                  : Consumer<WishListProvider>(
+                      builder: (context, value, child) {
+                      return badges.Badge(
+                        showBadge: value.lengthOFwishlist <= 0 ? false : true,
+                        position: value.lengthOFwishlist > 9
+                            ? badges.BadgePosition.topEnd(top: 2, end: -8)
+                            : badges.BadgePosition.topEnd(top: 2, end: 1),
+                        badgeContent: Text(
+                          value.lengthOFwishlist > 9
+                              ? '9+'
+                              : value.lengthOFwishlist.toString(),
+                          style: const TextStyle(color: whiteColor),
+                        ),
+                        badgeAnimation: const badges.BadgeAnimation.rotation(
+                          animationDuration: Duration(seconds: 1),
+                          colorChangeAnimationDuration: Duration(seconds: 1),
+                          loopAnimation: false,
+                          curve: Curves.fastOutSlowIn,
+                          colorChangeAnimationCurve: Curves.easeInCubic,
+                        ),
+                        child: IconButton(
+                          padding: const EdgeInsets.only(top: 8),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const WishListPage()),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.favorite_border_sharp,
+                            color: blackColor,
+                          ),
+                        ),
                       );
-                    },
-                    icon: const Icon(
-                      Icons.favorite_border_sharp,
-                      color: blackColor,
-                    ),
-                  ),
-                );
-              }),
+                    }),
 
               //filtre button for userinterest page
               provider.selectedIndex == 1
@@ -153,7 +156,7 @@ PreferredSizeWidget customeAppBar(BuildContext context,
           //
           // Row(),
           const Padding(
-            padding: EdgeInsets.only(left: 8, top: 10),
+            padding: EdgeInsets.only(left: 8, top: 10, right: 10),
             child: EventNamesForRoute(),
           ),
         ],
