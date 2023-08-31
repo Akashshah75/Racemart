@@ -20,6 +20,7 @@ class CustomEventContainer extends StatefulWidget {
 }
 
 class _CustomEventContainerState extends State<CustomEventContainer> {
+  DateTime now = DateTime.now();
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,9 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
+    final DateTime registraationEndDate =
+        DateTime.parse(widget.data['registration_end_date']);
+
     return Container(
       foregroundDecoration: widget.data['early_start_date'] == null ||
               widget.data['early_end_date'] == null
@@ -98,10 +102,10 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                           width: double.infinity,
                         )
                       : Image.asset(
-                          demo, //demo,
+                          noImage, //demo,
                           height: 200,
                           width: double.infinity,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                         )),
               //
               widget.data['phase'] == null
@@ -365,91 +369,94 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
           //
           const Divider(),
           //
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // TextButton(
-              //   onPressed: () {
-              //     _launchUrl(url);
-              //   },
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(left: 10),
-              //     child: Text(
-              //       'Register now',
-              //       style: TextStyle(
-              //           color: blueColor,
-              //           fontSize: 14,
-              //           letterSpacing: 1.2,
-              //           fontWeight: FontWeight.w600),
-              //     ),
-              //   ),
-              // ),
+          registraationEndDate.isBefore(now)
+              ? SizedBox()
+              : Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // TextButton(
+                    //   onPressed: () {
+                    //     _launchUrl(url);
+                    //   },
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(left: 10),
+                    //     child: Text(
+                    //       'Register now',
+                    //       style: TextStyle(
+                    //           color: blueColor,
+                    //           fontSize: 14,
+                    //           letterSpacing: 1.2,
+                    //           fontWeight: FontWeight.w600),
+                    //     ),
+                    //   ),
+                    // ),
 
-              InkWell(
-                onTap: () {
-                  _launchUrl(url);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Register now',
-                        style: TextStyle(
-                            color: blueColor,
-                            fontSize: 14,
-                            letterSpacing: 1.2,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(width: 3),
-                      Icon(
-                        Icons.how_to_reg_rounded,
-                        color: blueColor,
-                        size: 16,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              widget.data['lowest_price'] == null
-                  ? const SizedBox()
-                  : Container(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    InkWell(
+                      onTap: () {
+                        _launchUrl(url);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
                           children: [
-                            Row(
-                              children: [
-                                Image.asset(
-                                  rupay,
-                                  width: 14,
-                                  color: redColor.withOpacity(0.8),
-                                ),
-                                const SizedBox(width: 2),
-                                Text(
-                                  widget.data['lowest_price'].toString(),
-                                  style: TextStyle(
-                                    color: blueColor,
-                                    fontSize: 14,
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(width: 2),
-                                const Text(
-                                  'onwards',
-                                  style: TextStyle(
-                                    color: redColor,
-                                    fontSize: 12,
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ])),
-            ],
-          ),
+                            Text(
+                              'Register now',
+                              style: TextStyle(
+                                  color: blueColor,
+                                  fontSize: 14,
+                                  letterSpacing: 1.2,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(width: 3),
+                            Icon(
+                              Icons.how_to_reg_rounded,
+                              color: blueColor,
+                              size: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    widget.data['lowest_price'] == null
+                        ? const SizedBox()
+                        : Container(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        rupay,
+                                        width: 14,
+                                        color: redColor.withOpacity(0.8),
+                                      ),
+                                      const SizedBox(width: 2),
+                                      Text(
+                                        widget.data['lowest_price'].toString(),
+                                        style: TextStyle(
+                                          color: blueColor,
+                                          fontSize: 14,
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 2),
+                                      const Text(
+                                        'onwards',
+                                        style: TextStyle(
+                                          color: redColor,
+                                          fontSize: 12,
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ])),
+                  ],
+                ),
         ],
       ),
     );
