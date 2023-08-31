@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Provider/find_race_provider.dart';
 
 import '../../../../Network/base_clent.dart';
 import '../../../../Provider/authentication_provider.dart';
 import '../../../../Utils/app_asset.dart';
-import '../../../DetailPage/detail_of_home_page.dart';
-import '../../Components/customeEventContainer/custome_event_container.dart';
+import 'components/gridview_of_running.dart';
+import 'components/listview_of_running.dart';
 
 class RunningPage extends StatefulWidget {
   const RunningPage({super.key});
@@ -94,6 +95,7 @@ class _RunningPageState extends State<RunningPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<HomeProvider>(context, listen: true);
     return Scaffold(
       body: SafeArea(
         child: Consumer<FindARacesProvider>(builder: (context, value, child) {
@@ -104,35 +106,13 @@ class _RunningPageState extends State<RunningPage> {
                 )
               : value.typeOfData.isEmpty
                   ? Center(child: Image.asset(noDataFound))
-                  : ListView.builder(
-                      controller: controllers,
-                      itemCount: runningTypeData.length + 1,
-                      itemBuilder: (context, index) {
-                        if (index < runningTypeData.length) {
-                          var dataOfEvent = runningTypeData[index];
-                          return GestureDetector(
-                            onTap: () {
-                              // widget.provider.openMap();
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => DetailPageOfHome(
-                                      index: index, data: dataOfEvent)));
-                            },
-                            child: CustomEventContainer(
-                                key: ValueKey(dataOfEvent['id']),
-                                data: dataOfEvent,
-                                index: index),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Center(
-                              child: hasMore
-                                  ? const CircularProgressIndicator()
-                                  : const Text('No more data to load?'),
-                            ),
-                          );
-                        }
-                      });
+                  : provider.isList
+                      ? ListViewOfRunning(
+                          controllers: controllers,
+                          runningTypeData: runningTypeData,
+                          hasMore: hasMore)
+                      : GridViewOfRunning(
+                          controllers: controllers, hasMore: hasMore);
         }),
       ),
     );
