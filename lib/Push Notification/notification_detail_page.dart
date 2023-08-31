@@ -95,6 +95,7 @@ class _NotificationDetailPageState extends State<NotificationDetailPage>
           duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
     }
 
+    print('Detail:${provider.detailEventData}');
     print(widget.eventId);
     // print('Event_Id: ${widget.data['id']}');
     return Scaffold(
@@ -138,11 +139,16 @@ class _NotificationDetailPageState extends State<NotificationDetailPage>
                 children: [
                   const SizedBox(height: 8),
                   ImageHedingContainer(
-                      shareUrl: provider.detailEventData['share-url'] ?? 'url',
-                      image: provider.detailEventData['poster'] ?? demo,
-                      title: provider.detailEventData['title'] ?? '',
-                      registrationUrl:
-                          provider.detailEventData['registration_url'] ?? ""),
+                    shareUrl: provider.detailEventData['share-url'] ?? 'url',
+                    image: provider.detailEventData['poster'] ?? demo,
+                    title: provider.detailEventData['title'] ?? '',
+                    registrationUrl:
+                        provider.detailEventData['registration_url'] ?? "",
+                    earlyStartDate:
+                        provider.detailEventData['early_start_date'] ?? "",
+                    earlyEndDate:
+                        provider.detailEventData['early_end_date'] ?? "",
+                  ),
                   spacingHeightMin1,
                   HedingOfDetailPage(
                       title: provider.detailEventData['title'] ?? ""),

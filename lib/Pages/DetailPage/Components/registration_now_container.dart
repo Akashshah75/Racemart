@@ -12,6 +12,7 @@ class RegisterNowContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('registrationUrl:$registrationUrl');
     final Uri url = Uri.parse(registrationUrl);
     return Stack(
       clipBehavior: Clip.none,

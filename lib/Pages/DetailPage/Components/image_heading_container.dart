@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Utils/app_color.dart';
+import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../Utils/app_asset.dart';
+import '../../../Utils/constant.dart';
 
 class ImageHedingContainer extends StatelessWidget {
   const ImageHedingContainer({
@@ -10,11 +12,15 @@ class ImageHedingContainer extends StatelessWidget {
     required this.title,
     required this.shareUrl,
     required this.registrationUrl,
+    required this.earlyStartDate,
+    required this.earlyEndDate,
   });
   final String image;
   final String title;
   final String shareUrl;
   final String registrationUrl;
+  final String earlyStartDate;
+  final String earlyEndDate;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,19 @@ class ImageHedingContainer extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+            foregroundDecoration: earlyStartDate.isEmpty || earlyEndDate.isEmpty
+                ? const BoxDecoration()
+                : checkDate(earlyStartDate, earlyEndDate)
+                    ? RotatedCornerDecoration.withColor(
+                        color: redColor, // Colors.blue,
+                        badgeSize: Size(64, 64),
+                        badgePosition: BadgePosition.topStart,
+                        textSpan: TextSpan(
+                          text: 'Early\n bird',
+                          style: TextStyle(fontSize: 10),
+                        ),
+                      )
+                    : const BoxDecoration(),
             margin: const EdgeInsets.all(10),
             alignment: Alignment.topLeft,
             width: double.infinity,
