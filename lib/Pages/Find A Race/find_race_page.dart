@@ -179,13 +179,14 @@ class FiledForSearchEventPage extends StatelessWidget {
             isLoading: findProvider.isLoading,
             text: 'Search',
             pres: () {
-              findProvider.searchEvent(context,
-                  category: homeProvider.choseAllType,
-                  city: homeProvider.choseCity,
-                  distance: homeProvider.listOfDistanceData,
-                  badge: homeProvider.listOfBadgeData,
-                  partner: homeProvider.listOfPartnersData,
-                  findProvider: findProvider);
+              findProvider.searchEvent(
+                context,
+                category: homeProvider.choseAllType,
+                city: homeProvider.choseCity,
+                distance: homeProvider.listOfDistanceData,
+                badge: homeProvider.listOfBadgeData,
+                partner: homeProvider.listOfPartnersData,
+              );
             }),
         const SizedBox(
           height: 20,

@@ -387,5 +387,6 @@ class HomeProvider with ChangeNotifier {
   void chageListToGrid() {
     isList = !isList;
     notifyListeners();
-  }
+  } //
+  //
 }

@@ -32,6 +32,10 @@ PreferredSizeWidget customeAppBar(BuildContext context,
             elevation: 0,
             backgroundColor: white,
             leading: const MenuWidget(),
+            title: Text(
+              'Home',
+              style: TextStyle(color: blackColor),
+            ),
             actions: [
               // Container(
               //   decoration: BoxDecoration(

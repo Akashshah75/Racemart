@@ -16,9 +16,7 @@ import '../../Home/Components/customeEventContainer/grid_view_container.dart';
 class ResultOfSerchList extends StatefulWidget {
   const ResultOfSerchList({
     super.key,
-    required this.provider,
   });
-  final FindARacesProvider provider;
 
   @override
   State<ResultOfSerchList> createState() => _ResultOfSerchListState();
@@ -89,14 +87,17 @@ class _ResultOfSerchListState extends State<ResultOfSerchList> {
       if (newEvent.length < limit) {
         hasMore = false;
       }
-      widget.provider.searchListData.addAll(newEvent);
+      // widget.provider.searchListData.addAll(newEvent);
+      findARaceProvider.searchListData.addAll(newEvent);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
-    final searchData = widget.provider.searchListData;
+    final findARaceProvider =
+        Provider.of<FindARacesProvider>(context, listen: true);
+    final searchData = findARaceProvider.searchListData;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,

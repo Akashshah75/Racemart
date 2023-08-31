@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -44,17 +45,21 @@ class AuthenticationProvider with ChangeNotifier {
     print('fcm:$fcmToken');
   }
 
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
 //get device type
-  void getDeviceType() {
+  void getDeviceType() async {
     if (Platform.isAndroid) {
-      device = 'android';
+      // device = 'android';
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      print('Running on ${androidInfo.model}');
+      device = androidInfo.model;
       print(device);
       notifyListeners();
     } else if (Platform.isIOS) {
-      device = 'ios';
-      notifyListeners();
-    } else {
-      device = 'not found';
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      print('Running on ${iosInfo.utsname.machine}');
+      device = iosInfo.utsname.machine;
       notifyListeners();
     }
   }
@@ -80,6 +85,7 @@ class AuthenticationProvider with ChangeNotifier {
         'device': device,
         'token': fcmToken
       };
+      print(body);
       var response = await BaseClient().post(loginUrl, body);
 
       if (response == null) {

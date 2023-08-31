@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Pages/Home/home%20widget/home_main_widget.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_init_methods.dart';
-import '../../Helper/appbar/app_bar_widget.dart';
+import 'package:racemart_app/Provider/bottom%20nav/bottom_nav_type_provider.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/constant.dart';
-import 'home widget/home_widget.dart';
+import 'bottom nav/bottom_nav_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +18,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    final bottomNavprovider =
+        Provider.of<BottomnavTypeProvider>(context, listen: false);
+    bottomNavprovider.activeScreen = HomeMainWidget();
+    bottomNavprovider.activeIndex = 0;
     HomePageInit().notificationMethods(context);
     HomePageInit().addProductOnWishlistPageMethod(context);
     super.initState();
@@ -29,6 +32,8 @@ class _HomePageState extends State<HomePage> {
     var h = MediaQuery.of(context).size.height;
     DateTime timeBackPressed = DateTime.now();
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
+    final bottomNavprovider =
+        Provider.of<BottomnavTypeProvider>(context, listen: true);
     return DefaultTabController(
       length: 5,
       child: WillPopScope(
@@ -39,39 +44,12 @@ class _HomePageState extends State<HomePage> {
           return exitTheAppMethod(isExitWarning);
         },
         child: Scaffold(
-          backgroundColor: white, //appbg,
-          appBar: customeAppBar(context, provider: homeProvider, h: h),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 5),
-                homeWidget(homeProvider),
-              ],
-            ),
-          ),
-          bottomNavigationBar: GNav(tabs: [
-            GButton(
-              icon: Icons.home,
-              gap: 5,
-              text: 'Home',
-            ),
-            GButton(
-              icon: FontAwesomeIcons.personRunning,
-              gap: 5,
-              text: 'Running',
-            ),
-            GButton(
-              icon: FontAwesomeIcons.personWalking,
-              gap: 5,
-              text: 'Walking',
-            ),
-            GButton(
-              icon: FontAwesomeIcons.personBiking,
-              gap: 5,
-              text: ' Cycling',
-            ),
-          ]),
+          backgroundColor: white,
+          appBar:
+              bottomNavprovider.changeAppBarWidget(context, homeProvider, h),
+          body: bottomNavprovider.activeScreen,
+          bottomNavigationBar:
+              BottomNavigationContainer(bottomNavprovider: bottomNavprovider),
         ),
       ),
     );
