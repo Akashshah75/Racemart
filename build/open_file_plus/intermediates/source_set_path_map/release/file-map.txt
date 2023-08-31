@@ -1,0 +1,14 @@
+com.joutvhu.openfile.open_file_plus-jetified-window-1.0.0-beta04-0 C:\Users\Akash\.gradle\caches\transforms-3\003a22a5515e1f77f89701a46efbc2ec\transformed\jetified-window-1.0.0-beta04\res
+com.joutvhu.openfile.open_file_plus-jetified-window-java-1.0.0-beta04-1 C:\Users\Akash\.gradle\caches\transforms-3\3c0e35d493ccd3f2bb8b07f96b013b9c\transformed\jetified-window-java-1.0.0-beta04\res
+com.joutvhu.openfile.open_file_plus-media-1.0.0-2 C:\Users\Akash\.gradle\caches\transforms-3\3ec4cd359258c60be14fe77b7d91d557\transformed\media-1.0.0\res
+com.joutvhu.openfile.open_file_plus-jetified-annotation-experimental-1.1.0-3 C:\Users\Akash\.gradle\caches\transforms-3\717758e51a3aff0b90b2556f8994e808\transformed\jetified-annotation-experimental-1.1.0\res
+com.joutvhu.openfile.open_file_plus-core-1.6.0-4 C:\Users\Akash\.gradle\caches\transforms-3\cf72013d765e0f69e97cd3b9cbb09800\transformed\core-1.6.0\res
+com.joutvhu.openfile.open_file_plus-coordinatorlayout-1.0.0-5 C:\Users\Akash\.gradle\caches\transforms-3\daf3dffc0e005e5234f8ec4fc9f09fb6\transformed\coordinatorlayout-1.0.0\res
+com.joutvhu.openfile.open_file_plus-main-6 C:\Users\Akash\AppData\Local\Pub\Cache\hosted\pub.dev\open_file_plus-3.4.1\android\src\main\res
+com.joutvhu.openfile.open_file_plus-release-7 C:\Users\Akash\AppData\Local\Pub\Cache\hosted\pub.dev\open_file_plus-3.4.1\android\src\release\res
+com.joutvhu.openfile.open_file_plus-pngs-8 D:\aWorkingProject\racemart\build\open_file_plus\generated\res\pngs\release
+com.joutvhu.openfile.open_file_plus-resValues-9 D:\aWorkingProject\racemart\build\open_file_plus\generated\res\resValues\release
+com.joutvhu.openfile.open_file_plus-rs-10 D:\aWorkingProject\racemart\build\open_file_plus\generated\res\rs\release
+com.joutvhu.openfile.open_file_plus-mergeReleaseResources-11 D:\aWorkingProject\racemart\build\open_file_plus\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.joutvhu.openfile.open_file_plus-mergeReleaseResources-12 D:\aWorkingProject\racemart\build\open_file_plus\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.joutvhu.openfile.open_file_plus-merged_res-13 D:\aWorkingProject\racemart\build\open_file_plus\intermediates\merged_res\release

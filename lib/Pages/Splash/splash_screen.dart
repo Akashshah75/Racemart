@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/authentication_provider.dart';
 import 'package:racemart_app/Routes/route_names.dart';
@@ -50,13 +49,17 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(bgLoginPage),
+              Image.asset(
+                appLogo,
+                width: 120,
+              ),
+              // SvgPicture.asset(appLogo),
               const Text('Racemart'),
               const SizedBox(height: 20),
-              const Text(
-                'Loading...',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              // const Text(
+              //   'Loading...',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
             ],
           ),
         ),

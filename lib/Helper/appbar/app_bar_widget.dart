@@ -32,7 +32,7 @@ PreferredSizeWidget customeAppBar(BuildContext context,
             elevation: 0,
             backgroundColor: white,
             leading: const MenuWidget(),
-            title: Text(
+            title: const Text(
               'Home',
               style: TextStyle(color: blackColor),
             ),
@@ -61,7 +61,7 @@ PreferredSizeWidget customeAppBar(BuildContext context,
               // ),
               //Like button
               provider.selectedIndex == 3 || provider.selectedIndex == 5
-                  ? SizedBox()
+                  ? const SizedBox()
                   : Consumer<WishListProvider>(
                       builder: (context, value, child) {
                       return badges.Badge(
@@ -142,15 +142,15 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                   ? IconButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FindRacePage(),
+                          builder: (context) => const FindRacePage(),
                         ));
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.search,
                         color: blackColor,
                       ),
                     )
-                  : SizedBox()
+                  : const SizedBox()
             ],
           ),
           //
