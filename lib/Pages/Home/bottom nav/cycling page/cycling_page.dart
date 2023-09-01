@@ -208,7 +208,7 @@ class ListViewOfCycling extends StatelessWidget {
               child: Center(
                 child: hasMore
                     ? const CircularProgressIndicator()
-                    : const Text('No more data to load?'),
+                    : const SizedBox(), //const Text('No more data to load?'),
               ),
             );
           }

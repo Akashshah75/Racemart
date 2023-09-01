@@ -184,7 +184,7 @@ class ListViewOfEventInCity extends StatelessWidget {
               child: Center(
                 child: eventInCityData.length > 10 && hasMore
                     ? const CircularProgressIndicator()
-                    : const Text('No more data to load!!'),
+                    : const SizedBox(), //const Text('No more data to load!!'),
               ),
             );
           }
