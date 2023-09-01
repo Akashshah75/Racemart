@@ -61,15 +61,16 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     //App logo
                     Container(
-                      height: 100,
-                      width: 100,
-                      margin: EdgeInsets.only(top: height * 0.12),
-                      decoration: BoxDecoration(
-                        color: containerColor,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: SvgPicture.asset(bgLoginPage),
-                    ),
+                        height: 100,
+                        width: 100,
+                        margin: EdgeInsets.only(top: height * 0.12),
+                        decoration: BoxDecoration(
+                          color: containerColor,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Image.asset(
+                            appLogo) //SvgPicture.asset(bgLoginPage),
+                        ),
                     //Text
                     const SizedBox(height: 25),
                     HeadingText(text: 'Login', color: blueColor),

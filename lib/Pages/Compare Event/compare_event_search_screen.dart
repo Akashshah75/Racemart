@@ -152,6 +152,9 @@ class CompareEventContainer extends StatelessWidget {
                                 firstEventData: provider.detailFirstEventData,
                                 width: width,
                               )));
+                    } else if (provider.choseFirstEvent.isNotEmpty &&
+                        provider.choseSecondEvent.isNotEmpty) {
+                      print('ok');
                     } else {
                       toastMessage('Plese select all');
                     }

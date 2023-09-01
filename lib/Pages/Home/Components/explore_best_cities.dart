@@ -64,7 +64,7 @@ class CitiesEventContainer extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: whiteColor.withOpacity(0.2),
+              color: whiteColor.withOpacity(0.8),
               borderRadius: BorderRadius.circular(12),
             ),
             width: 100,
@@ -76,37 +76,50 @@ class CitiesEventContainer extends StatelessWidget {
                 Text(
                   data['total'].toString(),
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: blueColor,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color:
+                          blueColor //data['image'] != null ? redColor : blueColor,
+                      ),
                 ),
                 const SizedBox(width: 8),
                 Text(
                   'Events',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: blueColor,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color:
+                          blueColor //data['image'] != null ? redColor : blueColor,
+                      ),
                 ),
               ],
             ),
           ),
           const Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HeadingText(
-                  text: data['name'] ?? 'Mumbai', color: blueColor //whiteColor,
-                  ),
-              Container(
-                margin: const EdgeInsets.only(left: 2),
-                color: redColor,
-                height: 5,
-                width: 50,
-              )
-            ],
+          Container(
+            padding: const EdgeInsets.only(left: 10, top: 3),
+            // alignment: Alignment.center,
+            width: 140,
+            height: 40,
+            decoration: BoxDecoration(
+              color: whiteColor.withOpacity(0.8),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HeadingText(
+                    text: data['name'] ?? 'Mumbai',
+                    color: blueColor //whiteColor,
+                    ),
+                Container(
+                  margin: const EdgeInsets.only(left: 2),
+                  color: redColor,
+                  height: 5,
+                  width: 50,
+                )
+              ],
+            ),
           )
         ]),
       ),

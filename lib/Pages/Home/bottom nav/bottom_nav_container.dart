@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../../../Provider/bottom nav/bottom_nav_type_provider.dart';
+import '../../../Utils/app_asset.dart';
 import '../../../Utils/app_color.dart';
 
 class BottomNavigationContainer extends StatelessWidget {
@@ -20,13 +21,13 @@ class BottomNavigationContainer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: GNav(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             tabBackgroundColor: appBg,
-            gap: 5,
+            gap: 8,
             onTabChange: (val) {
               bottomNavprovider.changeBottomNavPage(val);
             },
-            tabs: [
+            tabs: const [
               GButton(
                 icon: Icons.home,
                 text: 'Home',
@@ -36,12 +37,27 @@ class BottomNavigationContainer extends StatelessWidget {
                 text: 'Running',
               ),
               GButton(
-                icon: FontAwesomeIcons.personWalking,
-                text: 'Walking',
+                icon: FontAwesomeIcons.personBiking,
+                text: 'Cycling',
+                iconSize: 24,
               ),
               GButton(
+                leading: Image(
+                  image: AssetImage(duathlonIcon),
+                  color: blackColor,
+                  width: 24,
+                ),
                 icon: FontAwesomeIcons.personBiking,
-                text: ' Cycling',
+                text: 'Duathlon',
+              ),
+              GButton(
+                leading: Image(
+                  image: AssetImage(trithlonIcon),
+                  color: blackColor,
+                  width: 25,
+                ),
+                icon: FontAwesomeIcons.personBiking,
+                text: 'Triathlon',
               ),
             ]),
       ),

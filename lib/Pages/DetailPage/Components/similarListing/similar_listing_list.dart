@@ -11,36 +11,40 @@ class SimilarListing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List similarListingDataList = data['similar_events'] ?? [];
-    return similarListingDataList.isEmpty
-        ? Center(
-            child: Image.asset(noDataFound),
-          )
-        : Container(
-            margin: defaultSymetricPeding,
-            width: double.infinity,
-            height: 380,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: white,
+    return Container(
+      margin: defaultSymetricPeding,
+      width: double.infinity,
+      height: 380,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: white,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 10, top: 10),
+            child: const Text(
+              'Similar listing',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: blackColor,
+                letterSpacing: 1.2,
+              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 10, top: 10),
-                  child: const Text(
-                    'Similar listing',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: blackColor,
-                      letterSpacing: 1.2,
-                    ),
+          ),
+          const Divider(),
+          //
+
+          similarListingDataList.isEmpty
+              ? Center(
+                  child: Image.asset(
+                    noDataFound,
+                    width: 300,
                   ),
-                ),
-                const Divider(),
-                //
-                Expanded(
+                )
+              : Expanded(
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: similarListingDataList.length,
@@ -64,8 +68,8 @@ class SimilarListing extends StatelessWidget {
                         );
                       }),
                 ),
-              ],
-            ),
-          );
+        ],
+      ),
+    );
   }
 }

@@ -100,14 +100,14 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       appBar: AppBar(
         elevation: 0,
         backgroundColor: appBg,
-        iconTheme: IconThemeData(color: blackColor),
-        title: Text(
+        iconTheme: const IconThemeData(color: blackColor),
+        title: const Text(
           'Details',
           style: TextStyle(color: blackColor),
         ),
         actions: [
           widget.data['share-url'] == null
-              ? SizedBox()
+              ? const SizedBox()
               : IconButton(
                   onPressed: () async {
                     var urlImage = widget.data['poster'] ??
@@ -124,7 +124,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       text: widget.data['share-url'] ?? 'url',
                     );
                   },
-                  icon: Icon(Icons.share),
+                  icon: const Icon(Icons.share),
                 )
         ],
       ),

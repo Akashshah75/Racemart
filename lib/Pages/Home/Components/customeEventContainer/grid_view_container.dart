@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Utils/app_asset.dart';
 
 import '../../../../Provider/wishlist/fav_event_add_wishlist_provider.dart';
 import '../../../../Provider/wishlist/wishlist_provider.dart';
@@ -45,7 +46,7 @@ class GridViewEventContainer extends StatelessWidget {
                           data['poster'],
                           fit: BoxFit.cover,
                         )
-                      : const SizedBox(),
+                      : Image.asset(noImage),
                 ),
               ),
               const SizedBox(height: 10),

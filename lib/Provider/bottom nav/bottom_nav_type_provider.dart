@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Home/bottom%20nav/cycling%20page/cycling_page.dart';
+import 'package:racemart_app/Pages/Home/bottom%20nav/duathlon%20page/duathlon_page.dart';
 import 'package:racemart_app/Pages/Home/bottom%20nav/running%20page/running_page.dart';
-import 'package:racemart_app/Pages/Home/bottom%20nav/walking%20page/walking_page.dart';
+import 'package:racemart_app/Pages/Home/bottom%20nav/trithalon%20page/trithlon_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -15,26 +16,30 @@ import '../../Utils/app_color.dart';
 import '../wishlist/wishlist_provider.dart';
 
 class BottomnavTypeProvider with ChangeNotifier {
-  Widget activeScreen = HomeMainWidget();
+  Widget activeScreen = const HomeMainWidget();
   int activeIndex = 0;
 
   void changeBottomNavPage(int val) {
     print(val);
     if (val == 0) {
-      activeScreen = HomeMainWidget();
+      activeScreen = const HomeMainWidget();
       activeIndex = 0;
       notifyListeners();
     } else if (val == 1) {
-      activeScreen = RunningPage();
+      activeScreen = const RunningPage();
       activeIndex = 1;
       notifyListeners();
     } else if (val == 2) {
-      activeScreen = WalkingPage();
+      activeScreen = const CyclingPage();
       activeIndex = 2;
       notifyListeners();
     } else if (val == 3) {
-      activeScreen = CyclingPage();
+      activeScreen = const DuathlonPage();
       activeIndex = 3;
+      notifyListeners();
+    } else if (val == 4) {
+      activeScreen = const TrithlonPage();
+      activeIndex = 4;
       notifyListeners();
     }
   }
@@ -49,11 +54,11 @@ class BottomnavTypeProvider with ChangeNotifier {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: white,
-        title: Text(
+        title: const Text(
           'Running',
           style: TextStyle(color: blackColor),
         ),
-        leading: MenuWidget(),
+        leading: const MenuWidget(),
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
@@ -103,10 +108,10 @@ class BottomnavTypeProvider with ChangeNotifier {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => FindRacePage(),
+                builder: (context) => const FindRacePage(),
               ));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: blackColor,
             ),
@@ -118,11 +123,11 @@ class BottomnavTypeProvider with ChangeNotifier {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: white,
-        title: Text(
-          'Walking',
+        title: const Text(
+          'Cycling',
           style: TextStyle(color: blackColor),
         ),
-        leading: MenuWidget(),
+        leading: const MenuWidget(),
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
@@ -172,14 +177,83 @@ class BottomnavTypeProvider with ChangeNotifier {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => FindRacePage(),
+                builder: (context) => const FindRacePage(),
               ));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: blackColor,
             ),
           )
+        ],
+      );
+    } else if (activeIndex == 3) {
+      return AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        backgroundColor: white,
+        title: const Text(
+          'Duathlon',
+          style: TextStyle(color: blackColor),
+        ),
+        leading: const MenuWidget(),
+        actions: [
+          Consumer<WishListProvider>(builder: (context, value, child) {
+            return badges.Badge(
+              showBadge: value.lengthOFwishlist <= 0 ? false : true,
+              position: value.lengthOFwishlist > 9
+                  ? badges.BadgePosition.topEnd(top: 2, end: -8)
+                  : badges.BadgePosition.topEnd(top: 2, end: 1),
+              badgeContent: Text(
+                value.lengthOFwishlist > 9
+                    ? '9+'
+                    : value.lengthOFwishlist.toString(),
+                style: const TextStyle(color: whiteColor),
+              ),
+              badgeAnimation: const badges.BadgeAnimation.rotation(
+                animationDuration: Duration(seconds: 1),
+                colorChangeAnimationDuration: Duration(seconds: 1),
+                loopAnimation: false,
+                curve: Curves.fastOutSlowIn,
+                colorChangeAnimationCurve: Curves.easeInCubic,
+              ),
+              child: IconButton(
+                padding: const EdgeInsets.only(top: 8),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const WishListPage()),
+                  );
+                },
+                icon: const Icon(
+                  Icons.favorite_border_sharp,
+                  color: blackColor,
+                ),
+              ),
+            );
+          }),
+          //
+          IconButton(
+            onPressed: () {
+              homeProvider.chageListToGrid();
+            },
+            icon: Icon(
+              homeProvider.isList ? Icons.grid_view : Icons.list,
+              color: blackColor,
+            ),
+          ),
+          // : const SizedBox(),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const FindRacePage(),
+              ));
+            },
+            icon: const Icon(
+              Icons.search,
+              color: blackColor,
+            ),
+          ),
         ],
       );
     } else {
@@ -187,11 +261,11 @@ class BottomnavTypeProvider with ChangeNotifier {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: white,
-        title: Text(
-          'Cycling',
+        title: const Text(
+          'Triathlon',
           style: TextStyle(color: blackColor),
         ),
-        leading: MenuWidget(),
+        leading: const MenuWidget(),
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
@@ -241,10 +315,10 @@ class BottomnavTypeProvider with ChangeNotifier {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => FindRacePage(),
+                builder: (context) => const FindRacePage(),
               ));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: blackColor,
             ),
@@ -253,11 +327,4 @@ class BottomnavTypeProvider with ChangeNotifier {
       );
     }
   }
-
-  //
-  // void getTypeOfData(BuildContext context) {
-  //   final findRaceProvider =
-  //       Provider.of<FindARacesProvider>(context, listen: false);
-  //   findRaceProvider.searchEventWithOutNavigation(context, category: 4);
-  // }
 }
