@@ -80,13 +80,13 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.3, 'key': 'Registration date'},
       {'h': size * 0.25, 'key': 'Description'},
       {'h': size * 0.33, 'key': 'Distances'},
-      {'h': size * 0.29, 'key': 'Partners'},
+      {'h': size * 0.29, 'key': 'Partners & Associates'},
       {'h': size * 0.285, 'key': 'Prices'},
       {'h': size * 0.29, 'key': 'How to reach'},
       {'h': size * 0.285, 'key': 'Important Dates'},
       {'h': size * 0.285, 'key': 'Terrains'},
       {'h': size * 0.269, 'key': 'Deliverables'},
-      {'h': size * 0.35, 'key': 'similar listing'}
+      {'h': size * 0.35, 'key': 'Similar listing'}
     ];
     void scrollToTap(int index) {
       double sizeOfContainer = containerNames[index]['h'];

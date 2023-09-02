@@ -150,6 +150,12 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                         isLiked: wishProvider.fav.contains(widget.data['id'])
                             ? true
                             : false,
+                        likeBuilder: (isLiked) {
+                          return Icon(
+                            Icons.favorite,
+                            color: isLiked ? appRed : greyColor,
+                          );
+                        },
                         onTap: (isLiked) async {
                           int eventId = widget.data['id'];
                           // print(eventId);
@@ -195,6 +201,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                         width: 50,
                         decoration: BoxDecoration(
                           color: Colors.green,
+                          //Colors.green[500],
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
@@ -209,9 +216,11 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                               ),
                             ),
                             const SizedBox(width: 2),
-                            const Icon(Icons.star_rate,
-                                size: 15, color: whiteColor //yellowColor,
-                                ),
+                            const Icon(
+                              Icons.star_rate,
+                              size: 15,
+                              color: Colors.yellowAccent,
+                            ),
                           ],
                         ),
                       ),
@@ -370,7 +379,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
           const Divider(),
           //
           registraationEndDate.isBefore(now)
-              ? SizedBox()
+              ? const SizedBox()
               : Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -403,7 +412,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                             Text(
                               'Register now',
                               style: TextStyle(
-                                  color: blueColor,
+                                  color: appRed, // blueColor,
                                   fontSize: 14,
                                   letterSpacing: 1.2,
                                   fontWeight: FontWeight.w600),
@@ -411,7 +420,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                             const SizedBox(width: 3),
                             Icon(
                               Icons.how_to_reg_rounded,
-                              color: blueColor,
+                              color: appRed, //blueColor,
                               size: 16,
                             ),
                           ],

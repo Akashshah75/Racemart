@@ -29,7 +29,7 @@ class PartenerContainerList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Partners',
+                    'Partners & Associates',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class PartenerBottomSheetContainer extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              "Parteners",
+              "Partners & Associates",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 10),

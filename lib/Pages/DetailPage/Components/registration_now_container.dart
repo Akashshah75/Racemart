@@ -19,7 +19,7 @@ class RegisterNowContainer extends StatelessWidget {
       children: [
         const Divider(),
         registrationUrl.isEmpty
-            ? SizedBox()
+            ? const SizedBox()
             : Positioned(
                 top: -33,
                 right: 10,
@@ -27,7 +27,7 @@ class RegisterNowContainer extends StatelessWidget {
                   width: 150,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: blueColor,
+                    color: appRed, //blueColor,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(35),
                       bottomRight: Radius.circular(4),

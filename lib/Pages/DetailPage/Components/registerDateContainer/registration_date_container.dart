@@ -1,9 +1,9 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:racemart_app/Utils/app_color.dart';
 
 import '../../../../Utils/app_size.dart';
 import '../../../../Utils/constant.dart';
-import '../../../../utils/app_color.dart';
 import 'components/date_time_conatianer.dart';
 
 class RegisterationDateContainer extends StatelessWidget {
@@ -107,7 +107,7 @@ class RegisterationDateContainer extends StatelessWidget {
                     width: 230,
                     height: 35,
                     decoration: BoxDecoration(
-                      color: blueColor,
+                      color: appRed, // blueColor,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(35),
                         bottomRight: Radius.circular(4),

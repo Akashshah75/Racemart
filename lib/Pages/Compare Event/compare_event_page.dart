@@ -58,6 +58,14 @@ class _CompareEventPageState extends State<CompareEventPage> {
               color: blackColor,
             ),
           ),
+          actions: [
+            TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Clean',
+                  style: TextStyle(color: blueColor),
+                ))
+          ],
         ),
         body: provider.isLoading
             ? const Center(

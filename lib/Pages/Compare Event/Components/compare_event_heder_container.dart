@@ -144,7 +144,7 @@ class ComapreEventContainer extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 height: 40,
-                child: const CompareEventHeadingText(text: 'Social'),
+                child: const CompareEventHeadingText(text: 'Social media'),
               ),
               const Divider(),
             ],

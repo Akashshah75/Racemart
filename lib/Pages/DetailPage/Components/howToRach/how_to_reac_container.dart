@@ -113,7 +113,7 @@ class HowToREachContainer extends StatelessWidget {
                           width: 230,
                           height: 35,
                           decoration: BoxDecoration(
-                            color: blueColor,
+                            color: appRed, //blueColor,
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(35),
                               bottomRight: Radius.circular(4),

@@ -83,4 +83,5 @@ class CompareEventProvider with ChangeNotifier {
     }
     //
   }
+  //
 }
