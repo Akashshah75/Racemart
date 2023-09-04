@@ -60,7 +60,9 @@ class _CompareEventPageState extends State<CompareEventPage> {
           ),
           actions: [
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  provider.cleanSelectedEventNames();
+                },
                 child: Text(
                   'Clean',
                   style: TextStyle(color: blueColor),

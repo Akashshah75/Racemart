@@ -36,6 +36,13 @@ class CompareEventProvider with ChangeNotifier {
     }
   }
 
+  void cleanSelectedEventNames() {
+    choseFirstEvent = '';
+    choseSecondEvent = '';
+    choseThirdEvent = '';
+    notifyListeners();
+  }
+
 //
 
   Future<void> compareEvent() async {
