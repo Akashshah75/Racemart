@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     final bottomNavprovider =
         Provider.of<BottomnavTypeProvider>(context, listen: false);
-    bottomNavprovider.activeScreen = HomeMainWidget();
+    bottomNavprovider.activeScreen = const HomeMainWidget();
     bottomNavprovider.activeIndex = 0;
     HomePageInit().notificationMethods(context);
     HomePageInit().addProductOnWishlistPageMethod(context);
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
+    Size size = MediaQuery.of(context).size;
     DateTime timeBackPressed = DateTime.now();
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     final bottomNavprovider =
@@ -48,8 +49,10 @@ class _HomePageState extends State<HomePage> {
           appBar:
               bottomNavprovider.changeAppBarWidget(context, homeProvider, h),
           body: bottomNavprovider.activeScreen,
-          bottomNavigationBar:
-              BottomNavigationContainer(bottomNavprovider: bottomNavprovider),
+          bottomNavigationBar: BottomNavigationContainer(
+            bottomNavprovider: bottomNavprovider,
+            size: size,
+          ),
         ),
       ),
     );

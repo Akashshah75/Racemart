@@ -16,11 +16,11 @@ class EventNamesForRoute extends StatefulWidget {
 class _EventNamesForRouteState extends State<EventNamesForRoute> {
   List<String> eventNames = [
     'Upcoming Races',
-    'User interest',
+    'User Interest',
     'The Latest Listing',
     'Explore Best Cities',
     'Event In Mumbai',
-    'Testimonials',
+    'Event Reviews',
   ];
   bool isActive = true;
   @override

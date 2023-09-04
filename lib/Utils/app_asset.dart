@@ -31,6 +31,9 @@ const String noImageEvent = 'asset/image/no_image_event (1).png';
 const String noImageProfile = 'asset/image/no_image_profile.png';
 //app logo
 const String appLogo = 'asset/image/app_logo.png';
-const String duathlonIcon = 'asset/image/duathlon.png';
-
+const String duathlonIcon = 'asset/duathlonicon.png';
 const String trithlonIcon = 'asset/image/triathlon.png';
+
+// const String duathlonIcon = 'asset/image/duathlon.png';
+// const String trithlonIcon = 'asset/image/triathlon.png';
+// asset\image\app icons_tri.png
