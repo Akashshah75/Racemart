@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:racemart_app/Provider/about%20us/abpout_us_provider.dart';
 import 'package:racemart_app/Provider/bottom%20nav/bottom_nav_type_provider.dart';
 
 import '../../Provider/Home providers/home_page_provider.dart';
@@ -71,6 +72,9 @@ class AppProvider {
     ),
     ChangeNotifierProvider(
       create: (_) => BottomnavTypeProvider(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => AboutUsProvider(),
     ),
   ];
 }

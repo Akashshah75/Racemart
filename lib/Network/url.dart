@@ -46,3 +46,4 @@ const String searchEventUrl = "$baseUrl/search";
 //user interest
 const String userInterestUrl = "$baseUrl/interest";
 const String selectUserInterestUrl = "$baseUrl/user-interest";
+const String aboutUsUrl = "$baseUrl/about-us";
