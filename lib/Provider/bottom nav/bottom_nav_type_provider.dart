@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Home/bottom%20nav/cycling%20page/cycling_page.dart';
 import 'package:racemart_app/Pages/Home/bottom%20nav/duathlon%20page/duathlon_page.dart';
@@ -11,6 +12,7 @@ import '../../Helper/appbar/app_bar_widget.dart';
 import '../../Pages/Find A Race/find_race_page.dart';
 import '../../Pages/Home/Drawer/zoom_drawer.dart';
 import '../../Pages/Home/home widget/home_main_widget.dart';
+import '../../Pages/Push Notification/push_notification_page.dart';
 import '../../Pages/Wishlist/wishlist_page.dart';
 import '../../Utils/app_color.dart';
 import '../wishlist/wishlist_provider.dart';
@@ -62,12 +64,12 @@ class BottomnavTypeProvider with ChangeNotifier {
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
-              showBadge: value.lengthOFwishlist <= 0 ? false : true,
-              position: value.lengthOFwishlist > 9
+              showBadge: value.lengthOFwishlist! <= 0 ? false : true,
+              position: value.lengthOFwishlist! > 9
                   ? badges.BadgePosition.topEnd(top: 2, end: -8)
                   : badges.BadgePosition.topEnd(top: 2, end: 1),
               badgeContent: Text(
-                value.lengthOFwishlist > 9
+                value.lengthOFwishlist! > 9
                     ? '9+'
                     : value.lengthOFwishlist.toString(),
                 style: const TextStyle(color: whiteColor),
@@ -113,6 +115,17 @@ class BottomnavTypeProvider with ChangeNotifier {
             },
             icon: const Icon(
               Icons.search,
+              color: blackColor,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const NotificationListPage(),
+              ));
+            },
+            icon: const Icon(
+              Icons.notifications_active_outlined,
               color: blackColor,
             ),
           )
@@ -131,12 +144,12 @@ class BottomnavTypeProvider with ChangeNotifier {
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
-              showBadge: value.lengthOFwishlist <= 0 ? false : true,
-              position: value.lengthOFwishlist > 9
+              showBadge: value.lengthOFwishlist! <= 0 ? false : true,
+              position: value.lengthOFwishlist! > 9
                   ? badges.BadgePosition.topEnd(top: 2, end: -8)
                   : badges.BadgePosition.topEnd(top: 2, end: 1),
               badgeContent: Text(
-                value.lengthOFwishlist > 9
+                value.lengthOFwishlist! > 9
                     ? '9+'
                     : value.lengthOFwishlist.toString(),
                 style: const TextStyle(color: whiteColor),
@@ -184,6 +197,21 @@ class BottomnavTypeProvider with ChangeNotifier {
               Icons.search,
               color: blackColor,
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                PageTransition(
+                    duration: const Duration(milliseconds: 750),
+                    child: const NotificationListPage(),
+                    type: PageTransitionType.rightToLeft),
+              );
+            },
+            icon: const Icon(
+              Icons.notifications_active_outlined,
+              color: blackColor,
+            ),
           )
         ],
       );
@@ -200,12 +228,12 @@ class BottomnavTypeProvider with ChangeNotifier {
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
-              showBadge: value.lengthOFwishlist <= 0 ? false : true,
-              position: value.lengthOFwishlist > 9
+              showBadge: value.lengthOFwishlist! <= 0 ? false : true,
+              position: value.lengthOFwishlist! > 9
                   ? badges.BadgePosition.topEnd(top: 2, end: -8)
                   : badges.BadgePosition.topEnd(top: 2, end: 1),
               badgeContent: Text(
-                value.lengthOFwishlist > 9
+                value.lengthOFwishlist! > 9
                     ? '9+'
                     : value.lengthOFwishlist.toString(),
                 style: const TextStyle(color: whiteColor),
@@ -269,12 +297,12 @@ class BottomnavTypeProvider with ChangeNotifier {
         actions: [
           Consumer<WishListProvider>(builder: (context, value, child) {
             return badges.Badge(
-              showBadge: value.lengthOFwishlist <= 0 ? false : true,
-              position: value.lengthOFwishlist > 9
+              showBadge: value.lengthOFwishlist! <= 0 ? false : true,
+              position: value.lengthOFwishlist! > 9
                   ? badges.BadgePosition.topEnd(top: 2, end: -8)
                   : badges.BadgePosition.topEnd(top: 2, end: 1),
               badgeContent: Text(
-                value.lengthOFwishlist > 9
+                value.lengthOFwishlist! > 9
                     ? '9+'
                     : value.lengthOFwishlist.toString(),
                 style: const TextStyle(color: whiteColor),

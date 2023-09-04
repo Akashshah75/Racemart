@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Pages/Push%20Notification/push_notification_page.dart';
 import 'package:racemart_app/Pages/Wishlist/wishlist_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Provider/wishlist/wishlist_provider.dart';
@@ -34,69 +36,54 @@ PreferredSizeWidget customeAppBar(BuildContext context,
             leading: const MenuWidget(),
             title: const Text(
               'Home',
-              style: TextStyle(color: blackColor),
+              style:
+                  //  GoogleFonts.lato(
+                  //     fontSize: 16,
+                  //     color: blackColor,
+                  //     fontWeight: FontWeight.bold,
+                  //     letterSpacing: 1.2),
+
+                  TextStyle(color: blackColor),
             ),
             actions: [
-              // Container(
-              //   decoration: BoxDecoration(
-              //     color: appBg,
-              //     borderRadius: BorderRadius.circular(8),
-              //   ),
-              //   margin: EdgeInsets.symmetric(vertical: 10),
-              //   padding: EdgeInsets.symmetric(horizontal: 10),
-              //   width: 250,
-              //   child: Row(
-              //     children: [
-              //       Icon(
-              //         Icons.search,
-              //         color: blackColor,
-              //       ),
-              //       SizedBox(width: 20),
-              //       Text(
-              //         'Find a race',
-              //         style: TextStyle(color: blackColor),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               //Like button
-              provider.selectedIndex == 3 || provider.selectedIndex == 5
-                  ? const SizedBox()
-                  : Consumer<WishListProvider>(
-                      builder: (context, value, child) {
-                      return badges.Badge(
-                        showBadge: value.lengthOFwishlist <= 0 ? false : true,
-                        position: value.lengthOFwishlist > 9
-                            ? badges.BadgePosition.topEnd(top: 2, end: -8)
-                            : badges.BadgePosition.topEnd(top: 2, end: 1),
-                        badgeContent: Text(
-                          value.lengthOFwishlist > 9
-                              ? '9+'
-                              : value.lengthOFwishlist.toString(),
-                          style: const TextStyle(color: whiteColor),
-                        ),
-                        badgeAnimation: const badges.BadgeAnimation.rotation(
-                          animationDuration: Duration(seconds: 1),
-                          colorChangeAnimationDuration: Duration(seconds: 1),
-                          loopAnimation: false,
-                          curve: Curves.fastOutSlowIn,
-                          colorChangeAnimationCurve: Curves.easeInCubic,
-                        ),
-                        child: IconButton(
-                          padding: const EdgeInsets.only(top: 8),
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => const WishListPage()),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.favorite_border_sharp,
-                            color: blackColor,
-                          ),
-                        ),
+              // provider.selectedIndex == 3 || provider.selectedIndex == 5
+              //     ? const SizedBox()
+              //     :
+              Consumer<WishListProvider>(builder: (context, value, child) {
+                return badges.Badge(
+                  showBadge: value.lengthOFwishlist! <= 0 ? false : true,
+                  position: value.lengthOFwishlist! > 9
+                      ? badges.BadgePosition.topEnd(top: 2, end: -8)
+                      : badges.BadgePosition.topEnd(top: 2, end: 1),
+                  badgeContent: Text(
+                    value.lengthOFwishlist! > 9
+                        ? '9+'
+                        : value.lengthOFwishlist.toString(),
+                    style: const TextStyle(color: whiteColor),
+                  ),
+                  badgeAnimation: const badges.BadgeAnimation.rotation(
+                    animationDuration: Duration(seconds: 1),
+                    colorChangeAnimationDuration: Duration(seconds: 1),
+                    loopAnimation: false,
+                    curve: Curves.fastOutSlowIn,
+                    colorChangeAnimationCurve: Curves.easeInCubic,
+                  ),
+                  child: IconButton(
+                    padding: const EdgeInsets.only(top: 8),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const WishListPage()),
                       );
-                    }),
+                    },
+                    icon: const Icon(
+                      Icons.favorite_border_sharp,
+                      color: blackColor,
+                    ),
+                  ),
+                );
+              }),
 
               //filtre button for userinterest page
               provider.selectedIndex == 1
@@ -138,19 +125,36 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                     )
                   : const SizedBox(),
               //
-              provider.selectedIndex == 0
-                  ? IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const FindRacePage(),
-                        ));
-                      },
-                      icon: const Icon(
-                        Icons.search,
-                        color: blackColor,
-                      ),
-                    )
-                  : const SizedBox()
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const FindRacePage(),
+                  ));
+                },
+                icon: const Icon(
+                  Icons.search,
+                  color: blackColor,
+                ),
+              ),
+
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        duration: const Duration(milliseconds: 500),
+                        child: const NotificationListPage(),
+                        type: PageTransitionType.rightToLeft),
+                  );
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) => const NotificationListPage(),
+                  // ));
+                },
+                icon: const Icon(
+                  Icons.notifications_active_outlined,
+                  color: blackColor,
+                ),
+              )
             ],
           ),
           //

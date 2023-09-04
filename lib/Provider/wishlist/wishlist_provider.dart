@@ -12,7 +12,7 @@ class WishListProvider with ChangeNotifier {
   List<dynamic> wishListData = [];
   bool isLoading = false;
   //
-  late int lengthOFwishlist;
+  int? lengthOFwishlist;
   //
   Future<void> wishListEvent(BuildContext context) async {
     isLoading = true;
