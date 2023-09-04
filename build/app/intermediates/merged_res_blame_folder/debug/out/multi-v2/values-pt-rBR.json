@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-33:/values-pt-rBR/values-pt-rBR.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-34:/values-pt-rBR/values-pt-rBR.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\3401145488c9b20eed09457e0fafba4f\\transformed\\jetified-media2-session-1.2.1\\res\\values-pt-rBR\\values-pt-rBR.xml",
@@ -13,11 +13,11 @@
                         "endOffsets": "156,254,351,480,615"
                     },
                     "to": {
-                        "startLines": "27,28,29,30,31",
+                        "startLines": "28,32,33,34,35",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "3052,3158,3256,3353,3482",
+                        "startOffsets": "3167,3590,3688,3785,3914",
                         "endColumns": "105,97,96,128,134",
-                        "endOffsets": "3153,3251,3348,3477,3612"
+                        "endOffsets": "3268,3683,3780,3909,4044"
                     }
                 },
                 {
@@ -30,11 +30,28 @@
                         "endOffsets": "147,249,348,448,555,665,785,886"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,32",
+                        "startLines": "2,3,4,5,6,7,8,36",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,254,353,453,560,670,3617",
+                        "startOffsets": "55,152,254,353,453,560,670,4049",
                         "endColumns": "96,101,98,99,106,109,119,100",
-                        "endOffsets": "147,249,348,448,555,665,785,3713"
+                        "endOffsets": "147,249,348,448,555,665,785,4145"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5d8813ca6e077bb0acb410c5d16a5490\\transformed\\browser-1.5.0\\res\\values-pt-rBR\\values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,170,269,381",
+                        "endColumns": "114,98,111,105",
+                        "endOffsets": "165,264,376,482"
+                    },
+                    "to": {
+                        "startLines": "27,29,30,31",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3052,3273,3372,3484",
+                        "endColumns": "114,98,111,105",
+                        "endOffsets": "3162,3367,3479,3585"
                     }
                 },
                 {

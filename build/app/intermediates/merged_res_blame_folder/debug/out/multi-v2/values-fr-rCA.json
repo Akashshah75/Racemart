@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-33:/values-fr-rCA/values-fr-rCA.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-34:/values-fr-rCA/values-fr-rCA.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\17c44a9ee9728471e88635da67cac57c\\transformed\\core-1.10.1\\res\\values-fr-rCA\\values-fr-rCA.xml",
@@ -13,11 +13,11 @@
                         "endOffsets": "148,250,349,451,555,659,773,874"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,41",
+                        "startLines": "2,3,4,5,6,7,8,45",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,354,456,560,664,4491",
+                        "startOffsets": "55,153,255,354,456,560,664,4924",
                         "endColumns": "97,101,98,101,103,103,113,100",
-                        "endOffsets": "148,250,349,451,555,659,773,4587"
+                        "endOffsets": "148,250,349,451,555,659,773,5020"
                     }
                 },
                 {
@@ -30,11 +30,11 @@
                         "endOffsets": "162,259,353,484,621"
                     },
                     "to": {
-                        "startLines": "27,37,38,39,40",
+                        "startLines": "28,41,42,43,44",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "3190,4032,4129,4223,4354",
+                        "startOffsets": "3297,4465,4562,4656,4787",
                         "endColumns": "111,96,93,130,136",
-                        "endOffsets": "3297,4124,4218,4349,4486"
+                        "endOffsets": "3404,4557,4651,4782,4919"
                     }
                 },
                 {
@@ -47,11 +47,11 @@
                         "endOffsets": "124,189,267,339,422,498,595,688,780"
                     },
                     "to": {
-                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startLines": "29,30,31,32,33,34,35,36,37",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3302,3376,3441,3519,3591,3674,3750,3847,3940",
+                        "startOffsets": "3409,3483,3548,3626,3698,3781,3857,3954,4047",
                         "endColumns": "73,64,77,71,82,75,96,92,91",
-                        "endOffsets": "3371,3436,3514,3586,3669,3745,3842,3935,4027"
+                        "endOffsets": "3478,3543,3621,3693,3776,3852,3949,4042,4134"
                     }
                 },
                 {
@@ -69,6 +69,23 @@
                         "startOffsets": "1841",
                         "endColumns": "160",
                         "endOffsets": "1997"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5d8813ca6e077bb0acb410c5d16a5490\\transformed\\browser-1.5.0\\res\\values-fr-rCA\\values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,162,264,383",
+                        "endColumns": "106,101,118,104",
+                        "endOffsets": "157,259,378,483"
+                    },
+                    "to": {
+                        "startLines": "27,38,39,40",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3190,4139,4241,4360",
+                        "endColumns": "106,101,118,104",
+                        "endOffsets": "3292,4236,4355,4460"
                     }
                 },
                 {

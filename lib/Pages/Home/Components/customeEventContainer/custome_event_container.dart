@@ -72,7 +72,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: white,
-        // border: Border.all(width: 0.1),
+        border: Border.all(width: 0.12, color: Colors.black),
         boxShadow: [
           BoxShadow(
               blurRadius: 50.0,

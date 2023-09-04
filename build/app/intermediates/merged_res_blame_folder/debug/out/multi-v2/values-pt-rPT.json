@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-33:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-34:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5eaba1f028ac62aaabee71faac8d9308\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-pt-rPT\\values.xml",
@@ -30,11 +30,11 @@
                         "endOffsets": "125,189,256,327,409,491,586,675,754"
                     },
                     "to": {
-                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startLines": "29,30,31,32,33,34,35,36,37",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3226,3301,3365,3432,3503,3585,3667,3762,3851",
+                        "startOffsets": "3342,3417,3481,3548,3619,3701,3783,3878,3967",
                         "endColumns": "74,63,66,70,81,81,94,88,78",
-                        "endOffsets": "3296,3360,3427,3498,3580,3662,3757,3846,3925"
+                        "endOffsets": "3412,3476,3543,3614,3696,3778,3873,3962,4041"
                     }
                 },
                 {
@@ -47,11 +47,11 @@
                         "endOffsets": "155,263,363,490,621"
                     },
                     "to": {
-                        "startLines": "27,37,38,39,40",
+                        "startLines": "28,41,42,43,44",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "3121,3930,4038,4138,4265",
+                        "startOffsets": "3237,4360,4468,4568,4695",
                         "endColumns": "104,107,99,126,130",
-                        "endOffsets": "3221,4033,4133,4260,4391"
+                        "endOffsets": "3337,4463,4563,4690,4821"
                     }
                 },
                 {
@@ -64,11 +64,28 @@
                         "endOffsets": "147,249,348,448,555,661,782,883"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,41",
+                        "startLines": "2,3,4,5,6,7,8,45",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,254,353,453,560,666,4396",
+                        "startOffsets": "55,152,254,353,453,560,666,4826",
                         "endColumns": "96,101,98,99,106,105,120,100",
-                        "endOffsets": "147,249,348,448,555,661,782,4492"
+                        "endOffsets": "147,249,348,448,555,661,782,4922"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5d8813ca6e077bb0acb410c5d16a5490\\transformed\\browser-1.5.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,171,270,382",
+                        "endColumns": "115,98,111,102",
+                        "endOffsets": "166,265,377,480"
+                    },
+                    "to": {
+                        "startLines": "27,38,39,40",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3121,4046,4145,4257",
+                        "endColumns": "115,98,111,102",
+                        "endOffsets": "3232,4140,4252,4355"
                     }
                 },
                 {

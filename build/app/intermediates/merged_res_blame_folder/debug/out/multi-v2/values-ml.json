@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-33:/values-ml/values-ml.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-34:/values-ml/values-ml.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\3401145488c9b20eed09457e0fafba4f\\transformed\\jetified-media2-session-1.2.1\\res\\values-ml\\values-ml.xml",
@@ -13,11 +13,11 @@
                         "endOffsets": "166,281,383,512,648"
                     },
                     "to": {
-                        "startLines": "27,37,38,39,40",
+                        "startLines": "28,41,42,43,44",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "3153,3979,4094,4196,4325",
+                        "startOffsets": "3262,4406,4521,4623,4752",
                         "endColumns": "115,114,101,128,135",
-                        "endOffsets": "3264,4089,4191,4320,4456"
+                        "endOffsets": "3373,4516,4618,4747,4883"
                     }
                 },
                 {
@@ -47,11 +47,28 @@
                         "endOffsets": "152,255,357,461,564,665,787,888"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,41",
+                        "startLines": "2,3,4,5,6,7,8,45",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,157,260,362,466,569,670,4461",
+                        "startOffsets": "55,157,260,362,466,569,670,4888",
                         "endColumns": "101,102,101,103,102,100,121,100",
-                        "endOffsets": "152,255,357,461,564,665,787,4557"
+                        "endOffsets": "152,255,357,461,564,665,787,4984"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5d8813ca6e077bb0acb410c5d16a5490\\transformed\\browser-1.5.0\\res\\values-ml\\values-ml.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,164,267,378",
+                        "endColumns": "108,102,110,103",
+                        "endOffsets": "159,262,373,477"
+                    },
+                    "to": {
+                        "startLines": "27,38,39,40",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3153,4088,4191,4302",
+                        "endColumns": "108,102,110,103",
+                        "endOffsets": "3257,4186,4297,4401"
                     }
                 },
                 {
@@ -64,11 +81,11 @@
                         "endOffsets": "121,182,254,324,401,482,585,682,760"
                     },
                     "to": {
-                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startLines": "29,30,31,32,33,34,35,36,37",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3269,3340,3401,3473,3543,3620,3701,3804,3901",
+                        "startOffsets": "3378,3449,3510,3582,3652,3729,3810,3913,4010",
                         "endColumns": "70,60,71,69,76,80,102,96,77",
-                        "endOffsets": "3335,3396,3468,3538,3615,3696,3799,3896,3974"
+                        "endOffsets": "3444,3505,3577,3647,3724,3805,3908,4005,4083"
                     }
                 },
                 {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -30,42 +31,51 @@ class BottomNavigationContainer extends StatelessWidget {
             bottomNavprovider.changeBottomNavPage(val);
           },
           tabs: [
-            const GButton(
+            GButton(
+              leading: SizedBox(
+                height: 24,
+                width: 24,
+                child: SvgPicture.asset('asset/image/app icons_home.svg'),
+              ),
               icon: Icons.home,
               text: 'Home',
               iconSize: 20,
             ),
-            const GButton(
+            GButton(
+              leading: SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: SvgPicture.asset('asset/image/app icons_running.svg')),
               icon: FontAwesomeIcons.personRunning,
               text: 'Running',
               iconSize: 20,
             ),
-            const GButton(
+            GButton(
+              leading: SizedBox(
+                height: 24,
+                width: 24,
+                child: SvgPicture.asset('asset/image/app icons_cycling.svg'),
+              ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Cycling',
               iconSize: 20,
             ),
             GButton(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               leading: SizedBox(
-                height: 40,
-                width: 40,
-                child: Image.asset(
-                  'asset/image/duathlonicon.png',
-                  // height: 35,
-                ),
+                height: 24,
+                width: 24,
+                child: Image.asset('asset/image/duathlonicon.png'),
+                //  SvgPicture.asset('asset/image/app icons_dual.svg'),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Duathlon',
             ),
             GButton(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               leading: SizedBox(
-                height: 40,
-                width: 40,
-                child: Image.asset(
-                  'asset/image/app icons_tri.png',
-                ),
+                height: 24,
+                width: 24,
+                child: Image.asset('asset/image/app icons_tri.png'),
+                //  SvgPicture.asset('asset/image/app icons_tri.svg'),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Triathlon',
