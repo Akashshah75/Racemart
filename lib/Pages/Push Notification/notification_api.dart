@@ -1,13 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Pages/Authentication/Login/login_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import 'notification_detail_page.dart';
+import 'package:racemart_app/Pages/Push%20Notification/notification_list_page.dart';
 
 //this is top level function of background notification
 class NotificationFeat {
@@ -34,11 +32,16 @@ class NotificationFeat {
         if (apptoken != null) {
           // print("New Notification");
           Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) =>
-                  NotificationDetailPage(eventId: message.data['id']),
-            ),
+            MaterialPageRoute(builder: (context) => const NotificationListPage()
+                // NotificationDetailPage(eventId: message.data['id']),
+                ),
           );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) =>
+          //         NotificationDetailPage(eventId: message.data['id']),
+          //   ),
+          // );
         } else {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -89,10 +92,14 @@ class NotificationFeat {
         if (apptoken != null) {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) =>
-                  NotificationDetailPage(eventId: message.data['id']),
-            ),
+                builder: (context) => const NotificationListPage()),
           );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) =>
+          //         NotificationDetailPage(eventId: message.data['id']),
+          //   ),
+          // );
         } else {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -123,13 +130,19 @@ class LocalNotificationService {
           (NotificationResponse notificationResponse) async {
         // print(jsonDecode(notificationResponse.payload!));
         // print('details :${jsonDecode(notificationResponse.payload!)}');
-        final eventId = jsonDecode(notificationResponse.payload!);
+        //pa load for notification
+        // final eventId = jsonDecode(notificationResponse.payload!);
         if (apptoken != null) {
           // print("New Notification");
           Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) => NotificationDetailPage(eventId: eventId)),
+            MaterialPageRoute(builder: (context) => const NotificationListPage()
+                // NotificationDetailPage(eventId: message.data['id']),
+                ),
           );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //       builder: (context) => NotificationDetailPage(eventId: eventId)),
+          // );
         } else {
           Navigator.of(context).push(
             MaterialPageRoute(

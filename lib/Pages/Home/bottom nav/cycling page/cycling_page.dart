@@ -96,25 +96,29 @@ class _CyclingPageState extends State<CyclingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
     final provider = Provider.of<HomeProvider>(context, listen: true);
 
     return Scaffold(
       body: SafeArea(
         child: Consumer<FindARacesProvider>(builder: (context, value, child) {
           final runningTypeData = value.typeOfData;
-          return value.isTypeOfDataLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : value.typeOfData.isEmpty
-                  ? Center(child: Image.asset(noDataFound))
-                  : provider.isList
-                      ? ListViewOfCycling(
-                          controllers: controllers,
-                          runningTypeData: runningTypeData,
-                          hasMore: hasMore)
-                      : GridViewOfCycling(
-                          controllers: controllers, hasMore: hasMore);
+          return SizedBox(
+            height: size * 0.8,
+            child: value.isTypeOfDataLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : value.typeOfData.isEmpty
+                    ? Center(child: Image.asset(noDataFound))
+                    : provider.isList
+                        ? ListViewOfCycling(
+                            controllers: controllers,
+                            runningTypeData: runningTypeData,
+                            hasMore: hasMore)
+                        : GridViewOfCycling(
+                            controllers: controllers, hasMore: hasMore),
+          );
         }),
       ),
     );
@@ -134,7 +138,7 @@ class GridViewOfCycling extends StatelessWidget {
       builder: (context, value, child) {
         final runningTypeData = value.typeOfData;
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: GridView.builder(
             controller: controllers,
             itemCount: runningTypeData.length + 1,
@@ -142,7 +146,7 @@ class GridViewOfCycling extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               childAspectRatio: 1.1,
-              mainAxisSpacing: 15,
+              mainAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
               if (index < runningTypeData.length) {

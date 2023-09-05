@@ -99,11 +99,16 @@ class GridViewEventContainer extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: LikeButton(
-                    size: 20,
+                    size: 21,
                     animationDuration: const Duration(milliseconds: 1500),
-                    padding: const EdgeInsets.only(left: 2, top: 2),
                     isLiked:
                         wishProvider.fav.contains(data['id']) ? true : false,
+                    likeBuilder: (isLiked) {
+                      return Icon(
+                        Icons.favorite,
+                        color: isLiked ? appRed : greyColor,
+                      );
+                    },
                     onTap: (isLiked) async {
                       int eventId = data['id'];
                       // print(eventId);

@@ -163,20 +163,22 @@
                     }
                 },
                 {
-                    "source": "D:\\aWorkingProject\\racemart\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "source": "D:\\company_projects\\racemart\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,200,283,387,497,617,715",
-                        "endColumns": "144,82,103,109,119,97,74",
-                        "endOffsets": "195,278,382,492,612,710,785"
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,832",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "483,998"
                     },
                     "to": {
-                        "startLines": "148,162,163,164,165,166,169",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "10437,11525,11608,11712,11822,11942,12172",
-                        "endColumns": "144,82,103,109,119,97,74",
-                        "endOffsets": "10577,11603,11707,11817,11937,12035,12242"
+                        "startLines": "173,177",
+                        "startColumns": "4,4",
+                        "startOffsets": "12508,12689",
+                        "endLines": "176,179",
+                        "endColumns": "12,12",
+                        "endOffsets": "12684,12853"
                     }
                 },
                 {
@@ -197,22 +199,20 @@
                     }
                 },
                 {
-                    "source": "D:\\aWorkingProject\\racemart\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "D:\\company_projects\\racemart\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
                     "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "176,832",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "483,998"
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,200,283,387,497,617,715",
+                        "endColumns": "144,82,103,109,119,97,74",
+                        "endOffsets": "195,278,382,492,612,710,785"
                     },
                     "to": {
-                        "startLines": "173,177",
-                        "startColumns": "4,4",
-                        "startOffsets": "12508,12689",
-                        "endLines": "176,179",
-                        "endColumns": "12,12",
-                        "endOffsets": "12684,12853"
+                        "startLines": "148,162,163,164,165,166,169",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "10437,11525,11608,11712,11822,11942,12172",
+                        "endColumns": "144,82,103,109,119,97,74",
+                        "endOffsets": "10577,11603,11707,11817,11937,12035,12242"
                     }
                 },
                 {
