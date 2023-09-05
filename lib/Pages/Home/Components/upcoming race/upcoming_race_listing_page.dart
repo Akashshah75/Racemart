@@ -75,7 +75,7 @@ class _UpcomingRaceListingPageState extends State<UpcomingRaceListingPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: size * 0.7,
+      height: size * 0.55,
       child: widget.provider.isLoading
           ? const Center(
               child: CircularProgressIndicator(),

@@ -32,6 +32,15 @@ class ComapreEventContainer1 extends StatelessWidget {
     List listOfparteners = data['partners'];
     List listOfTerrains = data['terrains'];
     List listOfSocialMedia = data['socials'];
+    List listOfPrices = data['prices'];
+    // print(listOfPrices);
+    // var prices;
+    // //
+    // for (int i = 0; i < listOfPrices.length; i++) {
+    //   if (listOfPrices[i]['price'] != null) {
+    //     prices = listOfPrices[i]['price'];
+    //   }
+    // }
     //socila media
     var facebook = false;
     int? facebookIndex;
@@ -61,6 +70,8 @@ class ComapreEventContainer1 extends StatelessWidget {
         twitterIndex = i;
       }
     }
+    //
+
     return Container(
       padding: const EdgeInsets.all(5),
       width: width * 0.332,
@@ -198,6 +209,16 @@ class ComapreEventContainer1 extends StatelessWidget {
                                 )
                               : const SizedBox(),
                         ],
+                      ),
+              ),
+              const Divider(),
+              SizedBox(
+                height: 40,
+                child: listOfPrices.isNotEmpty
+                    ? Text(
+                        "${listOfPrices[0]['price']} \u20B9") //unicode of rupay \u20B9
+                    : const SizedBox(
+                        child: Text('No price specify!'),
                       ),
               ),
               const Divider(),

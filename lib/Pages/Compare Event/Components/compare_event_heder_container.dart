@@ -90,6 +90,12 @@ class ComapreEventContainer extends StatelessWidget {
                 height: 40,
                 child: const CompareEventHeadingText(text: 'Distances'),
               ),
+              //price money
+              const Divider(),
+              Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  child: const CompareEventHeadingText(text: 'Price money')),
               const Divider(),
               // deliverables
               Container(
