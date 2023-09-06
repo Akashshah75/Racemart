@@ -1,0 +1,12 @@
+com.odehbros.flutter_file_downloader-jetified-window-1.0.0-beta04-0 C:\Users\Akash\.gradle\caches\transforms-3\003a22a5515e1f77f89701a46efbc2ec\transformed\jetified-window-1.0.0-beta04\res
+com.odehbros.flutter_file_downloader-jetified-window-java-1.0.0-beta04-1 C:\Users\Akash\.gradle\caches\transforms-3\3c0e35d493ccd3f2bb8b07f96b013b9c\transformed\jetified-window-java-1.0.0-beta04\res
+com.odehbros.flutter_file_downloader-jetified-annotation-experimental-1.1.0-2 C:\Users\Akash\.gradle\caches\transforms-3\717758e51a3aff0b90b2556f8994e808\transformed\jetified-annotation-experimental-1.1.0\res
+com.odehbros.flutter_file_downloader-core-1.6.0-3 C:\Users\Akash\.gradle\caches\transforms-3\cf72013d765e0f69e97cd3b9cbb09800\transformed\core-1.6.0\res
+com.odehbros.flutter_file_downloader-main-4 C:\Users\Akash\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_file_downloader-1.1.2\android\src\main\res
+com.odehbros.flutter_file_downloader-release-5 C:\Users\Akash\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_file_downloader-1.1.2\android\src\release\res
+com.odehbros.flutter_file_downloader-pngs-6 D:\company_projects\racemart\build\flutter_file_downloader\generated\res\pngs\release
+com.odehbros.flutter_file_downloader-resValues-7 D:\company_projects\racemart\build\flutter_file_downloader\generated\res\resValues\release
+com.odehbros.flutter_file_downloader-rs-8 D:\company_projects\racemart\build\flutter_file_downloader\generated\res\rs\release
+com.odehbros.flutter_file_downloader-mergeReleaseResources-9 D:\company_projects\racemart\build\flutter_file_downloader\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.odehbros.flutter_file_downloader-mergeReleaseResources-10 D:\company_projects\racemart\build\flutter_file_downloader\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.odehbros.flutter_file_downloader-merged_res-11 D:\company_projects\racemart\build\flutter_file_downloader\intermediates\merged_res\release

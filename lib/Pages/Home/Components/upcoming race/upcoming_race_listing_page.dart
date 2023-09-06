@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/advertiesment/advertiesment_provider.dart';
 import '../../../../Network/base_clent.dart';
 import '../../../../Provider/Home providers/home_page_provider.dart';
 import '../../../../Provider/authentication_provider.dart';
@@ -73,9 +74,13 @@ class _UpcomingRaceListingPageState extends State<UpcomingRaceListingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final adProvider =
+        Provider.of<AdvertiesmentProvider>(context, listen: true);
     final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: size * 0.55,
+      height: adProvider.homePageAdvertismentData.isEmpty
+          ? size * 0.7
+          : size * 0.55,
       child: widget.provider.isLoading
           ? const Center(
               child: CircularProgressIndicator(),

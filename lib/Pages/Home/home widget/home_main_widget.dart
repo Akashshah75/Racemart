@@ -68,6 +68,7 @@ class AdvertismentContainer extends StatelessWidget {
               );
             },
             options: CarouselOptions(
+              viewportFraction: 0.98,
               initialPage: 0,
               height: 130,
               autoPlay: true,

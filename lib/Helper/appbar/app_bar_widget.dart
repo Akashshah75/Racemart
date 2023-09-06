@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/Push%20Notification/notification_list_page.dart';
+import 'package:racemart_app/Pages/Push%20Notification/push_notification_page.dart';
 import 'package:racemart_app/Pages/Wishlist/wishlist_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Provider/wishlist/wishlist_provider.dart';

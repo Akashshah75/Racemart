@@ -11,6 +11,7 @@ class AdvertiesmentProvider with ChangeNotifier {
   int activeIndex = 0;
   Map advertismentData = {};
   List homePageAdvertismentData = [];
+
 //change advertisment index
   void changeIndex(int index) {
     activeIndex = index;
@@ -36,7 +37,7 @@ class AdvertiesmentProvider with ChangeNotifier {
       advertismentData = result['data'];
       print(advertismentData);
       advertismentData.forEach((key, value) {
-        if (key == '3') {
+        if (key == 'horizontal') {
           homePageAdvertismentData = value;
           notifyListeners();
         }

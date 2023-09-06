@@ -54,7 +54,7 @@ class BottomNavigationContainer extends StatelessWidget {
               leading: SizedBox(
                 height: 24,
                 width: 24,
-                child: SvgPicture.asset('asset/image/app icons_cycling.svg'),
+                child: SvgPicture.asset('asset/image/app_cycling_icon.svg'),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Cycling',
@@ -65,7 +65,11 @@ class BottomNavigationContainer extends StatelessWidget {
                 height: 24,
                 width: 24,
                 child: Image.asset('asset/image/duathlonicon.png'),
-                //  SvgPicture.asset('asset/image/app icons_dual.svg'),
+                //     SvgPicture.asset(
+                //   'asset/image/app icons_dual.svg',
+                //   height: 24,
+                //   width: 24,
+                // ),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Duathlon',
@@ -74,8 +78,15 @@ class BottomNavigationContainer extends StatelessWidget {
               leading: SizedBox(
                 height: 24,
                 width: 24,
-                child: Image.asset('asset/image/app icons_tri.png'),
-                //  SvgPicture.asset('asset/image/app icons_tri.svg'),
+                child: Image.asset(
+                  'asset/image/app icons_tri.png',
+                ),
+                //     SvgPicture.asset(
+                //   'asset/image/tri.svg',
+                //   fit: BoxFit.cover,
+                //   height: 40,
+                //   width: 40,
+                // ),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Triathlon',
@@ -84,3 +95,5 @@ class BottomNavigationContainer extends StatelessWidget {
     );
   }
 }
+ // height: 24,
+                // width: 24,

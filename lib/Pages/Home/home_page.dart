@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
     bottomNavprovider.activeIndex = 0;
     HomePageInit().notificationMethods(context);
     HomePageInit().addProductOnWishlistPageMethod(context);
-    // Future.delayed(const Duration(milliseconds: 750), () {
-    //   HomePageInit().openDialog(context);
-    // });
+    Future.delayed(const Duration(milliseconds: 750), () {
+      HomePageInit().openDialog(context);
+    });
     super.initState();
   }
 
