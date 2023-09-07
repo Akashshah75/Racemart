@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Provider/Home providers/home_page_provider.dart';
 import '../../../Provider/notifications/notifications_provider.dart';
 import '../../../Utils/app_color.dart';
 import 'components/body_of_notification_page.dart';
@@ -26,8 +27,9 @@ class _NotificationListPageState extends State<NotificationListPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final notificationProvider =
-    //     Provider.of<NotificationProvider>(context, listen: true);
+    final homeProvider = Provider.of<HomeProvider>(context, listen: true);
+    final notificationProvider =
+        Provider.of<NotificationProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: appBg,
       appBar: AppBar(
@@ -42,11 +44,19 @@ class _NotificationListPageState extends State<NotificationListPage> {
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              homeProvider.chageListToGrid();
+            },
+            icon: Icon(
+              homeProvider.isList ? Icons.grid_view : Icons.list,
+              color: blackColor,
+            ),
+          )
+        ],
       ),
-      body: const BodyOfNotificationPage(),
+      body: BodyOfNotificationPage(notificationProvider: notificationProvider),
     );
   }
 }
-// const Center(
-//         child: Text("Don't have any notification!!"),
-      // ),

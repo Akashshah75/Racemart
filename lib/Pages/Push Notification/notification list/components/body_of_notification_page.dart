@@ -1,142 +1,194 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/Push%20Notification/notification_detail_page.dart';
 
+import '../../../../Network/base_clent.dart';
+import '../../../../Provider/Home providers/home_page_provider.dart';
+import '../../../../Provider/authentication_provider.dart';
 import '../../../../Provider/notifications/notifications_provider.dart';
-import '../../../../Utils/app_asset.dart';
-import '../../../../Utils/app_color.dart';
 
-class BodyOfNotificationPage extends StatelessWidget {
+import '../../../DetailPage/detail_of_home_page.dart';
+import '../../../Home/Components/customeEventContainer/custome_event_container.dart';
+import '../../../Home/Components/customeEventContainer/grid_view_container.dart';
+
+class BodyOfNotificationPage extends StatefulWidget {
   const BodyOfNotificationPage({
     super.key,
+    required this.notificationProvider,
   });
+  final NotificationProvider notificationProvider;
+
+  @override
+  State<BodyOfNotificationPage> createState() => _BodyOfNotificationPageState();
+}
+
+class _BodyOfNotificationPageState extends State<BodyOfNotificationPage> {
+  final controllers = ScrollController();
+  bool hasMore = false;
+  int page = 2;
+  bool isLoading = false;
+  @override
+  void initState() {
+    controllers.addListener(() {
+      if (controllers.position.maxScrollExtent == controllers.offset) {
+        fetch();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controllers.dispose();
+    super.dispose();
+  }
+
+  Future fetch() async {
+    //   https: //racemart.youtoocanrun.com/api/wishlist?page=2
+    if (isLoading) return;
+    isLoading = true;
+    const limit = 10;
+    var provider = Provider.of<AuthenticationProvider>(context, listen: false);
+    final url =
+        "https://racemart.youtoocanrun.com/api/notifications?page=$page";
+
+    var res = await BaseClient()
+        .getMethodWithToken(url, provider.appLoginToken.toString());
+    // print(res);
+
+    var result = jsonDecode(res);
+    //
+    if (result['data'] == null) {
+      setState(() {
+        hasMore = false;
+      });
+      return;
+    }
+    final List newEvent = result['data']['list'];
+    // print(newEvent);
+
+    //
+    setState(() {
+      page++;
+
+      isLoading = false;
+      if (newEvent.length < limit) {
+        hasMore = false;
+      }
+      widget.notificationProvider.notificationData.addAll(newEvent);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final notificationProvider =
-        Provider.of<NotificationProvider>(context, listen: true);
-    return notificationProvider.isLoading
+    final provider = Provider.of<HomeProvider>(context, listen: false);
+
+    return widget.notificationProvider.isLoading
         ? const Center(
             child: CircularProgressIndicator(),
           )
-        : ListView.builder(
-            itemCount: notificationProvider.notificationData.length,
+        : widget.notificationProvider.notificationData.isEmpty
+            ? const Center(child: Text("Don't have any event"))
+            : provider.isList
+                ? ListViewOfNotifications(
+                    controllers: controllers, hasMore: hasMore)
+                : GridOfNotificationPage(
+                    controllers: controllers, hasMore: hasMore);
+  }
+}
+
+class GridOfNotificationPage extends StatelessWidget {
+  const GridOfNotificationPage({
+    super.key,
+    required this.controllers,
+    required this.hasMore,
+  });
+
+  final ScrollController controllers;
+  final bool hasMore;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<NotificationProvider>(
+      builder: (context, value, child) {
+        final notificationData = value.notificationData;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: GridView.builder(
+            controller: controllers,
+            itemCount: notificationData.length + 1,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1.1,
+              mainAxisSpacing: 15,
+            ),
             itemBuilder: (context, index) {
-              final dataOfNotification =
-                  notificationProvider.notificationData[index];
-              return InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => NotificationDetailPage(
-                        eventId: dataOfNotification['id']),
-                  ));
-                },
-                child: NotificationContainer(data: dataOfNotification),
-              );
+              if (index < notificationData.length) {
+                dynamic data = notificationData[index];
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPageOfHome(index: index, data: data)));
+                  },
+                  child: GridViewEventContainer(data: data),
+                );
+              } else {
+                return hasMore
+                    ? const Center(child: CircularProgressIndicator())
+                    : const SizedBox();
+              }
             },
-          );
-  }
-}
-
-class NotificationContainer extends StatelessWidget {
-  const NotificationContainer({
-    super.key,
-    this.data,
-  });
-  final dynamic data;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      height: 105,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: white,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ImageContainer(
-                imageUrl: data['image'],
-              ),
-              const SizedBox(width: 15),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // SizedBox(height: 10),
-                  SizedBox(
-                    width: 250,
-                    // height: ,
-                    child: Text(
-                      // 'asdf asd sdf werf asdv erg wefg 2erg qwdcv sdfgh wertgh werghj sdfgh',
-                      data['title'].toString(),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                    ),
-                  ),
-                  // SizedBox(height: 4),
-                  const NamesContainer(),
-                  // const SizedBox(height: 10),
-                  // const NamesContainer(),
-                ],
-              ),
-            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
-class NamesContainer extends StatelessWidget {
-  const NamesContainer({
+class ListViewOfNotifications extends StatelessWidget {
+  const ListViewOfNotifications({
     super.key,
+    required this.controllers,
+    required this.hasMore,
   });
+
+  final ScrollController controllers;
+  final bool hasMore;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          'Last Registration Date:',
-          style: GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.bold),
-        ),
-        const Text('5 Sep 2023'),
-      ],
-    );
-  }
-}
+    return Consumer<NotificationProvider>(builder: (context, value, child) {
+      final notificationData = value.notificationData;
+      return ListView.builder(
+        controller: controllers,
+        itemCount: notificationData.length + 1,
+        itemBuilder: (context, index) {
+          if (index < notificationData.length) {
+            final dataOfNotification = notificationData[index];
 
-class ImageContainer extends StatelessWidget {
-  const ImageContainer({
-    super.key,
-    required this.imageUrl,
-  });
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 80,
-      height: 80,
-      decoration: BoxDecoration(
-          color: blueColor, borderRadius: BorderRadius.circular(12)),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: imageUrl.isNotEmpty
-            ? Image.network(imageUrl, fit: BoxFit.cover)
-            : Image.asset(
-                demo,
-                fit: BoxFit.cover,
-              ),
-      ),
-    );
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DetailPageOfHome(
+                        index: index, data: dataOfNotification)));
+              },
+              child:
+                  CustomEventContainer(index: index, data: dataOfNotification),
+            );
+          } else {}
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Center(
+              child: hasMore
+                  ? const CircularProgressIndicator()
+                  : const SizedBox(),
+            ),
+          );
+        },
+      );
+    });
   }
 }

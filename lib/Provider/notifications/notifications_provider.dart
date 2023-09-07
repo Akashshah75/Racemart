@@ -23,7 +23,7 @@ class NotificationProvider with ChangeNotifier {
     var result = jsonDecode(response);
     notificationData = [];
     if (result['status'] == 'success') {
-      notificationData = result['data'];
+      notificationData = result['data']['list'];
     }
     print(notificationData);
   }
