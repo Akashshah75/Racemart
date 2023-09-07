@@ -13,11 +13,10 @@ import '../DetailPage/Components/horizontal_tab_container.dart';
 import '../DetailPage/Components/howToRach/how_to_reac_container.dart';
 import '../DetailPage/Components/image_heading_container.dart';
 import '../DetailPage/Components/impDate/important_dates_list.dart';
-import '../DetailPage/Components/location/location_contaner.dart';
+import '../DetailPage/Components/locationAndRegisternowbtn/location_and_register_now_container.dart.dart';
 import '../DetailPage/Components/partener/partener_container_list.dart';
 import '../DetailPage/Components/prices/price_listing_container.dart';
 import '../DetailPage/Components/registerDateContainer/registration_date_container.dart';
-import '../DetailPage/Components/registration_now_container.dart';
 import '../DetailPage/Components/similarListing/similar_listing_list.dart';
 import '../DetailPage/Components/terrrains/terains_container_list.dart';
 import '../../Provider/detail_page_provider.dart';
@@ -155,12 +154,13 @@ class _NotificationDetailPageState extends State<NotificationDetailPage>
                   spacingHeightMin,
                   provider.detailEventData['city'] == null
                       ? const SizedBox()
-                      : LoctionContair(
-                          location: provider.detailEventData['city']),
-                  const SizedBox(height: 8),
-                  RegisterNowContainer(
-                      registrationUrl:
-                          provider.detailEventData['registration_url'] ?? ''),
+                      : LocationAndRegisterNowContainer(
+                          location: provider.detailEventData['city'],
+                          registrationUrl:
+                              provider.detailEventData['registration_url'] ??
+                                  ''),
+                  const Divider(height: 0),
+                  const SizedBox(height: 5),
                   //horizontal view
                   Container(
                     height: 40,

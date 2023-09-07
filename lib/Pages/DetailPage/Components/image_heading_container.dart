@@ -34,7 +34,7 @@ class ImageHedingContainer extends StatelessWidget {
             foregroundDecoration: earlyStartDate.isEmpty || earlyEndDate.isEmpty
                 ? const BoxDecoration()
                 : checkDate(earlyStartDate, earlyEndDate)
-                    ? RotatedCornerDecoration.withColor(
+                    ? const RotatedCornerDecoration.withColor(
                         color: redColor, // Colors.blue,
                         badgeSize: Size(64, 64),
                         badgePosition: BadgePosition.topStart,

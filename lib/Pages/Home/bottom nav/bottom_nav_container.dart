@@ -62,26 +62,23 @@ class BottomNavigationContainer extends StatelessWidget {
             GButton(
               // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               leading: SizedBox(
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
                 child: Image.asset('asset/image/duathlon.png'),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Duathlon',
             ),
-            GButton(
-              // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-              leading: Container(
-
-                  // width: 24,
-                  // height: 24,
-
-                  ),
-              //  Image.asset('asset/image/triathlon.png'),
-
-              icon: Icons.abc,
-              text: 'Triathlon',
-            ),
+            // GButton(
+            //   // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            //   leading: SizedBox(
+            //     width: 20,
+            //     height: 20,
+            //     child: Image.asset('asset/image/triathlon.png'),
+            //   ),
+            //   icon: Icons.abc,
+            //   text: 'Triathlon',
+            // ),
           ]),
     );
   }

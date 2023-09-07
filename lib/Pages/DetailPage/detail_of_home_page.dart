@@ -18,9 +18,8 @@ import 'Components/heading_of_detail_page.dart';
 import 'Components/howToRach/how_to_reac_container.dart';
 import 'Components/image_heading_container.dart';
 import 'Components/impDate/important_dates_list.dart';
-import 'Components/location/location_contaner.dart';
+import 'Components/locationAndRegisternowbtn/location_and_register_now_container.dart.dart';
 import 'Components/prices/price_listing_container.dart';
-import 'Components/registration_now_container.dart';
 import 'Components/similarListing/similar_listing_list.dart';
 import 'Components/terrrains/terains_container_list.dart';
 import 'package:http/http.dart' as http;
@@ -125,7 +124,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                     );
                   },
                   icon: const Icon(Icons.share),
-                )
+                ),
         ],
       ),
       body: SafeArea(
@@ -148,10 +147,12 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                   spacingHeightMin,
                   widget.data['city'] == null
                       ? const SizedBox()
-                      : LoctionContair(location: widget.data['city']),
-                  const SizedBox(height: 8),
-                  RegisterNowContainer(
-                      registrationUrl: widget.data['registration_url'] ?? ''),
+                      : LocationAndRegisterNowContainer(
+                          location: widget.data['city'],
+                          registrationUrl:
+                              widget.data['registration_url'] ?? ''),
+                  const Divider(height: 0),
+                  const SizedBox(height: 5),
                   //horizontal view
                   Container(
                     height: 40,
