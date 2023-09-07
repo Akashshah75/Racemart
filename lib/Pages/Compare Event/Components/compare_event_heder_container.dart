@@ -143,7 +143,7 @@ class ComapreEventContainer extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 height: 40,
-                child: const CompareEventHeadingText(text: 'Oragnasied'),
+                child: const CompareEventHeadingText(text: 'Organized by'),
               ),
               // //socila
               const Divider(),

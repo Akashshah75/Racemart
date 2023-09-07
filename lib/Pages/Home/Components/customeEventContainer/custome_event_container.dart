@@ -319,7 +319,8 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Last Registration Date :'),
+                const Text('Last Day to Register :'),
+                // const Text('Last Registration Date :'),
                 // Image.asset(
                 //   calender,
                 //   width: 14,

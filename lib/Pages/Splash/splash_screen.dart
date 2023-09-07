@@ -5,6 +5,7 @@ import 'package:racemart_app/Provider/authentication_provider.dart';
 import 'package:racemart_app/Routes/route_names.dart';
 import 'package:racemart_app/Utils/app_asset.dart';
 
+import '../../Provider/advertiesment/advertiesment_provider.dart';
 import '../../Provider/wishlist/wishlist_provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,6 +36,10 @@ class _SplashScreenState extends State<SplashScreen> {
       if (kDebugMode) {
         print(token);
       }
+      final advertiesmentProvider =
+          Provider.of<AdvertiesmentProvider>(context, listen: false);
+      //adverment
+      advertiesmentProvider.fetchAdvertismentData(context);
       // notification.initNotifications(provider.appLoginToken, context);
       changePage(token.toString());
     });

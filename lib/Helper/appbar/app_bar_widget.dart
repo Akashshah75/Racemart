@@ -117,8 +117,8 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                       provider.selectedIndex == 4
                   ? IconButton(
                       onPressed: () {
-                        // provider.chageListToGrid();
-                        HomePageInit().openDialog(context);
+                        provider.chageListToGrid();
+                        // HomePageInit().openDialog(context);
                       },
                       icon: Icon(
                         provider.isList ? Icons.grid_view : Icons.list,

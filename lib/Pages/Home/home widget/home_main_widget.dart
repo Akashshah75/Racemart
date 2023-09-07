@@ -29,7 +29,7 @@ class _HomeMainWidgetState extends State<HomeMainWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // CarouselWidget()
-          advertiesment.homePageAdvertismentData.isEmpty
+          advertiesment.horizontalAdvertismentData.isEmpty
               ? const SizedBox()
               : homeProvider.selectedIndex == 0
                   ? const AdvertismentContainer()
@@ -53,7 +53,7 @@ class AdvertismentContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AdvertiesmentProvider>(builder: (context, value, child) {
-      final homeAdData = value.homePageAdvertismentData;
+      final homeAdData = value.horizontalAdvertismentData;
 
       return Column(
         children: [

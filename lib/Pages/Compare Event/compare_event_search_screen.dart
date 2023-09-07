@@ -183,7 +183,7 @@ class CompareEventContainer extends StatelessWidget {
                                 width: width,
                               )));
                     } else {
-                      toastMessage('Please select at list two event!');
+                      toastMessage('Please Select Atlist Two Event !!');
                     }
                   }),
             ),

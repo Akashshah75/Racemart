@@ -77,15 +77,15 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     ];
     List<Map> containerNames = [
       {'h': size * 0.3, 'key': 'Registration date'},
-      {'h': size * 0.25, 'key': 'Description'},
+      {'h': size * 0.21, 'key': 'Description'},
       {'h': size * 0.33, 'key': 'Distances'},
-      {'h': size * 0.29, 'key': 'Partners & Associates'},
-      {'h': size * 0.285, 'key': 'Prices'},
-      {'h': size * 0.29, 'key': 'How to reach'},
-      {'h': size * 0.285, 'key': 'Important Dates'},
-      {'h': size * 0.285, 'key': 'Terrains'},
-      {'h': size * 0.269, 'key': 'Deliverables'},
-      {'h': size * 0.35, 'key': 'Similar listing'}
+      {'h': size * 0.28, 'key': 'Partners & Associates'},
+      {'h': size * 0.284, 'key': 'Prices'},
+      {'h': size * 0.28, 'key': 'How to reach'},
+      {'h': size * 0.275, 'key': 'Important Dates'},
+      {'h': size * 0.276, 'key': 'Terrains'},
+      {'h': size * 0.26, 'key': 'Deliverables'},
+      {'h': size * 0.33, 'key': 'Similar listing'}
     ];
     void scrollToTap(int index) {
       double sizeOfContainer = containerNames[index]['h'];

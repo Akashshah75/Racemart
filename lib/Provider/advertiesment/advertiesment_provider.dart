@@ -6,11 +6,15 @@ import 'package:racemart_app/Network/base_clent.dart';
 import 'package:racemart_app/Network/url.dart';
 import 'package:racemart_app/Provider/authentication_provider.dart';
 
+enum AdvertisementData { horizontal, vertical }
+
 class AdvertiesmentProvider with ChangeNotifier {
   bool isLoading = false;
   int activeIndex = 0;
   Map advertismentData = {};
-  List homePageAdvertismentData = [];
+  List horizontalAdvertismentData = [];
+  List verticleAdvertismentData = [];
+  List shuffleList = [];
 
 //change advertisment index
   void changeIndex(int index) {
@@ -32,17 +36,32 @@ class AdvertiesmentProvider with ChangeNotifier {
     var result = jsonDecode(response);
     //print(result['data']);
     advertismentData = {};
-    homePageAdvertismentData = [];
+    horizontalAdvertismentData = [];
+    verticleAdvertismentData = [];
+    shuffleList = [];
     if (result['status'] == 'success') {
       advertismentData = result['data'];
       print(advertismentData);
       advertismentData.forEach((key, value) {
         if (key == 'horizontal') {
-          homePageAdvertismentData = value;
+          horizontalAdvertismentData = value;
+          notifyListeners();
+        }
+        if (key == 'vertical') {
+          verticleAdvertismentData = value;
+          List getSuffledAnswer() {
+            final suffeldList = List.of(verticleAdvertismentData);
+            suffeldList.shuffle();
+            return suffeldList;
+          }
+
+          shuffleList = getSuffledAnswer();
           notifyListeners();
         }
       });
     }
+    print("horizontalAdvertismentData:$horizontalAdvertismentData");
+    print("verticleAdvertismentData$verticleAdvertismentData");
     // print(mapOfProfileData);
   }
 }

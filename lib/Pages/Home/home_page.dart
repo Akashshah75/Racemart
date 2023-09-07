@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Pages/Home/home%20widget/home_main_widget.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_init_methods.dart';
+import 'package:racemart_app/Provider/advertiesment/advertiesment_provider.dart';
 import 'package:racemart_app/Provider/bottom%20nav/bottom_nav_type_provider.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
 import '../../Utils/app_color.dart';
@@ -25,7 +26,14 @@ class _HomePageState extends State<HomePage> {
     HomePageInit().notificationMethods(context);
     HomePageInit().addProductOnWishlistPageMethod(context);
     Future.delayed(const Duration(milliseconds: 750), () {
-      HomePageInit().openDialog(context);
+      final advertiesmentProvider =
+          Provider.of<AdvertiesmentProvider>(context, listen: false);
+      if (advertiesmentProvider.verticleAdvertismentData.isNotEmpty) {
+        HomePageInit().openDialog(context);
+      }
+      // if (advertiesmentProvider.horizontalAdvertismentData.isNotEmpty) {
+      //   HomePageInit().openDialog(context);
+      // }
     });
     super.initState();
   }
