@@ -36,6 +36,7 @@ class _HomeMainWidgetState extends State<HomeMainWidget> {
                   : const SizedBox(),
           const SizedBox(height: 5),
           homeWidget(homeProvider),
+          const SizedBox(height: 10)
         ],
       ),
     );
@@ -45,7 +46,9 @@ class _HomeMainWidgetState extends State<HomeMainWidget> {
 class AdvertismentContainer extends StatelessWidget {
   const AdvertismentContainer({
     super.key,
+    this.height = 130,
   });
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +73,7 @@ class AdvertismentContainer extends StatelessWidget {
             options: CarouselOptions(
               viewportFraction: 0.98,
               initialPage: 0,
-              height: 130,
+              height: height,
               autoPlay: true,
               // reverse: true,
               autoPlayInterval: const Duration(seconds: 10),
@@ -84,7 +87,7 @@ class AdvertismentContainer extends StatelessWidget {
           const SizedBox(height: 10),
           AnimatedSmoothIndicator(
             activeIndex: value.activeIndex,
-            count: urlImage.length,
+            count: homeAdData.length,
             effect: ScrollingDotsEffect(
               activeDotColor: blueColor,
               dotWidth: 7,
@@ -117,7 +120,10 @@ class CarouselWidget extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: Image.network(urlImages, fit: BoxFit.cover),
+        child: Image.network(
+          urlImages,
+          fit: BoxFit.fill,
+        ),
       ),
     );
   }

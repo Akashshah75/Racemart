@@ -5,7 +5,6 @@ import 'package:racemart_app/Pages/Home/bottom%20nav/cycling%20page/cycling_page
 import 'package:racemart_app/Pages/Home/bottom%20nav/duathlon%20page/duathlon_page.dart';
 import 'package:racemart_app/Pages/Home/bottom%20nav/running%20page/running_page.dart';
 import 'package:racemart_app/Pages/Home/bottom%20nav/trithalon%20page/trithlon_page.dart';
-import 'package:racemart_app/Pages/Push%20Notification/push_notification_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -13,6 +12,7 @@ import '../../Helper/appbar/app_bar_widget.dart';
 import '../../Pages/Find A Race/find_race_page.dart';
 import '../../Pages/Home/Drawer/zoom_drawer.dart';
 import '../../Pages/Home/home widget/home_main_widget.dart';
+import '../../Pages/Push Notification/notification list/notification_list_page.dart';
 import '../../Pages/Wishlist/wishlist_page.dart';
 import '../../Utils/app_color.dart';
 import '../wishlist/wishlist_provider.dart';

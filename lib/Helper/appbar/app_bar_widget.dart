@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/Push%20Notification/push_notification_page.dart';
 import 'package:racemart_app/Pages/Wishlist/wishlist_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Provider/wishlist/wishlist_provider.dart';
 import '../../Pages/Find A Race/find_race_page.dart';
 import '../../Pages/Home/Components/event_names_for_route.dart';
 import '../../Pages/Home/Drawer/zoom_drawer.dart';
+import '../../Pages/Push Notification/notification list/notification_list_page.dart';
+import '../../Provider/Home providers/home_page_init_methods.dart';
 import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Utils/app_color.dart';
 import '../Widget/custome_app_bar_widget.dart';
@@ -116,8 +117,8 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                       provider.selectedIndex == 4
                   ? IconButton(
                       onPressed: () {
-                        provider.chageListToGrid();
-                        // HomePageInit().openDialog(context);
+                        // provider.chageListToGrid();
+                        HomePageInit().openDialog(context);
                       },
                       icon: Icon(
                         provider.isList ? Icons.grid_view : Icons.list,

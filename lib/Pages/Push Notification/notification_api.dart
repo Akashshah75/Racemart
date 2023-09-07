@@ -5,7 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Pages/Authentication/Login/login_page.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:racemart_app/Pages/Push%20Notification/push_notification_page.dart';
+
+import 'notification list/notification_list_page.dart';
 
 //this is top level function of background notification
 class NotificationFeat {

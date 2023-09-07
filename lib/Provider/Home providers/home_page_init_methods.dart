@@ -92,44 +92,42 @@ class HomePageInit {
   Future openDialog(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) => AlertDialog(
-        contentPadding: EdgeInsets.zero,
-        content: Container(
-          width: double.infinity,
-          height: size.height * 0.6, //hight:495
-          color: redColor,
-          child: Stack(
-            children: [
-              SizedBox(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              content: Container(
+                color: redColor,
                 height: size.height * 0.6,
-                child: Image.asset(
-                  demo,
-                  fit: BoxFit.cover,
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: size.height * 0.6,
+                      child: Image.asset(
+                        demo,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: IconButton(
+                        hoverColor: Colors.amberAccent,
+                        splashColor: Colors.red,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: const Icon(
+                          Icons.cancel,
+                          color: whiteColor,
+                          size: 30,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: IconButton(
-                  hoverColor: Colors.amberAccent,
-                  splashColor: Colors.red,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(
-                    Icons.cancel,
-                    color: whiteColor,
-                    size: 30,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            ));
   }
 //for advertisment init
 }

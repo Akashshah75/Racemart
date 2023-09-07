@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
 import '../../../Provider/bottom nav/bottom_nav_type_provider.dart';
 import '../../../Utils/app_color.dart';
 
@@ -39,7 +38,7 @@ class BottomNavigationContainer extends StatelessWidget {
               ),
               icon: Icons.home,
               text: 'Home',
-              iconSize: 20,
+              iconSize: 15,
             ),
             GButton(
               leading: SizedBox(
@@ -48,7 +47,7 @@ class BottomNavigationContainer extends StatelessWidget {
                   child: SvgPicture.asset('asset/image/app icons_running.svg')),
               icon: FontAwesomeIcons.personRunning,
               text: 'Running',
-              iconSize: 20,
+              iconSize: 15,
             ),
             GButton(
               leading: SizedBox(
@@ -58,42 +57,32 @@ class BottomNavigationContainer extends StatelessWidget {
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Cycling',
-              iconSize: 20,
+              iconSize: 15,
             ),
             GButton(
+              // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               leading: SizedBox(
-                height: 24,
                 width: 24,
-                child: Image.asset('asset/image/duathlonicon.png'),
-                //     SvgPicture.asset(
-                //   'asset/image/app icons_dual.svg',
-                //   height: 24,
-                //   width: 24,
-                // ),
+                height: 24,
+                child: Image.asset('asset/image/duathlon.png'),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Duathlon',
             ),
             GButton(
-              leading: SizedBox(
-                height: 24,
-                width: 24,
-                child: Image.asset(
-                  'asset/image/app icons_tri.png',
-                ),
-                //     SvgPicture.asset(
-                //   'asset/image/tri.svg',
-                //   fit: BoxFit.cover,
-                //   height: 40,
-                //   width: 40,
-                // ),
-              ),
-              icon: FontAwesomeIcons.personBiking,
+              // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              leading: Container(
+
+                  // width: 24,
+                  // height: 24,
+
+                  ),
+              //  Image.asset('asset/image/triathlon.png'),
+
+              icon: Icons.abc,
               text: 'Triathlon',
             ),
           ]),
     );
   }
 }
- // height: 24,
-                // width: 24,
