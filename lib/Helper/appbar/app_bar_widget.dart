@@ -9,7 +9,6 @@ import '../../Pages/Find A Race/find_race_page.dart';
 import '../../Pages/Home/Components/event_names_for_route.dart';
 import '../../Pages/Home/Drawer/zoom_drawer.dart';
 import '../../Pages/Push Notification/notification list/notification_list_page.dart';
-import '../../Provider/Home providers/home_page_init_methods.dart';
 import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Utils/app_color.dart';
 import '../Widget/custome_app_bar_widget.dart';

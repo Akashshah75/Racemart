@@ -32,8 +32,8 @@ class BottomNavigationContainer extends StatelessWidget {
           tabs: [
             GButton(
               leading: SizedBox(
-                height: 24,
-                width: 24,
+                height: 19,
+                width: 19,
                 child: SvgPicture.asset('asset/image/app icons_home.svg'),
               ),
               icon: Icons.home,
@@ -42,8 +42,8 @@ class BottomNavigationContainer extends StatelessWidget {
             ),
             GButton(
               leading: SizedBox(
-                  height: 24,
-                  width: 24,
+                  height: 19,
+                  width: 19,
                   child: SvgPicture.asset('asset/image/app icons_running.svg')),
               icon: FontAwesomeIcons.personRunning,
               text: 'Running',
@@ -51,8 +51,8 @@ class BottomNavigationContainer extends StatelessWidget {
             ),
             GButton(
               leading: SizedBox(
-                height: 24,
-                width: 24,
+                height: 19,
+                width: 19,
                 child: SvgPicture.asset('asset/image/app_cycling_icon.svg'),
               ),
               icon: FontAwesomeIcons.personBiking,
@@ -62,23 +62,23 @@ class BottomNavigationContainer extends StatelessWidget {
             GButton(
               // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
               leading: SizedBox(
-                width: 20,
-                height: 20,
-                child: Image.asset('asset/image/duathlon.png'),
+                width: 40,
+                height: 40,
+                child: Image.asset('asset/image/duathlonicon.png'),
               ),
               icon: FontAwesomeIcons.personBiking,
               text: 'Duathlon',
             ),
-            // GButton(
-            //   // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            //   leading: SizedBox(
-            //     width: 20,
-            //     height: 20,
-            //     child: Image.asset('asset/image/triathlon.png'),
-            //   ),
-            //   icon: Icons.abc,
-            //   text: 'Triathlon',
-            // ),
+            GButton(
+              // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              leading: SizedBox(
+                width: 40,
+                height: 40,
+                child: Image.asset('asset/image/app icons_tri.png'),
+              ),
+              icon: Icons.abc,
+              text: 'Triathlon',
+            ),
           ]),
     );
   }
