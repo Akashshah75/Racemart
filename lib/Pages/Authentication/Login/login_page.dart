@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                     CustomeTextField(
                       readOnly: false,
                       textInputType: TextInputType.emailAddress,
-                      hintText: 'Enter Your Email id',
+                      hintText: 'Enter Your Email',
                       controller: controller.emailOfLogin,
                       iconColor: blueColor,
                     ),

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/advertiesment/advertiesment_provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
 import 'package:racemart_app/Utils/constant.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../Provider/Home providers/home_page_provider.dart';
 import 'home_widget.dart';
@@ -25,6 +24,7 @@ class _HomeMainWidgetState extends State<HomeMainWidget> {
     final advertiesment =
         Provider.of<AdvertiesmentProvider>(context, listen: true);
     return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,11 +32,11 @@ class _HomeMainWidgetState extends State<HomeMainWidget> {
           advertiesment.horizontalAdvertismentData.isEmpty
               ? const SizedBox()
               : homeProvider.selectedIndex == 0
-                  ? const AdvertismentContainer()
+                  ? AdvertismentContainer(homeProvider: homeProvider)
                   : const SizedBox(),
           const SizedBox(height: 5),
           homeWidget(homeProvider),
-          const SizedBox(height: 10)
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -47,8 +47,10 @@ class AdvertismentContainer extends StatelessWidget {
   const AdvertismentContainer({
     super.key,
     this.height = 130,
+    required this.homeProvider,
   });
   final double height;
+  final HomeProvider homeProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -83,17 +85,19 @@ class AdvertismentContainer extends StatelessWidget {
               },
             ),
           ),
-          //dotindicatior
           const SizedBox(height: 10),
-          AnimatedSmoothIndicator(
-            activeIndex: value.activeIndex,
-            count: homeAdData.length,
-            effect: ScrollingDotsEffect(
-              activeDotColor: blueColor,
-              dotWidth: 7,
-              dotHeight: 7,
-            ),
-          ),
+
+          //dotindicatior
+          // const SizedBox(height: 10),
+          // AnimatedSmoothIndicator(
+          //   activeIndex: value.activeIndex,
+          //   count: 2,
+          //   effect: ScrollingDotsEffect(
+          //     activeDotColor: blueColor,
+          //     dotWidth: 7,
+          //     dotHeight: 7,
+          //   ),
+          // ),
         ],
       );
     });

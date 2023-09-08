@@ -99,7 +99,7 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Search your data'),
+                        Text('Search past event'),
                         Icon(Icons.search),
                       ],
                     ),
@@ -152,7 +152,7 @@ class SearchPastEventPage extends StatelessWidget {
                           ),
                           const SizedBox(width: 10),
                           const Text(
-                            "Search past event",
+                            "Search",
                             style: TextStyle(fontSize: 16),
                           ),
                         ],

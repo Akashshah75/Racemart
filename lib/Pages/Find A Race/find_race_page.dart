@@ -227,7 +227,7 @@ class CustomeMultiSelectDropDown extends StatelessWidget {
           border: Border.all(color: blueColor.withOpacity(0.4)),
           borderRadius: BorderRadius.circular(12),
         ),
-        dialogHeight: 200,
+        dialogHeight: 400,
         title: Text(dialogHintText),
         selectedColor: blackColor,
         items: items,

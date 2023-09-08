@@ -60,7 +60,7 @@ class BottomNavigationContainer extends StatelessWidget {
               iconSize: 15,
             ),
             GButton(
-              // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
               leading: SizedBox(
                 width: 40,
                 height: 40,
@@ -70,7 +70,7 @@ class BottomNavigationContainer extends StatelessWidget {
               text: 'Duathlon',
             ),
             GButton(
-              // padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
               leading: SizedBox(
                 width: 40,
                 height: 40,

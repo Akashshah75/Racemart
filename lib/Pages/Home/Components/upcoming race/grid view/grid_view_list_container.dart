@@ -17,7 +17,7 @@ class GridViewContainer extends StatelessWidget {
     return Consumer<HomeProvider>(
       builder: (context, value, child) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: GridView.builder(
             controller: controllers,
             itemCount: value.upcomingEventList.length + 1,
