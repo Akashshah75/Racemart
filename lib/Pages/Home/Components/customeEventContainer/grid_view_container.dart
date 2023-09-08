@@ -51,15 +51,21 @@ class GridViewEventContainer extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 8),
                 child: Text(
                   data['title'],
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: blueColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1,
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 1),
+                padding: const EdgeInsets.only(left: 6),
                 child: Row(
                   children: [
                     const Icon(
@@ -67,7 +73,7 @@ class GridViewEventContainer extends StatelessWidget {
                       size: 16,
                       color: redColor,
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 2),
                     //
                     Text(
                       data['city'] ?? '',
