@@ -216,6 +216,7 @@ class CustomeMultiSelectDropDown extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: MultiSelectDialogField(
+        searchable: true,
         chipDisplay: MultiSelectChipDisplay(
           chipColor: white,
           textStyle: const TextStyle(color: blackColor),

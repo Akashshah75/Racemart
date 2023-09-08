@@ -118,6 +118,7 @@ class HomePageInit {
                     children: [
                       SizedBox(
                         height: size.height * 0.6,
+                        width: double.infinity,
                         child: adverstismentData.isNotEmpty
                             ? InkWell(
                                 onTap: () {

@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                     CustomeTextField(
                       readOnly: false,
                       textInputType: TextInputType.emailAddress,
-                      hintText: 'Enter Your Name',
+                      hintText: 'Enter Your Email id',
                       controller: controller.emailOfLogin,
                       iconColor: blueColor,
                     ),
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                             // print('ok');
                           },
                           child: const TextWidget(
-                            text: 'Forget Password?',
+                            text: 'Forgot Password?',
                             fontSize: 12,
                             color: greyColor,
                           ),
