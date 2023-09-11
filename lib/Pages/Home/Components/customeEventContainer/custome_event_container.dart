@@ -11,9 +11,11 @@ import '../../../../Utils/app_color.dart';
 import '../../../../Utils/constant.dart';
 
 class CustomEventContainer extends StatefulWidget {
-  const CustomEventContainer({super.key, this.data, required this.index});
+  const CustomEventContainer(
+      {super.key, this.data, required this.index, required this.fav});
   final dynamic data;
   final int index;
+  final List fav;
 
   @override
   State<CustomEventContainer> createState() => _CustomEventContainerState();
@@ -25,7 +27,6 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<FavEventAddWishlist>(context, listen: true);
-    final wishProvider = Provider.of<WishListProvider>(context, listen: true);
 
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
@@ -148,14 +149,10 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                       child: LikeButton(
                         animationDuration: const Duration(milliseconds: 1500),
                         padding: const EdgeInsets.only(left: 2, top: 2),
-                        isLiked:
-                            //  wishProvider.checkWishlistId(widget.data[
-                            //     'id']),
-                            //wishProvider.wishListData.contains(widget.data[
-                            // 'id']),
-                            wishProvider.fav.contains(widget.data['id'])
-                                ? true
-                                : false,
+                        isLiked: widget.fav.contains(widget.data[
+                                'id']) //wishProvider.fav.contains(widget.data['id'])
+                            ? true
+                            : false,
                         likeBuilder: (isLiked) {
                           return Icon(
                             Icons.favorite,
@@ -165,11 +162,12 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                         onTap: (isLiked) async {
                           // print(isLiked);
                           int eventId = widget.data['id'];
-                          provider.addEvent(eventId, context).then((_) {
-                            // print(value);
-                            wishProvider.checkWishlistId(eventId, context);
-                          });
-                          print(eventId);
+                          provider.addEvent(eventId, context);
+                          // .then((_) {
+                          //   // print(value);
+                          //   wishProvider.checkWishlistId(eventId, context);
+                          // });
+                          // print(eventId);
                           return !isLiked;
                         },
                       ),

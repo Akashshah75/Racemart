@@ -175,8 +175,11 @@ class ListViewOfNotifications extends StatelessWidget {
                     builder: (context) => DetailPageOfHome(
                         index: index, data: dataOfNotification)));
               },
-              child:
-                  CustomEventContainer(index: index, data: dataOfNotification),
+              child: CustomEventContainer(
+                index: index,
+                data: dataOfNotification,
+                fav: const [],
+              ),
             );
           } else {}
           return Padding(

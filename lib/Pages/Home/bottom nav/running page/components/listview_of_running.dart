@@ -31,9 +31,11 @@ class ListViewOfRunning extends StatelessWidget {
                         DetailPageOfHome(index: index, data: dataOfEvent)));
               },
               child: CustomEventContainer(
-                  key: ValueKey(dataOfEvent['id']),
-                  data: dataOfEvent,
-                  index: index),
+                key: ValueKey(dataOfEvent['id']),
+                data: dataOfEvent,
+                index: index,
+                fav: [],
+              ),
             );
           } else {
             return Padding(

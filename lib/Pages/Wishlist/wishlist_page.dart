@@ -24,6 +24,7 @@ class _WishListPageState extends State<WishListPage> {
   void initState() {
     Future.delayed(Duration.zero, () async {
       final provider = Provider.of<WishListProvider>(context, listen: false);
+      // provider.fetch(context);
       provider.wishListEvent(context);
     });
     super.initState();
@@ -222,7 +223,11 @@ class ListViewOfWishList extends StatelessWidget {
                           data: dataOfEvent,
                         )));
               },
-              child: CustomEventContainer(data: dataOfEvent, index: index),
+              child: CustomEventContainer(
+                data: dataOfEvent,
+                index: index,
+                fav: value.fav,
+              ),
             );
           } else {
             return Padding(

@@ -81,10 +81,11 @@ class HomePageInit {
       final wishProvider =
           Provider.of<WishListProvider>(context, listen: false);
       wishProvider.wishListEvent(context);
+      // wishProvider.fetch(context);
       //after wishlist then complete homepage methods
-      Future.delayed(const Duration(milliseconds: 800), () {
-        wishProvider.checkId(context);
-      });
+      // Future.delayed(const Duration(milliseconds: 800), () {
+      //   wishProvider.checkId(context);
+      // });
       HomePageInit().homePageIntiMehod(context);
     });
   }

@@ -28,10 +28,14 @@ class _SplashScreenState extends State<SplashScreen> {
       //wishlist
       final wishProvider =
           Provider.of<WishListProvider>(context, listen: false);
+      // wishProvider.fetch(context);
+      // Future.delayed(const Duration(milliseconds: 800), () {
+      //   wishProvider.checkId(context);
+      // });
       wishProvider.wishListEvent(context);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        wishProvider.checkId(context);
-      });
+      // Future.delayed(const Duration(milliseconds: 800), () {
+      //   wishProvider.checkId(context);
+      // });
       var token = provider.appLoginToken;
       if (kDebugMode) {
         print(token);

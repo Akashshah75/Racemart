@@ -27,17 +27,22 @@ class FavEventAddWishlist with ChangeNotifier {
     print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
-      // isFav = result['fav'];
-      // notifyListeners();
-      toastMessage(result['message']);
       // ignore: use_build_context_synchronously
-      wishProvider.wishListEvent(context);
-      //
-      Future.delayed(const Duration(milliseconds: 450), () {
-        wishProvider.checkId(context);
-      });
-
-      //
+      toastMessage(result['message']);
+      // Future.delayed(const Duration(milliseconds: 350), () {
+      //   // wishProvider.wishListEvent(context);
+      //   // wishProvider.fetch(context);
+      // });
+      if (wishProvider.wishListData.length < 10) {
+        print('if wishlist data less than done:');
+        Future.delayed(const Duration(milliseconds: 350), () {
+          wishProvider.wishListEvent(context);
+        });
+      } else {
+        Future.delayed(const Duration(milliseconds: 350), () {
+          wishProvider.fetch(context);
+        });
+      }
     } else {
       toastMessage('');
     }

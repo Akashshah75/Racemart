@@ -197,9 +197,11 @@ class ListViewOfWalking extends StatelessWidget {
                         DetailPageOfHome(index: index, data: dataOfEvent)));
               },
               child: CustomEventContainer(
-                  key: ValueKey(dataOfEvent['id']),
-                  data: dataOfEvent,
-                  index: index),
+                key: ValueKey(dataOfEvent['id']),
+                data: dataOfEvent,
+                index: index,
+                fav: const [],
+              ),
               // RaceContainer(index: index, data: dataOfEvent),
             );
           } else {

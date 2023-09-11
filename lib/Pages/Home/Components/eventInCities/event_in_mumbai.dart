@@ -176,7 +176,11 @@ class ListViewOfEventInCity extends StatelessWidget {
                           data: dataOfEvent,
                         )));
               },
-              child: CustomEventContainer(index: index, data: dataOfEvent),
+              child: CustomEventContainer(
+                index: index,
+                data: dataOfEvent,
+                fav: [],
+              ),
             );
           } else {
             return Padding(

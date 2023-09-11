@@ -213,7 +213,11 @@ class ListViewOfFindARace extends StatelessWidget {
                         data: serchOfData,
                       )));
             },
-            child: CustomEventContainer(index: index, data: serchOfData),
+            child: CustomEventContainer(
+              index: index,
+              data: serchOfData,
+              fav: const [],
+            ),
           );
         } else {
           return Padding(

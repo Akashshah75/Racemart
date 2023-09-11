@@ -37,9 +37,11 @@ class UserInterestListView extends StatelessWidget {
                   );
                 },
                 child: CustomEventContainer(
-                    key: ValueKey(dataOfEvent['id']),
-                    data: dataOfEvent,
-                    index: index)
+                  key: ValueKey(dataOfEvent['id']),
+                  data: dataOfEvent,
+                  index: index,
+                  fav: [],
+                )
                 // RaceContainer(index: index, data: dataOfEvent),
                 );
           } else {

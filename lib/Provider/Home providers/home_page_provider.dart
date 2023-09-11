@@ -112,9 +112,12 @@ class HomeProvider with ChangeNotifier {
   //upcoming events
   Future<void> upcomingEvent(BuildContext context) async {
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-    wishProvider.wishListEvent(context).then((_) {
-      wishProvider.checkId(context);
-    });
+    // wishProvider.fetch(context).then((_) {
+    //   wishProvider.checkId(context);
+    // });
+    // wishProvider.wishListEvent(context).then((_) {
+    //   wishProvider.checkId(context);
+    // });
     // Future.delayed(const Duration(milliseconds: 1500), () {});
     //
     isLoading = true;
