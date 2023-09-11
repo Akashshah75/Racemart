@@ -133,6 +133,7 @@ class _WishListListingState extends State<WishListListing> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context, listen: false);
+    print(widget.provider.wishListData.length);
     return SizedBox(
       height: 692,
       child: widget.provider.wishListData.isEmpty

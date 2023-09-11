@@ -29,7 +29,7 @@ class UserInterestProvider with ChangeNotifier {
       "distances": distances ?? [],
       "terrains": terrains ?? [],
     };
-    print(body);
+    // print(body);
     //
 
     final provider =

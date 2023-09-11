@@ -12,7 +12,7 @@ class HowToREachContainer extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
-    print(data['map_url']);
+    // print(data['map_url']);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       width: double.infinity,

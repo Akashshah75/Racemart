@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -70,10 +69,10 @@ Future<void> launchUrls(var url) async {
 }
 
 //
-void size(BuildContext context) {
-  final size = MediaQuery.of(context).size.height;
-  print(size * 0.75);
-}
+// void size(BuildContext context) {
+//   final size = MediaQuery.of(context).size.height;
+//   // print(size * 0.75);
+// }
 
 final urlImage = [
   "https://racemart.youtoocanrun.com/storage/advertisement/giGxwbeMGpLUh9LNilCYZZhFyMAfewbGckWryYUQ.gif",

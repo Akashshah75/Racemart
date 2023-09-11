@@ -24,7 +24,7 @@ class FavEventAddWishlist with ChangeNotifier {
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         addEventUrl, provider.appLoginToken.toString(), body);
-    // print(response);
+    print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       // isFav = result['fav'];
@@ -33,7 +33,7 @@ class FavEventAddWishlist with ChangeNotifier {
       // ignore: use_build_context_synchronously
       wishProvider.wishListEvent(context);
       //
-      Future.delayed(const Duration(milliseconds: 350), () {
+      Future.delayed(const Duration(milliseconds: 450), () {
         wishProvider.checkId(context);
       });
 

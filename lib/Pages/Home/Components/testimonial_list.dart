@@ -29,7 +29,7 @@ class _TestimonialListOfHomeState extends State<TestimonialListOfHome> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size.height;
-    print(size * 0.7);
+    // print(size * 0.7);
     final provider = Provider.of<TestimonialProvider>(context, listen: true);
     return provider.testimonialList.isEmpty
         ? Center(child: Image.asset(noDataFound))

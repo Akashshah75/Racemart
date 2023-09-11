@@ -42,7 +42,7 @@ class AuthenticationProvider with ChangeNotifier {
     final token = await firebaseMessaging.getToken();
     fcmToken = token!;
     notifyListeners();
-    print('fcm:$fcmToken');
+    // print('fcm:$fcmToken');
   }
 
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
@@ -52,13 +52,13 @@ class AuthenticationProvider with ChangeNotifier {
     if (Platform.isAndroid) {
       // device = 'android';
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      print('Running on ${androidInfo.model}');
+      // print('Running on ${androidInfo.model}');
       device = androidInfo.model;
-      print(device);
+      // print(device);
       notifyListeners();
     } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      print('Running on ${iosInfo.utsname.machine}');
+      // print('Running on ${iosInfo.utsname.machine}');
       device = iosInfo.utsname.machine;
       notifyListeners();
     }

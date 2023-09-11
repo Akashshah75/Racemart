@@ -189,7 +189,7 @@ class CustomeDistanceContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('name:${name.length}');
+    // print('name:${name.length}');
     return Container(
       width: name.length > 10 ? 130 : 90,
       height: 35,

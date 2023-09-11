@@ -47,7 +47,7 @@ class _EventInCityState extends State<EventInCity> {
 //
   Future fetch() async {
     // widget.provider.city;
-    print(widget.provider.city);
+    // print(widget.provider.city);
     if (isLoading) return;
     isLoading = true;
     const limit = 10;
@@ -161,7 +161,7 @@ class ListViewOfEventInCity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(builder: (context, value, chiid) {
       final eventInCityData = value.eventInMumbai;
-      print(eventInCityData.length);
+      // print(eventInCityData.length);
       return ListView.builder(
         controller: controllers,
         itemCount: eventInCityData.length + 1,

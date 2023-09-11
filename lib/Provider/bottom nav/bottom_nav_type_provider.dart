@@ -22,7 +22,7 @@ class BottomnavTypeProvider with ChangeNotifier {
   int activeIndex = 0;
 
   void changeBottomNavPage(int val) {
-    print(val);
+    // print(val);
     if (val == 0) {
       activeScreen = const HomeMainWidget();
       activeIndex = 0;
@@ -69,6 +69,7 @@ class BottomnavTypeProvider with ChangeNotifier {
                   ? badges.BadgePosition.topEnd(top: 2, end: -8)
                   : badges.BadgePosition.topEnd(top: 2, end: 1),
               badgeContent: Text(
+                // value.lengthOFwishlist.toString(),
                 value.lengthOFwishlist! > 9
                     ? '9+'
                     : value.lengthOFwishlist.toString(),

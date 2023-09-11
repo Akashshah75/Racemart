@@ -30,7 +30,7 @@ class AdvertiesmentProvider with ChangeNotifier {
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient()
         .getMethodWithToken(advertismentUrl, provider.appLoginToken.toString());
-    print(response);
+    // print(response);
     isLoading = false;
     notifyListeners();
     var result = jsonDecode(response);
@@ -41,7 +41,7 @@ class AdvertiesmentProvider with ChangeNotifier {
     shuffleList = [];
     if (result['status'] == 'success') {
       advertismentData = result['data'];
-      print(advertismentData);
+      // print(advertismentData);
       advertismentData.forEach((key, value) {
         if (key == 'horizontal') {
           horizontalAdvertismentData = value;
@@ -60,8 +60,8 @@ class AdvertiesmentProvider with ChangeNotifier {
         }
       });
     }
-    print("horizontalAdvertismentData:$horizontalAdvertismentData");
-    print("verticleAdvertismentData$verticleAdvertismentData");
+    // print("horizontalAdvertismentData:$horizontalAdvertismentData");
+    // print("verticleAdvertismentData$verticleAdvertismentData");
     // print(mapOfProfileData);
   }
 }

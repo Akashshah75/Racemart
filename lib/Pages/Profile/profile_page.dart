@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final iconProvider = Provider.of<IconChangeProvider>(context, listen: true);
     final controller = Provider.of<ProfileProvider>(context, listen: true);
     final profileData = controller.mapOfProfileData;
-    print(width * 2);
+    // print(width * 2);
     return Scaffold(
       body: SafeArea(
         child: controller.isLoading

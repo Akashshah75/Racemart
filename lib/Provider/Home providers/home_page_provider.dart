@@ -365,7 +365,7 @@ class HomeProvider with ChangeNotifier {
       if (result['data'] != null) {
         listOfUserInterest = result['data']['list'];
         notifyListeners();
-        print(listOfUserInterest.length);
+        // print(listOfUserInterest.length);
       } else {
         // toastMessage(result['message']);
       }

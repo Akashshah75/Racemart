@@ -41,7 +41,7 @@ AppBar appBarOfFindRaceWithLeading(BuildContext context,
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(Icons.arrow_back)),
+          icon: const Icon(Icons.arrow_back)),
       // leading: const MenuWidget(),
       actions: [
         MaterialButton(

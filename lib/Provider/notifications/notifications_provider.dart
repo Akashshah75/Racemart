@@ -17,7 +17,7 @@ class NotificationProvider with ChangeNotifier {
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient()
         .getMethodWithToken(notificationUrl, provider.appLoginToken.toString());
-    print(response);
+    // print(response);
     isLoading = false;
     notifyListeners();
     var result = jsonDecode(response);
@@ -25,6 +25,6 @@ class NotificationProvider with ChangeNotifier {
     if (result['status'] == 'success') {
       notificationData = result['data']['list'];
     }
-    print(notificationData);
+    // print(notificationData);
   }
 }

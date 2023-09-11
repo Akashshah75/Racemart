@@ -53,7 +53,7 @@ class _UserInterestPageState extends State<UserInterestPage> {
         .getMethodWithToken(url, provider.appLoginToken.toString());
 
     var result = jsonDecode(res);
-    print(result);
+    // print(result);
     if (result['data'] == null) {
       setState(() {
         hasMore = false;

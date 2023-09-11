@@ -94,8 +94,8 @@ class _NotificationDetailPageState extends State<NotificationDetailPage>
           duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
     }
 
-    print('Detail:${provider.detailEventData}');
-    print(widget.eventId);
+    // print('Detail:${provider.detailEventData}');
+    // print(widget.eventId);
     // print('Event_Id: ${widget.data['id']}');
     return Scaffold(
       backgroundColor: appBg,

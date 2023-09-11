@@ -26,6 +26,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
   Widget build(BuildContext context) {
     final provider = Provider.of<FavEventAddWishlist>(context, listen: true);
     final wishProvider = Provider.of<WishListProvider>(context, listen: true);
+
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
@@ -147,9 +148,14 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                       child: LikeButton(
                         animationDuration: const Duration(milliseconds: 1500),
                         padding: const EdgeInsets.only(left: 2, top: 2),
-                        isLiked: wishProvider.fav.contains(widget.data['id'])
-                            ? true
-                            : false,
+                        isLiked:
+                            //  wishProvider.checkWishlistId(widget.data[
+                            //     'id']),
+                            //wishProvider.wishListData.contains(widget.data[
+                            // 'id']),
+                            wishProvider.fav.contains(widget.data['id'])
+                                ? true
+                                : false,
                         likeBuilder: (isLiked) {
                           return Icon(
                             Icons.favorite,
@@ -157,9 +163,13 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                           );
                         },
                         onTap: (isLiked) async {
+                          // print(isLiked);
                           int eventId = widget.data['id'];
-                          // print(eventId);
-                          provider.addEvent(eventId, context);
+                          provider.addEvent(eventId, context).then((_) {
+                            // print(value);
+                            wishProvider.checkWishlistId(eventId, context);
+                          });
+                          print(eventId);
                           return !isLiked;
                         },
                       ),

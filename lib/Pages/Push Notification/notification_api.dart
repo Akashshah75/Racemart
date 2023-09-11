@@ -61,7 +61,7 @@ class NotificationFeat {
     FirebaseMessaging.onMessage.listen(
       (message) {
         if (message.notification != null) {
-          print(message);
+          // print(message);
 
           LocalNotificationService.createanddisplaynotification(message);
         }

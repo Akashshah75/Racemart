@@ -79,7 +79,7 @@ class FindARacesProvider with ChangeNotifier {
       "sortby": ""
     };
     //
-    print(body);
+    // print(body);
 
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
@@ -95,8 +95,8 @@ class FindARacesProvider with ChangeNotifier {
       notifyListeners();
 //
       // ignore: use_build_context_synchronously
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => ResultOfSerchList()));
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const ResultOfSerchList()));
 //
       if (searchListData.isEmpty) {
         toastMessage("No event Found");
@@ -134,7 +134,7 @@ class FindARacesProvider with ChangeNotifier {
       "sortby": ""
     };
     //
-    print(body);
+    // print(body);
 
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);

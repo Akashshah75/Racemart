@@ -22,13 +22,13 @@ class AboutUsProvider with ChangeNotifier {
     isLoading = false;
     notifyListeners();
     var result = jsonDecode(response);
-    print(result);
+    // print(result);
     aboutUsdata = '';
     if (result['status'] == 'success') {
       aboutUsdata = result['data'];
       notifyListeners();
     }
-    print(aboutUsdata);
+    // print(aboutUsdata);
   }
 
   void initMethodOfAboutUs(BuildContext context) {
