@@ -6,11 +6,13 @@ import 'package:racemart_app/Provider/find_race_provider.dart';
 
 import '../../../../Network/base_clent.dart';
 import '../../../../Provider/Home providers/home_page_provider.dart';
+import '../../../../Provider/advertiesment/advertiesment_provider.dart';
 import '../../../../Provider/authentication_provider.dart';
 import '../../../../Utils/app_asset.dart';
 import '../../../DetailPage/detail_of_home_page.dart';
 import '../../Components/customeEventContainer/custome_event_container.dart';
 import '../../Components/customeEventContainer/grid_view_container.dart';
+import '../../advertisment/advertisment_container.dart';
 
 class TrithlonPage extends StatefulWidget {
   const TrithlonPage({super.key});
@@ -97,6 +99,8 @@ class _TrithlonPageState extends State<TrithlonPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeProvider>(context, listen: true);
+    final adverisement =
+        Provider.of<AdvertiesmentProvider>(context, listen: true);
 
     return Scaffold(
       body: SafeArea(
@@ -108,13 +112,28 @@ class _TrithlonPageState extends State<TrithlonPage> {
                 )
               : value.typeOfData.isEmpty
                   ? Center(child: Image.asset(noDataFound))
-                  : provider.isList
-                      ? ListViewOfCycling(
-                          controllers: controllers,
-                          runningTypeData: duathlondata,
-                          hasMore: hasMore)
-                      : GridViewOfCycling(
-                          controllers: controllers, hasMore: hasMore);
+                  : Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        adverisement
+                                .trithalonPageTopSectionAdvertiesment.isEmpty
+                            ? const SizedBox()
+                            : AdvertismentContainer(
+                                homeProvider: provider,
+                                title: CategoryOfBottomNavigation.trithalon),
+                        const SizedBox(height: 10),
+                        //
+                        Expanded(
+                            child: provider.isList
+                                ? ListViewOfCycling(
+                                    controllers: controllers,
+                                    runningTypeData: duathlondata,
+                                    hasMore: hasMore)
+                                : GridViewOfCycling(
+                                    controllers: controllers,
+                                    hasMore: hasMore)),
+                      ],
+                    );
         }),
       ),
     );

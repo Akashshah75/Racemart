@@ -104,6 +104,14 @@ class AdvertiesmentProvider with ChangeNotifier {
       return homePageTopSectionAdvertiesment;
     } else if (CategoryOfBottomNavigation.running == category) {
       return runningPageTopSectionAdvertiesment;
+    } else if (CategoryOfBottomNavigation.cycling == category) {
+      return cyclingPageTopSectionAdvertiesment;
+    } else if (CategoryOfBottomNavigation.duathathlon == category) {
+      return duathalonPageTopSectionAdvertiesment;
+    } else if (CategoryOfBottomNavigation.trithalon == category) {
+      return trithalonPageTopSectionAdvertiesment.isEmpty
+          ? []
+          : trithalonPageTopSectionAdvertiesment;
     } else {
       return [];
     }

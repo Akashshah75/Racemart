@@ -6,11 +6,13 @@ import 'package:racemart_app/Provider/find_race_provider.dart';
 
 import '../../../../Network/base_clent.dart';
 import '../../../../Provider/Home providers/home_page_provider.dart';
+import '../../../../Provider/advertiesment/advertiesment_provider.dart';
 import '../../../../Provider/authentication_provider.dart';
 import '../../../../Utils/app_asset.dart';
 import '../../../DetailPage/detail_of_home_page.dart';
 import '../../Components/customeEventContainer/custome_event_container.dart';
 import '../../Components/customeEventContainer/grid_view_container.dart';
+import '../../advertisment/advertisment_container.dart';
 
 class DuathlonPage extends StatefulWidget {
   const DuathlonPage({super.key});
@@ -108,13 +110,25 @@ class _DuathlonPageState extends State<DuathlonPage> {
                 )
               : value.typeOfData.isEmpty
                   ? Center(child: Image.asset(noDataFound))
-                  : provider.isList
-                      ? ListViewOfCycling(
-                          controllers: controllers,
-                          runningTypeData: duathlondata,
-                          hasMore: hasMore)
-                      : GridViewOfCycling(
-                          controllers: controllers, hasMore: hasMore);
+                  : Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        AdvertismentContainer(
+                            homeProvider: provider,
+                            title: CategoryOfBottomNavigation.duathathlon),
+                        const SizedBox(height: 10),
+                        //
+                        Expanded(
+                          child: provider.isList
+                              ? ListViewOfCycling(
+                                  controllers: controllers,
+                                  runningTypeData: duathlondata,
+                                  hasMore: hasMore)
+                              : GridViewOfCycling(
+                                  controllers: controllers, hasMore: hasMore),
+                        ),
+                      ],
+                    );
         }),
       ),
     );
