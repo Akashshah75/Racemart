@@ -82,14 +82,6 @@ class WishListProvider with ChangeNotifier {
 
   void checkWishlistData(BuildContext context, int id) {
     fav = [];
-    final list = wishListData.where((element) {
-      if (element['id'] == id) {
-        print('yes');
-      }
-      print(element);
-      return true;
-    });
-    print(list);
     // if (wishListData.length > 10) {
     for (int i = 0; i < wishListData.length; i++) {
       fav.add(wishListData[i]['id']);
@@ -98,7 +90,8 @@ class WishListProvider with ChangeNotifier {
     // }
     print('FavOfMoreThan10ListEvent: $fav');
     print(fav.length);
-    wishListEvent(context);
+
+    // wishListEvent(context);
   }
 }
 

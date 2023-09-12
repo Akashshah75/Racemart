@@ -63,6 +63,7 @@ class FavEventAddWishlist with ChangeNotifier {
   Future<void> addEvent2(int eventId, BuildContext context) async {
     print('addEvent2');
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+    print(wishProvider.fav.length);
     var body = {'event_id': eventId};
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
@@ -77,9 +78,13 @@ class FavEventAddWishlist with ChangeNotifier {
       Future.delayed(Duration.zero, () {
         wishProvider.fetch(context);
       });
-      Future.delayed(const Duration(milliseconds: 450), () {
+      Future.delayed(const Duration(milliseconds: 350), () {
         print('fav');
         wishProvider.checkWishlistData(context, eventId);
+      });
+      Future.delayed(const Duration(milliseconds: 450), () {
+        print('fav');
+        wishProvider.wishListEvent(context);
       });
 
       //check wishlist
