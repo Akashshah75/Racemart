@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/advertiesment/advertiesment_provider.dart';
+import 'package:racemart_app/Provider/wishlist/fav_event_add_wishlist_provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
 import 'package:racemart_app/Utils/constant.dart';
 
@@ -80,7 +81,28 @@ class HomePageInit {
     Future.delayed(Duration.zero, () async {
       final wishProvider =
           Provider.of<WishListProvider>(context, listen: false);
-      wishProvider.wishListEvent(context);
+
+      // wishProvider.wishListEvent(context);
+      //
+
+      wishProvider.wishListEvent(context).then((_) {
+        wishProvider.fav = [];
+        if (wishProvider.wishListData.length < 10) {
+          for (int i = 0; i < wishProvider.wishListData.length; i++) {
+            print(
+                'wishlistLoop from fav_event:${wishProvider.wishListData.length}');
+            wishProvider.fav.add(wishProvider.wishListData[i]['id']);
+          }
+        } else {
+          wishProvider.fetch(context).then((value) {
+            Future.delayed(const Duration(milliseconds: 350), () {
+              wishProvider.checkId(context);
+            });
+          });
+        }
+      });
+
+      //
       // wishProvider.fetch(context);
       //after wishlist then complete homepage methods
       // Future.delayed(const Duration(milliseconds: 800), () {

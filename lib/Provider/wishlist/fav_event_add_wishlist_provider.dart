@@ -29,21 +29,34 @@ class FavEventAddWishlist with ChangeNotifier {
     if (result['status'] == "success") {
       // ignore: use_build_context_synchronously
       toastMessage(result['message']);
-      // Future.delayed(const Duration(milliseconds: 350), () {
-      //   // wishProvider.wishListEvent(context);
-      //   // wishProvider.fetch(context);
-      // });
       if (wishProvider.wishListData.length < 10) {
-        print('if wishlist data less than done:');
+        print('if wishlist data less than 10:');
         Future.delayed(const Duration(milliseconds: 350), () {
-          wishProvider.wishListEvent(context);
+          wishProvider.wishListEvent(context).then((_) {
+            wishProvider.fav = [];
+            if (wishProvider.wishListData.length < 10) {
+              for (int i = 0; i < wishProvider.wishListData.length; i++) {
+                print(
+                    'wishlistLoop from fav_event:${wishProvider.wishListData.length}');
+                wishProvider.fav.add(wishProvider.wishListData[i]['id']);
+                notifyListeners();
+              }
+            }
+          });
         });
       } else {
-        Future.delayed(const Duration(milliseconds: 350), () {
-          wishProvider.fetch(context);
+        print('if wishlist data more than 10:');
+
+        Future.delayed(const Duration(milliseconds: 100), () {
+          wishProvider.fetch(context).then((value) {
+            Future.delayed(const Duration(milliseconds: 500), () {
+              wishProvider.checkId(context);
+              // wishProvider.checkId(context);
+            });
+          });
         });
       }
-    } else {
+
       toastMessage('');
     }
   }

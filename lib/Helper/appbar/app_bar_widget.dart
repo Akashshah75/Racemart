@@ -58,7 +58,7 @@ PreferredSizeWidget customeAppBar(BuildContext context,
                       ? badges.BadgePosition.topEnd(top: 2, end: -8)
                       : badges.BadgePosition.topEnd(top: 2, end: 1),
                   badgeContent: Text(
-                    // value.lengthOFwishlist.toString(),
+                    // value.fav.length.toString(),
                     value.lengthOFwishlist! > 9
                         ? '9+'
                         : value.lengthOFwishlist.toString(),

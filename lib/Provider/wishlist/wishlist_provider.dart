@@ -28,16 +28,11 @@ class WishListProvider with ChangeNotifier {
     var result = jsonDecode(response);
     //
     wishListData = [];
-    fav = [];
     if (result['status'] == 'success') {
       wishListData = result['data']['list'];
       lengthOFwishlist = wishListData.length;
       notifyListeners();
-      for (int i = 0; i < wishListData.length; i++) {
-        print('wishlistLoop:${wishListData.length}');
-        fav.add(wishListData[i]['id']);
-        notifyListeners();
-      }
+      // fav = [];
     }
     print(fav);
   }
@@ -58,52 +53,71 @@ class WishListProvider with ChangeNotifier {
     print(res);
     var result = jsonDecode(res);
     final List newEvent = result['data']['list'];
-    // print(result['data']['current_page'] * 10);
-    // print(result['data']['total']);
-//
-    if (result['data']['current_page'] * 10 < result['data']['total']) {
+    print("newEvent.length:${newEvent.length}");
+    //
+    if (newEvent.length == 10) {
       page++;
-      notifyListeners();
-    } else if (result['data']['to'] == null) {
-      page--;
-      notifyListeners();
     }
-    // print("wishListData.length:${wishListData.length}");
+
     wishListData.addAll(newEvent);
-    notifyListeners();
-    //
-    print('fav:$fav');
-    //
-    fav = [];
-    Future.delayed(const Duration(milliseconds: 400), () {
-      for (int i = 0; i < wishListData.length; i++) {
-        print('wishlistLoop:${wishListData.length}');
-        fav.add(wishListData[i]['id']);
-        notifyListeners();
-      }
-      print('fav from fetch:$fav');
-    });
-    //
   }
 
-//   void checkId(BuildContext context) {
-//     if (wishListData.length >= limit) {
-//       fetch(context).then(
-//         (_) {
-//           print('loop:${wishListData.length}');
-//           for (int i = 0; i < wishListData.length; i++) {
-//             fav.add(wishListData[i]['id']);
-//             notifyListeners();
-//           }
-//         },
-//       );
-//     } else {
-//       for (int i = 0; i < wishListData.length; i++) {
-//         print('wishlistLoop:${wishListData.length}');
-//         fav.add(wishListData[i]['id']);
-//         notifyListeners();
-//       }
-//     }
-//     print(fav);
-//   }
+//////////////////////////////////////////
+  void checkId(BuildContext context) {
+    print('checkId:$fav');
+    fav = [];
+    // Future.delayed(const Duration(milliseconds: 400), () {
+    // fav.addAll(wishListData['id']);
+    for (int i = 0; i < wishListData.length; i++) {
+      print('wishlistLoop:${wishListData.length}');
+      fav.add(wishListData[i]['id']);
+      notifyListeners();
+    }
+    print('fav from fetch:$fav');
+    // });
+    //   if (wishListData.length >= limit) {
+    //     fetch(context).then(
+    //       (_) {
+    //         print('loop:${wishListData.length}');
+    //         for (int i = 0; i < wishListData.length; i++) {
+    //           fav.add(wishListData[i]['id']);
+    //           notifyListeners();
+    //         }
+    //       },
+    //     );
+    //   } else {
+    //     for (int i = 0; i < wishListData.length; i++) {
+    //       print('wishlistLoop:${wishListData.length}');
+    //       fav.add(wishListData[i]['id']);
+    //       notifyListeners();
+    //     }
+    //   }
+    //   print(fav);
+  }
 }
+//
+// if (result['data']['current_page'] * 10 < result['data']['total']) {
+//   page++;
+//   notifyListeners();
+// } else if (result['data']['to'] == null) {
+//   page--;
+//   notifyListeners();
+// }
+// print("wishListData.length:${wishListData.length}");
+
+// notifyListeners();
+//
+// print('fav:${fav.length}');
+//
+// fav = [];
+
+// fav = [];
+// Future.delayed(const Duration(milliseconds: 400), () {
+//   for (int i = 0; i < wishListData.length; i++) {
+//     print('wishlistLoop:${wishListData.length}');
+//     fav.add(wishListData[i]['id']);
+//     notifyListeners();
+//   }
+//   print('fav from fetch:$fav');
+// });
+//

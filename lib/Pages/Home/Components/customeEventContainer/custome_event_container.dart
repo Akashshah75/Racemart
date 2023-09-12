@@ -5,7 +5,7 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../Provider/wishlist/fav_event_add_wishlist_provider.dart';
-import '../../../../Provider/wishlist/wishlist_provider.dart';
+// import '../../../../Provider/wishlist/wishlist_provider.dart';
 import '../../../../Utils/app_asset.dart';
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/constant.dart';
@@ -163,6 +163,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                           // print(isLiked);
                           int eventId = widget.data['id'];
                           provider.addEvent(eventId, context);
+
                           // .then((_) {
                           //   // print(value);
                           //   wishProvider.checkWishlistId(eventId, context);

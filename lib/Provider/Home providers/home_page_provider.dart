@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../Network/base_clent.dart';
 import '../authentication_provider.dart';
-import '../wishlist/wishlist_provider.dart';
+// import '../wishlist/wishlist_provider.dart';
 
 class HomeProvider with ChangeNotifier {
   int selectedIndex = 0;
@@ -111,7 +111,7 @@ class HomeProvider with ChangeNotifier {
 
   //upcoming events
   Future<void> upcomingEvent(BuildContext context) async {
-    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+    // final wishProvider = Provider.of<WishListProvider>(context, listen: false);
     // wishProvider.fetch(context).then((_) {
     //   wishProvider.checkId(context);
     // });
