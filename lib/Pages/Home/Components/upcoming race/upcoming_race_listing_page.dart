@@ -78,7 +78,7 @@ class _UpcomingRaceListingPageState extends State<UpcomingRaceListingPage> {
         Provider.of<AdvertiesmentProvider>(context, listen: true);
     final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: adProvider.horizontalAdvertismentData.isEmpty
+      height: adProvider.homePageAdvertisementpopUp.isEmpty
           ? size * 0.7
           : size * 0.55,
       child: widget.provider.isLoading

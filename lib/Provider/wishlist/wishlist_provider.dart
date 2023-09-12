@@ -35,7 +35,7 @@ class WishListProvider with ChangeNotifier {
       // fav = [];
     }
 
-    print('fav_from_wishlist_method: $fav');
+    // print('fav_from_wishlist_method: $fav');
   }
 
   //
@@ -46,7 +46,7 @@ class WishListProvider with ChangeNotifier {
   bool isFav = false;
   int limit = 10;
   Future fetch(BuildContext context) async {
-    print('page:$page');
+    // print('page:$page');
     var provider = Provider.of<AuthenticationProvider>(context, listen: false);
     final url = "https://racemart.youtoocanrun.com/api/wishlist?page=$page";
     var res = await BaseClient()
@@ -54,7 +54,7 @@ class WishListProvider with ChangeNotifier {
     // print(res);
     var result = jsonDecode(res);
     final List newEvent = result['data']['list'];
-    print("newEvent.length:${newEvent.length}");
+    // print("newEvent.length:${newEvent.length}");
     //
     if (newEvent.length == 10) {
       page++;
@@ -63,7 +63,7 @@ class WishListProvider with ChangeNotifier {
     }
     wishListData.addAll(newEvent);
     notifyListeners();
-    print(wishListData.length);
+    // print(wishListData.length);
   }
 
   //
@@ -75,7 +75,7 @@ class WishListProvider with ChangeNotifier {
         notifyListeners();
       }
       //first 10 event add on wishlist
-      print('FavOfFirst10ListEvent: $fav');
+      // print('FavOfFirst10ListEvent: $fav');
     }
     wishListEvent(context);
   }
@@ -88,8 +88,8 @@ class WishListProvider with ChangeNotifier {
       notifyListeners();
     }
     // }
-    print('FavOfMoreThan10ListEvent: $fav');
-    print(fav.length);
+    // print('FavOfMoreThan10ListEvent: $fav');
+    // print(fav.length);
 
     // wishListEvent(context);
   }

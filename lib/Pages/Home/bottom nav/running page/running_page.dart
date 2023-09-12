@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Pages/Home/advertisment/advertisment_container.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 import 'package:racemart_app/Provider/find_race_provider.dart';
 
 import '../../../../Network/base_clent.dart';
+import '../../../../Provider/advertiesment/advertiesment_provider.dart';
 import '../../../../Provider/authentication_provider.dart';
 import '../../../../Utils/app_asset.dart';
 import 'components/gridview_of_running.dart';
@@ -106,13 +108,21 @@ class _RunningPageState extends State<RunningPage> {
                 )
               : value.typeOfData.isEmpty
                   ? Center(child: Image.asset(noDataFound))
-                  : provider.isList
-                      ? ListViewOfRunning(
-                          controllers: controllers,
-                          runningTypeData: runningTypeData,
-                          hasMore: hasMore)
-                      : GridViewOfRunning(
-                          controllers: controllers, hasMore: hasMore);
+                  : Column(children: [
+                      const SizedBox(height: 10),
+                      AdvertismentContainer(
+                          homeProvider: provider,
+                          title: CategoryOfBottomNavigation.running),
+                      const SizedBox(height: 10),
+                      Expanded(
+                          child: provider.isList
+                              ? ListViewOfRunning(
+                                  controllers: controllers,
+                                  runningTypeData: runningTypeData,
+                                  hasMore: hasMore)
+                              : GridViewOfRunning(
+                                  controllers: controllers, hasMore: hasMore))
+                    ]);
         }),
       ),
     );

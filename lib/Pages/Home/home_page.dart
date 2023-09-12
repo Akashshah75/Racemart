@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     Future.delayed(const Duration(milliseconds: 750), () {
       final advertiesmentProvider =
           Provider.of<AdvertiesmentProvider>(context, listen: false);
-      if (advertiesmentProvider.verticleAdvertismentData.isNotEmpty) {
+      if (advertiesmentProvider.homePageAdvertisementpopUp.isNotEmpty) {
         HomePageInit().openDialog(context);
       }
       // if (advertiesmentProvider.horizontalAdvertismentData.isNotEmpty) {

@@ -16,7 +16,7 @@ class NotificationFeat {
   Future<dynamic> requestNotificationPermission() async {
     await firebaseMessaging.requestPermission();
     final fcmToken = await firebaseMessaging.getToken();
-    print('fcmToken:$fcmToken');
+    // print('fcmToken:$fcmToken');
     return fcmToken;
   }
 

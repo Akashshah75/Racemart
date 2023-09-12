@@ -183,7 +183,7 @@ class ListViewOfReviewARace extends StatelessWidget {
               child: CustomEventContainer(
                 index: index,
                 data: dataOfEvent,
-                fav: [],
+                fav: const [],
               ),
             );
           } else {

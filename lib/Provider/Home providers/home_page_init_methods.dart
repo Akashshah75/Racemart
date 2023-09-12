@@ -88,8 +88,8 @@ class HomePageInit {
         wishProvider.fav = [];
         if (wishProvider.wishListData.length < 10) {
           for (int i = 0; i < wishProvider.wishListData.length; i++) {
-            print(
-                'wishlistLoop from fav_event:${wishProvider.wishListData.length}');
+            // print(
+            //     'wishlistLoop from fav_event:${wishProvider.wishListData.length}');
             wishProvider.fav.add(wishProvider.wishListData[i]['id']);
           }
         } else {
@@ -130,6 +130,7 @@ class HomePageInit {
               //   suffeldList.shuffle();
               //   return suffeldList;
               // }
+              // print('adverstismentData:$adverstismentData');
 
               return AlertDialog(
                 contentPadding: EdgeInsets.zero,

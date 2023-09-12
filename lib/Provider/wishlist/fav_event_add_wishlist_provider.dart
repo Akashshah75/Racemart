@@ -15,7 +15,7 @@ class FavEventAddWishlist with ChangeNotifier {
 
 //
   Future<void> addEvent(int eventId, BuildContext context) async {
-    print('addEvent');
+    // print('addEvent');
     isFav = true;
     notifyListeners();
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
@@ -25,7 +25,7 @@ class FavEventAddWishlist with ChangeNotifier {
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         addEventUrl, provider.appLoginToken.toString(), body);
-    print(response);
+    // print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       toastMessage(result['message']);
@@ -37,7 +37,7 @@ class FavEventAddWishlist with ChangeNotifier {
         });
         //
         Future.delayed(const Duration(milliseconds: 350), () {
-          print('wish');
+          // print('wish');
           wishProvider.checkWishListId(context);
         });
       }
@@ -61,29 +61,29 @@ class FavEventAddWishlist with ChangeNotifier {
   }
 
   Future<void> addEvent2(int eventId, BuildContext context) async {
-    print('addEvent2');
+    // print('addEvent2');
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-    print(wishProvider.fav.length);
+    // print(wishProvider.fav.length);
     var body = {'event_id': eventId};
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         addEventUrl, provider.appLoginToken.toString(), body);
-    print(response);
+    // print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       toastMessage(result['message']);
 ////////////////////////////////////////////
-      print('work');
+      // print('work');
       Future.delayed(Duration.zero, () {
         wishProvider.fetch(context);
       });
       Future.delayed(const Duration(milliseconds: 350), () {
-        print('fav');
+        // print('fav');
         wishProvider.checkWishlistData(context, eventId);
       });
       Future.delayed(const Duration(milliseconds: 450), () {
-        print('fav');
+        // print('fav');
         wishProvider.wishListEvent(context);
       });
 

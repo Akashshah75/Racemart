@@ -30,7 +30,6 @@ class ListViewContainer extends StatelessWidget {
             var dataOfEvent = upcomingEventList[index];
             return GestureDetector(
               onTap: () {
-                print(dataOfEvent['id']);
                 // widget.provider.openMap();
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>

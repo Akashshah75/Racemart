@@ -6,13 +6,25 @@ import 'package:racemart_app/Network/base_clent.dart';
 import 'package:racemart_app/Network/url.dart';
 import 'package:racemart_app/Provider/authentication_provider.dart';
 
-enum AdvertisementData { horizontal, vertical }
+enum CategoryOfBottomNavigation {
+  home,
+  running,
+  cycling,
+  duathathlon,
+  trithalon
+}
 
 class AdvertiesmentProvider with ChangeNotifier {
   bool isLoading = false;
   int activeIndex = 0;
   Map advertismentData = {};
-  List horizontalAdvertismentData = [];
+  // List horizontalAdvertismentData = [];
+  List homePageAdvertisementpopUp = [];
+  List homePageTopSectionAdvertiesment = [];
+  List runningPageTopSectionAdvertiesment = [];
+  List cyclingPageTopSectionAdvertiesment = [];
+  List duathalonPageTopSectionAdvertiesment = [];
+  List trithalonPageTopSectionAdvertiesment = [];
   List verticleAdvertismentData = [];
   List shuffleList = [];
 
@@ -36,21 +48,21 @@ class AdvertiesmentProvider with ChangeNotifier {
     var result = jsonDecode(response);
     //print(result['data']);
     advertismentData = {};
-    horizontalAdvertismentData = [];
-    verticleAdvertismentData = [];
+    homePageAdvertisementpopUp = [];
+    homePageTopSectionAdvertiesment = [];
+    runningPageTopSectionAdvertiesment = [];
+    cyclingPageTopSectionAdvertiesment = [];
+    duathalonPageTopSectionAdvertiesment = [];
+    trithalonPageTopSectionAdvertiesment = [];
     shuffleList = [];
     if (result['status'] == 'success') {
       advertismentData = result['data'];
       // print(advertismentData);
       advertismentData.forEach((key, value) {
-        if (key == 'horizontal') {
-          horizontalAdvertismentData = value;
-          notifyListeners();
-        }
-        if (key == 'vertical') {
-          verticleAdvertismentData = value;
+        if (key == '10') {
+          homePageAdvertisementpopUp = value;
           List getSuffledAnswer() {
-            final suffeldList = List.of(verticleAdvertismentData);
+            final suffeldList = List.of(homePageAdvertisementpopUp);
             suffeldList.shuffle();
             return suffeldList;
           }
@@ -58,10 +70,42 @@ class AdvertiesmentProvider with ChangeNotifier {
           shuffleList = getSuffledAnswer();
           notifyListeners();
         }
+
+        ///
+        if (key == '11') {
+          homePageTopSectionAdvertiesment = value;
+          notifyListeners();
+        }
+        if (key == '12') {
+          runningPageTopSectionAdvertiesment = value;
+          notifyListeners();
+        }
+        if (key == '13') {
+          cyclingPageTopSectionAdvertiesment = value;
+          notifyListeners();
+        }
+        if (key == '14') {
+          duathalonPageTopSectionAdvertiesment = value;
+          notifyListeners();
+        }
+        if (key == '15') {
+          trithalonPageTopSectionAdvertiesment = value;
+          notifyListeners();
+        }
+
+        ///
       });
     }
-    // print("horizontalAdvertismentData:$horizontalAdvertismentData");
-    // print("verticleAdvertismentData$verticleAdvertismentData");
-    // print(mapOfProfileData);
+  }
+
+  //
+  List changeAdvertisementAsPerPage(CategoryOfBottomNavigation category) {
+    if (CategoryOfBottomNavigation.home == category) {
+      return homePageTopSectionAdvertiesment;
+    } else if (CategoryOfBottomNavigation.running == category) {
+      return runningPageTopSectionAdvertiesment;
+    } else {
+      return [];
+    }
   }
 }
