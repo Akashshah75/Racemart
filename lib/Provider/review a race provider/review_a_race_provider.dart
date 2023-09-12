@@ -31,7 +31,6 @@ class ReviewARaceProvider with ChangeNotifier {
     var result = jsonDecode(response);
     //
     reviewRaceList = [];
-
     if (result['status'] == 'success') {
       reviewRaceList = result['data']['list'];
       //   print(reviewRaceList);
@@ -75,12 +74,14 @@ class ReviewARaceProvider with ChangeNotifier {
 
   List searchListData = [];
   //search past event
-  Future<void> searchEvent(BuildContext context,
-      {var category,
-      var city,
-      List? distance,
-      List? badge,
-      List? partner}) async {
+  Future<void> searchEvent(
+    BuildContext context, {
+    var category,
+    var city,
+    List? distance,
+    List? badge,
+    List? partner,
+  }) async {
     isLoadingInSearch = true;
     notifyListeners();
     var body = {
@@ -105,7 +106,7 @@ class ReviewARaceProvider with ChangeNotifier {
       // print(searchListData);
       notifyListeners();
       // ignore: use_build_context_synchronously
-      Navigator.of(context).pop();
+
       //
     } else {
       toastMessage(result['message']);

@@ -178,7 +178,6 @@ class ListViewOfNotifications extends StatelessWidget {
               child: CustomEventContainer(
                 index: index,
                 data: dataOfNotification,
-                fav: const [],
               ),
             );
           } else {}

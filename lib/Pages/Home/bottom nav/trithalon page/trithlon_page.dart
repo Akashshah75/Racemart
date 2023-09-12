@@ -219,7 +219,6 @@ class ListViewOfCycling extends StatelessWidget {
                 key: ValueKey(dataOfEvent['id']),
                 data: dataOfEvent,
                 index: index,
-                fav: const [],
               ),
               // RaceContainer(index: index, data: dataOfEvent),
             );

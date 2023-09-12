@@ -15,84 +15,21 @@ class FavEventAddWishlist with ChangeNotifier {
 
 //
   Future<void> addEvent(int eventId, BuildContext context) async {
-    // print('addEvent');
-    isFav = true;
-    notifyListeners();
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-    //print(eventId);
     var body = {'event_id': eventId};
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         addEventUrl, provider.appLoginToken.toString(), body);
-    // print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       toastMessage(result['message']);
-
-      //first 10 event add on wishlist
-      if (wishProvider.wishListData.length < 10) {
-        Future.delayed(Duration.zero, () {
-          wishProvider.wishListEvent(context);
-        });
-        //
-        Future.delayed(const Duration(milliseconds: 350), () {
-          // print('wish');
-          wishProvider.checkWishListId(context);
-        });
-      }
-      //  else if (wishProvider.wishListData.length > 10) {
-      //   print('work');
-      //   Future.delayed(Duration.zero, () {
-      //     wishProvider.fetch(context);
-      //   });
-      //   Future.delayed(const Duration(milliseconds: 450), () {
-      //     print('fav');
-      //     wishProvider.checkWishlistData(context);
-      //   });
-      // }
-      //check wishlist
-      // Future.delayed(const Duration(milliseconds: 350), () {
-      //   wishProvider.checkWishListId(context);
-      // });
-      ///////////////////////////////////////////////////////////////////////////
-      toastMessage('');
-    }
-  }
-
-  Future<void> addEvent2(int eventId, BuildContext context) async {
-    // print('addEvent2');
-    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-    // print(wishProvider.fav.length);
-    var body = {'event_id': eventId};
-    final provider =
-        Provider.of<AuthenticationProvider>(context, listen: false);
-    var response = await BaseClient().postMethodWithToken(
-        addEventUrl, provider.appLoginToken.toString(), body);
-    // print(response);
-    var result = jsonDecode(response);
-    if (result['status'] == "success") {
-      toastMessage(result['message']);
-////////////////////////////////////////////
-      // print('work');
       Future.delayed(Duration.zero, () {
-        wishProvider.fetch(context);
-      });
-      Future.delayed(const Duration(milliseconds: 350), () {
-        // print('fav');
-        wishProvider.checkWishlistData(context, eventId);
-      });
-      Future.delayed(const Duration(milliseconds: 450), () {
-        // print('fav');
         wishProvider.wishListEvent(context);
       });
-
-      //check wishlist
-      // Future.delayed(const Duration(milliseconds: 350), () {
-      //   wishProvider.checkWishListId(context);
-      // });
-      ///////////////////////////////////////////////////////////////////////////
-      toastMessage('');
+      Future.delayed(const Duration(milliseconds: 350), () {
+        wishProvider.checkWishlistid(context);
+      });
     }
   }
 }

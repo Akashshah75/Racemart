@@ -34,7 +34,6 @@ class ListViewOfRunning extends StatelessWidget {
                 key: ValueKey(dataOfEvent['id']),
                 data: dataOfEvent,
                 index: index,
-                fav: const [],
               ),
             );
           } else {

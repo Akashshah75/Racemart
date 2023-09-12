@@ -80,33 +80,12 @@ class HomePageInit {
     Future.delayed(Duration.zero, () async {
       final wishProvider =
           Provider.of<WishListProvider>(context, listen: false);
-
-      // wishProvider.wishListEvent(context);
-      //
-
       wishProvider.wishListEvent(context).then((_) {
         wishProvider.fav = [];
-        if (wishProvider.wishListData.length < 10) {
-          for (int i = 0; i < wishProvider.wishListData.length; i++) {
-            // print(
-            //     'wishlistLoop from fav_event:${wishProvider.wishListData.length}');
-            wishProvider.fav.add(wishProvider.wishListData[i]['id']);
-          }
-        } else {
-          wishProvider.fetch(context).then((value) {
-            Future.delayed(const Duration(milliseconds: 350), () {
-              wishProvider.checkWishListId(context);
-            });
-          });
+        for (int i = 0; i < wishProvider.wishListData.length; i++) {
+          wishProvider.fav.add(wishProvider.wishListData[i]['id']);
         }
       });
-
-      //
-      // wishProvider.fetch(context);
-      //after wishlist then complete homepage methods
-      // Future.delayed(const Duration(milliseconds: 800), () {
-      //   wishProvider.checkId(context);
-      // });
       HomePageInit().homePageIntiMehod(context);
     });
   }

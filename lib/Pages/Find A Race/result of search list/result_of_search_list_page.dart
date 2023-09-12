@@ -216,7 +216,6 @@ class ListViewOfFindARace extends StatelessWidget {
             child: CustomEventContainer(
               index: index,
               data: serchOfData,
-              fav: const [],
             ),
           );
         } else {

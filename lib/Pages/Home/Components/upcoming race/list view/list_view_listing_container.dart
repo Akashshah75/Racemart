@@ -38,7 +38,6 @@ class ListViewContainer extends StatelessWidget {
               child: CustomEventContainer(
                 data: dataOfEvent,
                 index: index,
-                fav: wishProvider.fav,
                 eventId: dataOfEvent['id'],
               ),
               // RaceContainer(index: index, data: dataOfEvent),

@@ -116,7 +116,7 @@ class _WishListListingState extends State<WishListListing> {
       });
       return;
     }
-    final List newEvent = result['data']['list'];
+    final List newEvent = result['list'];
     // print(newEvent);
 
     //
@@ -210,35 +210,35 @@ class ListViewOfWishList extends StatelessWidget {
     return Consumer<WishListProvider>(builder: (context, value, child) {
       final wishlistData = value.wishListData;
       return ListView.builder(
-        controller: controllers,
-        itemCount: wishlistData.length + 1,
+        // controller: controllers,
+        itemCount: wishlistData.length,
         itemBuilder: (context, index) {
-          if (index < wishlistData.length) {
-            var dataOfEvent = wishlistData[index];
-            return GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => DetailPageOfHome(
-                          index: index,
-                          data: dataOfEvent,
-                        )));
-              },
-              child: CustomEventContainer(
-                data: dataOfEvent,
-                index: index,
-                fav: value.fav,
-              ),
-            );
-          } else {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Center(
-                child: hasMore
-                    ? const CircularProgressIndicator()
-                    : const SizedBox(),
-              ),
-            );
-          }
+          // if (index < wishlistData.length) {
+          var dataOfEvent = wishlistData[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailPageOfHome(
+                        index: index,
+                        data: dataOfEvent,
+                      )));
+            },
+            child: CustomEventContainer(
+              data: dataOfEvent,
+              index: index,
+            ),
+          );
+          // }
+          //  else {
+          //   return Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 10),
+          //     child: Center(
+          //       child: hasMore
+          //           ? const CircularProgressIndicator()
+          //           : const SizedBox(),
+          //     ),
+          //   );
+          // }
         },
       );
     });
