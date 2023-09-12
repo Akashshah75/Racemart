@@ -27,7 +27,7 @@ class FavEventAddWishlist with ChangeNotifier {
       Future.delayed(Duration.zero, () {
         wishProvider.wishListEvent(context);
       });
-      Future.delayed(const Duration(milliseconds: 350), () {
+      Future.delayed(const Duration(milliseconds: 450), () {
         wishProvider.checkWishlistid(context);
       });
     }

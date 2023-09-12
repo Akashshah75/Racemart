@@ -161,23 +161,9 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                           );
                         },
                         onTap: (isLiked) async {
-                          // final wishProvider = Provider.of<WishListProvider>(
-                          //     context,
-                          //     listen: false);
-
-                          // print(isLiked);
                           int eventId = widget.data['id'];
-                          // wishProvider.wishListData.length
-                          // < 10
-                          //     ?
                           provider.addEvent(eventId, context);
-                          // : provider.addEvent2(eventId, context);
 
-                          // .then((_) {
-                          //   // print(value);
-                          //   wishProvider.checkWishlistId(eventId, context);
-                          // });
-                          // print(eventId);
                           return !isLiked;
                         },
                       ),
