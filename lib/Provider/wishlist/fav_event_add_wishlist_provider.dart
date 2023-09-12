@@ -10,11 +10,12 @@ import '../../Utils/constant.dart';
 import '../authentication_provider.dart';
 
 class FavEventAddWishlist with ChangeNotifier {
+  final List wishlistEvent = [];
   bool isFav = false;
 
 //
-//
   Future<void> addEvent(int eventId, BuildContext context) async {
+    print('addEvent');
     isFav = true;
     notifyListeners();
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
@@ -27,36 +28,65 @@ class FavEventAddWishlist with ChangeNotifier {
     print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
-      // ignore: use_build_context_synchronously
       toastMessage(result['message']);
-      if (wishProvider.wishListData.length < 10) {
-        print('if wishlist data less than 10:');
-        Future.delayed(const Duration(milliseconds: 350), () {
-          wishProvider.wishListEvent(context).then((_) {
-            wishProvider.fav = [];
-            if (wishProvider.wishListData.length < 10) {
-              for (int i = 0; i < wishProvider.wishListData.length; i++) {
-                print(
-                    'wishlistLoop from fav_event:${wishProvider.wishListData.length}');
-                wishProvider.fav.add(wishProvider.wishListData[i]['id']);
-                notifyListeners();
-              }
-            }
-          });
-        });
-      } else {
-        print('if wishlist data more than 10:');
 
-        Future.delayed(const Duration(milliseconds: 100), () {
-          wishProvider.fetch(context).then((value) {
-            Future.delayed(const Duration(milliseconds: 500), () {
-              wishProvider.checkId(context);
-              // wishProvider.checkId(context);
-            });
-          });
+      //first 10 event add on wishlist
+      if (wishProvider.wishListData.length < 10) {
+        Future.delayed(Duration.zero, () {
+          wishProvider.wishListEvent(context);
+        });
+        //
+        Future.delayed(const Duration(milliseconds: 350), () {
+          print('wish');
+          wishProvider.checkWishListId(context);
         });
       }
+      //  else if (wishProvider.wishListData.length > 10) {
+      //   print('work');
+      //   Future.delayed(Duration.zero, () {
+      //     wishProvider.fetch(context);
+      //   });
+      //   Future.delayed(const Duration(milliseconds: 450), () {
+      //     print('fav');
+      //     wishProvider.checkWishlistData(context);
+      //   });
+      // }
+      //check wishlist
+      // Future.delayed(const Duration(milliseconds: 350), () {
+      //   wishProvider.checkWishListId(context);
+      // });
+      ///////////////////////////////////////////////////////////////////////////
+      toastMessage('');
+    }
+  }
 
+  Future<void> addEvent2(int eventId, BuildContext context) async {
+    print('addEvent2');
+    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+    var body = {'event_id': eventId};
+    final provider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    var response = await BaseClient().postMethodWithToken(
+        addEventUrl, provider.appLoginToken.toString(), body);
+    print(response);
+    var result = jsonDecode(response);
+    if (result['status'] == "success") {
+      toastMessage(result['message']);
+////////////////////////////////////////////
+      print('work');
+      Future.delayed(Duration.zero, () {
+        wishProvider.fetch(context);
+      });
+      Future.delayed(const Duration(milliseconds: 450), () {
+        print('fav');
+        wishProvider.checkWishlistData(context, eventId);
+      });
+
+      //check wishlist
+      // Future.delayed(const Duration(milliseconds: 350), () {
+      //   wishProvider.checkWishListId(context);
+      // });
+      ///////////////////////////////////////////////////////////////////////////
       toastMessage('');
     }
   }

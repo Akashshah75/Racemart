@@ -22,7 +22,7 @@ class WishListProvider with ChangeNotifier {
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient()
         .getMethodWithToken(wishlistUrl, provider.appLoginToken.toString());
-    print(response);
+    // print(response);
     isLoading = false;
     notifyListeners();
     var result = jsonDecode(response);
@@ -34,7 +34,8 @@ class WishListProvider with ChangeNotifier {
       notifyListeners();
       // fav = [];
     }
-    print(fav);
+
+    print('fav_from_wishlist_method: $fav');
   }
 
   //
@@ -50,51 +51,98 @@ class WishListProvider with ChangeNotifier {
     final url = "https://racemart.youtoocanrun.com/api/wishlist?page=$page";
     var res = await BaseClient()
         .getMethodWithToken(url, provider.appLoginToken.toString());
-    print(res);
+    // print(res);
     var result = jsonDecode(res);
     final List newEvent = result['data']['list'];
     print("newEvent.length:${newEvent.length}");
     //
     if (newEvent.length == 10) {
       page++;
+    } else if (newEvent.isEmpty) {
+      page--;
     }
-
     wishListData.addAll(newEvent);
+    notifyListeners();
+    print(wishListData.length);
   }
 
-//////////////////////////////////////////
-  void checkId(BuildContext context) {
-    print('checkId:$fav');
+  //
+  void checkWishListId(BuildContext context) {
     fav = [];
-    // Future.delayed(const Duration(milliseconds: 400), () {
-    // fav.addAll(wishListData['id']);
+    if (wishListData.length <= 10) {
+      for (int i = 0; i < wishListData.length; i++) {
+        fav.add(wishListData[i]['id']);
+        notifyListeners();
+      }
+      //first 10 event add on wishlist
+      print('FavOfFirst10ListEvent: $fav');
+    }
+    wishListEvent(context);
+  }
+
+  void checkWishlistData(BuildContext context, int id) {
+    fav = [];
+    final list = wishListData.where((element) {
+      if (element['id'] == id) {
+        print('yes');
+      }
+      print(element);
+      return true;
+    });
+    print(list);
+    // if (wishListData.length > 10) {
     for (int i = 0; i < wishListData.length; i++) {
-      print('wishlistLoop:${wishListData.length}');
       fav.add(wishListData[i]['id']);
       notifyListeners();
     }
-    print('fav from fetch:$fav');
-    // });
-    //   if (wishListData.length >= limit) {
-    //     fetch(context).then(
-    //       (_) {
-    //         print('loop:${wishListData.length}');
-    //         for (int i = 0; i < wishListData.length; i++) {
-    //           fav.add(wishListData[i]['id']);
-    //           notifyListeners();
-    //         }
-    //       },
-    //     );
-    //   } else {
-    //     for (int i = 0; i < wishListData.length; i++) {
-    //       print('wishlistLoop:${wishListData.length}');
-    //       fav.add(wishListData[i]['id']);
-    //       notifyListeners();
-    //     }
-    //   }
-    //   print(fav);
+    // }
+    print('FavOfMoreThan10ListEvent: $fav');
+    print(fav.length);
+    wishListEvent(context);
   }
 }
+
+
+//
+
+
+
+
+
+//////////////////////////////////////////
+
+  // void checkId(BuildContext context) {
+  //   print('checkId:$fav');
+  //   fav = [];
+  //   // Future.delayed(const Duration(milliseconds: 400), () {
+  //   // fav.addAll(wishListData['id']);
+  //   for (int i = 0; i < wishListData.length; i++) {
+  //     print('wishlistLoop:${wishListData.length}');
+  //     fav.add(wishListData[i]['id']);
+  //     notifyListeners();
+  //   }
+  //   print('fav from fetch:$fav');
+  // });
+  //   if (wishListData.length >= limit) {
+  //     fetch(context).then(
+  //       (_) {
+  //         print('loop:${wishListData.length}');
+  //         for (int i = 0; i < wishListData.length; i++) {
+  //           fav.add(wishListData[i]['id']);
+  //           notifyListeners();
+  //         }
+  //       },
+  //     );
+  //   } else {
+  //     for (int i = 0; i < wishListData.length; i++) {
+  //       print('wishlistLoop:${wishListData.length}');
+  //       fav.add(wishListData[i]['id']);
+  //       notifyListeners();
+  //     }
+  //   }
+  //   print(fav);
+// }
+// }
 //
 // if (result['data']['current_page'] * 10 < result['data']['total']) {
 //   page++;

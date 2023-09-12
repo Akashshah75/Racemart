@@ -6,16 +6,22 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../Provider/wishlist/fav_event_add_wishlist_provider.dart';
 // import '../../../../Provider/wishlist/wishlist_provider.dart';
+import '../../../../Provider/wishlist/wishlist_provider.dart';
 import '../../../../Utils/app_asset.dart';
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/constant.dart';
 
 class CustomEventContainer extends StatefulWidget {
   const CustomEventContainer(
-      {super.key, this.data, required this.index, required this.fav});
+      {super.key,
+      this.data,
+      required this.index,
+      required this.fav,
+      this.eventId});
   final dynamic data;
   final int index;
   final List fav;
+  final int? eventId;
 
   @override
   State<CustomEventContainer> createState() => _CustomEventContainerState();
@@ -149,8 +155,8 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                       child: LikeButton(
                         animationDuration: const Duration(milliseconds: 1500),
                         padding: const EdgeInsets.only(left: 2, top: 2),
-                        isLiked: widget.fav.contains(widget.data[
-                                'id']) //wishProvider.fav.contains(widget.data['id'])
+                        isLiked: widget.fav.contains(widget
+                                .eventId) //wishProvider.fav.contains(widget.data['id'])
                             ? true
                             : false,
                         likeBuilder: (isLiked) {
@@ -160,9 +166,15 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                           );
                         },
                         onTap: (isLiked) async {
+                          final wishProvider = Provider.of<WishListProvider>(
+                              context,
+                              listen: false);
+
                           // print(isLiked);
                           int eventId = widget.data['id'];
-                          provider.addEvent(eventId, context);
+                          wishProvider.wishListData.length < 10
+                              ? provider.addEvent(eventId, context)
+                              : provider.addEvent2(eventId, context);
 
                           // .then((_) {
                           //   // print(value);

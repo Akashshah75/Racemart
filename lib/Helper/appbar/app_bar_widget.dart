@@ -51,7 +51,7 @@ PreferredSizeWidget customeAppBar(BuildContext context,
               //     ? const SizedBox()
               //     :
               Consumer<WishListProvider>(builder: (context, value, child) {
-                print('fromAppBarWishLength:${value.lengthOFwishlist}');
+                // print('fromAppBarWishLength:${value.lengthOFwishlist}');
                 return badges.Badge(
                   showBadge: value.lengthOFwishlist! <= 0 ? false : true,
                   position: value.lengthOFwishlist! > 9

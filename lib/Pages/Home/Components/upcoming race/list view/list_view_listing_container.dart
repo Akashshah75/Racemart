@@ -30,16 +30,17 @@ class ListViewContainer extends StatelessWidget {
             var dataOfEvent = upcomingEventList[index];
             return GestureDetector(
               onTap: () {
+                print(dataOfEvent['id']);
                 // widget.provider.openMap();
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
                         DetailPageOfHome(index: index, data: dataOfEvent)));
               },
               child: CustomEventContainer(
-                key: ValueKey(dataOfEvent['id']),
                 data: dataOfEvent,
                 index: index,
                 fav: wishProvider.fav,
+                eventId: dataOfEvent['id'],
               ),
               // RaceContainer(index: index, data: dataOfEvent),
             );

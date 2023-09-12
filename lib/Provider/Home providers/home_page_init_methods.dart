@@ -95,7 +95,7 @@ class HomePageInit {
         } else {
           wishProvider.fetch(context).then((value) {
             Future.delayed(const Duration(milliseconds: 350), () {
-              wishProvider.checkId(context);
+              wishProvider.checkWishListId(context);
             });
           });
         }
