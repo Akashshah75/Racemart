@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "com.example.racemart_app",
+  "applicationId": "com.youtoocanrun.racemart",
   "variantName": "release",
   "elements": []
 }

@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.racemart_app"
+3    package="com.youtoocanrun.racemart"
 4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
@@ -121,12 +121,12 @@
 62
 63    <permission
 63-->[androidx.core:core:1.10.1] C:\Users\Akash\.gradle\caches\transforms-3\17c44a9ee9728471e88635da67cac57c\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
-64        android:name="com.example.racemart_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+64        android:name="com.youtoocanrun.racemart.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 64-->[androidx.core:core:1.10.1] C:\Users\Akash\.gradle\caches\transforms-3\17c44a9ee9728471e88635da67cac57c\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
 65        android:protectionLevel="signature" />
 65-->[androidx.core:core:1.10.1] C:\Users\Akash\.gradle\caches\transforms-3\17c44a9ee9728471e88635da67cac57c\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
 66
-67    <uses-permission android:name="com.example.racemart_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+67    <uses-permission android:name="com.youtoocanrun.racemart.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 67-->[androidx.core:core:1.10.1] C:\Users\Akash\.gradle\caches\transforms-3\17c44a9ee9728471e88635da67cac57c\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
 67-->[androidx.core:core:1.10.1] C:\Users\Akash\.gradle\caches\transforms-3\17c44a9ee9728471e88635da67cac57c\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
 68
@@ -262,7 +262,7 @@
 157-->[:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:43:9-47:38
 158            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
 158-->[:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:44:13-102
-159            android:authorities="com.example.racemart_app.flutterfirebasemessaginginitprovider"
+159            android:authorities="com.youtoocanrun.racemart.flutterfirebasemessaginginitprovider"
 159-->[:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:45:13-88
 160            android:exported="false"
 160-->[:firebase_messaging] D:\aWorkingProject\racemart\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:46:13-37
@@ -284,7 +284,7 @@
 169-->[:image_picker_android] D:\aWorkingProject\racemart\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
 170            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
 170-->[:image_picker_android] D:\aWorkingProject\racemart\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
-171            android:authorities="com.example.racemart_app.flutter.image_provider"
+171            android:authorities="com.youtoocanrun.racemart.flutter.image_provider"
 171-->[:image_picker_android] D:\aWorkingProject\racemart\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
 172            android:exported="false"
 172-->[:image_picker_android] D:\aWorkingProject\racemart\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
@@ -346,7 +346,7 @@
 201-->[:open_file_plus] D:\aWorkingProject\racemart\build\open_file_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-24:20
 202            android:name="com.joutvhu.openfile.FileProvider"
 202-->[:open_file_plus] D:\aWorkingProject\racemart\build\open_file_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-61
-203            android:authorities="com.example.racemart_app.fileProvider.com.joutvhu.openfile"
+203            android:authorities="com.youtoocanrun.racemart.fileProvider.com.joutvhu.openfile"
 203-->[:open_file_plus] D:\aWorkingProject\racemart\build\open_file_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-85
 204            android:exported="false"
 204-->[:open_file_plus] D:\aWorkingProject\racemart\build\open_file_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
@@ -367,7 +367,7 @@
 214-->[:share_plus] D:\aWorkingProject\racemart\build\share_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:15:9-23:20
 215            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
 215-->[:share_plus] D:\aWorkingProject\racemart\build\share_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-77
-216            android:authorities="com.example.racemart_app.flutter.share_provider"
+216            android:authorities="com.youtoocanrun.racemart.flutter.share_provider"
 216-->[:share_plus] D:\aWorkingProject\racemart\build\share_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-74
 217            android:exported="false"
 217-->[:share_plus] D:\aWorkingProject\racemart\build\share_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
@@ -436,7 +436,7 @@
 255-->[com.google.firebase:firebase-common:20.3.3] C:\Users\Akash\.gradle\caches\transforms-3\97ba536cb97715cf3a6afeff735547bd\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:25:9-30:39
 256            android:name="com.google.firebase.provider.FirebaseInitProvider"
 256-->[com.google.firebase:firebase-common:20.3.3] C:\Users\Akash\.gradle\caches\transforms-3\97ba536cb97715cf3a6afeff735547bd\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:26:13-77
-257            android:authorities="com.example.racemart_app.firebaseinitprovider"
+257            android:authorities="com.youtoocanrun.racemart.firebaseinitprovider"
 257-->[com.google.firebase:firebase-common:20.3.3] C:\Users\Akash\.gradle\caches\transforms-3\97ba536cb97715cf3a6afeff735547bd\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:27:13-72
 258            android:directBootAware="true"
 258-->[com.google.firebase:firebase-common:20.3.3] C:\Users\Akash\.gradle\caches\transforms-3\97ba536cb97715cf3a6afeff735547bd\transformed\jetified-firebase-common-20.3.3\AndroidManifest.xml:28:13-43
@@ -508,7 +508,7 @@
 295-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Akash\.gradle\caches\transforms-3\daa6fd84a99b300a5ffb02c37f933674\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
 296            android:name="androidx.startup.InitializationProvider"
 296-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Akash\.gradle\caches\transforms-3\daa6fd84a99b300a5ffb02c37f933674\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:25:13-67
-297            android:authorities="com.example.racemart_app.androidx-startup"
+297            android:authorities="com.youtoocanrun.racemart.androidx-startup"
 297-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Akash\.gradle\caches\transforms-3\daa6fd84a99b300a5ffb02c37f933674\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:26:13-68
 298            android:exported="false" >
 298-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Akash\.gradle\caches\transforms-3\daa6fd84a99b300a5ffb02c37f933674\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:27:13-37

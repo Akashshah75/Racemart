@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1077785227608:android:5c119c5cfb6a15fc5ab52d",
+        "mobilesdk_app_id": "1:1077785227608:android:061832539e3181115ab52d",
         "android_client_info": {
-          "package_name": "com.example.racemart_app"
+          "package_name": "com.youtoocanrun.racemart"
         }
       },
       "oauth_client": [

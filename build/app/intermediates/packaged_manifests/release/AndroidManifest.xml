@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.racemart_app"
+    package="com.youtoocanrun.racemart"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -57,10 +57,10 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
-        android:name="com.example.racemart_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.youtoocanrun.racemart.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.racemart_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.youtoocanrun.racemart.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:name="android.app.Application"
@@ -151,7 +151,7 @@
 
         <provider
             android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
-            android:authorities="com.example.racemart_app.flutterfirebasemessaginginitprovider"
+            android:authorities="com.youtoocanrun.racemart.flutterfirebasemessaginginitprovider"
             android:exported="false"
             android:initOrder="99" />
 
@@ -163,7 +163,7 @@
 
         <provider
             android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-            android:authorities="com.example.racemart_app.flutter.image_provider"
+            android:authorities="com.youtoocanrun.racemart.flutter.image_provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -195,7 +195,7 @@
 
         <provider
             android:name="com.joutvhu.openfile.FileProvider"
-            android:authorities="com.example.racemart_app.fileProvider.com.joutvhu.openfile"
+            android:authorities="com.youtoocanrun.racemart.fileProvider.com.joutvhu.openfile"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -208,7 +208,7 @@
         -->
         <provider
             android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
-            android:authorities="com.example.racemart_app.flutter.share_provider"
+            android:authorities="com.youtoocanrun.racemart.flutter.share_provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -249,7 +249,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.example.racemart_app.firebaseinitprovider"
+            android:authorities="com.youtoocanrun.racemart.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />
@@ -289,7 +289,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.racemart_app.androidx-startup"
+            android:authorities="com.youtoocanrun.racemart.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"
