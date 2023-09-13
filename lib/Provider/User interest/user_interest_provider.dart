@@ -10,6 +10,9 @@ import '../Home providers/home_page_provider.dart';
 import '../authentication_provider.dart';
 
 class UserInterestProvider with ChangeNotifier {
+  //infinite scrolling
+  bool hasMore = true;
+  //
   List selectedCities = [];
   List selectedType = [];
   List selectedDistances = [];
@@ -33,6 +36,8 @@ class UserInterestProvider with ChangeNotifier {
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         userInterestUrl, provider.appLoginToken.toString(), body);
+    //
+
     // print(response);
     isLoading = false;
     notifyListeners();
@@ -40,11 +45,12 @@ class UserInterestProvider with ChangeNotifier {
     var result = jsonDecode(response);
     if (result['status'] == "success") {
       toastMessage("user interest updated");
-      //
-      // ignore: use_build_context_synchronously
-      initUserInterestList(context);
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pop();
+      Future.delayed(Duration.zero, () {
+        final provider = Provider.of<HomeProvider>(context, listen: false);
+        provider.userInterest(context);
+        // provider.selectedIndex = 0;
+        Navigator.pop(context);
+      });
     }
     //
     else {
@@ -87,9 +93,9 @@ class UserInterestProvider with ChangeNotifier {
   }
 
   ///
+  // void initUserInterestList(BuildContext context) {
+
+  // }
+
   ///
-  void initUserInterestList(BuildContext context) {
-    final provider = Provider.of<HomeProvider>(context, listen: false);
-    provider.userInterest(context);
-  }
 }

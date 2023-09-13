@@ -10,13 +10,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../Network/base_clent.dart';
 import '../authentication_provider.dart';
-import '../wishlist/wishlist_provider.dart';
+// import '../wishlist/wishlist_provider.dart';
 
 class HomeProvider with ChangeNotifier {
   int selectedIndex = 0;
   int currentPage = 0;
-  //
-
   //
   void changeIndex(int index) {
     selectedIndex = index;
@@ -113,10 +111,13 @@ class HomeProvider with ChangeNotifier {
 
   //upcoming events
   Future<void> upcomingEvent(BuildContext context) async {
-    final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-    wishProvider.wishListEvent(context).then((_) {
-      wishProvider.checkId(context);
-    });
+    // final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+    // wishProvider.fetch(context).then((_) {
+    //   wishProvider.checkId(context);
+    // });
+    // wishProvider.wishListEvent(context).then((_) {
+    //   wishProvider.checkId(context);
+    // });
     // Future.delayed(const Duration(milliseconds: 1500), () {});
     //
     isLoading = true;
@@ -129,16 +130,13 @@ class HomeProvider with ChangeNotifier {
         .getMethodWithToken(upcominEventUrl, provider.appLoginToken.toString());
     // print(response);
     //
-    upcomingEventList = [];
+
     isLoading = false;
     isFav = false;
     notifyListeners();
     var result = jsonDecode(response);
-    //
-
-    // url = '';
+    upcomingEventList = [];
     if (result['status'] == 'success') {
-      //
       upcomingEventList = result['data']['list'];
       notifyListeners();
       url = result['data']['first_page_url'];
@@ -260,17 +258,20 @@ class HomeProvider with ChangeNotifier {
   }
 
   //event in mumbai
-  Future<void> eventOfMumbai(BuildContext context) async {
+  Future<void> eventInCity(BuildContext context) async {
     // print('$eventInMumbaiUrl$city');
     isLoadingForeventInMumbai = true;
     notifyListeners();
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
+    // var response = await BaseClient().getMethodWithToken(
+    //     "$eventInCityUrl mumbai", provider.appLoginToken.toString());
     var response = await BaseClient().getMethodWithToken(
-        "$eventInMumbaiUrl$city", provider.appLoginToken.toString());
+        "$eventInCityUrl$city", provider.appLoginToken.toString());
     isLoading = false;
     notifyListeners();
     var result = jsonDecode(response);
+    // print(result);
     eventInMumbai = [];
     if (result['status'] == 'success') {
       eventInMumbai = result['data']['list'];
@@ -324,9 +325,9 @@ class HomeProvider with ChangeNotifier {
     }
     getMyCity = false;
     notifyListeners();
-    //
-    // ignore: use_build_context_synchronously
-    eventOfMumbai(context);
+    // Future.delayed(Duration.zero, () {
+    //   eventInCity(context);
+    // });
   }
 
   //open map
@@ -363,11 +364,11 @@ class HomeProvider with ChangeNotifier {
     // print(result);
     //
     listOfUserInterest = [];
-
     if (result['status'] == 'success') {
       if (result['data'] != null) {
         listOfUserInterest = result['data']['list'];
         notifyListeners();
+        // print(listOfUserInterest.length);
       } else {
         // toastMessage(result['message']);
       }
@@ -383,4 +384,12 @@ class HomeProvider with ChangeNotifier {
     listOfPartnersData = [];
     notifyListeners();
   }
+
+//change list view to grid view and grid view to list view
+  bool isList = true;
+  void chageListToGrid() {
+    isList = !isList;
+    notifyListeners();
+  } //
+  //
 }

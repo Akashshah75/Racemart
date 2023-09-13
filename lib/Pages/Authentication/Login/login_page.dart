@@ -25,6 +25,10 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     Future.delayed(Duration.zero, () {
       final provider = Provider.of<HomeProvider>(context, listen: false);
+      final authProvider =
+          Provider.of<AuthenticationProvider>(context, listen: false);
+      authProvider.getDeviceType();
+      authProvider.requestNotificationPermission();
       provider.getCurrentPosition(context);
     });
     super.initState();
@@ -57,15 +61,16 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     //App logo
                     Container(
-                      height: 100,
-                      width: 100,
-                      margin: EdgeInsets.only(top: height * 0.12),
-                      decoration: BoxDecoration(
-                        color: containerColor,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: SvgPicture.asset(bgLoginPage),
-                    ),
+                        height: 100,
+                        width: 100,
+                        margin: EdgeInsets.only(top: height * 0.12),
+                        decoration: BoxDecoration(
+                          color: containerColor,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Image.asset(
+                            appLogo) //SvgPicture.asset(bgLoginPage),
+                        ),
                     //Text
                     const SizedBox(height: 25),
                     HeadingText(text: 'Login', color: blueColor),
@@ -74,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                     CustomeTextField(
                       readOnly: false,
                       textInputType: TextInputType.emailAddress,
-                      hintText: 'Enter Your Name',
+                      hintText: 'Enter Your Email',
                       controller: controller.emailOfLogin,
                       iconColor: blueColor,
                     ),
@@ -94,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                             // print('ok');
                           },
                           child: const TextWidget(
-                            text: 'Forget Password?',
+                            text: 'Forgot Password?',
                             fontSize: 12,
                             color: greyColor,
                           ),

@@ -28,6 +28,37 @@ class HeadingText extends StatelessWidget {
   }
 }
 
+//
+class HeadingTexts extends StatelessWidget {
+  const HeadingTexts({
+    super.key,
+    required this.text,
+    this.color = blackColor,
+    this.fontSize = 22,
+    this.maxline = 1,
+  });
+  final String text;
+  final Color color;
+  final double fontSize;
+  final int maxline;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Roboto',
+        letterSpacing: 1.5,
+        color: color,
+      ),
+      maxLines: maxline,
+    );
+  }
+}
+
+//
 class CompareEventHeadingText extends StatelessWidget {
   const CompareEventHeadingText({
     super.key,

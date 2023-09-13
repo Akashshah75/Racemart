@@ -14,35 +14,30 @@ class ImporantDatesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  data['event_start_date']
-    //  data['event_end_date']
-    //  data['registration_start']
-    //  data['registration_end']
-    //    data['early_start']
-    //       data['early_end']
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: double.infinity,
-      //
+      // height: 290,
+
       height: data['event_start_date'] != null &&
               data['event_end_date'] != null &&
+              data['registration_start'] != null &&
               data['registration_end'] != null &&
               data['early_start'] != null &&
               data['early_end'] != null
-          ? 260
+          ? 290
           : data['event_start_date'] != null &&
                   data['event_end_date'] != null &&
                   data['registration_start'] != null &&
-                  data['registration_end'] != null &&
-                  data['early_start'] != null &&
-                  data['early_end'] != null
-              ? 290
+                  data['registration_end'] != null
+              ? 220
               : data['event_start_date'] != null &&
                       data['event_end_date'] != null &&
-                      data['registration_start'] != null &&
-                      data['registration_end'] != null
-                  ? 220
+                      data['registration_end'] != null &&
+                      data['early_start'] != null &&
+                      data['early_end'] != null
+                  ? 260
                   : 200,
 
       //

@@ -1,12 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:racemart_app/Network/base_clent.dart';
 import 'package:racemart_app/Network/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Pages/Push Notification/notification_api.dart';
 import '../Routes/route_names.dart';
 import '../Utils/constant.dart';
 
@@ -27,6 +31,39 @@ class AuthenticationProvider with ChangeNotifier {
   String? appLoginToken;
   bool isLoading = false;
   bool isLogOut = false;
+  String? fcmToken;
+  late String device;
+  //get fcm token
+  NotificationFeat notification = NotificationFeat();
+  final firebaseMessaging = FirebaseMessaging.instance;
+  //request for permission
+  Future<dynamic> requestNotificationPermission() async {
+    await firebaseMessaging.requestPermission();
+    final token = await firebaseMessaging.getToken();
+    fcmToken = token!;
+    notifyListeners();
+    // print('fcm:$fcmToken');
+  }
+
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
+//get device type
+  void getDeviceType() async {
+    if (Platform.isAndroid) {
+      // device = 'android';
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      // print('Running on ${androidInfo.model}');
+      device = androidInfo.model;
+      // print(device);
+      notifyListeners();
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      // print('Running on ${iosInfo.utsname.machine}');
+      device = iosInfo.utsname.machine;
+      notifyListeners();
+    }
+  }
+
   //////////////////////////////////////////////////////////////////////
   //
   Future<void> login(BuildContext context) async {
@@ -44,8 +81,11 @@ class AuthenticationProvider with ChangeNotifier {
       // try {
       var body = {
         'email': emailOfLogin.text.trim(),
-        'password': passwordOfLogin.text.trim()
+        'password': passwordOfLogin.text.trim(),
+        'device': device,
+        'token': fcmToken
       };
+      print(body);
       var response = await BaseClient().post(loginUrl, body);
 
       if (response == null) {

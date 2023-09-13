@@ -27,7 +27,7 @@ const String addEventUrl = "$baseUrl/wishlist";
 //
 
 //Event list api
-const String eventInMumbaiUrl = "$baseUrl/city/:";
+const String eventInCityUrl = "$baseUrl/city/:";
 const String upcominEventUrl = "$baseUrl/upcoming";
 const String pastEventUrl = "$baseUrl/past-events";
 const String latestListingEventUrl = "$baseUrl/latest-listing";
@@ -46,3 +46,7 @@ const String searchEventUrl = "$baseUrl/search";
 //user interest
 const String userInterestUrl = "$baseUrl/interest";
 const String selectUserInterestUrl = "$baseUrl/user-interest";
+const String aboutUsUrl = "$baseUrl/about-us";
+//
+const String notificationUrl = "$baseUrl/notifications";
+const String advertismentUrl = "$baseUrl/advertisements";

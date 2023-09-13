@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:racemart_app/Utils/constant.dart';
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/app_size.dart';
 
@@ -16,7 +16,7 @@ class PartenerContainerList extends StatelessWidget {
     return dataOfPartners.isEmpty
         ? const Center(child: Text("Don't have any patners!"))
         : Container(
-            height: 200,
+            height: 205,
             margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             width: double.infinity,
             decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class PartenerContainerList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Partners',
+                    'Partners & Associates',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -44,17 +44,21 @@ class PartenerContainerList extends StatelessWidget {
                           child: Column(
                             children: [
                               PatnerContainer(
+                                  url: dataOfPartners[0]['url'] ?? '',
                                   title: dataOfPartners[0]['title']),
-                              const SizedBox(height: 10),
+                              // const SizedBox(height: 10),
                               dataOfPartners.length > 1
                                   ? PatnerContainer(
+                                      url: dataOfPartners[1]['url'] ?? "",
                                       title: dataOfPartners[1]['title'])
                                   : const SizedBox(),
+
+                              // dataOfPartners.length > 2
+                              //     ? PatnerContainer(
+                              //         url: dataOfPartners[0]['url'] ?? "",
+                              //         title: dataOfPartners[2]['title'])
+                              //     : const SizedBox(),
                               dataOfPartners.length > 2
-                                  ? PatnerContainer(
-                                      title: dataOfPartners[2]['title'])
-                                  : const SizedBox(),
-                              dataOfPartners.length > 3
                                   ? Center(
                                       child: TextButton(
                                           onPressed: () {
@@ -107,7 +111,7 @@ class PartenerBottomSheetContainer extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              "Parteners",
+              "Partners & Associates",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 10),
@@ -117,21 +121,25 @@ class PartenerBottomSheetContainer extends StatelessWidget {
                   itemBuilder: (context, index) {
                     var data = dataOfPartners[index];
                     return Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.handshake),
-                          const SizedBox(width: 10),
-                          Text(
-                            data['title'] ?? 'Divisional Section Partner',
-                          )
-                        ],
-                      ),
-                    );
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: PatnerContainer(
+                          title: data['title'] ?? '',
+                          url: data['url'] ?? '',
+                        )
+                        //  Row(
+                        //   children: [
+                        //     const Icon(Icons.handshake),
+                        //     const SizedBox(width: 10),
+                        //     Text(
+                        //       data['title'] ?? '',
+                        //     )
+                        //   ],
+                        // ),
+                        );
                     // }
                   }),
             ),
@@ -148,22 +156,40 @@ class PatnerContainer extends StatelessWidget {
   const PatnerContainer({
     super.key,
     required this.title,
+    required this.url,
   });
 
   final String title;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.handshake),
+        Icon(
+          Icons.handshake,
+          color: url.isEmpty ? blackColor : Colors.blue,
+        ),
         const SizedBox(width: 5),
-        SizedBox(
-          width: 300,
-          child: Text(
-            title,
-          ),
-        )
+        url.isEmpty
+            ? SizedBox(
+                width: 300,
+                child: Text(
+                  title,
+                ),
+              )
+            : TextButton(
+                onPressed: () {
+                  var uri = Uri.parse(url);
+                  launchUrls(uri);
+                },
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              )
       ],
     );
   }

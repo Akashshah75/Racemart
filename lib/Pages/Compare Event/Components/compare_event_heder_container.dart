@@ -90,6 +90,12 @@ class ComapreEventContainer extends StatelessWidget {
                 height: 40,
                 child: const CompareEventHeadingText(text: 'Distances'),
               ),
+              //price money
+              const Divider(),
+              Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  child: const CompareEventHeadingText(text: 'Price money')),
               const Divider(),
               // deliverables
               Container(
@@ -137,14 +143,14 @@ class ComapreEventContainer extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 height: 40,
-                child: const CompareEventHeadingText(text: 'Oragnasied'),
+                child: const CompareEventHeadingText(text: 'Organized by'),
               ),
               // //socila
               const Divider(),
               Container(
                 alignment: Alignment.center,
                 height: 40,
-                child: const CompareEventHeadingText(text: 'Social'),
+                child: const CompareEventHeadingText(text: 'Social media'),
               ),
               const Divider(),
             ],

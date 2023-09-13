@@ -1,12 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:racemart_app/Provider/authentication_provider.dart';
-import 'package:racemart_app/Push%20Notification/firebase_api.dart';
 import 'package:racemart_app/Routes/route_names.dart';
 import 'package:racemart_app/Utils/app_asset.dart';
 
+import '../../Provider/advertiesment/advertiesment_provider.dart';
 import '../../Provider/wishlist/wishlist_provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,35 +16,35 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  FirebaseApi notification = FirebaseApi();
-
   //
   @override
   void initState() {
-    //notification
-    notification.requestNotificationPermission();
-    notification.getDeviceToken().then((value) {
-      print('Device Token:$value');
-    });
-    notification.firebaseInit();
-    notification.initNotifications();
-    //
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     provider.getUserToken();
-
     // print(provider.appLoginToken);
     Future.delayed(const Duration(seconds: 1), () async {
+      //notification
+      //wishlist
       final wishProvider =
           Provider.of<WishListProvider>(context, listen: false);
+      // wishProvider.fetch(context);
+      // Future.delayed(const Duration(milliseconds: 800), () {
+      //   wishProvider.checkId(context);
+      // });
       wishProvider.wishListEvent(context);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        wishProvider.checkId(context);
-      });
+      // Future.delayed(const Duration(milliseconds: 800), () {
+      //   wishProvider.checkId(context);
+      // });
       var token = provider.appLoginToken;
       if (kDebugMode) {
         print(token);
       }
+      final advertiesmentProvider =
+          Provider.of<AdvertiesmentProvider>(context, listen: false);
+      //adverment
+      advertiesmentProvider.fetchAdvertismentData(context);
+      // notification.initNotifications(provider.appLoginToken, context);
       changePage(token.toString());
     });
     super.initState();
@@ -59,13 +58,17 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(bgLoginPage),
+              Image.asset(
+                appLogo,
+                width: 120,
+              ),
+              // SvgPicture.asset(appLogo),
               const Text('Racemart'),
               const SizedBox(height: 20),
-              const Text(
-                'Loading...',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              // const Text(
+              //   'Loading...',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
             ],
           ),
         ),

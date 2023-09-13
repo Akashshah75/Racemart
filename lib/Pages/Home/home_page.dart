@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Provider/find_race_provider.dart';
-import 'package:racemart_app/Provider/profile/profile_provider.dart';
-
-import '../../Helper/appbar/app_bar_widget.dart';
+import 'package:racemart_app/Pages/Home/home%20widget/home_main_widget.dart';
+import 'package:racemart_app/Provider/Home%20providers/home_page_init_methods.dart';
+import 'package:racemart_app/Provider/advertiesment/advertiesment_provider.dart';
+import 'package:racemart_app/Provider/bottom%20nav/bottom_nav_type_provider.dart';
 import '../../Provider/Home providers/home_page_provider.dart';
-import '../../Provider/wishlist/wishlist_provider.dart';
 import '../../Utils/app_color.dart';
 import '../../Utils/constant.dart';
-import '../User interst/user_interest.dart';
-import 'Components/event_in_mumbai.dart';
-import 'Components/explore_best_cities.dart';
-import 'Components/home_race_listing_event.dart';
-import 'Components/testimonial_list.dart';
-import 'Components/the_latest_listing.dart';
+import 'bottom nav/bottom_nav_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,62 +19,33 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    Future.delayed(Duration.zero, () async {
-      final wishProvider =
-          Provider.of<WishListProvider>(context, listen: false);
-      wishProvider.wishListEvent(context);
-      Future.delayed(const Duration(milliseconds: 800), () {
-        wishProvider.checkId(context);
-      });
-      final homeProvider = Provider.of<HomeProvider>(context, listen: false);
-      final profileProvider =
-          Provider.of<ProfileProvider>(context, listen: false);
-      final findProvider =
-          Provider.of<FindARacesProvider>(context, listen: false);
-      homeProvider.upcomingEvent(context);
-      homeProvider.getCurrentPosition(context);
-      homeProvider.listOfCities();
-      homeProvider.listOfDistances();
-      homeProvider.listOfBades();
-      homeProvider.listOfPartners();
-      homeProvider.listOfAllType();
-      homeProvider.fetchTerrainsData();
-      homeProvider.userInterest(context);
-      //
-      homeProvider.latestListing(context);
-      homeProvider.exploreCity(context);
-
-      // Future.delayed(const Duration(milliseconds: 1000), () {
-      //   homeProvider.findACity(homeProvider.lat!.toDouble(),
-      //       homeProvider.long!.toDouble(), context);
-      // });
-
-      //profiel
-      profileProvider.fetchProfileData(context);
-      // homeProvider.eventOfMumbai(context);
-      //clear
-      findProvider.searchListData.clear();
-      findProvider.lookingFor.clear();
-      homeProvider.choseAllType = '';
-      findProvider.startDate.clear();
-      findProvider.endDate.clear();
-      homeProvider.choseCity = '';
-      homeProvider.listOfDistanceData.clear();
-      homeProvider.listOfBadgeData.clear();
-      homeProvider.listOfPartnersData.clear();
-      homeProvider.listOfTerrains.clear();
-      homeProvider.listOfCitiesData.clear();
-      homeProvider.listOfType.clear();
-      //
+    final bottomNavprovider =
+        Provider.of<BottomnavTypeProvider>(context, listen: false);
+    bottomNavprovider.activeScreen = const HomeMainWidget();
+    bottomNavprovider.activeIndex = 0;
+    HomePageInit().notificationMethods(context);
+    HomePageInit().addProductOnWishlistPageMethod(context);
+    Future.delayed(const Duration(milliseconds: 750), () {
+      final advertiesmentProvider =
+          Provider.of<AdvertiesmentProvider>(context, listen: false);
+      if (advertiesmentProvider.homePageAdvertisementpopUp.isNotEmpty) {
+        HomePageInit().openDialog(context);
+      }
+      // if (advertiesmentProvider.horizontalAdvertismentData.isNotEmpty) {
+      //   HomePageInit().openDialog(context);
+      // }
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    Size size = MediaQuery.of(context).size;
     DateTime timeBackPressed = DateTime.now();
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
-    // print(AuthenticationProvider.appToken);
+    final bottomNavprovider =
+        Provider.of<BottomnavTypeProvider>(context, listen: true);
     return DefaultTabController(
       length: 5,
       child: WillPopScope(
@@ -89,60 +54,18 @@ class _HomePageState extends State<HomePage> {
           final isExitWarning = diffrence >= const Duration(seconds: 2);
           timeBackPressed = DateTime.now();
           return exitTheAppMethod(isExitWarning);
-
-          // return exitTheAppMethod(timeBackPressed, diffrence);
         },
         child: Scaffold(
-          backgroundColor: white, //appbg,
-          appBar: customeAppBar(context),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 5),
-                homeWidget(homeProvider),
-              ],
-            ),
+          backgroundColor: white,
+          appBar:
+              bottomNavprovider.changeAppBarWidget(context, homeProvider, h),
+          body: bottomNavprovider.activeScreen,
+          bottomNavigationBar: BottomNavigationContainer(
+            bottomNavprovider: bottomNavprovider,
+            size: size,
           ),
         ),
       ),
-    );
-  }
-
-  homeWidget(HomeProvider provider) {
-    switch (provider.selectedIndex) {
-      case 0:
-        return HomeRaceListingEvent(provider: provider);
-      //HomeListingEvent()
-      case 1:
-        return UserInterestPage(provider: provider);
-      case 2:
-        return TheLatestListing(provider: provider);
-      case 3:
-        return ExploreBestCities(
-          provider: provider,
-        );
-      case 4:
-        return EventInCity(
-          provider: provider,
-        );
-      case 5:
-        return const TestimonialListOfHome();
-      default:
-        return Container();
-    }
-  }
-
-  //show warning pop up
-  Future<bool?> showWarning(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Do you want to exit app?'),
-          actions: [ElevatedButton(onPressed: () {}, child: const Text('No'))],
-        );
-      },
     );
   }
 }

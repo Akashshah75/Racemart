@@ -64,7 +64,7 @@ class AdvertiesSendQueryPage extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : TextButtonWidget(
-                    text: 'Download Report',
+                    text: 'Submit',
                     pres: () {
                       controller.userRegistration(context);
                       //

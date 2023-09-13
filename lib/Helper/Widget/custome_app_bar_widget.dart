@@ -40,3 +40,40 @@ class CustomeAppBarWidget extends StatelessWidget {
     );
   }
 }
+
+class CustomeTextWidget extends StatelessWidget {
+  const CustomeTextWidget({
+    super.key,
+    required this.title,
+  });
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 50),
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              letterSpacing: 1.3,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-32:/values-ky/values-ky.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-34:/values-ky/values-ky.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\f4c0500116144bc04cff0b0b27625b15\\transformed\\jetified-play-services-base-18.1.0\\res\\values-ky\\values.xml",
@@ -21,6 +21,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5d8813ca6e077bb0acb410c5d16a5490\\transformed\\browser-1.5.0\\res\\values-ky\\values-ky.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,154,259,368",
+                        "endColumns": "98,104,108,105",
+                        "endOffsets": "149,254,363,469"
+                    },
+                    "to": {
+                        "startLines": "27,38,39,40",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2990,3887,3992,4101",
+                        "endColumns": "98,104,108,105",
+                        "endOffsets": "3084,3987,4096,4202"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\17c44a9ee9728471e88635da67cac57c\\transformed\\core-1.10.1\\res\\values-ky\\values-ky.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
@@ -30,11 +47,11 @@
                         "endOffsets": "150,252,355,462,566,670,781,882"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,41",
+                        "startLines": "2,3,4,5,6,7,8,45",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,155,257,360,467,571,675,4237",
+                        "startOffsets": "55,155,257,360,467,571,675,4656",
                         "endColumns": "99,101,102,106,103,103,110,100",
-                        "endOffsets": "150,252,355,462,566,670,781,4333"
+                        "endOffsets": "150,252,355,462,566,670,781,4752"
                     }
                 },
                 {
@@ -64,11 +81,11 @@
                         "endOffsets": "160,260,357,481,609"
                     },
                     "to": {
-                        "startLines": "27,37,38,39,40",
+                        "startLines": "28,41,42,43,44",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "2990,3788,3888,3985,4109",
+                        "startOffsets": "3089,4207,4307,4404,4528",
                         "endColumns": "109,99,96,123,127",
-                        "endOffsets": "3095,3883,3980,4104,4232"
+                        "endOffsets": "3194,4302,4399,4523,4651"
                     }
                 },
                 {
@@ -81,11 +98,11 @@
                         "endOffsets": "121,186,257,328,415,486,573,657,738"
                     },
                     "to": {
-                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startLines": "29,30,31,32,33,34,35,36,37",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3100,3171,3236,3307,3378,3465,3536,3623,3707",
+                        "startOffsets": "3199,3270,3335,3406,3477,3564,3635,3722,3806",
                         "endColumns": "70,64,70,70,86,70,86,83,80",
-                        "endOffsets": "3166,3231,3302,3373,3460,3531,3618,3702,3783"
+                        "endOffsets": "3265,3330,3401,3472,3559,3630,3717,3801,3882"
                     }
                 }
             ]

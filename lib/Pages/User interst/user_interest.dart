@@ -2,15 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Pages/User%20interst/update_user_interest_page.dart';
 import 'package:racemart_app/Provider/Home%20providers/home_page_provider.dart';
 
 import '../../Network/base_clent.dart';
-import '../../Provider/User interest/user_interest_provider.dart';
 import '../../Provider/authentication_provider.dart';
 import '../../Utils/app_asset.dart';
-import '../Home/Components/customeEventContainer/custome_event_container.dart';
-import '../DetailPage/detail_of_home_page.dart';
+import 'grid view/userinterest_grid_view.dart';
+import 'list view/userinterest_list_view.dart';
 
 class UserInterestPage extends StatefulWidget {
   const UserInterestPage({super.key, required this.provider});
@@ -23,15 +21,14 @@ class UserInterestPage extends StatefulWidget {
 class _UserInterestPageState extends State<UserInterestPage> {
   final controllers = ScrollController();
   bool hasMore = true;
-  int page = 1;
+  int page = 2;
   bool isLoading = false;
   @override
   void initState() {
-    final provider = Provider.of<UserInterestProvider>(context, listen: false);
     Future.delayed(Duration.zero, () {
-      provider.initUserInterestList(context);
+      final provider = Provider.of<HomeProvider>(context, listen: false);
+      provider.userInterest(context);
     });
-
     controllers.addListener(() {
       if (controllers.position.maxScrollExtent == controllers.offset) {
         fetch();
@@ -47,7 +44,6 @@ class _UserInterestPageState extends State<UserInterestPage> {
   }
 
   Future fetch() async {
-    // "https://racemart.youtoocanrun.com/api/interest?page=1
     if (isLoading) return;
     isLoading = true;
     const limit = 10;
@@ -59,6 +55,9 @@ class _UserInterestPageState extends State<UserInterestPage> {
     var result = jsonDecode(res);
     // print(result);
     if (result['data'] == null) {
+      setState(() {
+        hasMore = false;
+      });
       return;
     }
     final List newEvent = result['data']['list'];
@@ -75,8 +74,9 @@ class _UserInterestPageState extends State<UserInterestPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: 650,
+      height: size * 0.75,
       child: widget.provider.isLoadingForUserInterest
           ? const Center(
               child: CircularProgressIndicator(),
@@ -87,53 +87,16 @@ class _UserInterestPageState extends State<UserInterestPage> {
                     children: [
                       Image.asset(noDataFound),
                       TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const UpdateUserInterestPage()));
-                          },
-                          child: const Text("Add your interest"))
+                          onPressed: () {},
+                          child: const Text("No data interest found!!"))
                     ],
                   ),
                 )
-              : ListView.builder(
-                  controller: controllers,
-                  itemCount: widget.provider.listOfUserInterest.length + 1,
-                  itemBuilder: (context, index) {
-                    // var dataOfEvent = widget.provider.listOfUserInterest[index];
-                    // return EventContainer(
-                    //   index: index,
-                    //   data: dataOfEvent,
-                    // );
-                    if (index < widget.provider.listOfUserInterest.length) {
-                      var dataOfEvent =
-                          widget.provider.listOfUserInterest[index];
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => DetailPageOfHome(
-                                    index: index, data: dataOfEvent)));
-                          },
-                          child: CustomEventContainer(
-                              key: ValueKey(dataOfEvent['id']),
-                              data: dataOfEvent,
-                              index: index)
-                          // RaceContainer(index: index, data: dataOfEvent),
-                          );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Center(
-                          child: hasMore
-                              ? const CircularProgressIndicator()
-                              : const Text('No more data to load?'),
-                        ),
-                      );
-                    }
-                  },
-                ),
+              : widget.provider.isList
+                  ? UserInterestListView(
+                      controllers: controllers, hasMore: hasMore)
+                  : UserInterestGridView(
+                      controllers: controllers, hasMore: hasMore),
     );
   }
-
-  //
 }

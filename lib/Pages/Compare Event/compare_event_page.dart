@@ -58,6 +58,16 @@ class _CompareEventPageState extends State<CompareEventPage> {
               color: blackColor,
             ),
           ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  provider.cleanSelectedEventNames();
+                },
+                child: Text(
+                  'Clean',
+                  style: TextStyle(color: blueColor),
+                ))
+          ],
         ),
         body: provider.isLoading
             ? const Center(
@@ -95,24 +105,24 @@ class ListOfCompareEvents extends StatelessWidget {
     //
     if (eventTitle1 > eventTitle2) {
       eventTitleLengths = eventTitle1;
-      print("e1$eventTitleLengths");
+      // print("e1$eventTitleLengths");
     } else if (eventTitle2 > eventTitle3) {
       eventTitleLengths = eventTitle2;
-      print("e2:$eventTitleLengths");
+      // print("e2:$eventTitleLengths");
     } else if (eventTitle3 > eventTitle1) {
       eventTitleLengths = eventTitle3;
-      print("e3:$eventTitleLengths");
+      // print("e3:$eventTitleLengths");
     }
     //
     if (eventAddress1 > eventAddress2) {
       eventAddressLength = eventAddress1;
-      print("e1$eventAddressLength");
+      // print("e1$eventAddressLength");
     } else if (eventAddress2 > eventAddress3) {
       eventAddressLength = eventAddress2;
-      print("e2:$eventAddressLength");
+      // print("e2:$eventAddressLength");
     } else if (eventAddress3 > eventAddress1) {
       eventAddressLength = eventAddress3;
-      print("e3:$eventAddressLength");
+      // print("e3:$eventAddressLength");
     }
     //
 

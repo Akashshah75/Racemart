@@ -24,6 +24,8 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
   void initState() {
     Future.delayed(Duration.zero, () async {
       final provider = Provider.of<ReviewARaceProvider>(context, listen: false);
+      provider.searchEvent(context);
+
       provider.reviewRaceEvent(context);
     });
     super.initState();
@@ -34,6 +36,8 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
     var h = MediaQuery.of(context).size.height;
     DateTime timeBackPressed = DateTime.now();
     final provider = Provider.of<ReviewARaceProvider>(context, listen: true);
+    final homeProvider = Provider.of<HomeProvider>(context, listen: true);
+
     return WillPopScope(
       onWillPop: () async {
         final diffrence = DateTime.now().difference(timeBackPressed);
@@ -52,53 +56,70 @@ class _ReviewARacePageState extends State<ReviewARacePage> {
               color: blackColor,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                homeProvider.chageListToGrid();
+              },
+              icon: Icon(
+                homeProvider.isList ? Icons.grid_view : Icons.list,
+                color: blackColor,
+              ),
+            )
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  showModalBottomSheet(
-                    isScrollControlled: true,
-                    enableDrag: false,
-                    context: context,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
+        body: provider.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          enableDrag: false,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25),
+                            ),
+                          ),
+                          builder: (context) => SearchPastEventPage(h: h),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: appBg,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Search past event'),
+                              Icon(Icons.search),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    builder: (context) => SearchPastEventPage(h: h),
-                  );
-                },
-                child: Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: appBg,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Search your data'),
-                        Icon(Icons.search),
-                      ],
+                    const SizedBox(height: 10),
+                    Center(
+                      child: ReviewAEventListing(provider: provider),
                     ),
-                  ),
+                    const SizedBox(height: 10),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              Center(child: ReviewAEventListing(provider: provider)),
-              const SizedBox(height: 10),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -137,7 +158,7 @@ class SearchPastEventPage extends StatelessWidget {
                           ),
                           const SizedBox(width: 10),
                           const Text(
-                            "Search past event",
+                            "Search",
                             style: TextStyle(fontSize: 16),
                           ),
                         ],
@@ -236,14 +257,18 @@ class SearchPastEventPage extends StatelessWidget {
                 TextButtonWidget(
                     text: 'Search',
                     pres: () {
-                      reviewProvider.searchEvent(
+                      reviewProvider
+                          .searchEvent(
                         context,
                         category: reviewProvider.choseAllType,
                         city: reviewProvider.choseCity,
                         distance: reviewProvider.listOfDistanceData,
                         badge: reviewProvider.listOfBadgeData,
                         partner: reviewProvider.listOfPartnersData,
-                      );
+                      )
+                          .then((_) {
+                        Navigator.of(context).pop();
+                      });
                     }),
                 const SizedBox(height: 20)
               ],

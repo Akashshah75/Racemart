@@ -77,13 +77,14 @@ class EventDropDownButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: DropdownButton<dynamic>(
+        menuMaxHeight: 400,
         underline: const SizedBox(),
         dropdownColor: whiteColor,
         hint: Text(
           hintText,
           style: TextStyle(color: dropDownTextColor),
         ),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
         value: choseValue == 0 || choseValue.isEmpty ? null : choseValue,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         isExpanded: true,

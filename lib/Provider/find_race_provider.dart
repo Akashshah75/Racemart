@@ -17,7 +17,9 @@ class FindARacesProvider with ChangeNotifier {
   //
   String choseValue = '';
   List searchListData = [];
+  List typeOfData = [];
   bool isLoading = false;
+  bool isTypeOfDataLoading = false;
   bool isClear = false;
 
   //
@@ -55,13 +57,14 @@ class FindARacesProvider with ChangeNotifier {
 
   //////////////////////////////////////
   ///
-  Future<void> searchEvent(BuildContext context,
-      {var category,
-      var city,
-      List? distance,
-      List? badge,
-      List? partner,
-      required FindARacesProvider findProvider}) async {
+  Future<void> searchEvent(
+    BuildContext context, {
+    var category,
+    var city,
+    List? distance,
+    List? badge,
+    List? partner,
+  }) async {
     isLoading = true;
     notifyListeners();
     var body = {
@@ -76,6 +79,7 @@ class FindARacesProvider with ChangeNotifier {
       "sortby": ""
     };
     //
+    // print(body);
 
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
@@ -91,10 +95,60 @@ class FindARacesProvider with ChangeNotifier {
       notifyListeners();
 //
       // ignore: use_build_context_synchronously
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ResultOfSerchList(provider: findProvider)));
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const ResultOfSerchList()));
 //
       if (searchListData.isEmpty) {
+        toastMessage("No event Found");
+        lookingFor.clear();
+        startDate.clear();
+        endDate.clear();
+      }
+      //
+    } else {
+      toastMessage(result['message']);
+    }
+
+    //
+  }
+
+  Future<void> searchEventWithOutNavigation(
+    BuildContext context, {
+    var category,
+    var city,
+    List? distance,
+    List? badge,
+    List? partner,
+  }) async {
+    isTypeOfDataLoading = true;
+    notifyListeners();
+    var body = {
+      "search": lookingFor.text,
+      "distance": distance ?? [],
+      "badge": badge ?? [],
+      "partner": partner ?? [],
+      "category": category,
+      "city": city,
+      "start_date": startDate.text,
+      "end_date": endDate.text,
+      "sortby": ""
+    };
+    //
+    // print(body);
+
+    final provider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    var response = await BaseClient().postMethodWithToken(
+        searchEventUrl, provider.appLoginToken.toString(), body);
+    isTypeOfDataLoading = false;
+    notifyListeners();
+    //
+    typeOfData = [];
+    var result = jsonDecode(response);
+    if (result['status'] == "success") {
+      typeOfData = result['data']['list'];
+      notifyListeners();
+      if (typeOfData.isEmpty) {
         toastMessage("No event Found");
         lookingFor.clear();
         startDate.clear();

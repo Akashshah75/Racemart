@@ -10,36 +10,26 @@ import '../../Utils/constant.dart';
 import '../authentication_provider.dart';
 
 class FavEventAddWishlist with ChangeNotifier {
+  final List wishlistEvent = [];
   bool isFav = false;
 
 //
-//
   Future<void> addEvent(int eventId, BuildContext context) async {
-    isFav = true;
-    notifyListeners();
     final wishProvider = Provider.of<WishListProvider>(context, listen: false);
-    //print(eventId);
     var body = {'event_id': eventId};
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         addEventUrl, provider.appLoginToken.toString(), body);
-    // print(response);
     var result = jsonDecode(response);
     if (result['status'] == "success") {
-      // isFav = result['fav'];
-      // notifyListeners();
       toastMessage(result['message']);
-      // ignore: use_build_context_synchronously
-      wishProvider.wishListEvent(context);
-      //
-      Future.delayed(const Duration(milliseconds: 350), () {
-        wishProvider.checkId(context);
+      Future.delayed(Duration.zero, () {
+        wishProvider.wishListEvent(context);
       });
-
-      //
-    } else {
-      toastMessage('');
+      Future.delayed(const Duration(milliseconds: 450), () {
+        wishProvider.checkWishlistid(context);
+      });
     }
   }
 }

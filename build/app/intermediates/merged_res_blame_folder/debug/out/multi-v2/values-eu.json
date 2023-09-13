@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.racemart_app-mergeDebugResources-32:/values-eu/values-eu.xml",
+            "outputFile": "com.example.racemart_app-mergeDebugResources-34:/values-eu/values-eu.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\5d8813ca6e077bb0acb410c5d16a5490\\transformed\\browser-1.5.0\\res\\values-eu\\values-eu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,155,257,370",
+                        "endColumns": "99,101,112,104",
+                        "endOffsets": "150,252,365,470"
+                    },
+                    "to": {
+                        "startLines": "27,38,39,40",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3059,3971,4073,4186",
+                        "endColumns": "99,101,112,104",
+                        "endOffsets": "3154,4068,4181,4286"
+                    }
+                },
                 {
                     "source": "C:\\Users\\Akash\\.gradle\\caches\\transforms-3\\17c44a9ee9728471e88635da67cac57c\\transformed\\core-1.10.1\\res\\values-eu\\values-eu.xml",
                     "from": {
@@ -13,11 +30,11 @@
                         "endOffsets": "148,251,351,454,558,661,779,880"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,41",
+                        "startLines": "2,3,4,5,6,7,8,45",
                         "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,256,356,459,563,666,4332",
+                        "startOffsets": "55,153,256,356,459,563,666,4752",
                         "endColumns": "97,102,99,102,103,102,117,100",
-                        "endOffsets": "148,251,351,454,558,661,779,4428"
+                        "endOffsets": "148,251,351,454,558,661,779,4848"
                     }
                 },
                 {
@@ -30,11 +47,11 @@
                         "endOffsets": "164,263,366,494,625"
                     },
                     "to": {
-                        "startLines": "27,37,38,39,40",
+                        "startLines": "28,41,42,43,44",
                         "startColumns": "4,4,4,4,4",
-                        "startOffsets": "3059,3871,3970,4073,4201",
+                        "startOffsets": "3159,4291,4390,4493,4621",
                         "endColumns": "113,98,102,127,130",
-                        "endOffsets": "3168,3965,4068,4196,4327"
+                        "endOffsets": "3268,4385,4488,4616,4747"
                     }
                 },
                 {
@@ -81,11 +98,11 @@
                         "endOffsets": "119,182,248,320,397,471,582,680,748"
                     },
                     "to": {
-                        "startLines": "28,29,30,31,32,33,34,35,36",
+                        "startLines": "29,30,31,32,33,34,35,36,37",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3173,3242,3305,3371,3443,3520,3594,3705,3803",
+                        "startOffsets": "3273,3342,3405,3471,3543,3620,3694,3805,3903",
                         "endColumns": "68,62,65,71,76,73,110,97,67",
-                        "endOffsets": "3237,3300,3366,3438,3515,3589,3700,3798,3866"
+                        "endOffsets": "3337,3400,3466,3538,3615,3689,3800,3898,3966"
                     }
                 }
             ]

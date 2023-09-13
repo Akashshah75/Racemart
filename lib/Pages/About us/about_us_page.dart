@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/about%20us/abpout_us_provider.dart';
 import 'package:racemart_app/Utils/constant.dart';
 
 import '../../Helper/Widget/text_widget.dart';
 import '../../Utils/app_color.dart';
 import '../Home/Drawer/zoom_drawer.dart';
 
-class AboutUsPage extends StatelessWidget {
+class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});
+
+  @override
+  State<AboutUsPage> createState() => _AboutUsPageState();
+}
+
+class _AboutUsPageState extends State<AboutUsPage> {
+  @override
+  void initState() {
+    AboutUsProvider().initMethodOfAboutUs(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     DateTime timeBackPressed = DateTime.now();
-    final size = MediaQuery.of(context).size.width;
-    debugPrint('${size * 0.3}');
     return WillPopScope(
       onWillPop: () async {
         final diffrence = DateTime.now().difference(timeBackPressed);
@@ -27,118 +39,147 @@ class AboutUsPage extends StatelessWidget {
           title: const Text('About us', style: TextStyle(color: blackColor)),
           leading: const MenuWidget(),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
-            // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(12),
+        body: Consumer<AboutUsProvider>(
+          builder: (context, value, child) {
+            return value.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          HtmlWidget(value.aboutUsdata),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: size * 0.02),
-                        const TextWidget(
-                          text:
-                              'RaceMart, The smarter way to choose your next race.',
-                          fontSize: 16,
-                          weight: FontWeight.w600,
-                          color: blackColor,
-                        ),
-                        SizedBox(height: size * 0.02),
-                        //
-                        Text(
-                          paragraph1,
-                          style: TextStyle(
-                            color: blackColor.withOpacity(.4),
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                        SizedBox(height: size * 0.02),
-                        const TextWidget(
-                          text: 'For Participants',
-                          fontSize: 16,
-                          weight: FontWeight.w600,
-                          color: blackColor,
-                        ),
-                        SizedBox(height: size * 0.02),
-                        Text(
-                          paragraph2,
-                          style: TextStyle(
-                            color: blackColor.withOpacity(.4),
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                        SizedBox(height: size * 0.02),
-                        AboutRowData(size: size, text: 'Number of Editions'),
-                        SizedBox(height: size * 0.01),
-                        AboutRowData(
-                            size: size, text: 'Number of Participants'),
-                        SizedBox(height: size * 0.01),
-                        AboutRowData(size: size, text: 'Event Organiser'),
-                        SizedBox(height: size * 0.01),
-                        AboutRowData(
-                            size: size,
-                            text: 'Registration and Backoffice Partner'),
-                        SizedBox(height: size * 0.01),
-                        AboutRowData(size: size, text: 'Timing Partner'),
-                        SizedBox(height: size * 0.01),
-                        AboutRowData(size: size, text: 'Accreditation, and'),
-                        SizedBox(height: size * 0.01),
-                        AboutRowData(size: size, text: 'More...'),
-                        SizedBox(height: size * 0.03),
-                        Text(
-                          paragraph3,
-                          style: TextStyle(
-                            color: blackColor.withOpacity(.4),
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                        SizedBox(height: size * 0.02),
-                        const TextWidget(
-                          text: 'For Event Organisers',
-                          fontSize: 16,
-                          weight: FontWeight.w600,
-                          color: blackColor,
-                        ),
-                        SizedBox(height: size * 0.02),
-                        Text(
-                          paragraph4,
-                          style: TextStyle(
-                            color: blackColor.withOpacity(.4),
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                        SizedBox(height: size * 0.02),
-                        const TextWidget(
-                          text: 'About YouTooCanRun',
-                          fontSize: 16,
-                          weight: FontWeight.w600,
-                          color: blackColor,
-                        ),
-                        SizedBox(height: size * 0.02),
-                        Text(
-                          paragraph5,
-                          style: TextStyle(
-                            color: blackColor.withOpacity(.4),
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                        SizedBox(height: size * 0.02),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                  );
+          },
+        ),
+      ),
+    );
+  }
+}
+//     Consumer<AboutUsProvider>(builder: (context, value, child) {
+//    return  const Padding(
+//     padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+//     child: SingleChildScrollView(
+//       child: Column(
+//         children: [
+
+//               // HtmlWidget(value.aboutUsdata);
+
+//           // DefaultAboutUs(size: size),
+//         ],
+//       ),
+//     ),
+
+// );
+
+class DefaultAboutUs extends StatelessWidget {
+  const DefaultAboutUs({
+    super.key,
+    required this.size,
+  });
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: size * 0.02),
+          const TextWidget(
+            text: 'RaceMart, The smarter way to choose your next race.',
+            fontSize: 16,
+            weight: FontWeight.w600,
+            color: blackColor,
+          ),
+          SizedBox(height: size * 0.02),
+          //
+          Text(
+            paragraph1,
+            style: TextStyle(
+              color: blackColor.withOpacity(.4),
+              fontWeight: FontWeight.w200,
             ),
           ),
-        ),
+          SizedBox(height: size * 0.02),
+          const TextWidget(
+            text: 'For Participants',
+            fontSize: 16,
+            weight: FontWeight.w600,
+            color: blackColor,
+          ),
+          SizedBox(height: size * 0.02),
+          Text(
+            paragraph2,
+            style: TextStyle(
+              color: blackColor.withOpacity(.4),
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+          SizedBox(height: size * 0.02),
+          AboutRowData(size: size, text: 'Number of Editions'),
+          SizedBox(height: size * 0.01),
+          AboutRowData(size: size, text: 'Number of Participants'),
+          SizedBox(height: size * 0.01),
+          AboutRowData(size: size, text: 'Event Organiser'),
+          SizedBox(height: size * 0.01),
+          AboutRowData(size: size, text: 'Registration and Backoffice Partner'),
+          SizedBox(height: size * 0.01),
+          AboutRowData(size: size, text: 'Timing Partner'),
+          SizedBox(height: size * 0.01),
+          AboutRowData(size: size, text: 'Accreditation, and'),
+          SizedBox(height: size * 0.01),
+          AboutRowData(size: size, text: 'More...'),
+          SizedBox(height: size * 0.03),
+          Text(
+            paragraph3,
+            style: TextStyle(
+              color: blackColor.withOpacity(.4),
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+          SizedBox(height: size * 0.02),
+          const TextWidget(
+            text: 'For Event Organisers',
+            fontSize: 16,
+            weight: FontWeight.w600,
+            color: blackColor,
+          ),
+          SizedBox(height: size * 0.02),
+          Text(
+            paragraph4,
+            style: TextStyle(
+              color: blackColor.withOpacity(.4),
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+          SizedBox(height: size * 0.02),
+          const TextWidget(
+            text: 'About YouTooCanRun',
+            fontSize: 16,
+            weight: FontWeight.w600,
+            color: blackColor,
+          ),
+          SizedBox(height: size * 0.02),
+          Text(
+            paragraph5,
+            style: TextStyle(
+              color: blackColor.withOpacity(.4),
+              fontWeight: FontWeight.w200,
+            ),
+          ),
+          SizedBox(height: size * 0.02),
+        ],
       ),
     );
   }

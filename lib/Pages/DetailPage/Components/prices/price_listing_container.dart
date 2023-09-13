@@ -17,7 +17,7 @@ class PriceListingContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       width: double.infinity,
-      height: 218,
+      height: 190,
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.circular(12),
@@ -46,7 +46,7 @@ class PriceListingContainer extends StatelessWidget {
                       priceOfData.length > 1
                           ? PriceRowListing(
                               title: priceOfData[1]['title'],
-                              date: priceOfData[0]['price'].toString(),
+                              date: priceOfData[1]['price'].toString(),
                             )
                           : const SizedBox(),
                       // priceOfData.length > 2
@@ -160,7 +160,7 @@ class PriceRowListing extends StatelessWidget {
             ),
           ),
           TextWidget(
-            text: date.toString(), //data['price'].toString(),
+            text: '$date \u20B9', //data['price'].toString(),
             fontSize: 16,
             weight: FontWeight.w400,
           )

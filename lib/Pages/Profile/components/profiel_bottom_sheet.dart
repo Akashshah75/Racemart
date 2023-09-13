@@ -7,6 +7,7 @@ import '../../../Helper/Widget/custome_app_bar_widget.dart';
 import '../../../Helper/Widget/custome_textfield.dart';
 import '../../../Helper/Widget/text_button_widget.dart';
 import '../../../Provider/profile/profile_provider.dart';
+import '../../../Utils/app_asset.dart';
 
 class ProfileBottomSheet extends StatelessWidget {
   const ProfileBottomSheet(
@@ -84,10 +85,15 @@ class ProfileBottomSheet extends StatelessWidget {
                             ),
                             fit: BoxFit.cover,
                           )
-                        : DecorationImage(
-                            image: NetworkImage(data['profile']),
-                            fit: BoxFit.cover,
-                          )
+                        : data['profile'] == null
+                            ? const DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(noImageProfile),
+                              )
+                            : DecorationImage(
+                                image: NetworkImage(data['profile']),
+                                fit: BoxFit.cover,
+                              )
                     //  const DecorationImage(
                     //     fit: BoxFit.cover,
                     //     image: AssetImage(noImageProfile),

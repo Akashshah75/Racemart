@@ -5,48 +5,37 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../Provider/wishlist/fav_event_add_wishlist_provider.dart';
+// import '../../../../Provider/wishlist/wishlist_provider.dart';
 import '../../../../Provider/wishlist/wishlist_provider.dart';
 import '../../../../Utils/app_asset.dart';
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/constant.dart';
 
 class CustomEventContainer extends StatefulWidget {
-  const CustomEventContainer({super.key, this.data, required this.index});
+  const CustomEventContainer(
+      {super.key, this.data, required this.index, this.eventId});
   final dynamic data;
   final int index;
+  final int? eventId;
 
   @override
   State<CustomEventContainer> createState() => _CustomEventContainerState();
 }
 
 class _CustomEventContainerState extends State<CustomEventContainer> {
+  DateTime now = DateTime.now();
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    // final homeProvider = Provider.of<HomeProvider>(context, listen: true);
     final provider = Provider.of<FavEventAddWishlist>(context, listen: true);
     final wishProvider = Provider.of<WishListProvider>(context, listen: true);
+
     List showDistance = widget.data['distances'];
     List showDeliverables = widget.data['deliverables'] ?? [];
     final Uri url = Uri.parse(widget.data['registration_url']);
+    final DateTime registraationEndDate =
+        DateTime.parse(widget.data['registration_end_date']);
 
-    // //
-
-    // final date1 = DateTime.parse('2023-01-17 14:21:00');
-    // final date2 = DateTime.parse('2023-01-18 14:21:00');
-    // final DateTime now = DateTime.now();
-    // //
-    // print((now.compareTo(date1) == 0 || date1.compareTo(now) == 1) &&
-    //     (date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
-    // print((now.compareTo(date1) == 0 || now.compareTo(date1) == 1) &&
-    //     (date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
-    // print((date2.compareTo(now) == -1 || date2.compareTo(now) == 0));
-    // if (widget.data['early_start_date'] != null ||
-    //     widget.data['early_end_date'] != null) {
-    //   bool res = checkDate(
-    //       widget.data['early_start_date'], widget.data['early_end_date']);
-    //   print(res);
-    // }
     return Container(
       foregroundDecoration: widget.data['early_start_date'] == null ||
               widget.data['early_end_date'] == null
@@ -87,21 +76,13 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: white,
-        // border: Border.all(width: 0.1),
+        border: Border.all(width: 0.12, color: Colors.black),
         boxShadow: [
           BoxShadow(
               blurRadius: 50.0,
               offset: const Offset(0, 5),
               color: greyColor.withOpacity(0.25) //Color(0xFFe8e8e8),
               ),
-          // BoxShadow(
-          //   color: white,
-          //   offset: const Offset(-5, 0),
-          // ),
-          // BoxShadow(
-          //   color: white,
-          //   offset: const Offset(5, 0),
-          // ),
         ],
         borderRadius: BorderRadius.circular(12),
       ),
@@ -120,15 +101,15 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                   child: widget.data['poster'] != null
                       ? Image.network(
                           widget.data['poster'],
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                           height: 200,
                           width: double.infinity,
                         )
                       : Image.asset(
-                          demo, //demo,
+                          noImage, //demo,
                           height: 200,
                           width: double.infinity,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                         )),
               //
               widget.data['phase'] == null
@@ -173,10 +154,16 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                         isLiked: wishProvider.fav.contains(widget.data['id'])
                             ? true
                             : false,
+                        likeBuilder: (isLiked) {
+                          return Icon(
+                            Icons.favorite,
+                            color: isLiked ? appRed : greyColor,
+                          );
+                        },
                         onTap: (isLiked) async {
                           int eventId = widget.data['id'];
-                          // print(eventId);
                           provider.addEvent(eventId, context);
+
                           return !isLiked;
                         },
                       ),
@@ -218,6 +205,7 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                         width: 50,
                         decoration: BoxDecoration(
                           color: Colors.green,
+                          //Colors.green[500],
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
@@ -232,9 +220,11 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                               ),
                             ),
                             const SizedBox(width: 2),
-                            const Icon(Icons.star_rate,
-                                size: 15, color: whiteColor //yellowColor,
-                                ),
+                            const Icon(
+                              Icons.star_rate,
+                              size: 15,
+                              color: Colors.yellowAccent,
+                            ),
                           ],
                         ),
                       ),
@@ -311,8 +301,9 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                               itemBuilder: (context, index) {
                                 if (index < 2) {
                                   return SizedBox(
-                                    width: 40,
+                                    width: 50,
                                     child: Text(
+                                      // '10 miles ',
                                       showDistance[index]['name'],
                                       style: TextStyle(
                                         color: blueColor,
@@ -332,7 +323,8 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Last Registration Date :'),
+                const Text('Last Day to Register :'),
+                // const Text('Last Registration Date :'),
                 // Image.asset(
                 //   calender,
                 //   width: 14,
@@ -391,91 +383,94 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
           //
           const Divider(),
           //
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // TextButton(
-              //   onPressed: () {
-              //     _launchUrl(url);
-              //   },
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(left: 10),
-              //     child: Text(
-              //       'Register now',
-              //       style: TextStyle(
-              //           color: blueColor,
-              //           fontSize: 14,
-              //           letterSpacing: 1.2,
-              //           fontWeight: FontWeight.w600),
-              //     ),
-              //   ),
-              // ),
+          registraationEndDate.isBefore(now)
+              ? const SizedBox()
+              : Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // TextButton(
+                    //   onPressed: () {
+                    //     _launchUrl(url);
+                    //   },
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(left: 10),
+                    //     child: Text(
+                    //       'Register now',
+                    //       style: TextStyle(
+                    //           color: blueColor,
+                    //           fontSize: 14,
+                    //           letterSpacing: 1.2,
+                    //           fontWeight: FontWeight.w600),
+                    //     ),
+                    //   ),
+                    // ),
 
-              InkWell(
-                onTap: () {
-                  _launchUrl(url);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Register now',
-                        style: TextStyle(
-                            color: blueColor,
-                            fontSize: 14,
-                            letterSpacing: 1.2,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(width: 3),
-                      Icon(
-                        Icons.how_to_reg_rounded,
-                        color: blueColor,
-                        size: 16,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              widget.data['lowest_price'] == null
-                  ? const SizedBox()
-                  : Container(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    InkWell(
+                      onTap: () {
+                        _launchUrl(url);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
                           children: [
-                            Row(
-                              children: [
-                                Image.asset(
-                                  rupay,
-                                  width: 14,
-                                  color: redColor.withOpacity(0.8),
-                                ),
-                                const SizedBox(width: 2),
-                                Text(
-                                  widget.data['lowest_price'].toString(),
-                                  style: TextStyle(
-                                    color: blueColor,
-                                    fontSize: 14,
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(width: 2),
-                                const Text(
-                                  'onwards',
-                                  style: TextStyle(
-                                    color: redColor,
-                                    fontSize: 12,
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ])),
-            ],
-          ),
+                            Text(
+                              'Register now',
+                              style: TextStyle(
+                                  color: appRed, // blueColor,
+                                  fontSize: 14,
+                                  letterSpacing: 1.2,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(width: 3),
+                            Icon(
+                              Icons.how_to_reg_rounded,
+                              color: appRed, //blueColor,
+                              size: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    widget.data['lowest_price'] == null
+                        ? const SizedBox()
+                        : Container(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        rupay,
+                                        width: 14,
+                                        color: redColor.withOpacity(0.8),
+                                      ),
+                                      const SizedBox(width: 2),
+                                      Text(
+                                        widget.data['lowest_price'].toString(),
+                                        style: TextStyle(
+                                          color: blueColor,
+                                          fontSize: 14,
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 2),
+                                      const Text(
+                                        'onwards',
+                                        style: TextStyle(
+                                          color: redColor,
+                                          fontSize: 12,
+                                          // fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ])),
+                  ],
+                ),
         ],
       ),
     );

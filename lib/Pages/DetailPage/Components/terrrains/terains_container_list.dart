@@ -42,7 +42,11 @@ class TerrainsContainerList extends StatelessWidget {
           const Divider(),
           // const SizedBox(height: 15),
           listOfTerrains.isEmpty
-              ? const SizedBox()
+              ? const SizedBox(
+                  child: Center(
+                    child: Text("Don't have terrains data!!"),
+                  ),
+                )
               : Row(
                   children: [
                     TerrainsNameContainer(name: listOfTerrains[0]['name']),

@@ -15,6 +15,7 @@ class HexColor extends Color {
 
 //AppColors
 Color blueColor = HexColor("#034ea1");
+Color appRed = HexColor('#ee141f');
 Color halfWhite = HexColor("#fafafa");
 Color white = HexColor("#ffffff");
 Color grey = HexColor("#fcfcfc");

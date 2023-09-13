@@ -16,19 +16,16 @@ class EventNamesForRoute extends StatefulWidget {
 class _EventNamesForRouteState extends State<EventNamesForRoute> {
   List<String> eventNames = [
     'Upcoming Races',
-    'User interest',
+    'User Interest',
     'The Latest Listing',
     'Explore Best Cities',
     'Event In Mumbai',
-    'Testimonials',
+    'Event Reviews',
   ];
   bool isActive = true;
   @override
   Widget build(BuildContext context) {
     final homeProvider = Provider.of<HomeProvider>(context, listen: true);
-    // if (kDebugMode) {
-    //   // print(homeProvider.selectedIndex);
-    // }
     return SizedBox(
       height: 40,
       child: ListView.builder(

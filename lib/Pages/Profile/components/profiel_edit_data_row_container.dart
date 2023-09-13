@@ -25,6 +25,9 @@ class ProfileEditDataRowContainer extends StatelessWidget {
         decoration: BoxDecoration(
           color: whiteColor,
           borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+            color: Colors.grey.withOpacity(0.1),
+          ),
         ),
         child: Padding(
           padding: defaultSymetricPeding,
