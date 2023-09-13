@@ -160,7 +160,7 @@ class PriceRowListing extends StatelessWidget {
             ),
           ),
           TextWidget(
-            text: '$date \u20B9', //data['price'].toString(),
+            text: '\u20B9$date', //data['price'].toString(),
             fontSize: 16,
             weight: FontWeight.w400,
           )
@@ -194,7 +194,7 @@ class PriceRowListingWithData extends StatelessWidget {
             ),
           ),
           TextWidget(
-            text: data['price'].toString(),
+            text: "\u20B9${data['price']}",
             fontSize: 16,
             weight: FontWeight.w400,
           )
