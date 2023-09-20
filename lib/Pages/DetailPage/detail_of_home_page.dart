@@ -11,6 +11,7 @@ import '../../Utils/app_size.dart';
 import 'Components/Description/discription_container.dart';
 import 'Components/deliverables/deliverables_container.dart';
 import 'Components/horizontal_tab_container.dart';
+import 'Components/rating/rating_page.dart';
 import 'Components/registerDateContainer/registration_date_container.dart';
 import 'Components/distance/distance_container_list.dart';
 import 'Components/partener/partener_container_list.dart';
@@ -123,8 +124,36 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                       text: widget.data['share-url'] ?? 'url',
                     );
                   },
-                  icon: const Icon(Icons.share),
+                  icon: Icon(
+                    Icons.share,
+                    color: blueColor,
+                  ),
                 ),
+          //
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                enableDrag: false,
+                context: context,
+                // isDismissible: false,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  ),
+                ),
+                builder: (context) {
+                  Size size = MediaQuery.of(context).size;
+                  return RatingPage(size: size);
+                },
+              );
+            },
+            icon: const Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+          ),
         ],
       ),
       body: SafeArea(

@@ -68,12 +68,14 @@ class MultiLineTextBox extends StatelessWidget {
     this.maxLine = 1,
     this.textInputType = TextInputType.none,
     required this.controller,
+    this.autoFocus = false,
   });
   final String hintText;
 
   final int maxLine;
   final TextInputType textInputType;
   final TextEditingController controller;
+  final bool autoFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +89,7 @@ class MultiLineTextBox extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        autofocus: autoFocus,
         controller: controller,
         maxLines: maxLine,
         keyboardType: textInputType,
