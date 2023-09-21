@@ -11,6 +11,7 @@ import '../../Utils/app_size.dart';
 import 'Components/Description/discription_container.dart';
 import 'Components/deliverables/deliverables_container.dart';
 import 'Components/horizontal_tab_container.dart';
+import 'Components/rating/rating_container.dart';
 import 'Components/rating/rating_page.dart';
 import 'Components/registerDateContainer/registration_date_container.dart';
 import 'Components/distance/distance_container_list.dart';
@@ -74,6 +75,8 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       //
       DeleverableContainer(data: provider.detailEventData),
       //
+      RatingContainer(data: provider.detailEventData),
+      //
       SimilarListing(data: provider.detailEventData),
     ];
     List<Map> containerNames = [
@@ -84,8 +87,9 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.284, 'key': 'Prices'},
       {'h': size * 0.28, 'key': 'How to reach'},
       {'h': size * 0.275, 'key': 'Important Dates'},
-      {'h': size * 0.276, 'key': 'Terrains'},
-      {'h': size * 0.26, 'key': 'Deliverables'},
+      {'h': size * 0.29, 'key': 'Terrains'},
+      {'h': size * 0.275, 'key': 'Deliverables'},
+      {'h': size * 0.26, 'key': 'Reviews'},
       {'h': size * 0.33, 'key': 'Similar listing'}
     ];
     void scrollToTap(int index) {
@@ -127,6 +131,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                   icon: Icon(
                     Icons.share,
                     color: blueColor,
+                    size: 25,
                   ),
                 ),
           //
@@ -152,6 +157,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
             icon: const Icon(
               Icons.star,
               color: Colors.amber,
+              size: 25,
             ),
           ),
         ],

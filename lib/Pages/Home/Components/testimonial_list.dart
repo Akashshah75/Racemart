@@ -77,11 +77,18 @@ class TestimonialListOfContainer extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(60),
-                  child: Image(
-                    fit: BoxFit.cover,
-                    color: blueColor,
-                    image: const AssetImage(noImageProfile),
-                  ),
+                  child: data['profile'] != null
+                      ? Image(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            data['profile'],
+                          ),
+                        )
+                      : Image(
+                          fit: BoxFit.cover,
+                          color: blueColor,
+                          image: const AssetImage(noImageProfile),
+                        ),
                 ),
               ),
               const SizedBox(width: 20),

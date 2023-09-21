@@ -35,6 +35,7 @@ class _RatingPageState extends State<RatingPage> {
   @override
   Widget build(BuildContext context) {
     final List partnerRatingData = widget.data['user_rating'];
+    var rating = widget.data['rate']['stars'];
 
     return SizedBox(
       height: widget.size.height * 0.9,
@@ -86,12 +87,9 @@ class _RatingPageState extends State<RatingPage> {
                 ),
               ),
               //users rating
-              CustomeRatingContainer(
+              CustomeRatingContainerWithOutFunction(
                 title: "User's Overall Ratings",
-                intialRating: 0,
-                onRatingUpdate: (usersRating) {
-                  ratingProvider.getUserStarRating(usersRating);
-                },
+                rating: rating,
               ),
               Divider(color: appBg, height: 1.2, thickness: 4),
               //list of partner ratings
