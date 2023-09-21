@@ -145,7 +145,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
                 ),
                 builder: (context) {
                   Size size = MediaQuery.of(context).size;
-                  return RatingPage(size: size);
+                  return RatingPage(size: size, data: provider.detailEventData);
                 },
               );
             },

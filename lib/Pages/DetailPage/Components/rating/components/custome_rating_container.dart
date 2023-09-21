@@ -8,15 +8,17 @@ class CustomeRatingContainer extends StatelessWidget {
     super.key,
     required this.title,
     required this.onRatingUpdate,
+    required this.intialRating,
   });
   final String title;
   final void Function(double) onRatingUpdate;
+  final int intialRating;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         color: appBg,
         borderRadius: BorderRadius.circular(8),
@@ -35,6 +37,7 @@ class CustomeRatingContainer extends StatelessWidget {
             ),
             // const SizedBox(width: 10),
             RatingBar.builder(
+              initialRating: intialRating.toDouble(),
               itemSize: 25,
               minRating: 0,
               maxRating: 5,
