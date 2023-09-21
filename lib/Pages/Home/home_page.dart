@@ -31,9 +31,6 @@ class _HomePageState extends State<HomePage> {
       if (advertiesmentProvider.homePageAdvertisementpopUp.isNotEmpty) {
         HomePageInit().openDialog(context);
       }
-      // if (advertiesmentProvider.horizontalAdvertismentData.isNotEmpty) {
-      //   HomePageInit().openDialog(context);
-      // }
     });
     super.initState();
   }

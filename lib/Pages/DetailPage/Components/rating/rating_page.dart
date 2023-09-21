@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:racemart_app/Utils/constant.dart';
 
 import '../../../../Helper/Widget/custome_textfield.dart';
 import '../../../../Helper/Widget/text_button_widget.dart';
-import '../../../../Provider/detail_page_provider.dart';
+import '../../../../Provider/Home providers/home_page_provider.dart';
 import '../../../../Provider/rating/rating_provider.dart';
 import '../../../../Utils/app_color.dart';
+import '../../../../Utils/constant.dart';
 import 'components/custome_rating_container.dart';
 
 class RatingPage extends StatefulWidget {
@@ -26,24 +26,24 @@ class RatingPage extends StatefulWidget {
 class _RatingPageState extends State<RatingPage> {
   @override
   void initState() {
-    final provider = Provider.of<RatingProvider>(context, listen: false);
-    provider.rating = {};
-    provider.ratingComment.clear();
+    final ratingProvider = Provider.of<RatingProvider>(context, listen: false);
+    // ratingProvider.rating = {};
+    ratingProvider.ratingComment.clear();
+    Future.delayed(Duration.zero, () {
+      ratingProvider.fetchReview(context, widget.data['id'].toString());
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final List partnerRatingData = widget.data['user_rating'];
-    var rating = widget.data['rate']['stars'];
-
     return SizedBox(
       height: widget.size.height * 0.9,
       child: SingleChildScrollView(
         child:
             Consumer<RatingProvider>(builder: (context, ratingProvider, child) {
           if (ratingProvider.rating.isEmpty) {
-            for (var element in partnerRatingData) {
+            for (var element in ratingProvider.partnerRatingData) {
               ratingProvider.rating[element['partner_type'].toString()] =
                   element['stars'].floorToDouble(); //partner_type
               // print(ratingProvider.rating);
@@ -89,23 +89,24 @@ class _RatingPageState extends State<RatingPage> {
               //users rating
               CustomeRatingContainerWithOutFunction(
                 title: "User's Overall Ratings",
-                rating: rating,
+                rating: ratingProvider.totalRating,
               ),
+              const SizedBox(height: 10),
               Divider(color: appBg, height: 1.2, thickness: 4),
+              // const SizedBox(height: ),
               //list of partner ratings
               SizedBox(
                 height: 200,
                 child: ListView.builder(
-                  itemCount: partnerRatingData.length,
+                  itemCount: ratingProvider.partnerRatingData.length,
                   itemBuilder: (context, index) {
-                    final data = partnerRatingData[index];
+                    final data = ratingProvider.partnerRatingData[index];
                     return CustomeRatingContainer(
                       title: data['type'],
                       intialRating: data['stars'],
                       onRatingUpdate: (rate) {
                         ratingProvider.getRatingData(
                             data['partner_type'].toString(), rate.floor());
-
                         // print("${data['partner_type']}: ${rate.floor()}");
                       },
                     );
@@ -130,18 +131,18 @@ class _RatingPageState extends State<RatingPage> {
                 child: TextButtonWidget(
                   text: 'Submit',
                   pres: () {
-                    final detailProvider =
-                        Provider.of<DetailProvider>(context, listen: false);
-                    // print(widget.data['id']);
-                    // print(ratingProvider.ratingComment.text);
-                    // print(ratingProvider.rating);
+                    print(ratingProvider.rating);
+                    // print('new');
                     if (ratingProvider.ratingComment.text.isNotEmpty) {
                       ratingProvider
                           .postRating(context, widget.data['id'])
                           .then((_) {
-                        detailProvider.fetchEventDetail(
-                            context, widget.data['id']);
+                        ratingProvider.fetchReview(
+                            context, widget.data['id'].toString());
                       }).then((_) {
+                        final homeProvider =
+                            Provider.of<HomeProvider>(context, listen: false);
+                        homeProvider.upcomingEvent(context);
                         Navigator.of(context).pop();
                       });
                     } else {

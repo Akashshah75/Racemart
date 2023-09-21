@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../Provider/detail_page_provider.dart';
+import '../../Provider/rating/rating_provider.dart';
 import '../../Utils/app_asset.dart';
 import '../../Utils/app_size.dart';
 import 'Components/Description/discription_container.dart';
@@ -43,6 +44,13 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
     Future.delayed(Duration.zero, () async {
       final provider = Provider.of<DetailProvider>(context, listen: false);
       provider.fetchEventDetail(context, widget.data['id']);
+      final ratingProvider =
+          Provider.of<RatingProvider>(context, listen: false);
+      ratingProvider.rating = {};
+      ratingProvider.ratingComment.clear();
+      Future.delayed(Duration.zero, () {
+        ratingProvider.fetchReview(context, widget.data['id'].toString());
+      });
     });
     super.initState();
   }
@@ -74,6 +82,8 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       TerrainsContainerList(data: provider.detailEventData),
       //
       DeleverableContainer(data: provider.detailEventData),
+      //
+      // DeleverableContainer(data: provider.detailEventData),
       //
       RatingContainer(data: provider.detailEventData),
       //

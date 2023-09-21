@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/rating/rating_provider.dart';
 import 'package:racemart_app/Utils/app_color.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -65,6 +67,53 @@ class ImageHedingContainer extends StatelessWidget {
                       image: AssetImage(demo),
                     ),
                   ),
+            child: Consumer<RatingProvider>(builder: (context, value, child) {
+              return value.totalRating > 1
+                  ? Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Container(
+                          alignment: Alignment.center,
+                          // margin: const EdgeInsets.only(right: 5, bottom: 5),
+                          height: 30,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            //Colors.green[500],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Consumer<RatingProvider>(
+                              //     builder: (context, value, child) {
+                              //   return
+                              Text(
+                                value.isLoading
+                                    ? '...'
+                                    : value.totalRating.toString(),
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: whiteColor,
+                                ),
+                              ),
+                              // }
+                              // ),
+                              const SizedBox(width: 2),
+                              const Icon(
+                                Icons.star_rate,
+                                size: 15,
+                                color: Colors.amber,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : const SizedBox();
+            }),
             // child: Padding(
             //   padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
             //   child: Row(

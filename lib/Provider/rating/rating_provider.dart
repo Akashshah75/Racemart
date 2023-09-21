@@ -12,6 +12,8 @@ class RatingProvider with ChangeNotifier {
   TextEditingController ratingComment = TextEditingController();
   double userRating = 0;
   Map<String, double> rating = {};
+  List partnerRatingData = [];
+  int totalRating = 0;
   bool isLoading = false;
   //for user rating
   void getUserStarRating(var rateingStar) {
@@ -26,30 +28,55 @@ class RatingProvider with ChangeNotifier {
   }
 
   //post api for rataing
-  Future<void> postRating(
-    BuildContext context,
-    var eventId,
-  ) async {
-    isLoading = true;
-    notifyListeners();
+  Future<void> postRating(BuildContext context, var eventId) async {
+    // isLoading = true;
+    // notifyListeners();
     var body = {
       "event_id": eventId,
       "comments": ratingComment.text,
       "rating": rating
     };
+
     //
     final provider =
         Provider.of<AuthenticationProvider>(context, listen: false);
     var response = await BaseClient().postMethodWithToken(
         postReviewsUrl, provider.appLoginToken.toString(), body);
     // print(response);
-    isLoading = false;
-    notifyListeners();
+    // isLoading = false;
+    // notifyListeners();
     //
     var result = jsonDecode(response);
     print('result$result');
     if (result['status'] == "success") {
       toastMessage(result['message']);
+    } else {
+      toastMessage(result['message']);
+    }
+    //
+  }
+
+  //fetch updated review data
+  Future<void> fetchReview(BuildContext context, var eventId) async {
+    final url = fethREviewUrl + eventId;
+    isLoading = true;
+    notifyListeners();
+    //
+    final provider =
+        Provider.of<AuthenticationProvider>(context, listen: false);
+    var response = await BaseClient()
+        .getMethodWithToken(url, provider.appLoginToken.toString());
+    isLoading = false;
+    notifyListeners();
+    //
+    var result = jsonDecode(response);
+    //
+    partnerRatingData = [];
+    if (result['status'] == "success") {
+      partnerRatingData = result['data']['user_rating'];
+      totalRating = result['data']['rate']['stars'];
+      notifyListeners();
+      print(partnerRatingData);
     } else {
       toastMessage(result['message']);
     }

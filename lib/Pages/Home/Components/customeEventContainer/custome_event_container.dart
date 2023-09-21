@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
+import 'package:racemart_app/Provider/rating/rating_provider.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -212,18 +213,22 @@ class _CustomEventContainerState extends State<CustomEventContainer> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              widget.data['rate']['stars'].toString(),
-                              style: const TextStyle(
-                                fontSize: 15,
-                                color: whiteColor,
-                              ),
-                            ),
+                            Consumer<RatingProvider>(
+                                builder: (context, value, child) {
+                              return Text(
+                                // value.totalRating.toString(),
+                                widget.data['rate']['stars'].toString(),
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: whiteColor,
+                                ),
+                              );
+                            }),
                             const SizedBox(width: 2),
                             const Icon(
                               Icons.star_rate,
                               size: 15,
-                              color: Colors.yellowAccent,
+                              color: Colors.amber,
                             ),
                           ],
                         ),

@@ -11,11 +11,11 @@ class RatingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List reviews = data['reviews'];
+    final List reviews = data['reviews'] ?? [];
     return Container(
       margin: defaultSymetricPeding,
       width: double.infinity,
-      height: 350,
+      height: reviews.isEmpty ? 120 : 350,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: white,
@@ -85,19 +85,30 @@ class RatingContainer extends StatelessWidget {
             //
             const Divider(),
             //
-            CustomeRatingContainer(
-              name: reviews[1]['name'],
-              rating: reviews[1]['star'].toDouble(),
-              profileUrl: reviews[1]['profile'],
-              comment: reviews[1]['comments'],
-            ),
-            // const SizedBox(height: 10),
-            CustomeRatingContainer(
-              name: reviews[2]['name'],
-              rating: reviews[2]['star'].toDouble(),
-              profileUrl: reviews[2]['profile'],
-              comment: reviews[2]['comments'],
-            ),
+            reviews.isNotEmpty
+                ? Column(
+                    children: [
+                      CustomeRatingContainer(
+                        name: reviews[0]['name'],
+                        rating: reviews[0]['star'].toDouble(),
+                        profileUrl: reviews[0]['profile'],
+                        comment: reviews[0]['comments'],
+                      ),
+
+                      // const SizedBox(height: 10),
+                      reviews.length > 1
+                          ? CustomeRatingContainer(
+                              name: reviews[1]['name'],
+                              rating: reviews[1]['star'].toDouble(),
+                              profileUrl: reviews[1]['profile'],
+                              comment: reviews[1]['comments'],
+                            )
+                          : const SizedBox(),
+                    ],
+                  )
+                : const Center(
+                    child: Text('No Reviews!!'),
+                  ),
           ],
         ),
       ),

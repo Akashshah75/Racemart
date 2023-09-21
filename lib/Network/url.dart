@@ -51,3 +51,4 @@ const String aboutUsUrl = "$baseUrl/about-us";
 const String notificationUrl = "$baseUrl/notifications";
 const String advertismentUrl = "$baseUrl/advertisements";
 const String postReviewsUrl = "$baseUrl/reviews";
+const String fethREviewUrl = "$baseUrl/reviews/";
