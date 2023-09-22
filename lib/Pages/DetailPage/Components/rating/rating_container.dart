@@ -15,7 +15,7 @@ class RatingContainer extends StatelessWidget {
     return Container(
       margin: defaultSymetricPeding,
       width: double.infinity,
-      height: reviews.isEmpty ? 120 : 350,
+      height: 350,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: white,
@@ -83,6 +83,7 @@ class RatingContainer extends StatelessWidget {
               ],
             ),
             //
+
             const Divider(),
             //
             reviews.isNotEmpty

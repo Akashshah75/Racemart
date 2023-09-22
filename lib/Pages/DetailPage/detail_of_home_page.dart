@@ -11,6 +11,7 @@ import '../../Utils/app_asset.dart';
 import '../../Utils/app_size.dart';
 import 'Components/Description/discription_container.dart';
 import 'Components/deliverables/deliverables_container.dart';
+import 'Components/galary/list_of_galary_image.dart';
 import 'Components/horizontal_tab_container.dart';
 import 'Components/rating/rating_container.dart';
 import 'Components/rating/rating_page.dart';
@@ -83,7 +84,8 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       //
       DeleverableContainer(data: provider.detailEventData),
       //
-      // DeleverableContainer(data: provider.detailEventData),
+
+      ListOfGalaryImage(data: provider.detailEventData),
       //
       RatingContainer(data: provider.detailEventData),
       //
@@ -99,6 +101,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.275, 'key': 'Important Dates'},
       {'h': size * 0.29, 'key': 'Terrains'},
       {'h': size * 0.275, 'key': 'Deliverables'},
+      {'h': size * 0.275, 'key': 'Galary'},
       {'h': size * 0.26, 'key': 'Reviews'},
       {'h': size * 0.33, 'key': 'Similar listing'}
     ];

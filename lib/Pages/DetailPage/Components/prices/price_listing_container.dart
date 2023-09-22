@@ -55,7 +55,7 @@ class PriceListingContainer extends StatelessWidget {
                       //         date: priceOfData[0]['price'].toString(),
                       //       )
                       //     : const SizedBox(),
-                      const SizedBox(height: 10),
+                      // const SizedBox(height: 10),
                       priceOfData.length > 2
                           ? const Divider()
                           : const SizedBox(),

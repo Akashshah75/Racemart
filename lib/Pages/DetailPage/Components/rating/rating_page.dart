@@ -131,8 +131,6 @@ class _RatingPageState extends State<RatingPage> {
                 child: TextButtonWidget(
                   text: 'Submit',
                   pres: () {
-                    print(ratingProvider.rating);
-                    // print('new');
                     if (ratingProvider.ratingComment.text.isNotEmpty) {
                       ratingProvider
                           .postRating(context, widget.data['id'])
