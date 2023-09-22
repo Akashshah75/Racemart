@@ -84,8 +84,7 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       //
       DeleverableContainer(data: provider.detailEventData),
       //
-
-      ListOfGalaryImage(data: provider.detailEventData),
+      GalaryContainer(data: provider.detailEventData),
       //
       RatingContainer(data: provider.detailEventData),
       //
@@ -101,8 +100,8 @@ class _DetailPageOfHomeState extends State<DetailPageOfHome>
       {'h': size * 0.275, 'key': 'Important Dates'},
       {'h': size * 0.29, 'key': 'Terrains'},
       {'h': size * 0.275, 'key': 'Deliverables'},
-      {'h': size * 0.275, 'key': 'Galary'},
-      {'h': size * 0.26, 'key': 'Reviews'},
+      {'h': size * 0.262, 'key': 'Galary'},
+      {'h': size * 0.281, 'key': 'Reviews'},
       {'h': size * 0.33, 'key': 'Similar listing'}
     ];
     void scrollToTap(int index) {

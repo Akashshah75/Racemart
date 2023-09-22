@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../Utils/app_color.dart';
 import '../../../../Utils/app_size.dart';
 
-class ListOfGalaryImage extends StatelessWidget {
-  const ListOfGalaryImage({
+class GalaryContainer extends StatelessWidget {
+  const GalaryContainer({
     super.key,
     this.data,
   });
@@ -11,7 +11,6 @@ class ListOfGalaryImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List listOfGalary = data['gallery'] ?? [];
-    print(listOfGalary);
     return Container(
       margin: defaultSymetricPeding,
       width: double.infinity,
@@ -84,9 +83,9 @@ class ListOfGalaryImage extends StatelessWidget {
             listOfGalary.isNotEmpty
                 ? Column(
                     children: [
-                      GalaryContainer(data: listOfGalary[0]),
+                      GalaryItemContainer(data: listOfGalary[0]),
                       listOfGalary.length > 1
-                          ? GalaryContainer(data: listOfGalary[0])
+                          ? GalaryItemContainer(data: listOfGalary[0])
                           : const SizedBox(),
                     ],
                   )
@@ -100,8 +99,8 @@ class ListOfGalaryImage extends StatelessWidget {
   }
 }
 
-class GalaryContainer extends StatelessWidget {
-  const GalaryContainer({
+class GalaryItemContainer extends StatelessWidget {
+  const GalaryItemContainer({
     super.key,
     this.data,
   });
@@ -152,7 +151,7 @@ class ListOfGalary extends StatelessWidget {
                 itemCount: listOfGalary.length,
                 itemBuilder: (context, index) {
                   final galary = listOfGalary[index];
-                  return GalaryContainer(data: galary);
+                  return GalaryItemContainer(data: galary);
                 },
               ),
             ),
