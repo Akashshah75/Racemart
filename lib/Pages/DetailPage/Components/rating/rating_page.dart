@@ -45,7 +45,7 @@ class _RatingPageState extends State<RatingPage> {
           if (ratingProvider.rating.isEmpty) {
             for (var element in ratingProvider.partnerRatingData) {
               ratingProvider.rating[element['partner_type'].toString()] =
-                  element['stars'].floorToDouble(); //partner_type
+                  element['stars'].toInt(); //partner_type
               // print(ratingProvider.rating);
             }
           }
@@ -106,7 +106,7 @@ class _RatingPageState extends State<RatingPage> {
                       intialRating: data['stars'],
                       onRatingUpdate: (rate) {
                         ratingProvider.getRatingData(
-                            data['partner_type'].toString(), rate.floor());
+                            data['partner_type'].toString(), rate.toInt());
                         // print("${data['partner_type']}: ${rate.floor()}");
                       },
                     );

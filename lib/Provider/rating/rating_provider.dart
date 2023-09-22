@@ -11,7 +11,7 @@ import '../authentication_provider.dart';
 class RatingProvider with ChangeNotifier {
   TextEditingController ratingComment = TextEditingController();
   double userRating = 0;
-  Map<String, double> rating = {};
+  Map<String, int> rating = {};
   List partnerRatingData = [];
   int totalRating = 0;
   bool isLoading = false;
@@ -22,7 +22,7 @@ class RatingProvider with ChangeNotifier {
   }
 
   void getRatingData(String type, int rate) {
-    rating.addAll({type: rate.floorToDouble()});
+    rating.addAll({type: rate});
     notifyListeners();
     print(rating);
   }
@@ -36,6 +36,7 @@ class RatingProvider with ChangeNotifier {
       "comments": ratingComment.text,
       "rating": rating
     };
+    print(body);
 
     //
     final provider =
