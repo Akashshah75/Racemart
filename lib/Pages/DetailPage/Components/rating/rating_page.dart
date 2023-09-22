@@ -49,6 +49,7 @@ class _RatingPageState extends State<RatingPage> {
               // print(ratingProvider.rating);
             }
           }
+          print(ratingProvider.rating);
           return Column(
             children: [
               Padding(
