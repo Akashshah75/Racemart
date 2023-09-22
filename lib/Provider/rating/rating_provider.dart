@@ -83,4 +83,16 @@ class RatingProvider with ChangeNotifier {
     }
     //
   }
+
+  //
+
+  void calculateAvgofRating() {
+    rating.forEach(
+      (key, value) {
+        totalRating += value;
+        notifyListeners();
+      },
+    );
+    print(totalRating);
+  }
 }

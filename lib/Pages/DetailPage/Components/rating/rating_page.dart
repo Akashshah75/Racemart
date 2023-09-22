@@ -37,19 +37,28 @@ class _RatingPageState extends State<RatingPage> {
 
   @override
   Widget build(BuildContext context) {
+    int totalRating = 0;
     return SizedBox(
       height: widget.size.height * 0.9,
       child: SingleChildScrollView(
         child:
             Consumer<RatingProvider>(builder: (context, ratingProvider, child) {
           if (ratingProvider.rating.isEmpty) {
+            // print('work');
             for (var element in ratingProvider.partnerRatingData) {
               ratingProvider.rating[element['partner_type'].toString()] =
                   element['stars'].toInt(); //partner_type
               // print(ratingProvider.rating);
             }
           }
-          print(ratingProvider.rating);
+          totalRating = 0;
+          for (var element in ratingProvider.partnerRatingData) {
+            final int star = element['stars'].toInt();
+            totalRating += star;
+          }
+          final usersOverallRating =
+              (totalRating ~/ ratingProvider.rating.length).round();
+          // print(usersOverallRating);
           return Column(
             children: [
               Padding(
@@ -90,7 +99,7 @@ class _RatingPageState extends State<RatingPage> {
               //users rating
               CustomeRatingContainerWithOutFunction(
                 title: "User's Overall Ratings",
-                rating: ratingProvider.totalRating,
+                rating: usersOverallRating,
               ),
               const SizedBox(height: 10),
               Divider(color: appBg, height: 1.2, thickness: 4),
